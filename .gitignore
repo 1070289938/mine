@@ -1,0 +1,19 @@
+# Unity generated files
+Temp/
+Library/
+Obj/
+Build/
+Builds/
+
+# Visual Studio cache files
+.vs/
+
+# Rider cache files
+.idea/
+
+# Textmate cache files
+*.tmproj
+
+# OS generated files
+.DS_Store
+Thumbs.db
