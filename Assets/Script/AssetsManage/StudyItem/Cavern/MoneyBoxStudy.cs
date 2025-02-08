@@ -25,6 +25,7 @@ public class MoneyBoxStudy : MonoBehaviour
     void Awake()
     {
         studyItemManager = GetComponent<StudyItemManager>();
+        studyItemManager.Successful = Successful;
         //设置价格
         resources[ResourceType.Currency] = 10000;
         resources[ResourceType.Iron] = 500;
@@ -52,7 +53,6 @@ public class MoneyBoxStudy : MonoBehaviour
     {
         //触发研究事件
 
-        LogManager.Instance.AddLog(Successful);
 
         //增加房屋100%软妹币储量
 

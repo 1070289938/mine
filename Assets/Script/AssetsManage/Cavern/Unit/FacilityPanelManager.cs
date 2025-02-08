@@ -29,6 +29,7 @@ public class FacilityPanelManager : MonoBehaviour
     public bool show = false;//默认隐藏
 
     string resourceName;
+
     string resourceDescription;
     int resourceQuantity;//物体数量(正常)
 
@@ -61,8 +62,65 @@ public class FacilityPanelManager : MonoBehaviour
     double upMultiple = 1; //资源递增的倍数默认是1
 
 
+
     public void Awake()
     {
+        gameObject.SetActive(show);
+        miningButton.onClick.AddListener(OnButtonClick);
+    }
+
+    private void OnButtonClick()
+    {
+        // 执行按钮点击后的逻辑
+        // 禁用按钮
+        miningButton.interactable = false;
+        // 启动协程，在指定时间后恢复按钮的可交互状态
+        StartCoroutine(EnableButtonAfterDelay(0.1f));
+    }
+
+    private System.Collections.IEnumerator EnableButtonAfterDelay(float delay)
+    {
+        // 等待指定的时间
+        yield return new WaitForSeconds(delay);
+        // 恢复按钮的可交互状态
+        miningButton.interactable = true;
+    }
+
+    void Update()
+    {
+        ComputePrice();
+    }
+    /// <summary>
+    /// 计算当前资源是否足够购买当前面板的东西
+    /// </summary>
+    void ComputePrice()
+    {
+        Dictionary<ResourceType, double> expendResources;//当前价格
+        //判断资源是否足够（使用仅判断）
+        if (this.expendResources == null)
+        {
+            expendResources = resources;
+        }
+        else
+        {
+            expendResources = this.expendResources;
+        }
+        JudgmentResult result = ResourceManager.Instance.OnlyJudgmentResource(expendResources);
+        ColorBlock colors = miningButton.colors;
+        Color color;
+        if (result.flag)
+        {
+            color = Utils.HexToColor("86E37F");
+        }
+        else
+        {
+            color = Utils.HexToColor("9D9595");
+        }
+        colors.normalColor = color;
+        colors.selectedColor = color;
+        colors.pressedColor = color;
+        colors.highlightedColor = color;
+        miningButton.colors = colors;//给颜色赋值给按钮
 
     }
 
@@ -78,7 +136,7 @@ public class FacilityPanelManager : MonoBehaviour
 
     private void Start()
     {
-        gameObject.SetActive(show);
+
         miningButton.onClick.AddListener(OnMineButtonClicked);
         UpdateRequirements();//更新初始价格
     }
@@ -145,6 +203,15 @@ public class FacilityPanelManager : MonoBehaviour
         return operationQuantity;//这是实际运行的数量
     }
 
+
+    /// <summary>
+    /// 获取数量（实际上获取到的是运行数量）
+    /// </summary>
+    /// <returns></returns>
+    public int GetMaxCount()
+    {
+        return resourceQuantity;//这个是最大数量
+    }
     /// <summary>
     /// 数量+1
     /// </summary>
@@ -163,13 +230,38 @@ public class FacilityPanelManager : MonoBehaviour
         }
 
     }
+    /// <summary>
+    /// 加载存档的数量
+    /// </summary>
+    public void LoadSaveCount(FacilityPanelCount panelCount)
+    {
+        resourceQuantity = panelCount.resourceQuantity;
+        operationQuantity = panelCount.operationQuantity;
+        if (quantityFlag)
+        {
+            quantityText.text = "x" + operationQuantity + "/" + resourceQuantity;
+        }
+        else
+        {
+            quantityText.text = "x" + resourceQuantity;
+        }
+
+
+
+    }
+
 
     // 设置新的资源信息
     public void SetResource(string name, string description, int quantity, string btnText)
     {
         resourceName = name;
         resourceDescription = description;
-        resourceQuantity = quantity;
+        if (resourceQuantity == 0)//如果数量=0就进行初始化
+        {
+            resourceQuantity = quantity;
+        }
+
+
         this.btnText = btnText;
         UpdateModuleUI();
     }
@@ -215,7 +307,7 @@ public class FacilityPanelManager : MonoBehaviour
         press.Invoke();
         UpdateRequirements();//更新价格
     }
-
+    Dictionary<ResourceType, double> expendResources;//最新价格
     /// <summary>
     /// 更新消耗价格表
     /// </summary>
@@ -244,7 +336,7 @@ public class FacilityPanelManager : MonoBehaviour
             ExpendManager expend = resource.GetComponent<ExpendManager>();
             expend.Install(res.Key, res.Value);
         }
-
+        this.expendResources = expendResources;
         return expendResources;
 
     }

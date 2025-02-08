@@ -44,9 +44,15 @@ public class RailManager : MonoBehaviour
     }
 
 
-   
 
-  
+
+    void Update()
+    {
+        if (facilityPanelManager.GetCount() >= 50)
+        {
+            gameObject.SetActive(false);//隐藏铁轨搭建
+        }
+    }
 
 
 
@@ -56,16 +62,17 @@ public class RailManager : MonoBehaviour
     private void OnMineButtonClicked()
     {
         LogManager.Instance.AddLog("搭建了一段铁轨");
-        facilityPanelManager.AddQuantityUI();//房屋数量+1
+        facilityPanelManager.AddQuantityUI();//数量+1
 
-        if(facilityPanelManager.GetCount()>=50){
-
+        if (facilityPanelManager.GetCount() >= 50)
+        {
             gameObject.SetActive(false);//隐藏铁轨搭建
             LogManager.Instance.AddLog("铁轨搭建完成!");
 
         }
 
     }
+
 
 
 }

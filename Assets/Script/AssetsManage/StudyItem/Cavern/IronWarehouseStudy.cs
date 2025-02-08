@@ -25,6 +25,7 @@ public class IronWarehouseStudy : MonoBehaviour
     void Awake()
     {
         studyItemManager = GetComponent<StudyItemManager>();
+        studyItemManager.Successful = Successful;
         //设置价格
         resources[ResourceType.Currency] = 5000;
         resources[ResourceType.Iron] = 300;
@@ -52,7 +53,6 @@ public class IronWarehouseStudy : MonoBehaviour
     {
         //触发研究事件
 
-        LogManager.Instance.AddLog(Successful);
         //提升50%仓库储量
         FacilityPanelManager facilityPanel = FacilityManager.Instance.GetFacilityPanel(FacilityType.Stash);
         StashManager stashManager = facilityPanel.GetComponent<StashManager>();

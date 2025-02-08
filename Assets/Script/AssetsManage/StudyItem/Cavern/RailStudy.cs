@@ -25,6 +25,7 @@ public class RailStudy : MonoBehaviour
     void Awake()
     {
         studyItemManager = GetComponent<StudyItemManager>();
+        studyItemManager.Successful = Successful;
         //设置价格
         resources[ResourceType.Currency] = 2000;
         resources[ResourceType.Stone] = 1600;
@@ -52,7 +53,6 @@ public class RailStudy : MonoBehaviour
     {
         //触发研究事件
 
-        LogManager.Instance.AddLog(Successful);
         //解锁铁轨 建筑按钮
         FacilityPanelManager facility = FacilityManager.Instance.GetFacilityPanel(FacilityType.Rail);
         facility.gameObject.SetActive(true);

@@ -25,9 +25,9 @@ public class TenementManager : MonoBehaviour
 
     double baseReserves = 500;//基础储量
 
-    double baseYield = 0.5;//人民币基础产量
+    double baseYield = 0.6;//人民币基础产量
 
-    double baseRent = 0.4;//每位工人的基础租金
+    double baseRent = 0.5;//每位工人的基础租金
 
     Dictionary<ResourceType, double> resources = new Dictionary<ResourceType, double>(); //建造需要的资源
 
@@ -45,7 +45,7 @@ public class TenementManager : MonoBehaviour
         resources[ResourceType.Stone] = 20;
         facilityPanelManager.SetOnClickedResource(resources);  //设置基础消耗
         facilityPanelManager.press = OnMineButtonClicked;
-     
+
         InstallOutPut();
     }
 
@@ -118,6 +118,9 @@ public class TenementManager : MonoBehaviour
         {
             double rmb = baseYield * facilityPanelManager.GetCount();//每秒产出软妹币
 
+            rmb *= ResourceAdditionManager.Instance.GetTenementBasicsUp();//房屋基本产量加成
+
+
             double rent = 0;//收租
             //如果研究了收租,就算上房租
             if (TechManager.Instance.GetTechFlag(TechType.collectRents))
@@ -125,7 +128,7 @@ public class TenementManager : MonoBehaviour
                 rent = baseRent * GetMinerCount();//统计每秒房租
             }
 
-
+            rent *= ResourceAdditionManager.Instance.GetTenementRentUp();//房屋房租产量加成
 
 
             double count = rent + rmb;//房租+房屋本身产出

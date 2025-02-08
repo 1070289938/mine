@@ -25,6 +25,7 @@ public class CopperWarehouseStudy : MonoBehaviour
     void Awake()
     {   
         studyItemManager = GetComponent<StudyItemManager>();
+        studyItemManager.Successful = Successful;
         //设置价格
         resources[ResourceType.Stone]=400;
         resources[ResourceType.Copper]=80;
@@ -51,7 +52,6 @@ public class CopperWarehouseStudy : MonoBehaviour
     void Study(){
         //触发研究事件
 
-        LogManager.Instance.AddLog(Successful);
         //提升仓库30%储量上限
         FacilityPanelManager facilityPanel = FacilityManager.Instance.GetFacilityPanel(FacilityType.Stash);
 

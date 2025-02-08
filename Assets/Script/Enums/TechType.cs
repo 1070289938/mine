@@ -19,6 +19,8 @@ public enum TechType
     BrassPick,//铜镐
     CopperWarehouse,//铜制仓库
     collectRents,//收租
+    SimpleDecoration,//简易的家具
+    SimpleFinish,//简陋的装修
     StoneMiner,//石矿工人
     CopperMiner,//铜矿工人
     SaveMoney,//储钱罐
@@ -29,6 +31,7 @@ public enum TechType
     tramcar,//矿车
     ironPickaxe,//铁镐
     tupid,//铁质大锤
+    Chisel,//凿子
     StoneHammer,//石质大锤
     CopperHammer,//铜质大锤
     IronWarehouse,//铁质仓库
@@ -36,53 +39,31 @@ public enum TechType
     shore,//支撑柱
     StrengthenWarehouse,//加强仓库
     painted,//画饼
+
+    FindLight,//发现光芒
+
     BrokenStone,//破开石头
 
     //==============================================矿场===================================================
 
 
 }
-
-
-public class ExampleScript : MonoBehaviour
+public static class TechTypeHelper
 {
-    public ResourceType resourceType;
-}
-
-#if UNITY_EDITOR
-
-// 自定义 Inspector
-[CustomEditor(typeof(ExampleScript))]
-public class ExampleScriptEditor : Editor
-{
-    public override void OnInspectorGUI()
+    // 将字符串转换为 TechType 枚举值
+    public static TechType StringToTechType(string value)
     {
-        ExampleScript script = (ExampleScript)target;
-
-        // 获取枚举类型
-        var enumType = typeof(ResourceType);
-        var enumValues = Enum.GetValues(enumType);
-
-        // 获取描述
-        string[] descriptions = new string[enumValues.Length];
-        for (int i = 0; i < enumValues.Length; i++)
+        if (Enum.TryParse(value, out TechType techType))
         {
-            var field = enumType.GetField(enumValues.GetValue(i).ToString());
-            var descriptionAttr = Attribute.GetCustomAttribute(field, typeof(DescriptionAttribute)) as DescriptionAttribute;
-            descriptions[i] = descriptionAttr != null ? descriptionAttr.Description : field.Name;
+            return techType;
         }
+        // 如果解析失败，返回默认值 empty
+        return TechType.empty;
+    }
 
-        // 显示下拉菜单
-        int selectedIndex = (int)script.resourceType;
-        selectedIndex = EditorGUILayout.Popup("资源类型", selectedIndex, descriptions);
-
-        // 更新枚举值
-        script.resourceType = (ResourceType)selectedIndex;
-
-        // 显示描述提示
-        EditorGUILayout.HelpBox(descriptions[selectedIndex], MessageType.Info);
-
-        EditorUtility.SetDirty(script); // 标记对象已更改
+    // 将 TechType 枚举值转换为字符串
+    public static string TechTypeToString(TechType techType)
+    {
+        return techType.ToString();
     }
 }
-#endif

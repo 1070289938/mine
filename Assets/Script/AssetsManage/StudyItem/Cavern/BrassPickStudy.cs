@@ -25,6 +25,7 @@ public class BrassPickStudy : MonoBehaviour
     void Awake()
     {
         studyItemManager = GetComponent<StudyItemManager>();
+        studyItemManager.Successful = Successful;
         //设置价格
         resources[ResourceType.Stone] = 100;
         resources[ResourceType.Copper] = 20;
@@ -52,9 +53,8 @@ public class BrassPickStudy : MonoBehaviour
     {
         //触发研究事件
 
-        LogManager.Instance.AddLog(Successful);
         //提升20%工具加成
-        ResourceAdditionManager.Instance.AddMiningWorker(0.2);
+        ResourceAdditionManager.Instance.AddTool(0.2);
 
 
         //概率挖出铁

@@ -25,6 +25,7 @@ public class ConcreteBuildingStudy : MonoBehaviour
     void Awake()
     {
         studyItemManager = GetComponent<StudyItemManager>();
+        studyItemManager.Successful = Successful;
         //设置价格
         resources[ResourceType.Currency] = 5800;
         resources[ResourceType.Cement] = 100;
@@ -52,13 +53,12 @@ public class ConcreteBuildingStudy : MonoBehaviour
     {
         //触发研究事件
 
-        LogManager.Instance.AddLog(Successful);
         //房屋坚固程度提升30%
         ResourceAdditionManager.Instance.AddTenementComfort(0.3);
 
         //房屋配方加上水泥
         FacilityPanelManager facilityPanel = FacilityManager.Instance.GetFacilityPanel(FacilityType.Tenement);
-        facilityPanel.AddOnClickedResource(ResourceType.Cement, 1);
+        facilityPanel.AddOnClickedResource(ResourceType.Cement, 0.1);
 
     }
 

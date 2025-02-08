@@ -59,7 +59,7 @@ public class PileOfOreManager : MonoBehaviour
 
         double count = 1;
         count *= ResourceAdditionManager.Instance.GetToolUp();//加上工具的提升
-        LogManager.Instance.AddLog("你挖到了石头!");
+       
         ResourceManager.Instance.AddResource(ResourceType.Stone, count); // 增加石矿
 
     }

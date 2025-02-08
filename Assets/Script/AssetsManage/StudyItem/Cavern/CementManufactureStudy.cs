@@ -25,6 +25,7 @@ public class CementManufactureStudy : MonoBehaviour
     void Awake()
     {
         studyItemManager = GetComponent<StudyItemManager>();
+        studyItemManager.Successful = Successful;
         //设置价格
         resources[ResourceType.Stone] = 1000;
         resources[ResourceType.Currency] = 3000;
@@ -57,7 +58,6 @@ public class CementManufactureStudy : MonoBehaviour
     {
         //触发研究事件
 
-        LogManager.Instance.AddLog(Successful);
         //解锁水泥工人 建筑按钮
         FacilityPanelManager facility = FacilityManager.Instance.GetFacilityPanel(FacilityType.CementWorker);
         facility.gameObject.SetActive(true);

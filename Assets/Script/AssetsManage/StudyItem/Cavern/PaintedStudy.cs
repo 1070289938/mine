@@ -25,8 +25,9 @@ public class PaintedStudy : MonoBehaviour
     void Awake()
     {
         studyItemManager = GetComponent<StudyItemManager>();
+        studyItemManager.Successful = Successful;
         //设置价格
-        resources[ResourceType.Currency] = AssetsUtil.ParseNumber("25k");
+        resources[ResourceType.Currency] = AssetsUtil.ParseNumber("15k");
         studyItemManager.btn.onClick.AddListener(onClick);
         studyItemManager.Install(studyName, details, resources, techType);
         //检查方法
@@ -58,7 +59,6 @@ public class PaintedStudy : MonoBehaviour
     {
         //触发研究事件
 
-        LogManager.Instance.AddLog(Successful);
         //提升员工20%工作效率
         ResourceAdditionManager.Instance.AddWorker(0.2);
     }

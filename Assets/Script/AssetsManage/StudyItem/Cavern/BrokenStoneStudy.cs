@@ -25,8 +25,9 @@ public class BrokenStoneStudy : MonoBehaviour
     void Awake()
     {
         studyItemManager = GetComponent<StudyItemManager>();
+        studyItemManager.Successful = Successful;
         //设置价格
-        resources[ResourceType.Currency] = AssetsUtil.ParseNumber("30k");
+        resources[ResourceType.Currency] = AssetsUtil.ParseNumber("20k");
         resources[ResourceType.Cement] = 1000;
         resources[ResourceType.Iron] = 5000;
         studyItemManager.btn.onClick.AddListener(onClick);
@@ -46,6 +47,12 @@ public class BrokenStoneStudy : MonoBehaviour
         {
             gameObject.SetActive(true);
             TechChecker.Instance.RemoveCheckMethod(Inspect);
+            if (!TechManager.Instance.GetTechFlag(TechType.FindLight))
+            {
+                LogManager.Instance.AddLog("有人在石壁上发现了一丝太阳照射的光芒！！");
+                TechManager.Instance.techTypeStudyFlag[TechType.FindLight] = true;
+            }
+
         }
     }
     //研究按钮事件
@@ -53,7 +60,6 @@ public class BrokenStoneStudy : MonoBehaviour
     {
         //触发研究事件
 
-        LogManager.Instance.AddLog(Successful);
         //解锁仓库 建筑按钮
 
     }

@@ -25,6 +25,7 @@ public class IronPickaxeStudy : MonoBehaviour
     void Awake()
     {
         studyItemManager = GetComponent<StudyItemManager>();
+        studyItemManager.Successful = Successful;
         //设置价格
         resources[ResourceType.Currency] = 1500;
         resources[ResourceType.Iron] = 50;
@@ -55,7 +56,6 @@ public class IronPickaxeStudy : MonoBehaviour
     {
         //触发研究事件
 
-        LogManager.Instance.AddLog(Successful);
         //提升30%工具提升
         ResourceAdditionManager.Instance.AddTool(0.3);
     }

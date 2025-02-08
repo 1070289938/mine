@@ -25,6 +25,7 @@ public class MinerlampStudy : MonoBehaviour
     void Awake()
     {   
         studyItemManager = GetComponent<StudyItemManager>();
+        studyItemManager.Successful = Successful;
         //设置价格
         resources[ResourceType.Currency]=1000;
         resources[ResourceType.Copper]=200;
@@ -49,7 +50,6 @@ public class MinerlampStudy : MonoBehaviour
     void Study(){
         //触发研究事件
 
-        LogManager.Instance.AddLog(Successful);
         //提升采矿工人20%效率
         ResourceAdditionManager.Instance.AddMiningWorker(0.2);
         

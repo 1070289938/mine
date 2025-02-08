@@ -25,6 +25,7 @@ public class PickaxeStudy : MonoBehaviour
     void Awake()
     {   
         studyItemManager = GetComponent<StudyItemManager>();
+        studyItemManager.Successful = Successful;
         //设置价格
         resources[ResourceType.Stone]=10;
         studyItemManager.btn.onClick.AddListener(onClick);
@@ -48,7 +49,6 @@ public class PickaxeStudy : MonoBehaviour
     void Study(){
         //触发研究事件
 
-        LogManager.Instance.AddLog(Successful);
         //增加10%工具效率
         ResourceAdditionManager.Instance.AddTool(0.1);
 

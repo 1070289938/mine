@@ -25,6 +25,7 @@ public class IronMinerStudy : MonoBehaviour
     void Awake()
     {   
         studyItemManager = GetComponent<StudyItemManager>();
+        studyItemManager.Successful = Successful;
         //设置价格
         resources[ResourceType.Currency]=500;
         resources[ResourceType.Iron]=10;
@@ -49,7 +50,6 @@ public class IronMinerStudy : MonoBehaviour
     void Study(){
         //触发研究事件
 
-        LogManager.Instance.AddLog(Successful);
         //解锁铁矿工人 建筑按钮
         FacilityPanelManager facility = FacilityManager.Instance.GetFacilityPanel(FacilityType.IronMiner);
         facility.gameObject.SetActive(true);

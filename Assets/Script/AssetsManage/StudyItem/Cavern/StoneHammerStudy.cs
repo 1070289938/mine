@@ -25,9 +25,10 @@ public class StoneHammerStudy : MonoBehaviour
     void Awake()
     {
         studyItemManager = GetComponent<StudyItemManager>();
+        studyItemManager.Successful = Successful;
         //设置价格
-        resources[ResourceType.Currency] = 300;
-        resources[ResourceType.Stone] = 100;
+        resources[ResourceType.Currency] = 50;
+        resources[ResourceType.Stone] = 30;
         studyItemManager.btn.onClick.AddListener(onClick);
         studyItemManager.Install(studyName, details, resources, techType);
         //检查方法
@@ -53,7 +54,6 @@ public class StoneHammerStudy : MonoBehaviour
     {
         //触发研究事件
 
-        LogManager.Instance.AddLog(Successful);
         //提升20%矿工石头产出效率
         ResourceAdditionManager.Instance.AddMinerStone(0.2);
     }

@@ -25,6 +25,7 @@ public class ShoreStudy : MonoBehaviour
     void Awake()
     {
         studyItemManager = GetComponent<StudyItemManager>();
+        studyItemManager.Successful = Successful;
         //设置价格
         resources[ResourceType.Currency] = AssetsUtil.ParseNumber("13k");
         resources[ResourceType.Cement] = 700;
@@ -50,7 +51,6 @@ public class ShoreStudy : MonoBehaviour
     {
         //触发研究事件
 
-        LogManager.Instance.AddLog(Successful);
         //房屋的建筑资源增长-10%
         FacilityPanelManager facility = FacilityManager.Instance.GetFacilityPanel(FacilityType.Tenement);
         facility.AddUpMultiple(0.1);

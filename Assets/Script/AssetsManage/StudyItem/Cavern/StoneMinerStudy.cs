@@ -25,6 +25,7 @@ public class StoneMinerStudy : MonoBehaviour
     void Awake()
     {   
         studyItemManager = GetComponent<StudyItemManager>();
+        studyItemManager.Successful = Successful;
         //设置价格
         resources[ResourceType.Currency]=10;
         studyItemManager.btn.onClick.AddListener(onClick);
@@ -48,11 +49,10 @@ public class StoneMinerStudy : MonoBehaviour
     void Study(){
         //触发研究事件
 
-        LogManager.Instance.AddLog(Successful);
         //解锁石矿工人 建筑按钮
         FacilityPanelManager facility = FacilityManager.Instance.GetFacilityPanel(FacilityType.StoneMiner);
         facility.gameObject.SetActive(true);
-
+        Debug.Log("解锁石矿工人");
 
 
 

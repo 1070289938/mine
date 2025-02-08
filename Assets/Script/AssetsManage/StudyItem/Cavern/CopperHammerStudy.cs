@@ -25,6 +25,7 @@ public class CopperHammerStudy : MonoBehaviour
     void Awake()
     {
         studyItemManager = GetComponent<StudyItemManager>();
+        studyItemManager.Successful = Successful;
         //设置价格
         resources[ResourceType.Currency] = 800;
         resources[ResourceType.Copper] = 100;
@@ -54,7 +55,6 @@ public class CopperHammerStudy : MonoBehaviour
     {
         //触发研究事件
 
-        LogManager.Instance.AddLog(Successful);
         //提升50%矿工石头产出效率
         ResourceAdditionManager.Instance.AddMinerStone(0.5);
     }

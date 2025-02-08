@@ -11,17 +11,22 @@ public class TechManager : MonoBehaviour
     public Dictionary<TechType, StudyItemManager> techTypeDictionary = new Dictionary<TechType, StudyItemManager>();//科技的管理层
 
 
-    public Dictionary<TechType, bool> techTypeStudyFlag = new Dictionary<TechType, bool>();//科技是否已研究
+    public Dictionary<TechType, bool> techTypeStudyFlag;//科技是否研究
 
     private void Start()
     {
         Instance = this;
         StudyItemManager[] studyItems = content.GetComponentsInChildren<StudyItemManager>(true);
-     
-        foreach(StudyItemManager itemManager in studyItems){
-            techTypeDictionary[itemManager.techType] = itemManager;
+        if (techTypeStudyFlag == null)
+        {
+            techTypeStudyFlag = new Dictionary<TechType, bool>();
+        }
 
-            techTypeStudyFlag[itemManager.techType] = false;//默认所有科技未研究
+        
+        foreach (StudyItemManager itemManager in studyItems)
+        {
+            techTypeDictionary[itemManager.techType] = itemManager;
+            TechChecker.Instance.AddCheckMethod(itemManager.InspectFrame);//直接监听所有科技
         }
 
 
@@ -35,9 +40,13 @@ public class TechManager : MonoBehaviour
 
 
 
-       // 获取科技是否研究
+    // 获取科技是否研究
     public bool GetTechFlag(TechType techType)
     {
-        return techTypeStudyFlag[techType];
+        if (techTypeStudyFlag.ContainsKey(techType))
+        {
+            return techTypeStudyFlag[techType];
+        }
+        return false;
     }
 }

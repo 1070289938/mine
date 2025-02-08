@@ -10,7 +10,7 @@ public class TupidStudy : MonoBehaviour
 
     string studyName = "制作铁制大锤";
 
-    string details = "铁制大锤坚硬无比,比之前的材料效果更加明显\n\n提升100%石头采集效率";
+    string details = "铁制大锤坚硬无比,比之前的材料效果更加明显\n\n提升50%石头采集效率";
 
     string Successful = "铁质大锤研究成功!";
 
@@ -25,6 +25,7 @@ public class TupidStudy : MonoBehaviour
     void Awake()
     {
         studyItemManager = GetComponent<StudyItemManager>();
+        studyItemManager.Successful = Successful;
         //设置价格
         resources[ResourceType.Currency] = 2000;
         resources[ResourceType.Iron] = 100;
@@ -50,9 +51,8 @@ public class TupidStudy : MonoBehaviour
     {
         //触发研究事件
 
-        LogManager.Instance.AddLog(Successful);
-        //提升20%矿工石头产出效率
-        ResourceAdditionManager.Instance.AddMinerStone(0.2);
+        //提升50%矿工石头产出效率
+        ResourceAdditionManager.Instance.AddMinerStone(0.5);
     }
 
 

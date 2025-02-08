@@ -25,6 +25,7 @@ public class WarehouseStudy : MonoBehaviour
     void Awake()
     {   
         studyItemManager = GetComponent<StudyItemManager>();
+        studyItemManager.Successful = Successful;
         //设置价格
         resources[ResourceType.Stone]=20;
         studyItemManager.btn.onClick.AddListener(onClick);
@@ -48,7 +49,6 @@ public class WarehouseStudy : MonoBehaviour
     //研究按钮事件
     void Study(){
         //触发研究事件
-        LogManager.Instance.AddLog(Successful);
         //解锁仓库 建筑按钮
         FacilityPanelManager facility = FacilityManager.Instance.GetFacilityPanel(FacilityType.Stash);
         facility.gameObject.SetActive(true);

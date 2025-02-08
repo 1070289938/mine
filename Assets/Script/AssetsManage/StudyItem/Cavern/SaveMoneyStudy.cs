@@ -25,6 +25,7 @@ public class SaveMoneyStudy : MonoBehaviour
     void Awake()
     {
         studyItemManager = GetComponent<StudyItemManager>();
+        studyItemManager.Successful = Successful;
         //设置价格
         resources[ResourceType.Currency] = 1000;
         resources[ResourceType.Copper] = 200;
@@ -58,7 +59,6 @@ public class SaveMoneyStudy : MonoBehaviour
     {
         //触发研究事件
 
-        LogManager.Instance.AddLog(Successful);
 
         //增加房屋50%软妹币储量
 

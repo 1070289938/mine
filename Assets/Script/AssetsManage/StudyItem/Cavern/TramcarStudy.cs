@@ -25,6 +25,7 @@ public class TramcarStudy : MonoBehaviour
     void Awake()
     {
         studyItemManager = GetComponent<StudyItemManager>();
+        studyItemManager.Successful = Successful;
         //设置价格
         resources[ResourceType.Currency] = 3000;
         resources[ResourceType.Iron] = 500;
@@ -52,9 +53,8 @@ public class TramcarStudy : MonoBehaviour
     {
         //触发研究事件
 
-        LogManager.Instance.AddLog(Successful);
         //解锁矿车 建筑按钮
-        FacilityPanelManager facility = FacilityManager.Instance.GetFacilityPanel(FacilityType.Rail);
+        FacilityPanelManager facility = FacilityManager.Instance.GetFacilityPanel(FacilityType.OreCar);
         facility.gameObject.SetActive(true);
     }
 

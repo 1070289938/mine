@@ -61,7 +61,7 @@ public class StashManager : MonoBehaviour
     /// </summary>
     public void AddUp(double magnification)
     {
-        up += magnification;
+        up *= 1 + magnification;
         ResourceUpperLimitManager.Instance.RefreshUpperLimitAllResources();//刷新所有储存上限
     }
 

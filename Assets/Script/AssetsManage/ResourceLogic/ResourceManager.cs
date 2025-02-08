@@ -8,8 +8,8 @@ public class ResourceManager : MonoBehaviour
     public static ResourceManager Instance { get; private set; }
 
 
-    private Dictionary<ResourceType, double> resources;  //各个资源的数量
-    private Dictionary<ResourceType, double> resourcesMax;//各个资源的上限
+    public Dictionary<ResourceType, double> resources;  //各个资源的数量
+    public Dictionary<ResourceType, double> resourcesMax;//各个资源的上限
     public Dictionary<ResourceType, bool> resourceUnlocks;//各个资源是否显示
 
     public Dictionary<ResourceType, ResourceShowManager> resourceManager = new Dictionary<ResourceType, ResourceShowManager>();//各个资源的管理节点
@@ -35,28 +35,31 @@ public class ResourceManager : MonoBehaviour
     /// </summary>
     private void InitializeResources()
     {
-
-        resources = new Dictionary<ResourceType, double>();
-        resourcesMax = new Dictionary<ResourceType, double>();
-        resourceUnlocks = new Dictionary<ResourceType, bool>();
-        foreach (ResourceType type in System.Enum.GetValues(typeof(ResourceType)))
+        if (SaveLoadManager.Install)//是否需要初始化
         {
-            resources[type] = 0; // 所有资源初始为0
-            resourcesMax[type] = 0; //所有资源上限初始为0
-            resourceUnlocks[type] = false; // 所有资源初始不显示
+            resources = new Dictionary<ResourceType, double>();
+            resourcesMax = new Dictionary<ResourceType, double>();
+            resourceUnlocks = new Dictionary<ResourceType, bool>();
+            foreach (ResourceType type in System.Enum.GetValues(typeof(ResourceType)))
+            {
+                resources[type] = 0; // 所有资源初始为0
+                resourcesMax[type] = 0; //所有资源上限初始为0
+                resourceUnlocks[type] = false; // 所有资源初始不显示
+            }
         }
 
+        ResourceShowManager[] resourceShowManagers = resourceContentManager.GetComponentsInChildren<ResourceShowManager>(true);
+        foreach (ResourceShowManager resourceShow in resourceShowManagers)
+        {
+            resourceManager[resourceShow.getResourceType()] = resourceShow;
+        }
 
 
     }
 
     public void Start()
     {
-        ResourceShowManager[] resourceShowManagers = resourceContentManager.GetComponentsInChildren<ResourceShowManager>(true);
-        foreach (ResourceShowManager resourceShow in resourceShowManagers)
-        {
-            resourceManager[resourceShow.getResourceType()] = resourceShow;
-        }
+
     }
 
     // 解锁资源
@@ -212,6 +215,21 @@ public class ResourceManager : MonoBehaviour
         return new JudgmentResult(true);
     }
 
+    //判断资源是否足够（仅判断，不扣除资源）
+    public JudgmentResult OnlyJudgmentResource(Dictionary<ResourceType, double> resources)
+    {
+        foreach (var res in resources)
+        {
+            //判断资源是否足够
+            double count = GetResource(res.Key);
+            double value = res.Value;
+            if (count < value)
+            {
+                return new JudgmentResult(false, res.Key);
+            }
+        }
+        return new JudgmentResult(true);
+    }
 
 
 }
