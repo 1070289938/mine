@@ -86,6 +86,9 @@ public class FacilityPanelManager : MonoBehaviour
         miningButton.interactable = true;
     }
 
+
+
+
     void Update()
     {
         ComputePrice();
@@ -205,7 +208,7 @@ public class FacilityPanelManager : MonoBehaviour
 
 
     /// <summary>
-    /// 获取数量（实际上获取到的是运行数量）
+    /// 获取数量（实际上获取到的是最大数量）
     /// </summary>
     /// <returns></returns>
     public int GetMaxCount()
@@ -252,8 +255,9 @@ public class FacilityPanelManager : MonoBehaviour
 
 
     // 设置新的资源信息
-    public void SetResource(string name, string description, int quantity, string btnText)
+    public void SetResource(string name, string description, int quantity, string btnText, FacilityType type)
     {
+        Verify(type);//验证脚本绑定是否正确
         resourceName = name;
         resourceDescription = description;
         if (resourceQuantity == 0)//如果数量=0就进行初始化
@@ -265,6 +269,16 @@ public class FacilityPanelManager : MonoBehaviour
         this.btnText = btnText;
         UpdateModuleUI();
     }
+
+
+    void Verify(FacilityType type)
+    {
+        if (type != FacilityType)
+        {
+            Debug.LogError("FacilityType无法对应");
+        }
+    }
+
     /// <summary>
     /// 设置基础消耗
     /// </summary>

@@ -13,16 +13,22 @@ public class TechManager : MonoBehaviour
 
     public Dictionary<TechType, bool> techTypeStudyFlag;//科技是否研究
 
+
+    void Awake()
+    {
+         Instance = this;
+    }
+
     private void Start()
     {
-        Instance = this;
+       
         StudyItemManager[] studyItems = content.GetComponentsInChildren<StudyItemManager>(true);
         if (techTypeStudyFlag == null)
         {
             techTypeStudyFlag = new Dictionary<TechType, bool>();
         }
 
-        
+
         foreach (StudyItemManager itemManager in studyItems)
         {
             techTypeDictionary[itemManager.techType] = itemManager;

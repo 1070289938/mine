@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly-CSharp.csproj", "{31D6F9A2-66FB-7EAA-8200-0AC148A62FA0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TapTap.Ad", "TapTap.Ad.csproj", "{3FB73B02-44D2-0ECC-3E23-8D57458EDEFB}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-Editor", "Assembly-CSharp-Editor.csproj", "{40B79C5E-0772-B451-04BC-DAB484B5246D}"
 EndProject
 Global
@@ -15,6 +17,10 @@ Global
 		{31D6F9A2-66FB-7EAA-8200-0AC148A62FA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{31D6F9A2-66FB-7EAA-8200-0AC148A62FA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{31D6F9A2-66FB-7EAA-8200-0AC148A62FA0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3FB73B02-44D2-0ECC-3E23-8D57458EDEFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3FB73B02-44D2-0ECC-3E23-8D57458EDEFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3FB73B02-44D2-0ECC-3E23-8D57458EDEFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3FB73B02-44D2-0ECC-3E23-8D57458EDEFB}.Release|Any CPU.Build.0 = Release|Any CPU
 		{40B79C5E-0772-B451-04BC-DAB484B5246D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{40B79C5E-0772-B451-04BC-DAB484B5246D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{40B79C5E-0772-B451-04BC-DAB484B5246D}.Release|Any CPU.ActiveCfg = Release|Any CPU

@@ -32,6 +32,47 @@ public enum ResourceType
   [DisplayName("水泥")]
   Cement,//水泥
 
+
+  /// <summary>
+  /// 煤矿
+  /// </summary>
+  [DisplayName("煤矿")]
+  Colliery,//煤矿
+
+  /// <summary>
+  /// 钢
+  /// </summary>
+  [DisplayName("钢")]
+  Steel,//钢
+
+
+  /// <summary>
+  /// 硅矿
+  /// </summary>
+  [DisplayName("硅矿")]
+  Silicon,//硅矿
+
+
+
+  /// <summary>
+  /// 重生晶体
+  /// </summary>
+  [DisplayName("重生晶体")]
+  RegeneratedCrystal,//重生晶体
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
 
 

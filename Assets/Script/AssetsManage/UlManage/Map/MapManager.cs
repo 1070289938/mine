@@ -9,6 +9,9 @@ public class MapManager : MonoBehaviour
 
     MapListManager[] mapListManagers;
 
+
+    public MapType map = MapType.Mining;
+
     void Awake()
     {
         mapListManagers = gameObject.GetComponentsInChildren<MapListManager>(true);
@@ -21,7 +24,7 @@ public class MapManager : MonoBehaviour
         {
             mapList.gameObject.SetActive(false);
         }
-
+        ShowMining();//初始显示矿洞
     }
 
     // Update is called once per frame
@@ -41,23 +44,25 @@ public class MapManager : MonoBehaviour
     }
 
 
-    int show = 5;
+    readonly int show = 10;
 
-    int hide = 0;
+    readonly int hide = 0;
     /// <summary>
     /// 显示指定类型的内容
     /// </summary>
     void ShowMap(MapType mapType)
     {
+        map = mapType;
         foreach (MapListManager mapList in mapListManagers)
         {
             if (mapList.mapType == mapType)
             {
-                mapList.transform.SetSiblingIndex(show);
+              
+                mapList.content.transform.SetSiblingIndex(show);
             }
             else
             {
-                mapList.transform.SetSiblingIndex(hide);
+                mapList.content.transform.SetSiblingIndex(hide);
             }
         }
     }

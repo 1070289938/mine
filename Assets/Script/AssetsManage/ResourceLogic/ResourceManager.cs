@@ -13,10 +13,17 @@ public class ResourceManager : MonoBehaviour
     public Dictionary<ResourceType, bool> resourceUnlocks;//各个资源是否显示
 
     public Dictionary<ResourceType, ResourceShowManager> resourceManager = new Dictionary<ResourceType, ResourceShowManager>();//各个资源的管理节点
-    public ResourceAdditionManager resourceAdditionManager;//资源加成管理
+
+
+    // public ResourceAdditionManager resourceAdditionManager;//资源加成管理
 
 
     public ResourceContentManager resourceContentManager;//资源内容管理
+
+
+
+
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -99,21 +106,28 @@ public class ResourceManager : MonoBehaviour
             if (resourceType == ResourceType.Currency)
             {
                 LogManager.Instance.AddLog("你赚到了人生中第一桶金!");
-
-
-
                 TechChecker.Instance.AddCheckTech(TechType.StoneMiner);//石矿工人
                 TechChecker.Instance.AddCheckTech(TechType.CopperMiner);//铜矿工人
                 TechChecker.Instance.AddCheckTech(TechType.IronMiner);//铁矿工人
                 TechChecker.Instance.AddCheckTech(TechType.CementManufacture);//水泥工人
             }
+
+            if (resourceType == ResourceType.Colliery)//解锁煤矿
+            {
+                Debug.Log("解锁煤矿");
+            }
+
         }
     }
 
     // 检查资源是否解锁
     public bool IsResourceUnlocked(ResourceType resourceType)
     {
-        return resourceUnlocks[resourceType];
+        if (resourceUnlocks.ContainsKey(resourceType))
+        {
+            return resourceUnlocks[resourceType];
+        }
+        return false;
     }
 
     /// <summary>
@@ -128,18 +142,34 @@ public class ResourceManager : MonoBehaviour
             Count = 0,
             ActualCount = 0
         };
-        if (!resources.ContainsKey(type)) return increment;
+        if (!resources.ContainsKey(type))
+        {
+            resources[type] = 0;
+            resourceUnlocks[type] = false;
+        }
         if (amount == 0) return increment;
         UnlockResource(type);
 
-
         double count = amount;
+
+        //计算重生晶体的产量
+        if (type != ResourceType.RegeneratedCrystal)
+        {
+            count *= RegeneratedCrystalManager.Instance.addition;
+        }
+
+
+
         double resourcesSum = resources[type] + count;
 
         increment.Count = count;
         //如果超过上限就以上限来计算
-        if (resourcesSum > resourcesMax[type])
+
+        //如果不是无限的
+        if (resourcesMax[type] != -1
+        && resourcesSum > resourcesMax[type])
         {
+            //上限了计算上限
             increment.ActualCount = resourcesMax[type] - resources[type];
             resources[type] = resourcesMax[type];
 
@@ -192,7 +222,7 @@ public class ResourceManager : MonoBehaviour
         resourcesMax[type] = max;
     }
 
-
+    public Dictionary<ResourceType, double> buildExpend = new();//建筑资源
 
     //判断资源是否足够
     public JudgmentResult JudgmentResource(Dictionary<ResourceType, double> resources)
@@ -211,6 +241,17 @@ public class ResourceManager : MonoBehaviour
         foreach (var res in resources)
         {
             SpendResource(res.Key, res.Value);
+            if (buildExpend.ContainsKey(res.Key))
+            {
+                buildExpend[res.Key] += res.Value;//增加建筑资源
+            }
+            else
+            {
+
+                buildExpend[res.Key] = res.Value;//增加建筑资源
+            }
+
+
         }
         return new JudgmentResult(true);
     }

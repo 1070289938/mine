@@ -30,8 +30,6 @@ public class TechChecker : MonoBehaviour
             for (int i = 0; i < checkMethods.Count; i++)
             {
                 checkMethods[i]?.Invoke(); // 执行每个检查方法
-
-
             }
         }
 

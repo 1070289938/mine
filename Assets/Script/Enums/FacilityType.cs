@@ -46,5 +46,50 @@ public enum FacilityType
     /// </summary>
     OreCar,
 
+    ///////////////矿场////////////////
+
+    /// <summary>
+    /// 矿物筛选机
+    /// </summary>
+    MineralScreeningMachine,
+
+    /// <summary>
+    /// 煤矿工人
+    /// </summary>
+    CoalWorker,
+    /// <summary>
+    /// 钢铁铸造工
+    /// </summary>
+    IronSteelFoundry,
+    /// <summary>
+    /// 高炉
+    /// </summary>
+    BlastFurnace,
+
+    /// <summary>
+    /// 银行
+    /// </summary>
+    Bank,
+    /// <summary>
+    /// 集装箱
+    /// </summary>
+    Container,
+    /// <summary>
+    /// 工业储备站
+    /// </summary>
+    IndustrialReserveStation,
+    /// <summary>
+    /// 挖掘机
+    /// </summary>
+    Excavator,
+    /// <summary>
+    /// 硅石采矿机
+    /// </summary>
+    SilicaMiningMachine,
+
+    /// <summary>
+    /// 硅矿精炼器
+    /// </summary>
+    SiliconRefiner,
 }
 

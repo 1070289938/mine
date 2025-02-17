@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FacilityManager : MonoBehaviour
 {
-     public static FacilityManager Instance { get; private set; }
+    public static FacilityManager Instance { get; private set; }
 
     public Dictionary<FacilityType, FacilityPanelManager> techTypeDictionary = new Dictionary<FacilityType, FacilityPanelManager>();//所有建筑节点
 
@@ -14,13 +14,14 @@ public class FacilityManager : MonoBehaviour
 
     // Start is called before the first frame update
     void Awake()
-    {   
+    {
         Instance = this;
         //进行初始化
         FacilityPanelManager[] facilityPanels = content.GetComponentsInChildren<FacilityPanelManager>(true);
         foreach (FacilityPanelManager facility in facilityPanels)
         {
             techTypeDictionary[facility.FacilityType] = facility;
+          
         }
     }
     /// <summary>
@@ -28,11 +29,12 @@ public class FacilityManager : MonoBehaviour
     /// </summary>
     /// <param name="type">类型</param>
     /// <returns></returns>
-    public FacilityPanelManager GetFacilityPanel(FacilityType type){
+    public FacilityPanelManager GetFacilityPanel(FacilityType type)
+    {
         return techTypeDictionary[type];
     }
 
-    
+
 
 
 }

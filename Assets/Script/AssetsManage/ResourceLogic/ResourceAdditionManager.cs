@@ -8,43 +8,63 @@ public class ResourceAdditionManager : MonoBehaviour
 {
     // Start is called before the first frame update
     ////////////////////////////////////////////////////资源类////////////////////////////////////////////////////////////////////////////
-    double tool=1;//挖矿工具加成
+    double tool = 1;//挖矿工具加成
 
-    double miningWorker=1;//采矿工人加成
+    double miningWorker = 1;//采矿工人加成
+
+    double worker = 1;//矿洞员工加成
+
+    double MineBonus = 1;//矿车的额外加成
 
 
-    double minerStone=1;//大锤采集加成（石头）
+    ////////////////////////////////////////////////////专项加成////////////////////////////////////////////////////////////////////////////
+    double minerStone = 1;//石矿专项加成
+    double CopperMine = 1;//铜矿专项加成
+    double IronMine = 1;//铁矿专项加成
 
+    double cement = 1;//水泥的专项加成
 
-    double worker=1;//矿洞员工加成
-
+    double steel = 1;//钢的专项加成
 
     ////////////////////////////////////////////////////房屋类////////////////////////////////////////////////////////////////////////////
 
-    double tenementComfort=1;//房屋坚固程度加成
+    double tenementComfort = 1;//房屋坚固程度加成
 
     double tenementBasics = 1;//房屋基础加成
 
     double tenementRent = 1;//房屋房租加成
 
-    double tenementSaveMoney=1;//房屋软妹币储量加成
+    double tenementSaveMoney = 1;//房屋软妹币储量加成
+
+    double container = 1;//集装箱加成
+
+    double RMBboost = 1;//软妹币总产量
+
+    double excavator = 1;//挖掘机提供的加成的加成
+
+    double bankReserveSurcharge = 1;//银行储量加成
+
+
+    public OreCarManager oreCarManager;//矿车管理
+
+    public MineralScreeningMachineManager mineralScreeningMachineManager;//矿物筛选器
+
+    public BlastFurnaceManager blastFurnaceManager;//高炉
+
+    public ContainerManager containerManager;//集装箱加成
+
+
+    public BankManager bankManager;//银行
+
 
     public static ResourceAdditionManager Instance { get; private set; }
-
-    OreCarManager oreCarManager;//矿车管理
-
-
-
-
     private void Awake()
     {
         Instance = this;
     }
 
-    void Start()
-    {
-        oreCarManager = FacilityManager.Instance.GetFacilityPanel(FacilityType.OreCar).GetComponent<OreCarManager>();//初始化矿车管理
-    }
+
+
 
     /// <summary>
     /// 提升挖矿工具加成
@@ -83,10 +103,10 @@ public class ResourceAdditionManager : MonoBehaviour
         basics += oreCarManager.GetOreCarUp();//矿车提升的采矿工人加成
         return basics;
 
-
     }
+    //↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓专项加成↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
     /// <summary>
-    /// 提升大锤加成（石头）
+    /// 提升石头专项加成
     /// </summary>
     /// <param name="count"></param>
     public void AddMinerStone(double count)
@@ -94,7 +114,7 @@ public class ResourceAdditionManager : MonoBehaviour
         minerStone *= 1 + count;
     }
     /// <summary>
-    /// 获取大锤加成（石头
+    /// 获取石头专项加成
     /// </summary>
     /// <returns></returns>
     public double GetMinerStoneUp()
@@ -104,6 +124,135 @@ public class ResourceAdditionManager : MonoBehaviour
         basics += minerStone;   //大锤采集加成（石头
         return basics;
     }
+
+
+    /// <summary>
+    /// 提升铜矿专项加成
+    /// </summary>
+    /// <param name="count"></param>
+    public void AddMinerCopper(double count)
+    {
+        CopperMine *= 1 + count;
+    }
+    /// <summary>
+    /// 获取铜矿专项加成
+    /// </summary>
+    /// <returns></returns>
+    public double GetMineCopperUp()
+    {
+
+        double basics = 0; //基础加成是0
+        basics += CopperMine;   //铜矿专项加成
+        basics += mineralScreeningMachineManager.GetscreenUp();//矿物筛选器加成
+        return basics;
+    }
+
+    /// <summary>
+    /// 提升铁矿专项加成
+    /// </summary>
+    /// <param name="count"></param>
+    public void AddIronMine(double count)
+    {
+        IronMine *= 1 + count;
+    }
+    /// <summary>
+    /// 获取铁矿专项加成
+    /// </summary>
+    /// <returns></returns>
+    public double GetIronMineUp()
+    {
+        double basics = 0; //基础加成是0
+        basics += IronMine;   //铁矿专项加成
+        basics += mineralScreeningMachineManager.GetscreenUp();//矿物筛选器加成
+        basics += blastFurnaceManager.GetBlastFurnaceUp();//高炉加成
+
+        return basics;
+    }
+
+    /// <summary>
+    /// 提升水泥专项加成
+    /// </summary>
+    /// <param name="count"></param>
+    public void AddCement(double count)
+    {
+        cement *= 1 + count;
+    }
+    /// <summary>
+    /// 获取水泥专项加成
+    /// </summary>
+    /// <returns></returns>
+    public double GetCementUp()
+    {
+        double basics = 0; //基础加成是0
+        basics += cement;   //水泥专项加成
+
+        return basics;
+    }
+
+
+    /// <summary>
+    /// 提升钢专项加成
+    /// </summary>
+    /// <param name="count"></param>
+    public void AddSteel(double count)
+    {
+        steel *= 1 + count;
+    }
+    /// <summary>
+    /// 获取钢专项加成
+    /// </summary>
+    /// <returns></returns>
+    public double GetSteelUp()
+    {
+        double basics = 0; //基础加成是0
+        basics += steel;   //钢专项加成
+
+        return basics;
+    }
+
+
+    //↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑专项加成↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
+
+    //↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓仓储加成↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+
+
+    /// <summary>
+    /// 获取仓库储量加成
+    /// </summary>
+    /// <returns></returns>
+    public double GetStashUp()
+    {
+
+        double basics = 1; //基础加成是0
+        basics += containerManager.GetUp();   //集装箱加成
+        return basics;
+    }
+
+
+
+    /// <summary>
+    /// 提升房屋软妹币储量加成
+    /// </summary>
+    /// <param name="count"></param>
+    public void AddTenementSaveMoney(double count)
+    {
+        tenementSaveMoney *= 1 + count;
+    }
+    /// <summary>
+    /// 获取房屋软妹币储量加成
+    /// </summary>
+    /// <returns></returns>
+    public double GetTenementSaveMoneyUp()
+    {
+
+        double basics = 0; //基础加成是0
+        basics += tenementSaveMoney;   //矿洞员工加成
+        return basics;
+    }
+    //↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑仓储加成↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
+
+
+
 
 
     /// <summary>
@@ -126,7 +275,7 @@ public class ResourceAdditionManager : MonoBehaviour
         return basics;
     }
 
-/// <summary>
+    /// <summary>
     /// 提升房屋基础加成
     /// </summary>
     /// <param name="count"></param>
@@ -147,7 +296,7 @@ public class ResourceAdditionManager : MonoBehaviour
     }
 
 
-/// <summary>
+    /// <summary>
     /// 提升房屋房租加成
     /// </summary>
     /// <param name="count"></param>
@@ -182,34 +331,72 @@ public class ResourceAdditionManager : MonoBehaviour
     /// <returns></returns>
     public double GetWorkerUp()
     {
-
         double basics = 0; //基础加成是0
         basics += worker;   //矿洞员工加成
         return basics;
     }
-
-
-
-
-
-
     /// <summary>
-    /// 提升房屋软妹币储量加成
+    /// 提升矿车加成的加成
     /// </summary>
     /// <param name="count"></param>
-    public void AddTenementSaveMoney(double count)
+    public void AddMineBonus(double count)
     {
-        tenementSaveMoney *= 1 + count;
+        MineBonus *= 1 + count;
     }
     /// <summary>
-    /// 获取房屋软妹币储量加成
+    /// 获取矿车加成的加成
     /// </summary>
     /// <returns></returns>
-    public double GetTenementSaveMoneyUp()
+    public double GetMineBonusUp()
     {
-
         double basics = 0; //基础加成是0
-        basics += tenementSaveMoney;   //矿洞员工加成
+        basics += MineBonus;   //矿车加成
+        return basics;
+    }
+
+
+
+
+
+    /// <summary>
+    /// 提升软妹币加成
+    /// </summary>
+    /// <param name="count"></param>
+    public void AddRMBboost(double count)
+    {
+        RMBboost *= 1 + count;
+    }
+    /// <summary>
+    /// 获取软妹币加成
+    /// </summary>
+    /// <returns></returns>
+    public double GetRMBboostUp()
+    {
+        double basics = 0; //基础加成是0
+        basics += RMBboost;   //软妹币加成
+
+        basics += bankManager.GetUp();
+
+
+        return basics;
+    }
+
+    /// <summary>
+    /// 提升集装箱加成
+    /// </summary>
+    /// <param name="count"></param>
+    public void AddContainer(double count)
+    {
+        container *= 1 + count;
+    }
+    /// <summary>
+    /// 获取集装箱加成
+    /// </summary>
+    /// <returns></returns>
+    public double GetContainerUp()
+    {
+        double basics = 0; //基础加成是0
+        basics += container;   //集装箱加成
         return basics;
     }
 
@@ -218,12 +405,46 @@ public class ResourceAdditionManager : MonoBehaviour
 
 
 
+    /// <summary>
+    /// 提升挖掘机加成
+    /// </summary>
+    /// <param name="count"></param>
+    public void AddExcavator(double count)
+    {
+        excavator *= 1 + count;
+    }
+    /// <summary>
+    /// 获取挖掘机加成
+    /// </summary>
+    /// <returns></returns>
+    public double GetExcavatorUp()
+    {
+        double basics = 0; //基础加成是0
+        basics += excavator;   //挖掘机加成
+        return basics;
+    }
 
 
 
 
-
-
+    /// <summary>
+    /// 提升银行储量加成
+    /// </summary>
+    /// <param name="count"></param>
+    public void AddBankReserveSurcharge(double count)
+    {
+        bankReserveSurcharge *= 1 + count;
+    }
+    /// <summary>
+    /// 获取银行储量加成
+    /// </summary>
+    /// <returns></returns>
+    public double GetBankReserveSurchargeUp()
+    {
+        double basics = 0; //基础加成是0
+        basics += bankReserveSurcharge;   //银行储量加成
+        return basics;
+    }
 
 
 }
