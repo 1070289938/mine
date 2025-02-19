@@ -19,9 +19,9 @@ public class ContainerStudy : MonoBehaviour
     //研究需要的资源
     Dictionary<ResourceType, double> resources = new Dictionary<ResourceType, double>()
     {
-        //设置价格 软妹币5000 ，钢100
-        [ResourceType.Currency] = 5000,
-        [ResourceType.Steel] = 100,
+        //设置价格 软妹币20k ，钢100
+        [ResourceType.Currency] = AssetsUtil.ParseNumber("20k"),
+        [ResourceType.Steel] = 200,
     };
     // Start is called before the first frame update
 

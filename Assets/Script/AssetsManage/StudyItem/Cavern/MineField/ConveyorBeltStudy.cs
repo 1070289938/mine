@@ -19,9 +19,9 @@ public class ConveyorBeltStudy : MonoBehaviour
     //研究需要的资源
     Dictionary<ResourceType, double> resources = new Dictionary<ResourceType, double>()
     {
-        //设置价格 软妹币5000 ，铜矿1000
-        [ResourceType.Currency] = 5000,
-        [ResourceType.Copper] = 1000,
+        //设置价格 软妹币100k ，铜矿10k
+        [ResourceType.Currency] = AssetsUtil.ParseNumber("100k"),
+        [ResourceType.Copper] = 10000,
     };
     // Start is called before the first frame update
 

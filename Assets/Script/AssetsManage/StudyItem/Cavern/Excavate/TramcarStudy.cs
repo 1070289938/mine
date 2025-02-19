@@ -41,6 +41,7 @@ public class TramcarStudy : MonoBehaviour
     public FacilityPanelManager railFacility;//铁轨管理
     void Inspect()
     {
+        Debug.Log("矿车的监听");
         //铁轨搭建完毕
         if (railFacility.GetCount() >= 50)
         {

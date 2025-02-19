@@ -44,6 +44,17 @@ public class PileOfOreManager : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// 初始化
+    /// </summary>
+    public void Install()
+    {
+        methods = new List<Action>();
+        weights = new List<float>();
+        AddMethod(Rock, 100);
+
+
+    }
 
     // Update is called once per frame
     void Update()
@@ -59,7 +70,7 @@ public class PileOfOreManager : MonoBehaviour
 
         double count = 1;
         count *= ResourceAdditionManager.Instance.GetToolUp();//加上工具的提升
-
+        
         ResourceManager.Instance.AddResource(ResourceType.Stone, count); // 增加石矿
 
     }
@@ -101,7 +112,6 @@ public class PileOfOreManager : MonoBehaviour
     }
     List<Action> methods = new List<Action>();
     List<float> weights = new List<float>();
-
 
 
 

@@ -57,6 +57,14 @@ public class ResourceShowManager : MonoBehaviour
 
     // 上一秒资源数
     double lastResource;
+    /// <summary>
+    /// 重生初始化
+    /// </summary>
+    public void Initialize()
+    {
+        lastResource = 0;
+        currentAmount = 0;
+    }
 
     private void Update()
     {

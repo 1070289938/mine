@@ -35,7 +35,8 @@ public class TableProjectManager : MonoBehaviour
             //显示状态下如果没有就没有吧
             if (AreAllChildrenHidden(content))
             {
-
+                hiddenContent.SetActive(false);
+                table.SetActive(false);
 
             }
         }
@@ -59,22 +60,22 @@ public class TableProjectManager : MonoBehaviour
         foreach (ProjectManager project in projects)
         {
 
-            if (hiddenContent.activeSelf)
+            if (project.gameObject.activeSelf)
             {
-
                 Debug.Log("hiddenContent = 显示");
-
                 //显示状态下如果没有就隐藏，
                 if (AreAllChildrenHidden(project.content.transform))
                 {
                     project.gameObject.SetActive(false);
                 }
-                else
+            }
+            else
+            {   
+                //如果隐藏状态下有就显示
+                if (!AreAllChildrenHidden(project.content.transform))
                 {
                     project.gameObject.SetActive(true);
                 }
-
-
 
             }
 

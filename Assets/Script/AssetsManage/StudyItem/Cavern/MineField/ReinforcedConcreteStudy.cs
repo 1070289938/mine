@@ -19,8 +19,8 @@ public class ReinforcedConcreteStudy : MonoBehaviour
     //研究需要的资源
     Dictionary<ResourceType, double> resources = new Dictionary<ResourceType, double>()
     {
-        //设置价格 软妹币5000 ，钢500
-        [ResourceType.Currency] = 5000,
+        //设置价格 软妹币80k ，钢500
+        [ResourceType.Currency] = AssetsUtil.ParseNumber("80k"),
         [ResourceType.Steel] = 500,
     };
     // Start is called before the first frame update

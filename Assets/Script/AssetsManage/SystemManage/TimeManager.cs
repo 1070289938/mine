@@ -9,7 +9,7 @@ using UnityEngine;
 public class TimeManager : MonoBehaviour
 {
     public GameObject Content; // 内容
-    int RemainingTime; // 秒
+    public int RemainingTime; // 秒
 
     // 存储游戏的总时间速度
     private float gameTimeScale;
@@ -17,7 +17,7 @@ public class TimeManager : MonoBehaviour
     public TextMeshProUGUI timeText; // 标题
 
     // 用于计时的变量
-    private float timer;
+    public float timer = 0f;
 
     public static TimeManager Instance;
 
@@ -39,7 +39,7 @@ public class TimeManager : MonoBehaviour
     {
         // 初始化游戏时间速度
         gameTimeScale = 1f;
-        timer = 0f;
+
         // 初始显示时间
         UpdateTimeText();
     }

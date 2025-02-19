@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 /// <summary>
@@ -36,6 +37,25 @@ public class DecomposingMetalManager : MonoBehaviour
     /// </summary>
     void RestartGame()
     {
+
+        gameObject.SetActive(false);
+        //显示旁白说明矿洞塌陷
+        VoiceOverManager.Instance.DecomposingRestVoiceOver(() =>
+        {
+            // 获取当前活动场景的名称
+            string currentSceneName = SceneManager.GetActiveScene().name;
+            // 加载当前场景
+            SceneManager.LoadScene(currentSceneName);
+        });
+
+        //在显示旁白的期间重启
+        //固定增加50重生晶体
+        ResourceManager.Instance.AddResource(ResourceType.RegeneratedCrystal, 50);
+
+        //先清空所有的科技
+        SaveLoadManager.Instance.SecondLife();
+
+       
 
     }
 

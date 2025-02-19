@@ -19,8 +19,8 @@ public class MineralFilterStudy : MonoBehaviour
     //研究需要的资源
     Dictionary<ResourceType, double> resources = new Dictionary<ResourceType, double>()
     {
-        //设置价格 软妹币5000 ，石头10k，水泥1000
-        [ResourceType.Currency] = 5000,
+        //设置价格 软妹币20k ，石头10k，水泥1000
+        [ResourceType.Currency] =  AssetsUtil.ParseNumber("20k"),
         [ResourceType.Stone] = 10000,
         [ResourceType.Cement] = 1000,
     };

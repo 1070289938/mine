@@ -19,8 +19,8 @@ public class SteelBeamStudy : MonoBehaviour
     //研究需要的资源
     Dictionary<ResourceType, double> resources = new()
     {
-        //设置价格 软妹币15000 ，钢 200
-        [ResourceType.Currency] = 15000,
+        //设置价格 软妹币60k ，钢 200
+        [ResourceType.Currency] = AssetsUtil.ParseNumber("60k"),
         [ResourceType.Steel] = 200,
     };
     // Start is called before the first frame update

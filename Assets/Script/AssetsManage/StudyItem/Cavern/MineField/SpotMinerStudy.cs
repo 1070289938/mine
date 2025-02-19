@@ -19,8 +19,8 @@ public class SpotMinerStudy : MonoBehaviour
     //研究需要的资源
     Dictionary<ResourceType, double> resources = new Dictionary<ResourceType, double>()
     {
-        //设置价格 软妹币50k ，钢1000 硅500
-        [ResourceType.Currency] = AssetsUtil.ParseNumber("50k"),
+        //设置价格 软妹币400k ，钢1000 硅500
+        [ResourceType.Currency] = AssetsUtil.ParseNumber("400k"),
         [ResourceType.Steel] = 1000,
         [ResourceType.Silicon] = 500,
     };

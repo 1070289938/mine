@@ -19,8 +19,8 @@ public class BlastFurnaceStudy : MonoBehaviour
     //研究需要的资源
     Dictionary<ResourceType, double> resources = new Dictionary<ResourceType, double>()
     {
-        //设置价格 软妹币5000 ，煤900. 钢230
-        [ResourceType.Currency] = 5000,
+        //设置价格 软妹币100k ，煤900. 钢230
+        [ResourceType.Currency] = AssetsUtil.ParseNumber("100k"),
         [ResourceType.Colliery] = 900,
         [ResourceType.Steel] = 230,
     };

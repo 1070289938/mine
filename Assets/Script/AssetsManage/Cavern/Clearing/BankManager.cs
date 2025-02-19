@@ -23,7 +23,7 @@ public class BankManager : MonoBehaviour
 
     string btnText = "建造";
 
-    double baseReserves = AssetsUtil.ParseNumber("10k");//基础储量
+    double baseReserves = AssetsUtil.ParseNumber("20k");//基础储量
 
 
     readonly FacilityType type = FacilityType.Bank;

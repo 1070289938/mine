@@ -59,7 +59,7 @@ public class IronWarehouseStudy : MonoBehaviour
         stashManager.AddUp(0.5);
 
         //需求材料增加铁矿
-        facilityPanel.AddOnClickedResource(ResourceType.Iron, 3);
+        facilityPanel.AddOnClickedResource(ResourceType.Iron, 0.3);
     }
 
 

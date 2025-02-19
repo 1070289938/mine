@@ -52,6 +52,10 @@ public class OreCarManager : MonoBehaviour
     public double GetOreCarUp()
     {
         double basics = 0;//基础值
+        if (!facilityPanelManager)
+        {
+            facilityPanelManager = GetComponent<FacilityPanelManager>();
+        }
         basics += up * facilityPanelManager.GetCount();
 
         //总提升再乘矿车效率的提升

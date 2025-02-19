@@ -19,8 +19,8 @@ public class DigCoalStudy : MonoBehaviour
     //研究需要的资源
     Dictionary<ResourceType, double> resources = new Dictionary<ResourceType, double>()
     {
-        //设置价格 软妹币3000 ，铁矿1000
-        [ResourceType.Currency] = 5000,
+        //设置价格 软妹币25k ，铁矿1000
+        [ResourceType.Currency] = AssetsUtil.ParseNumber("25k"),
         [ResourceType.Iron] = 1000,
     };
     // Start is called before the first frame update

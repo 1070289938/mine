@@ -23,7 +23,7 @@ public class TenementManager : MonoBehaviour
 
     string btnText = "建造";
 
-    double baseReserves = 500;//基础储量
+    double baseReserves = 700;//基础储量
 
     double baseYield = 0.6;//人民币基础产量
 
@@ -103,36 +103,35 @@ public class TenementManager : MonoBehaviour
     /// </summary>
     void Output()
     {
-        if (facilityPanelManager.GetCount() != 0)
+
+        double rmb = baseYield * facilityPanelManager.GetCount();//每秒产出软妹币
+
+        rmb *= ResourceAdditionManager.Instance.GetTenementBasicsUp();//房屋基本产量加成
+
+
+        double rent = 0;//收租
+                        //如果研究了收租,就算上房租
+        if (TechManager.Instance.GetTechFlag(TechType.collectRents))
         {
-            double rmb = baseYield * facilityPanelManager.GetCount();//每秒产出软妹币
-
-            rmb *= ResourceAdditionManager.Instance.GetTenementBasicsUp();//房屋基本产量加成
-
-
-            double rent = 0;//收租
-            //如果研究了收租,就算上房租
-            if (TechManager.Instance.GetTechFlag(TechType.collectRents))
-            {
-                rent = baseRent * resourceCountManager.GetMinerCount();//统计每秒房租
-            }
-
-            rent *= ResourceAdditionManager.Instance.GetTenementRentUp();//房屋房租产量加成
-
-
-            double count = rent + rmb;//房租+房屋本身产出
-
-            count *= ResourceAdditionManager.Instance.GetTenementComfortUp();//房屋坚固程度对房屋的产量加成
-
-            count *= ResourceAdditionManager.Instance.GetRMBboostUp();//软妹币产量加成   
-
-            //每帧增加软妹币
-            IncrementReturn increment = ResourceManager.Instance.AddResource(ResourceType.Currency, count * Time.deltaTime);
-
-            //计算出每秒产出多少资源
-            double secondCount = increment.Count / Time.deltaTime;
-            facilityPanelManager.UpdateOutPut(ResourceType.Currency, secondCount);
+            rent = baseRent * resourceCountManager.GetMinerCount();//统计每秒房租
         }
+
+        rent *= ResourceAdditionManager.Instance.GetTenementRentUp();//房屋房租产量加成
+
+
+        double count = rent + rmb;//房租+房屋本身产出
+
+        count *= ResourceAdditionManager.Instance.GetTenementComfortUp();//房屋坚固程度对房屋的产量加成
+
+        count *= ResourceAdditionManager.Instance.GetRMBboostUp();//软妹币产量加成   
+
+        //每帧增加软妹币
+        IncrementReturn increment = ResourceManager.Instance.AddResource(ResourceType.Currency, count * Time.deltaTime);
+
+        //计算出每秒产出多少资源
+        double secondCount = increment.Count / Time.deltaTime;
+        facilityPanelManager.UpdateOutPut(ResourceType.Currency, secondCount);
+
 
 
 

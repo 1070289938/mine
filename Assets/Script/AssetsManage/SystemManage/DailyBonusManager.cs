@@ -5,7 +5,9 @@ using TapTap.TapAd;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-
+/// <summary>
+/// 每日奖励
+/// </summary>
 public class DailyBonusManager : MonoBehaviour, IRewardVideoInteractionListener
 {
     Button button;
@@ -16,7 +18,10 @@ public class DailyBonusManager : MonoBehaviour, IRewardVideoInteractionListener
     // 广告位 id
     int id = 1041647;
     // 记录按钮上次点击的日期
-    DateTime lastClickDate;
+    public DateTime lastClickDate;
+
+
+    
 
     // Start is called before the first frame update
     void Start()
@@ -24,7 +29,11 @@ public class DailyBonusManager : MonoBehaviour, IRewardVideoInteractionListener
         button = GetComponentInChildren<Button>();
         button.onClick.AddListener(TryWatchAdvertisement);
         // 初始化上次点击日期为一个较早的日期，确保游戏开始时按钮可用
-        lastClickDate = DateTime.MinValue;
+        if (lastClickDate == null)
+        {
+            lastClickDate = DateTime.MinValue;
+        }
+
     }
 
     // 每帧更新

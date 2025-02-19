@@ -58,7 +58,7 @@ public class CopperWarehouseStudy : MonoBehaviour
         StashManager stashManager = facilityPanel.GetComponent<StashManager>();
         stashManager.AddUp(0.3);
         //需求材料增加铜矿
-        facilityPanel.AddOnClickedResource(ResourceType.Copper,13);
+        facilityPanel.AddOnClickedResource(ResourceType.Copper,1);
 
     }
 

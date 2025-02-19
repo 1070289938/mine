@@ -19,8 +19,8 @@ public class ExcavatorStudy : MonoBehaviour
     //研究需要的资源
     Dictionary<ResourceType, double> resources = new Dictionary<ResourceType, double>()
     {
-        //设置价格 软妹币20000 ，铜矿300
-        [ResourceType.Currency] = 20000,
+        //设置价格 软妹币120k ，铜矿300
+        [ResourceType.Currency] = AssetsUtil.ParseNumber("120k"),
         [ResourceType.Steel] = 300,
     };
     // Start is called before the first frame update

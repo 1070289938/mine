@@ -4,6 +4,7 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 public class SaveLoadManager : MonoBehaviour
 {
 
@@ -23,18 +24,60 @@ public class SaveLoadManager : MonoBehaviour
 
     public GameObject FacilityPanelContent;//面板的所有内容
 
+    public VoiceOverManager voiceOverManager;//开场白
+
+    public TimeManager timeManager;//时间管理
+
+    public DailyBonusManager dailyBonusManager;//每日奖励
+
+    public ProductionAccelerationManager productionAccelerationManager;//双倍加速奖励
+
+
+    public static SaveLoadManager Instance { get; private set; }
+
     private void Awake()
     {
+        Instance = this;
         saveFilePath = Path.Combine(Application.persistentDataPath, saveFileName);
         LoadGame();
         StartCoroutine(AutoSave());
     }
 
+
+
+    /// <summary>
+    /// 重生,清除掉除了系统资源之外的所有的资源
+    /// </summary>
+    public void SecondLife()
+    {
+
+        //面板数量全部归零
+        FacilityPanelManager[] facilities = FacilityPanelContent.GetComponentsInChildren<FacilityPanelManager>(true);
+        foreach (FacilityPanelManager facilityPanel in facilities)
+        {
+
+            facilityPanel.Clear();//清空面板内容
+        }
+
+        //科技全部归零
+        TechManager.Instance.techTypeStudyFlag = new();
+        //加成全部归零
+        ResourceAdditionManager.Instance.Initialize();
+        //资源全部归零
+        ResourceManager.Instance.Initialize();
+        //日志全部清空
+        LogManager.Instance.Initialize();
+
+
+        SaveGame();
+    }
+
+
     // 保存游戏数据
     public void SaveGame()
     {
 
-
+        //科技是否研究
         Dictionary<string, bool> StudyFlag = new Dictionary<string, bool>();
 
         foreach (var Study in techManager.techTypeStudyFlag)
@@ -63,8 +106,14 @@ public class SaveLoadManager : MonoBehaviour
 
             StudyFlag = StudyFlag,//科技是否研究
 
-            logs = logManager.logs,//日志
+            logs = logManager.GetAllLogs(),//日志
             facility = facility,//面板数量
+
+            speedTime = timeManager.RemainingTime,
+
+            dailyBonus = LoadUtil.GetTimestampInMilliseconds(dailyBonusManager.lastClickDate),
+            productionAcceleration = LoadUtil.GetTimestampInMilliseconds(productionAccelerationManager.lastClickTime),
+
         };
 
         // 创建二进制格式化器
@@ -84,6 +133,12 @@ public class SaveLoadManager : MonoBehaviour
     {
         if (File.Exists(saveFilePath))
         {
+
+
+
+            //显示加载中开场白
+            voiceOverManager.GameLoadVoiceOver();
+
             Install = false;//拥有存档文件，不需要初始化了
 
             // 创建二进制格式化器
@@ -104,15 +159,19 @@ public class SaveLoadManager : MonoBehaviour
 
                     foreach (var Study in gameData.StudyFlag)
                     {
-                      
+
                         TechType type = TechTypeHelper.StringToTechType(Study.Key);
                         techTypeStudyFlag[type] = Study.Value;
                     }
 
 
                     techManager.techTypeStudyFlag = techTypeStudyFlag;//科技是否研究
+                    //加载日志
+                    logManager.LoadAllLogs(gameData.logs);
+                   
 
-                    logManager.logs = gameData.logs;
+                    dailyBonusManager.lastClickDate = LoadUtil.FromMillisecondsTimestamp(gameData.dailyBonus);
+                    productionAccelerationManager.lastClickTime = LoadUtil.FromMillisecondsTimestamp(gameData.productionAcceleration);
 
 
                     //初始化所有面板的数量
@@ -130,11 +189,8 @@ public class SaveLoadManager : MonoBehaviour
 
                     }
 
-
-
-
-
-                    logManager.AddLog("欢迎回来!");
+                    //加载剩余的加速时间
+                    timeManager.AddTime((int)gameData.speedTime);
 
 
 
@@ -146,8 +202,9 @@ public class SaveLoadManager : MonoBehaviour
         }
         else
         {
+            //显示开场旁白
+            voiceOverManager.GameStartVoiceOver();
             //没有存档的情况下
-
             techManager.techTypeStudyFlag = new Dictionary<TechType, bool>();//初始化科技是否研究
 
 
@@ -167,7 +224,7 @@ public class SaveLoadManager : MonoBehaviour
         {
             if (techManager.techTypeStudyFlag.ContainsKey(itemManager.techType))
             {
-                
+
                 if (techManager.techTypeStudyFlag[itemManager.techType])
                 {
                     //如果这个科技在存档里面已经研究，那就执行一下

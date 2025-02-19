@@ -19,10 +19,10 @@ public class SilicaRefineryStudy : MonoBehaviour
     //研究需要的资源
     Dictionary<ResourceType, double> resources = new Dictionary<ResourceType, double>()
     {
-        //设置价格 软妹币20000 ，钢300，硅10
-        [ResourceType.Currency] = 20000,
+        //设置价格 软妹币250k ，钢300，硅50
+        [ResourceType.Currency] = AssetsUtil.ParseNumber("250k"),
         [ResourceType.Steel] = 300,
-        [ResourceType.Silicon] = 10,
+        [ResourceType.Silicon] = 50,
     };
     // Start is called before the first frame update
 

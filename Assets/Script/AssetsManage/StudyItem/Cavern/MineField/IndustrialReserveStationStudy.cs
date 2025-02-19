@@ -10,7 +10,7 @@ public class IndustrialReserveStationStudy : MonoBehaviour
 
     string studyName = "工业储备站";
 
-    string details = "矿场空旷的地形可以使用大型机器进行挖掘,大型机器可以大幅度的提升工人们的效率\n\n解锁工业储备站";
+    string details = "普通的仓库无法储存工业材料,工业储备站可以提升工业材料的储量\n\n解锁工业储备站";
 
     string Successful = "工业储备站研究成功!";
 
@@ -19,8 +19,8 @@ public class IndustrialReserveStationStudy : MonoBehaviour
     //研究需要的资源
     Dictionary<ResourceType, double> resources = new Dictionary<ResourceType, double>()
     {
-        //设置价格 软妹币10k ，钢10
-        [ResourceType.Currency] = 10000,
+        //设置价格 软妹币50k ，钢10
+        [ResourceType.Currency] = AssetsUtil.ParseNumber("50k"),
         [ResourceType.Steel] = 10,
     };
     // Start is called before the first frame update

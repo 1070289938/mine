@@ -5,7 +5,9 @@ using TapTap.TapAd;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-
+/// <summary>
+/// 双倍时间奖励
+/// </summary>
 public class ProductionAccelerationManager : MonoBehaviour, IRewardVideoInteractionListener
 {
     Button button;
@@ -16,7 +18,7 @@ public class ProductionAccelerationManager : MonoBehaviour, IRewardVideoInteract
     // 广告位 id
     int id = 1041644;
     // 记录按钮上次点击的时间
-    DateTime lastClickTime;
+    public DateTime lastClickTime;
     // 冷却时间，单位：小时
     const int cooldownHours = 12;
 
@@ -26,7 +28,11 @@ public class ProductionAccelerationManager : MonoBehaviour, IRewardVideoInteract
         button = GetComponentInChildren<Button>();
         button.onClick.AddListener(TryWatchAdvertisement);
         // 初始化上次点击时间为一个较早的时间，确保游戏开始时按钮可用
-        lastClickTime = DateTime.MinValue;
+       
+          if (lastClickTime == null)
+        {
+            lastClickTime = DateTime.MinValue;
+        }
     }
 
     // 每帧更新
@@ -59,8 +65,9 @@ public class ProductionAccelerationManager : MonoBehaviour, IRewardVideoInteract
         if (elapsedTime.TotalHours >= cooldownHours)
         {
             // 冷却时间已过，播放广告
-            WatchAdvertisement();
-
+            // WatchAdvertisement();
+             lastClickTime = DateTime.Now;
+            TimeManager.Instance.AddTime(1800);
 
         }
         else

@@ -19,9 +19,9 @@ public class TelevisionStudy : MonoBehaviour
     //研究需要的资源
     Dictionary<ResourceType, double> resources = new Dictionary<ResourceType, double>()
     {
-        //设置价格 软妹币50k ，硅100
-        [ResourceType.Currency] = AssetsUtil.ParseNumber("50k"),
-        [ResourceType.Silicon] = 100,
+        //设置价格 软妹币250k ，硅500
+        [ResourceType.Currency] = AssetsUtil.ParseNumber("250k"),
+        [ResourceType.Silicon] = 500,
     };
     // Start is called before the first frame update
 

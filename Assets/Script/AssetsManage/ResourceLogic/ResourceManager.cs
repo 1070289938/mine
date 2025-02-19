@@ -14,15 +14,37 @@ public class ResourceManager : MonoBehaviour
 
     public Dictionary<ResourceType, ResourceShowManager> resourceManager = new Dictionary<ResourceType, ResourceShowManager>();//各个资源的管理节点
 
-
-    // public ResourceAdditionManager resourceAdditionManager;//资源加成管理
-
-
     public ResourceContentManager resourceContentManager;//资源内容管理
 
+    public Dictionary<ResourceType, bool> special = new()
+    {
+        [ResourceType.RegeneratedCrystal] = true,
 
 
+    };//特殊资源
 
+    public void Initialize()
+    {
+
+        foreach (ResourceType type in System.Enum.GetValues(typeof(ResourceType)))
+        {
+
+            //如果不是特殊资源就进行初始化
+            if (!special.ContainsKey(type))
+            {
+
+                if (resourceManager.ContainsKey(type))
+                {
+                    resourceManager[type].Initialize();
+                }
+                resources[type] = 0; // 所有资源初始为0
+                resourcesMax[type] = 0; //所有资源上限初始为0
+                resourceUnlocks[type] = false; // 所有资源初始不显示
+            }
+
+        }
+        ResourceUpperLimitManager.Instance.RefreshUpperLimitAllResources();
+    }
 
     private void Awake()
     {
@@ -153,7 +175,7 @@ public class ResourceManager : MonoBehaviour
         double count = amount;
 
         //计算重生晶体的产量
-        if (type != ResourceType.RegeneratedCrystal)
+        if (!special.ContainsKey(type))
         {
             count *= RegeneratedCrystalManager.Instance.addition;
         }
@@ -164,7 +186,7 @@ public class ResourceManager : MonoBehaviour
 
         increment.Count = count;
         //如果超过上限就以上限来计算
-
+      
         //如果不是无限的
         if (resourcesMax[type] != -1
         && resourcesSum > resourcesMax[type])

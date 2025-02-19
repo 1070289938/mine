@@ -62,7 +62,6 @@ public class FacilityPanelManager : MonoBehaviour
     double upMultiple = 1; //资源递增的倍数默认是1
 
 
-
     public void Awake()
     {
         gameObject.SetActive(show);
@@ -248,10 +247,24 @@ public class FacilityPanelManager : MonoBehaviour
         {
             quantityText.text = "x" + resourceQuantity;
         }
-
-
-
     }
+    /// <summary>
+    /// 清空数量
+    /// </summary>
+    public void ClearCount()
+    {
+        resourceQuantity = 0;
+        operationQuantity = 0;
+        if (quantityFlag)
+        {
+            quantityText.text = "x" + operationQuantity + "/" + resourceQuantity;
+        }
+        else
+        {
+            quantityText.text = "x" + resourceQuantity;
+        }
+    }
+
 
 
     // 设置新的资源信息
@@ -379,6 +392,25 @@ public class FacilityPanelManager : MonoBehaviour
     {
         ExpendManager expend = outPutresourceExpend[type];
         expend.UpdateCount(count);
+    }
+
+
+    /// <summary>
+    /// 清空内容
+    /// </summary>
+    public void Clear()
+    {
+        //初始化显示内容
+        gameObject.SetActive(show);
+        if (!show)
+        {
+            //清空数量
+            ClearCount();
+        }
+
+        //重置价格
+        UpdateRequirements();
+
     }
 
 

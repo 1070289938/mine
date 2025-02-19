@@ -19,8 +19,8 @@ public class CraneStudy : MonoBehaviour
     //研究需要的资源
     Dictionary<ResourceType, double> resources = new Dictionary<ResourceType, double>()
     {
-        //设置价格 软妹币10000 ，铜矿1000
-        [ResourceType.Currency] = 10000,
+        //设置价格 软妹币80k ，钢650
+        [ResourceType.Currency] = AssetsUtil.ParseNumber("80k"),
         [ResourceType.Steel] = 650,
     };
     // Start is called before the first frame update

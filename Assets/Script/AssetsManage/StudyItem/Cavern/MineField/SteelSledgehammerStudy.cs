@@ -19,9 +19,9 @@ public class SteelSledgehammerStudy : MonoBehaviour
     //研究需要的资源
     Dictionary<ResourceType, double> resources = new Dictionary<ResourceType, double>()
     {
-        //设置价格 软妹币15k ，钢50
-        [ResourceType.Currency] = 15000,
-        [ResourceType.Steel] = 50,
+        //设置价格 软妹币200k ，钢50
+        [ResourceType.Currency] = AssetsUtil.ParseNumber("200k"),
+        [ResourceType.Steel] = 150,
     };
     // Start is called before the first frame update
 

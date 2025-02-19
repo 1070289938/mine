@@ -19,10 +19,10 @@ public class MetalDetectorStudy : MonoBehaviour
     //研究需要的资源
     Dictionary<ResourceType, double> resources = new Dictionary<ResourceType, double>()
     {
-        //设置价格 软妹币35k ，钢300 硅100
-        [ResourceType.Currency] = AssetsUtil.ParseNumber("35k"),
-        [ResourceType.Steel] = 300,
-        [ResourceType.Silicon] = 100,
+        //设置价格 软妹币500k ，钢3000 硅1000
+        [ResourceType.Currency] = AssetsUtil.ParseNumber("500k"),
+        [ResourceType.Steel] = 3000,
+        [ResourceType.Silicon] = 1000,
     };
     // Start is called before the first frame update
 

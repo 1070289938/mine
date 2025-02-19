@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using System.Text;
 using TMPro;
 
 public class LogManager : MonoBehaviour
@@ -9,8 +10,22 @@ public class LogManager : MonoBehaviour
 
     public TextMeshProUGUI logText; // 用于显示日志的 Text 组件
     public ScrollRect scrollRect; // 滚动视图，用于自动滚动
-    public List<string> logs;
+    public LinkedList<string> logs;
     public int maxLogCount = 100; // 最大日志数量
+    private StringBuilder logBuilder;
+    private bool needScrollToBottom;
+
+    public void Initialize()
+    {
+        if (logs == null)
+        {
+            logs = new LinkedList<string>();
+        }
+        logs.Clear();
+        logBuilder = new StringBuilder();
+        logText.text = "";
+        ScrollToBottom();
+    }
 
     private void Awake()
     {
@@ -25,9 +40,8 @@ public class LogManager : MonoBehaviour
 
     void Start()
     {
-        if (logText == null || scrollRect == null)
+        if (!IsUIComponentsAssigned())
         {
-            Debug.LogError("logText or scrollRect is not assigned!");
             return;
         }
 
@@ -36,52 +50,149 @@ public class LogManager : MonoBehaviour
         scrollRect.verticalNormalizedPosition = 0;
     }
 
-    // 添加日志
-    public void AddLog(string message)
+    // 检查 UI 组件是否已赋值
+    private bool IsUIComponentsAssigned()
     {
         if (logText == null || scrollRect == null)
         {
             Debug.LogError("logText or scrollRect is not assigned!");
+            return false;
+        }
+        return true;
+    }
+
+    // 添加日志
+    public void AddLog(string message)
+    {
+        if (!IsUIComponentsAssigned())
+        {
             return;
         }
 
         if (logs == null)
         {
-            logs = new List<string>();
+            logs = new LinkedList<string>();
+            logBuilder = new StringBuilder();
         }
 
         // 检查日志数量是否超过最大限制
-        if (logs.Count >= maxLogCount)
+        while (logs.Count >= maxLogCount)
         {
-            int removeCount = logs.Count - maxLogCount + 1;
-            for (int i = 0; i < removeCount; i++)
-            {
-                logs.RemoveAt(0); // 移除最早的日志
-            }
-            // 重新构建日志文本
-            logText.text = string.Join("\n", logs);
+            logBuilder.Remove(0, logs.First.Value.Length + 1); // 移除最早的日志文本
+            logs.RemoveFirst(); // 移除最早的日志
         }
 
         // 添加日志到列表
-        logs.Add(message);
+        logs.AddLast(message);
 
-        // 只追加新的日志内容
-        if (logText.text.Length > 0)
+        // 追加新的日志内容
+        if (logBuilder.Length > 0)
         {
-            logText.text += "\n" + message;
+            logBuilder.AppendLine(message);
         }
         else
         {
-            logText.text = message;
+            logBuilder.Append(message);
         }
 
-        // 自动滚动到最新日志
-        ScrollToBottom();
+        logText.text = logBuilder.ToString();
+
+        // 标记需要滚动到底部
+        needScrollToBottom = true;
+    }
+
+    /// <summary>
+    /// 重新加载日志
+    /// </summary>
+    public void Reset()
+    {
+        if (logs == null)
+        {
+            logs = new LinkedList<string>();
+            logBuilder = new StringBuilder();
+        }
+
+        logBuilder.Clear();
+        foreach (var log in logs)
+        {
+            if (logBuilder.Length > 0)
+            {
+                logBuilder.AppendLine(log);
+            }
+            else
+            {
+                logBuilder.Append(log);
+            }
+        }
+        logText.text = logBuilder.ToString();
+    }
+
+    private void Update()
+    {
+        if (needScrollToBottom)
+        {
+            ScrollToBottom();
+            needScrollToBottom = false;
+        }
     }
 
     private void ScrollToBottom()
     {
         Canvas.ForceUpdateCanvases();
         scrollRect.verticalNormalizedPosition = 0f;
+    }
+
+    /// <summary>
+    /// 获取所有日志
+    /// </summary>
+    /// <returns>包含所有日志的列表</returns>
+    public List<string> GetAllLogs()
+    {
+        return new List<string>(logs);
+    }
+
+    /// <summary>
+    /// 加载所有日志
+    /// </summary>
+    /// <param name="logList">要加载的日志列表</param>
+    public void LoadAllLogs(List<string> logList)
+    {
+        if (!IsUIComponentsAssigned())
+        {
+            return;
+        }
+
+        if (logs == null)
+        {
+            logs = new LinkedList<string>();
+        }
+        logs.Clear();
+        logBuilder = new StringBuilder();
+
+        foreach (string log in logList)
+        {
+            // 检查日志数量是否超过最大限制
+            while (logs.Count >= maxLogCount)
+            {
+                logBuilder.Remove(0, logs.First.Value.Length + 1); // 移除最早的日志文本
+                logs.RemoveFirst(); // 移除最早的日志
+            }
+
+            // 添加日志到列表
+            logs.AddLast(log);
+
+            // 追加新的日志内容
+            if (logBuilder.Length > 0)
+            {
+                logBuilder.AppendLine(log);
+            }
+            else
+            {
+                logBuilder.Append(log);
+            }
+        }
+
+        logText.text = logBuilder.ToString();
+        needScrollToBottom = true;
     }
 }

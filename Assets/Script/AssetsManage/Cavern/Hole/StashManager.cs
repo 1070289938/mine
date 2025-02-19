@@ -24,11 +24,11 @@ public class StashManager : MonoBehaviour
     string btnText = "建造";
 
     Dictionary<ResourceType, double> baseReserves = new (){
-        [ResourceType.Stone] = 500,//石矿基础储量
-        [ResourceType.Copper] = 380,//铜矿基础储量
-        [ResourceType.Iron] = 200,//铁矿基础储量
-        [ResourceType.Cement] = 100,//水泥基础储量
-        [ResourceType.Colliery] = 120,//煤矿基础储量
+        [ResourceType.Stone] = 800,//石矿基础储量
+        [ResourceType.Copper] = 680,//铜矿基础储量
+        [ResourceType.Iron] = 500,//铁矿基础储量
+        [ResourceType.Cement] = 200,//水泥基础储量
+        [ResourceType.Colliery] = 500,//煤矿基础储量
 
 
     }; //仓库基础储量

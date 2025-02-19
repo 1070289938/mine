@@ -40,6 +40,14 @@ public class MapManager : MonoBehaviour
                     mapList.gameObject.SetActive(true);
                 }
             }
+            else
+            {
+                if (!TechManager.Instance.GetTechFlag(mapList.techType))
+                {
+                    //如果未完成就隐藏
+                    mapList.gameObject.SetActive(false);
+                }
+            }
         }
     }
 
@@ -57,7 +65,7 @@ public class MapManager : MonoBehaviour
         {
             if (mapList.mapType == mapType)
             {
-              
+
                 mapList.content.transform.SetSiblingIndex(show);
             }
             else

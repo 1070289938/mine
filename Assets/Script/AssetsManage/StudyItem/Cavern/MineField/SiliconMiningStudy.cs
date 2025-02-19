@@ -19,8 +19,8 @@ public class SiliconMiningStudy : MonoBehaviour
     //研究需要的资源
     Dictionary<ResourceType, double> resources = new Dictionary<ResourceType, double>()
     {
-        //设置价格 软妹币8000 ，钢250
-        [ResourceType.Currency] = 8000,
+        //设置价格 软妹币200k ，钢250
+        [ResourceType.Currency] = AssetsUtil.ParseNumber("200k"),
         [ResourceType.Steel] = 250,
     };
     // Start is called before the first frame update

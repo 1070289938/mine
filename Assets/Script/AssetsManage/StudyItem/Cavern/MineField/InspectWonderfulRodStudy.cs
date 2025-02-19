@@ -17,7 +17,8 @@ public class InspectWonderfulRodStudy : MonoBehaviour
     TechType techType = TechType.InspectWonderfulRod;
     Dictionary<ResourceType, double> resources = new Dictionary<ResourceType, double>()
     {
-        [ResourceType.Currency] = 10000
+
+        [ResourceType.Currency] = AssetsUtil.ParseNumber("100k")
     }; //研究需要的资源
     // Start is called before the first frame update
 

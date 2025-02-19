@@ -19,8 +19,8 @@ public class BankStudy : MonoBehaviour
     //研究需要的资源
     Dictionary<ResourceType, double> resources = new Dictionary<ResourceType, double>()
     {
-        //设置价格 软妹币10000 ，水泥1500
-        [ResourceType.Currency] = 10000,
+        //设置价格 软妹币100k ，水泥1500
+        [ResourceType.Currency] = AssetsUtil.ParseNumber("100k"),
         [ResourceType.Cement] = 1500,
     };
     // Start is called before the first frame update

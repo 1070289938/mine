@@ -19,10 +19,10 @@ public class TrainStudy : MonoBehaviour
     //研究需要的资源
     Dictionary<ResourceType, double> resources = new Dictionary<ResourceType, double>()
     {
-        //设置价格 软妹币20k ，煤600，钢200
-        [ResourceType.Currency] = 20000,
-        [ResourceType.Colliery] = 600,
-        [ResourceType.Steel] = 200,
+        //设置价格 软妹币100k ，煤10k，钢500
+        [ResourceType.Currency] = AssetsUtil.ParseNumber("100k"),
+        [ResourceType.Colliery] = AssetsUtil.ParseNumber("10k"),
+        [ResourceType.Steel] = 500,
     };
     // Start is called before the first frame update
 

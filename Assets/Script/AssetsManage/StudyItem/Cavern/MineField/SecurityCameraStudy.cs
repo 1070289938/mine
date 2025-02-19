@@ -19,10 +19,10 @@ public class SecurityCameraStudy : MonoBehaviour
     //研究需要的资源
     Dictionary<ResourceType, double> resources = new Dictionary<ResourceType, double>()
     {
-        //设置价格 软妹币28k ，钢200 硅50
-        [ResourceType.Currency] = AssetsUtil.ParseNumber("28k"),
-        [ResourceType.Steel] = 200,
-        [ResourceType.Silicon] = 50,
+        //设置价格 软妹币380k ，钢900 硅500
+        [ResourceType.Currency] = AssetsUtil.ParseNumber("380k"),
+        [ResourceType.Steel] = 900,
+        [ResourceType.Silicon] = 500,
     };
     // Start is called before the first frame update
 

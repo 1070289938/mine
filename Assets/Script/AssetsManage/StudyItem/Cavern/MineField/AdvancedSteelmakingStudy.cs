@@ -19,8 +19,8 @@ public class AdvancedSteelmakingStudy : MonoBehaviour
     //研究需要的资源
     Dictionary<ResourceType, double> resources = new Dictionary<ResourceType, double>()
     {
-        //设置价格 软妹币10k ，钢1000
-        [ResourceType.Currency] = 10000,
+        //设置价格 软妹币150k ，钢1000
+        [ResourceType.Currency] = AssetsUtil.ParseNumber("150k"),
         [ResourceType.Steel] = 1000,
     };
     // Start is called before the first frame update

@@ -19,10 +19,10 @@ public class ElectricDrillStudy : MonoBehaviour
     //研究需要的资源
     Dictionary<ResourceType, double> resources = new Dictionary<ResourceType, double>()
     {
-        //设置价格 软妹币30000 ，钢500 硅50
-        [ResourceType.Currency] = 30000,
-        [ResourceType.Steel] = 500,
-        [ResourceType.Silicon] = 50,
+        //设置价格 软妹币300k ，钢1500 硅100
+        [ResourceType.Currency] = AssetsUtil.ParseNumber("300k"),
+        [ResourceType.Steel] = 1500,
+        [ResourceType.Silicon] = 100,
     };
     // Start is called before the first frame update
 

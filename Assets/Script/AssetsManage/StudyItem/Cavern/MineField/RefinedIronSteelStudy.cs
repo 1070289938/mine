@@ -19,8 +19,8 @@ public class RefinedIronSteelStudy : MonoBehaviour
     //研究需要的资源
     Dictionary<ResourceType, double> resources = new Dictionary<ResourceType, double>()
     {
-        //设置价格 软妹币10k ，煤矿1000，铁矿3000
-        [ResourceType.Currency] = 10000,
+        //设置价格 软妹币30k ，煤矿1000，铁矿3000
+        [ResourceType.Currency] =  AssetsUtil.ParseNumber("30k"),
         [ResourceType.Colliery] = 1000,
         [ResourceType.Iron] = 3000,
     };

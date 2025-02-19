@@ -19,8 +19,8 @@ public class SteelPickStudy : MonoBehaviour
     //研究需要的资源
     Dictionary<ResourceType, double> resources = new()
     {
-        //设置价格 软妹币5000 ，钢 50
-        [ResourceType.Currency] = 5000,
+        //设置价格 软妹币30k ，钢 50
+        [ResourceType.Currency] = AssetsUtil.ParseNumber("30k"),
         [ResourceType.Steel] = 50,
     };
     // Start is called before the first frame update
