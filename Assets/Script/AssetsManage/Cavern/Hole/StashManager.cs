@@ -84,7 +84,7 @@ public class StashManager : MonoBehaviour
 
         reserves *= facilityPanelManager.GetCount();//数量相乘
         reserves *= up;//储存倍率相乘
-        reserves *= ResourceAdditionManager.Instance.GetStashUp();//获取仓库储量加成
+       
         return reserves;
     }
 

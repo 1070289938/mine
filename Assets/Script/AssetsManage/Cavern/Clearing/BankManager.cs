@@ -69,8 +69,16 @@ public class BankManager : MonoBehaviour
         {
             facilityPanelManager = GetComponent<FacilityPanelManager>();
         }
+        double up = 0.01;
 
-        return 0.01 * facilityPanelManager.GetCount();
+        //对冲基金提升至2%
+        if (TechManager.Instance.GetTechFlag(TechType.HedgeFund))
+        {
+            up = 0.02;
+        }
+
+
+        return up * facilityPanelManager.GetCount();
 
 
     }
@@ -159,7 +167,7 @@ public class BankManager : MonoBehaviour
 
             //计算出每秒产出多少资源
             double secondCount = increment.Count / Time.deltaTime;
-            facilityPanelManager.UpdateOutPut(ResourceType.Currency, secondCount);
+            facilityPanelManager.UpdateOutPut(ResourceType.Currency, secondCount,true);
         }
 
 

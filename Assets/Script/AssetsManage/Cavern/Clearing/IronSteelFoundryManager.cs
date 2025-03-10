@@ -26,12 +26,8 @@ public class IronSteelFoundryManager : MonoBehaviour
 
     double baseYield = 0.1;//钢铁矿基础产量
 
-    Dictionary<ResourceType, double> depleted = new()//每个钢铁消耗的资源
-    {
-        //每个钢铁消耗=5铁矿，2煤矿
-        [ResourceType.Iron] = 5,
-        [ResourceType.Colliery] = 2,
-    };
+    Dictionary<ResourceType, double> depleted;//消耗的资源
+
     readonly FacilityType type = FacilityType.IronSteelFoundry;
 
 
@@ -55,6 +51,9 @@ public class IronSteelFoundryManager : MonoBehaviour
         facilityPanelManager.SetResource(resourceName, resourceDescription, resourceQuantity, btnText, type);
         facilityPanelManager.SetOnClickedResource(resources);  //设置基础消耗
         facilityPanelManager.press = OnMineButtonClicked;
+
+
+
         InstallOutPut();
         InstallInput();
 
@@ -85,8 +84,14 @@ public class IronSteelFoundryManager : MonoBehaviour
     /// </summary>
     void InstallInput()
     {
-
-        facilityPanelManager.InputInstall(depleted);
+        //初始化每个钢铁消耗的资源
+        depleted = ResourceManager.Instance.formula[ResourceType.Steel];
+        Dictionary<ResourceType, double> inPutResources = new Dictionary<ResourceType, double>
+        {
+            [ResourceType.Iron] = 0,
+            [ResourceType.Colliery] = 0
+        }; //初始化消耗资源
+        facilityPanelManager.InputInstall(inPutResources);
     }
 
 
@@ -106,8 +111,10 @@ public class IronSteelFoundryManager : MonoBehaviour
         double rmb = baseYield * facilityPanelManager.GetCount();//每秒产出钢铁
 
         rmb *= ResourceAdditionManager.Instance.GetWorkerUp();//加上员工加成的提升
-        
+
         rmb *= ResourceAdditionManager.Instance.GetSteelUp();//加上钢专项加成的提升
+
+        rmb *= ResourceAdditionManager.Instance.GetFabricatorUp();//加上制造工人的提升
 
         double thisYield = rmb * Time.deltaTime;//计算出当前帧产出的钢铁
 
@@ -139,7 +146,7 @@ public class IronSteelFoundryManager : MonoBehaviour
 
         //计算出每秒产出多少资源
         double secondCount = increment.Count / Time.deltaTime;
-        facilityPanelManager.UpdateOutPut(ResourceType.Steel, secondCount);//更新产出资源
+        facilityPanelManager.UpdateOutPut(ResourceType.Steel, secondCount, false);//更新产出资源
 
         //更新消耗资源
         foreach (var expend in depleted)

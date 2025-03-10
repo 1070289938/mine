@@ -87,8 +87,10 @@ public class TenementManager : MonoBehaviour
         }
 
         double reserves = baseReserves;
-        reserves *= ResourceAdditionManager.Instance.GetTenementSaveMoneyUp();
+        reserves *= ResourceAdditionManager.Instance.GetTenementSaveMoneyUp();//获取房屋储量加成
+
         reserves *= facilityPanelManager.GetCount();//乘以数量
+
         return reserves;
     }
 
@@ -130,7 +132,7 @@ public class TenementManager : MonoBehaviour
 
         //计算出每秒产出多少资源
         double secondCount = increment.Count / Time.deltaTime;
-        facilityPanelManager.UpdateOutPut(ResourceType.Currency, secondCount);
+        facilityPanelManager.UpdateOutPut(ResourceType.Currency, secondCount,true);
 
 
 

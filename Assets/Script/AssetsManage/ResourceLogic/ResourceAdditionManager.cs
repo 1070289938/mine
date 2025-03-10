@@ -11,8 +11,16 @@ public class ResourceAdditionManager : MonoBehaviour
     ////////////////////////////////////////////////////资源类////////////////////////////////////////////////////////////////////////////
     double tool = 1;//挖矿工具加成
     double miningWorker = 1;//采矿工人加成
-    double worker = 1;//矿洞员工加成
+    double worker = 1;//员工加成
     double MineBonus = 1;//矿车的额外加成
+
+    double fabricator = 1;//制造工人加成
+
+    double stoneFactory = 1;//石料工厂加成
+    double copperWorks = 1;//铜矿工厂加成
+    double cementFactory = 1;//水泥工厂加成
+
+    double alloyFactory = 1;//合金工厂加成
 
     ////////////////////////////////////////////////////专项加成////////////////////////////////////////////////////////////////////////////
     double minerStone = 1;//石矿专项加成
@@ -20,16 +28,28 @@ public class ResourceAdditionManager : MonoBehaviour
     double IronMine = 1;//铁矿专项加成
     double cement = 1;//水泥的专项加成
     double steel = 1;//钢的专项加成
+    double aluminum = 1;//铝的专项加成
 
+    double titanium = 1;//钛的专项加成
     ////////////////////////////////////////////////////房屋类////////////////////////////////////////////////////////////////////////////
     double tenementComfort = 1;//房屋坚固程度加成
     double tenementBasics = 1;//房屋基础加成
     double tenementRent = 1;//房屋房租加成
+
+    double tavernrmb = 1;//酒馆软妹币加成
+
     double tenementSaveMoney = 1;//房屋软妹币储量加成
     double container = 1;//集装箱加成
     double RMBboost = 1;//软妹币总产量
     double excavator = 1;//挖掘机提供的加成的加成
     double bankReserveSurcharge = 1;//银行储量加成
+
+    double allReserves = 1;//所有储量加成
+
+    double RegenerateCrystalSpaceBonus = 1;//重生晶体对储量上限效果提升
+
+
+    double power = 1;//玩家力量加成
 
     public OreCarManager oreCarManager;//矿车管理
     public MineralScreeningMachineManager mineralScreeningMachineManager;//矿物筛选器
@@ -37,6 +57,19 @@ public class ResourceAdditionManager : MonoBehaviour
     public ContainerManager containerManager;//集装箱加成
     public BankManager bankManager;//银行
 
+    public StoneMillManager stoneMillManager;//石料加工厂
+
+    public CopperMillManager copperMillManager;//铜矿加工厂
+
+    public CementMillManager cementMillManager;//水泥加工厂
+
+    public TavernManager tavernManager;//酒馆
+
+    public MetalRefineryManager metalRefineryManager;//金属精炼厂
+
+    public MaterialCompressorManager materialCompressorManager;//物质压缩器
+
+    public StockExchangeManager stockExchangeManager;//证券交易所
     public static ResourceAdditionManager Instance { get; private set; }
 
     private void Awake()
@@ -116,6 +149,9 @@ public class ResourceAdditionManager : MonoBehaviour
     {
         double basics = 0; //基础加成是0
         basics += minerStone;   //大锤采集加成（石头
+
+        basics += stoneMillManager.GetStoneMillUp();//加上石料加工厂提升
+
         return basics;
     }
 
@@ -137,6 +173,8 @@ public class ResourceAdditionManager : MonoBehaviour
         double basics = 0; //基础加成是0
         basics += CopperMine;   //铜矿专项加成
         basics += mineralScreeningMachineManager.GetscreenUp();//矿物筛选器加成
+
+        basics += copperMillManager.GetCopperMillUp();//加上铜矿加工厂提升
         return basics;
     }
 
@@ -179,6 +217,7 @@ public class ResourceAdditionManager : MonoBehaviour
         double basics = 0; //基础加成是0
         basics += cement;   //水泥专项加成
 
+        basics += cementMillManager.GetCementMillUp();//水泥加工厂提升
         return basics;
     }
 
@@ -204,6 +243,50 @@ public class ResourceAdditionManager : MonoBehaviour
     }
 
 
+
+    /// <summary>
+    /// 提升铝专项加成
+    /// </summary>
+    /// <param name="count"></param>
+    public void AddAluminum(double count)
+    {
+        aluminum *= 1 + count;
+    }
+    /// <summary>
+    /// 获取铝专项加成
+    /// </summary>
+    /// <returns></returns>
+    public double GetAluminumUp()
+    {
+        double basics = 0; //基础加成是0
+        basics += aluminum;   //铝专项加成
+
+        basics += metalRefineryManager.GetMetalRefineryUp();//金属精炼厂的提升
+
+        return basics;
+    }
+    /// <summary>
+    /// 提升钛专项加成
+    /// </summary>
+    /// <param name="count"></param>
+    public void AddTitanium(double count)
+    {
+        titanium *= 1 + count;
+    }
+    /// <summary>
+    /// 获取钛专项加成
+    /// </summary>
+    /// <returns></returns>
+    public double GetTitaniumUp()
+    {
+        double basics = 0; //基础加成是0
+        basics += titanium;   //钛专项加成
+
+        return basics;
+    }
+
+
+
     //↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑专项加成↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
 
     //↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓仓储加成↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
@@ -216,7 +299,8 @@ public class ResourceAdditionManager : MonoBehaviour
     public double GetStashUp()
     {
         double basics = 1; //基础加成是0
-        basics += containerManager.GetUp();   //集装箱加成
+
+
         return basics;
     }
 
@@ -238,6 +322,7 @@ public class ResourceAdditionManager : MonoBehaviour
     {
         double basics = 0; //基础加成是0
         basics += tenementSaveMoney;   //矿洞员工加成
+
         return basics;
     }
     //↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑仓储加成↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
@@ -255,13 +340,15 @@ public class ResourceAdditionManager : MonoBehaviour
         tenementComfort *= 1 + count;
     }
     /// <summary>
-    /// 获取房屋坚固程度
+    /// 获取房屋坚固程度 = 房屋总加成
     /// </summary>
     /// <returns></returns>
     public double GetTenementComfortUp()
     {
         double basics = 0; //基础加成是0
         basics += tenementComfort;   //房屋坚固程度加成
+
+        basics += tavernManager.GetUp();//提升房屋产量
         return basics;
     }
 
@@ -365,7 +452,7 @@ public class ResourceAdditionManager : MonoBehaviour
 
         basics += bankManager.GetUp();
 
-
+        basics += stockExchangeManager.GetYieldUp();
         return basics;
     }
 
@@ -385,6 +472,7 @@ public class ResourceAdditionManager : MonoBehaviour
     {
         double basics = 0; //基础加成是0
         basics += container;   //集装箱加成
+        basics += materialCompressorManager.GeUp();
         return basics;
     }
 
@@ -433,4 +521,215 @@ public class ResourceAdditionManager : MonoBehaviour
         basics += bankReserveSurcharge;   //银行储量加成
         return basics;
     }
+
+
+    /// <summary>
+    /// 提升所有储量加成
+    /// </summary>
+    /// <param name="count"></param>
+    public void AddAllReserves(double count)
+    {
+        allReserves *= 1 + count;
+    }
+    /// <summary>
+    /// 获取所有储量加成
+    /// </summary>
+    /// <returns></returns>
+    public double GetAllReservesUp()
+    {
+        double basics = 0; //基础加成是0
+        basics += allReserves;   //所有储量加成
+        //获取重生晶体对所有储量的加成 (如果解锁了科技：空间储物就计算)
+        if (TechManager.Instance.GetTechFlag(TechType.SpaceStorage))
+        {
+            //每个重生晶体提升0.0004
+            double count = ResourceManager.Instance.GetResource(ResourceType.RegeneratedCrystal);
+            count *= 0.0004;
+
+            count *= GetRegenerateCrystalSpaceBonusUp();//获取重生晶体对储量上限效果提升加成
+
+            basics += count;//计算重生晶体的储量加成
+
+
+        }
+
+        basics *= 1 + containerManager.GetUp();//计算集装箱的储量加成
+
+        return basics;
+    }
+
+
+
+    /// <summary>
+    /// 提升重生晶体对储量上限效果提升
+    /// </summary>
+    /// <param name="count"></param>
+    public void AddRegenerateCrystalSpaceBonus(double count)
+    {
+        RegenerateCrystalSpaceBonus *= 1 + count;
+    }
+    /// <summary>
+    /// 获取重生晶体对储量上限效果提升加成
+    /// </summary>
+    /// <returns></returns>
+    public double GetRegenerateCrystalSpaceBonusUp()
+    {
+        double basics = 0; //基础加成是0
+        basics += RegenerateCrystalSpaceBonus;   //重生晶体对储量上限效果提升
+
+        return basics;
+    }
+
+
+
+
+    /// <summary>
+    /// 提升力量对挖矿的提升
+    /// </summary>
+    /// <param name="count"></param>
+    public void AddPower(double count)
+    {
+        power *= 1 + count;
+    }
+    /// <summary>
+    /// 获取力量对挖矿加成
+    /// </summary>
+    /// <returns></returns>
+    public double GetPowerUp()
+    {
+        double basics = 0; //基础加成是0
+        basics += power;   //重生晶体对储量上限效果提升
+
+        return basics;
+    }
+
+
+
+    /// <summary>
+    /// 提升制造工人的提升
+    /// </summary>
+    /// <param name="count"></param>
+    public void AddFabricator(double count)
+    {
+        fabricator *= 1 + count;
+    }
+    /// <summary>
+    /// 获取制造工人加成
+    /// </summary>
+    /// <returns></returns>
+    public double GetFabricatorUp()
+    {
+        double basics = 0; //基础加成是0
+        basics += fabricator;   //重生晶体对储量上限效果提升
+
+        return basics;
+    }
+
+
+    /// <summary>
+    /// 提升酒馆软妹币的提升
+    /// </summary>
+    /// <param name="count"></param>
+    public void AddTavernrmb(double count)
+    {
+        tavernrmb *= 1 + count;
+    }
+    /// <summary>
+    /// 获取酒馆软妹币的加成
+    /// </summary>
+    /// <returns></returns>
+    public double GetTavernrmbUp()
+    {
+        double basics = 0; //基础加成是0
+        basics += tavernrmb;   //重生晶体对储量上限效果提升
+
+        return basics;
+    }
+
+
+
+
+
+    /// <summary>
+    /// 提升石料工厂的提升
+    /// </summary>
+    /// <param name="count"></param>
+    public void AddStoneFactory(double count)
+    {
+        stoneFactory *= 1 + count;
+    }
+    /// <summary>
+    /// 获取石料工厂的加成
+    /// </summary>
+    /// <returns></returns>
+    public double GetStoneFactoryUp()
+    {
+        double basics = 0; //基础加成是0
+        basics += stoneFactory;
+
+        return basics;
+    }
+
+    /// <summary>
+    /// 提升铜矿工厂的提升
+    /// </summary>
+    /// <param name="count"></param>
+    public void AddCopperWorks(double count)
+    {
+        copperWorks *= 1 + count;
+    }
+    /// <summary>
+    /// 获取铜矿工厂的加成
+    /// </summary>
+    /// <returns></returns>
+    public double GetCopperWorksUp()
+    {
+        double basics = 0; //基础加成是0
+        basics += copperWorks;
+
+        return basics;
+    }
+    /// <summary>
+    /// 提升水泥工厂的提升
+    /// </summary>
+    /// <param name="count"></param>
+    public void AddCementFactory(double count)
+    {
+        cementFactory *= 1 + count;
+    }
+    /// <summary>
+    /// 获取水泥工厂的加成
+    /// </summary>
+    /// <returns></returns>
+    public double GetCementFactoryUp()
+    {
+        double basics = 0; //基础加成是0
+        basics += cementFactory;
+
+        return basics;
+    }
+
+    /// <summary>
+    /// 提升合金工厂的提升
+    /// </summary>
+    /// <param name="count"></param>
+    public void AddAlloyFactory(double count)
+    {
+        alloyFactory *= 1 + count;
+    }
+    /// <summary>
+    /// 获取合金工厂的加成
+    /// </summary>
+    /// <returns></returns>
+    public double GetAlloyFactoryUp()
+    {
+        double basics = 0; //基础加成是0
+        basics += alloyFactory;
+
+        return basics;
+    }
+
+
+
+
 }

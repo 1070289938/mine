@@ -62,7 +62,7 @@ public class TableProjectManager : MonoBehaviour
 
             if (project.gameObject.activeSelf)
             {
-                Debug.Log("hiddenContent = 显示");
+                //Debug.Log("hiddenContent = 显示");
                 //显示状态下如果没有就隐藏，
                 if (AreAllChildrenHidden(project.content.transform))
                 {

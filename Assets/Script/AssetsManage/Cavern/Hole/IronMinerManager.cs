@@ -100,7 +100,7 @@ public class IronMinerManager : MonoBehaviour
 
             //计算出每秒产出多少资源
             double secondCount = increment.Count / Time.deltaTime;
-            facilityPanelManager.UpdateOutPut(ResourceType.Iron, secondCount);
+            facilityPanelManager.UpdateOutPut(ResourceType.Iron, secondCount,true);
         }
 
 

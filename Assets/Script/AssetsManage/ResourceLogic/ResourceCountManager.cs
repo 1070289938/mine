@@ -20,6 +20,11 @@ public class ResourceCountManager : MonoBehaviour
     FacilityPanelManager ironSteelFoundryManager;//钢铁铸造工
     FacilityPanelManager silicaMiningMachineManager;//硅石采矿机
 
+    FacilityPanelManager aluminiumHarvester;//铝矿采集器
+
+    FacilityPanelManager titaniumCollector;//钛矿采集器
+
+
     FacilityPanelManager tenementManager;//房屋
     void Start()
     {
@@ -34,7 +39,14 @@ public class ResourceCountManager : MonoBehaviour
         silicaMiningMachineManager = FacilityManager.Instance.GetFacilityPanel(FacilityType.SilicaMiningMachine);
 
 
+        aluminiumHarvester = FacilityManager.Instance.GetFacilityPanel(FacilityType.AluminiumHarvester);
+        titaniumCollector = FacilityManager.Instance.GetFacilityPanel(FacilityType.TitaniumCollector);
+
+
         tenementManager = FacilityManager.Instance.GetFacilityPanel(FacilityType.Tenement);
+
+
+
 
 
     }
@@ -47,6 +59,33 @@ public class ResourceCountManager : MonoBehaviour
     {
         return tenementManager.GetCount();
     }
+
+    /// <summary>
+    /// 获取石矿工人数量
+    /// </summary>
+    /// <returns></returns>
+    public int GetStoneMinerCount()
+    {
+        return stoneMinerManager.GetCount();
+    }
+    /// <summary>
+    /// 获取铜矿工人数量
+    /// </summary>
+    /// <returns></returns>
+    public int GetCopperMinerCount()
+    {
+        return copperMinerManager.GetCount();
+    }
+    /// <summary>
+    /// 获取铁矿工人数量
+    /// </summary>
+    /// <returns></returns>
+    public int GetIronMinerCount()
+    {
+        return ironMinerManager.GetCount();
+    }
+
+
 
     /// <summary>
     /// 统计一下工人总数
@@ -63,6 +102,11 @@ public class ResourceCountManager : MonoBehaviour
         count += coalWorkerManager.GetMaxCount();
         count += ironSteelFoundryManager.GetMaxCount();
         count += silicaMiningMachineManager.GetMaxCount() * 2;
+        count += aluminiumHarvester.GetMaxCount() * 2;
+        count += titaniumCollector.GetMaxCount() * 2;
+
+
+        
         return count;
     }
 

@@ -24,7 +24,16 @@ public class FacilityPanelManager : MonoBehaviour
 
     public GameObject input;//消耗
 
+    public GameObject schedule;//进度条
+
+    public TextMeshProUGUI scheduleText;//进度条文本
+
+    public Image scheduleImage;//进度条图形
+
+
     public GameObject resourcePrefab;//资源预制体
+
+
 
     public bool show = false;//默认隐藏
 
@@ -38,6 +47,8 @@ public class FacilityPanelManager : MonoBehaviour
     bool quantityFlag = false;//可以修改运行数量(默认没有)
 
     string btnText;
+
+    int scheduleCount = 0;
 
 
     // 挖矿回调函数
@@ -60,6 +71,7 @@ public class FacilityPanelManager : MonoBehaviour
     public FacilityType FacilityType;
 
     double upMultiple = 1; //资源递增的倍数默认是1
+
 
 
     public void Awake()
@@ -124,6 +136,50 @@ public class FacilityPanelManager : MonoBehaviour
         colors.highlightedColor = color;
         miningButton.colors = colors;//给颜色赋值给按钮
 
+    }
+
+    /// <summary>
+    /// 初始化进度条
+    /// </summary>
+    public void InstallSchedule()
+    {
+
+        schedule.SetActive(true);
+        //如果进度条未进行初始化就初始化数据
+        if (scheduleCount == 0)
+        {
+            scheduleText.text = "0%";
+            scheduleImage.fillAmount = 0;
+            scheduleCount = 0;
+        }
+
+    }
+
+    /// <summary>
+    /// 进度条提升进度
+    /// </summary>
+    public void AddSchedule(int count)
+    {
+        scheduleCount += count;
+        scheduleText.text = scheduleCount + "%";
+        scheduleImage.fillAmount = (float)scheduleCount / 100;
+        if (scheduleCount >= 100)
+        {
+            ScheduleMax();
+        }
+
+    }
+    /// <summary>
+    /// 进度条满了的事件
+    /// </summary>
+    public void ScheduleMax()
+    {
+        //清空内容
+        scheduleCount = 0;
+        scheduleText.text = scheduleCount + "%";
+        scheduleImage.fillAmount = scheduleCount;
+
+        AddQuantityUI();//数量+1
     }
 
     /// <summary>
@@ -214,6 +270,16 @@ public class FacilityPanelManager : MonoBehaviour
     {
         return resourceQuantity;//这个是最大数量
     }
+
+    /// <summary>
+    /// 获取百分比进度
+    /// </summary>
+    /// <returns></returns>
+    public int GetScheduleCount()
+    {
+        return scheduleCount;//这个是进度
+    }
+
     /// <summary>
     /// 数量+1
     /// </summary>
@@ -233,12 +299,17 @@ public class FacilityPanelManager : MonoBehaviour
 
     }
     /// <summary>
-    /// 加载存档的数量
+    /// 加载存档的面板内容
     /// </summary>
     public void LoadSaveCount(FacilityPanelCount panelCount)
     {
         resourceQuantity = panelCount.resourceQuantity;
         operationQuantity = panelCount.operationQuantity;
+        scheduleCount = panelCount.progressBarCount;
+
+        scheduleText.text = scheduleCount + "%";
+        scheduleImage.fillAmount = (float)scheduleCount / 100;
+
         if (quantityFlag)
         {
             quantityText.text = "x" + operationQuantity + "/" + resourceQuantity;
@@ -283,7 +354,10 @@ public class FacilityPanelManager : MonoBehaviour
         UpdateModuleUI();
     }
 
-
+    /// <summary>
+    /// 验证类型
+    /// </summary>
+    /// <param name="type"></param>
     void Verify(FacilityType type)
     {
         if (type != FacilityType)
@@ -335,12 +409,17 @@ public class FacilityPanelManager : MonoBehaviour
         UpdateRequirements();//更新价格
     }
     Dictionary<ResourceType, double> expendResources;//最新价格
+
     /// <summary>
     /// 更新消耗价格表
     /// </summary>
     /// <param name="expendResources">最新价格</param>
     private Dictionary<ResourceType, double> UpdateRequirements()
     {
+        if (resources == null)
+        {
+            return null;
+        }
 
         //最新价格
         Dictionary<ResourceType, double> expendResources = new Dictionary<ResourceType, double>();
@@ -388,10 +467,22 @@ public class FacilityPanelManager : MonoBehaviour
         }
     }
     private Dictionary<ResourceType, ExpendManager> outPutresourceExpend;
-    public void UpdateOutPut(ResourceType type, double count)
+    /// <summary>
+    /// 更新产出的资源,每秒
+    /// </summary>
+    /// <param name="type"></param>
+    /// <param name="count"></param>
+    public void UpdateOutPut(ResourceType type, double count, bool directBirth)
     {
         ExpendManager expend = outPutresourceExpend[type];
         expend.UpdateCount(count);
+        //更新实时产出
+        OutputForecast outputForecast = new()
+        {
+            val = count,
+            directBirth = directBirth
+        };
+        thisOutput[type] = outputForecast;
     }
 
 
@@ -436,11 +527,28 @@ public class FacilityPanelManager : MonoBehaviour
     }
     private Dictionary<ResourceType, ExpendManager> inputResourceExpend;
 
-
+    /// <summary>
+    /// 更新消耗的资源,每秒
+    /// </summary>
+    /// <param name="type"></param>
+    /// <param name="count"></param>
     public void UpdateInPut(ResourceType type, double count)
     {
         ExpendManager expend = inputResourceExpend[type];
         expend.UpdateCount(count);
+
+    }
+
+
+    Dictionary<ResourceType, OutputForecast> thisOutput = new();//当前显示每秒产出的资源
+
+    /// <summary>
+    /// 获取到实时产出的资源
+    /// </summary>
+    /// <returns></returns>
+    public Dictionary<ResourceType, OutputForecast> GetThisOutPut()
+    {
+        return thisOutput;
     }
 
 }

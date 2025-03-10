@@ -12,10 +12,13 @@ public class ResourceUpperLimitManager : MonoBehaviour
     public StashManager stashManager;//仓库
 
     public IndustrialReserveStationManager industrialReserveStationManager;//工业储备站
-
+    public DiscoveryTowerManager discoveryTowerManager;//科技探索塔
     public TenementManager tenementManager;//房屋
 
     public BankManager bankManager;//房屋
+
+    public StockExchangeManager stockExchangeManager;//证券交易所
+
     private void Awake()
     {
         Instance = this;
@@ -33,7 +36,9 @@ public class ResourceUpperLimitManager : MonoBehaviour
 
     }
 
-    //刷新所有资源的上限
+    /// <summary>
+    /// 刷新所有资源的上限
+    /// </summary>
     public void RefreshUpperLimitAllResources()
     {
         UpperLimitRMB();//计算软妹币
@@ -44,6 +49,11 @@ public class ResourceUpperLimitManager : MonoBehaviour
         UpperLimitColliery();//计算煤矿
         UpperLimitSteel();//计算钢
         UpperLimitSilicon();//计算硅矿
+        UpperLimitAluminum();//计算铝矿
+        UpperLimitTitanium();//计算钛矿
+        UpperLimitAlloy();//计算合金
+        UpperZorizun();//计算佐里旬矿上限
+        UpperScience();//计算科技上限
     }
     /// <summary>
     /// 计算软妹币上限
@@ -54,7 +64,12 @@ public class ResourceUpperLimitManager : MonoBehaviour
         double reserves = 0; //基本储量0
         reserves += tenementManager.GetReserves();//获取房屋储量
 
-        reserves += bankManager.GetReserves();//获取房屋储量
+        reserves += bankManager.GetReserves();//获取银行储量
+
+        reserves *= stockExchangeManager.GetReservesUp();//证券交易所对软妹币的储量提升
+
+
+        reserves *= ResourceAdditionManager.Instance.GetAllReservesUp();//获取所有的储量加成
 
 
         ResourceShowManager resourceShow = ResourceManager.Instance.resourceManager[ResourceType.Currency];
@@ -70,6 +85,9 @@ public class ResourceUpperLimitManager : MonoBehaviour
     {
         double reserves = 100; //基本储量100
         reserves += stashManager.GetReserves(ResourceType.Stone);//获取仓库储量
+
+        reserves *= ResourceAdditionManager.Instance.GetAllReservesUp();//获取所有的储量加成
+
         ResourceShowManager resourceShow = ResourceManager.Instance.resourceManager[ResourceType.Stone];
 
         resourceShow.SetMaxStorage(reserves);//石矿设置上限
@@ -84,6 +102,9 @@ public class ResourceUpperLimitManager : MonoBehaviour
     {
         double reserves = 100; //基本储量100
         reserves += stashManager.GetReserves(ResourceType.Copper);//获取仓库储量
+
+        reserves *= ResourceAdditionManager.Instance.GetAllReservesUp();//获取所有的储量加成
+
         ResourceShowManager resourceShow = ResourceManager.Instance.resourceManager[ResourceType.Copper];
         resourceShow.SetMaxStorage(reserves);//铜矿设置上限
     }
@@ -96,6 +117,9 @@ public class ResourceUpperLimitManager : MonoBehaviour
     {
         double reserves = 100; //基本储量100
         reserves += stashManager.GetReserves(ResourceType.Iron);//获取仓库储量
+
+        reserves *= ResourceAdditionManager.Instance.GetAllReservesUp();//获取所有的储量加成
+
         ResourceShowManager resourceShow = ResourceManager.Instance.resourceManager[ResourceType.Iron];
         resourceShow.SetMaxStorage(reserves);//铁矿设置上限
     }
@@ -108,6 +132,9 @@ public class ResourceUpperLimitManager : MonoBehaviour
     {
         double reserves = 0; //基本储量100
         reserves += stashManager.GetReserves(ResourceType.Cement);//获取仓库储量
+
+        reserves *= ResourceAdditionManager.Instance.GetAllReservesUp();//获取所有的储量加成
+
         ResourceShowManager resourceShow = ResourceManager.Instance.resourceManager[ResourceType.Cement];
         resourceShow.SetMaxStorage(reserves);//水泥设置上限
     }
@@ -123,6 +150,9 @@ public class ResourceUpperLimitManager : MonoBehaviour
     {
         double reserves = 0; //基本储量0
         reserves += stashManager.GetReserves(ResourceType.Colliery);//获取仓库储量
+
+        reserves *= ResourceAdditionManager.Instance.GetAllReservesUp();//获取所有的储量加成
+
         ResourceShowManager resourceShow = ResourceManager.Instance.resourceManager[ResourceType.Colliery];
         resourceShow.SetMaxStorage(reserves);//煤矿设置上限
     }
@@ -137,7 +167,11 @@ public class ResourceUpperLimitManager : MonoBehaviour
     void UpperLimitSteel()
     {
         double reserves = 50; //基本储量0
-        reserves += industrialReserveStationManager.GetReserves(ResourceType.Steel);//获取仓库储量
+        reserves += industrialReserveStationManager.GetReserves(ResourceType.Steel);//获取工业储备站储量
+
+        reserves *= ResourceAdditionManager.Instance.GetAllReservesUp();//获取所有的储量加成
+
+
         ResourceShowManager resourceShow = ResourceManager.Instance.resourceManager[ResourceType.Steel];
         resourceShow.SetMaxStorage(reserves);//钢设置上限
     }
@@ -149,8 +183,81 @@ public class ResourceUpperLimitManager : MonoBehaviour
     void UpperLimitSilicon()
     {
         double reserves = 200; //基本储量0
-        reserves += industrialReserveStationManager.GetReserves(ResourceType.Silicon);//获取仓库储量
+        reserves += industrialReserveStationManager.GetReserves(ResourceType.Silicon);//获取工业储备站储量
+
+        reserves *= ResourceAdditionManager.Instance.GetAllReservesUp();//获取所有的储量加成
+
         ResourceShowManager resourceShow = ResourceManager.Instance.resourceManager[ResourceType.Silicon];
         resourceShow.SetMaxStorage(reserves);//硅设置上限
+    }
+
+
+    /// <summary>
+    /// 计算铝矿上限
+    /// 铝矿上限 =  工业储备站储量
+    /// </summary>
+    void UpperLimitAluminum()
+    {
+        double reserves = 0; //基本储量0
+        reserves += industrialReserveStationManager.GetReserves(ResourceType.Aluminum);//获取工业储备站储量
+        reserves *= ResourceAdditionManager.Instance.GetAllReservesUp();//获取所有的储量加成
+        ResourceShowManager resourceShow = ResourceManager.Instance.resourceManager[ResourceType.Aluminum];
+        resourceShow.SetMaxStorage(reserves);//铝设置上限
+    }
+
+    /// <summary>
+    /// 计算钛矿上限
+    /// 钛矿上限 =  工业储备站储量
+    /// </summary>
+    void UpperLimitTitanium()
+    {
+        double reserves = 0; //基本储量0
+        reserves += industrialReserveStationManager.GetReserves(ResourceType.Titanium);//获取工业储备站储量
+        reserves *= ResourceAdditionManager.Instance.GetAllReservesUp();//获取所有的储量加成
+        ResourceShowManager resourceShow = ResourceManager.Instance.resourceManager[ResourceType.Titanium];
+        resourceShow.SetMaxStorage(reserves);//钛设置上限
+    }
+
+
+    /// <summary>
+    /// 计算合金矿上限
+    /// 合金矿上限 =  工业储备站储量
+    /// </summary>
+    void UpperLimitAlloy()
+    {
+        double reserves = 0; //基本储量0
+        reserves += industrialReserveStationManager.GetReserves(ResourceType.Alloy);//获取工业储备站储量
+        reserves *= ResourceAdditionManager.Instance.GetAllReservesUp();//获取所有的储量加成
+        ResourceShowManager resourceShow = ResourceManager.Instance.resourceManager[ResourceType.Alloy];
+        resourceShow.SetMaxStorage(reserves);//合金设置上限
+    }
+
+    /// <summary>
+    /// 计算佐里旬矿上限
+    /// 佐里旬矿上限 =  工业储备站储量
+    /// </summary>
+    void UpperZorizun()
+    {
+        double reserves = 0; //基本储量0
+        reserves += industrialReserveStationManager.GetReserves(ResourceType.Zorizun);//获取工业储备站储量
+        reserves *= ResourceAdditionManager.Instance.GetAllReservesUp();//获取所有的储量加成
+        ResourceShowManager resourceShow = ResourceManager.Instance.resourceManager[ResourceType.Zorizun];
+        resourceShow.SetMaxStorage(reserves);//佐里旬设置上限
+    }
+
+    /// <summary>
+    /// 计算科技点上限
+    /// 科技上限 =  科技探索塔储量
+    /// </summary>
+    void UpperScience()
+    {
+        double reserves = 100; //基本储量0
+        reserves += discoveryTowerManager.GetReserves(ResourceType.Science);//获取科技探索塔储量
+
+        //科技不受储量加成
+        //reserves *= ResourceAdditionManager.Instance.GetAllReservesUp();//获取所有的储量加成
+
+        ResourceShowManager resourceShow = ResourceManager.Instance.resourceManager[ResourceType.Science];
+        resourceShow.SetMaxStorage(reserves);//科技设置上限
     }
 }

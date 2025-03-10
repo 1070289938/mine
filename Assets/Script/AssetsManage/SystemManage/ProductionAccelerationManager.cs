@@ -65,7 +65,7 @@ public class ProductionAccelerationManager : MonoBehaviour, IRewardVideoInteract
         if (elapsedTime.TotalHours >= cooldownHours)
         {
             // 冷却时间已过，播放广告
-            // WatchAdvertisement();
+            WatchAdvertisement();
              lastClickTime = DateTime.Now;
             TimeManager.Instance.AddTime(1800);
 

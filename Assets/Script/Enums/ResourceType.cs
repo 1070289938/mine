@@ -61,16 +61,38 @@ public enum ResourceType
   RegeneratedCrystal,//重生晶体
 
 
+  /// <summary>
+  /// 铝矿
+  /// </summary>
+  [DisplayName("铝矿")]
+  Aluminum,//铝矿
 
 
+  /// <summary>
+  /// 钛矿
+  /// </summary>
+  [DisplayName("钛矿")]
+  Titanium,//钛矿
 
 
+  /// <summary>
+  /// 合金
+  /// </summary>
+  [DisplayName("合金")]
+  Alloy,//合金
+
+  /// <summary>
+  /// 科技点
+  /// </summary>
+  [DisplayName("科技点")]
+  Science,//科技点
 
 
-
-
-
-
+  /// <summary>
+  /// 佐里旬矿
+  /// </summary>
+  [DisplayName("佐里旬矿")]
+  Zorizun,//佐里旬矿
 
 
 }

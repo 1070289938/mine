@@ -58,7 +58,7 @@ public class CementWorkerManager : MonoBehaviour
 
     void Start()
     {
-
+       
     }
 
 
@@ -79,6 +79,10 @@ public class CementWorkerManager : MonoBehaviour
     /// </summary>
     void InstallInput()
     {
+         //每个水泥消耗的石矿
+        depletedOre = ResourceManager.Instance.formula[ResourceType.Cement][ResourceType.Stone];
+
+
         Dictionary<ResourceType, double> inPutResources = new Dictionary<ResourceType, double>
         {
             [ResourceType.Stone] = 0
@@ -106,6 +110,8 @@ public class CementWorkerManager : MonoBehaviour
 
         rmb *= ResourceAdditionManager.Instance.GetCementUp();//加上水泥专属的提升
 
+        rmb *= ResourceAdditionManager.Instance.GetFabricatorUp();//加上制造工人的提升
+
         double thisYield = rmb * Time.deltaTime;//计算出当前帧产出的水泥
         double expendableStone = thisYield * depletedOre;//计算出当前帧需要消耗的石头       每个水泥需要10个石头，所以每一帧产出的水泥需要水泥倍数X10的石头
         double thisStone = ResourceManager.Instance.GetResource(ResourceType.Stone);
@@ -125,7 +131,7 @@ public class CementWorkerManager : MonoBehaviour
 
         //计算出每秒产出多少资源
         double secondCount = increment.Count / Time.deltaTime;
-        facilityPanelManager.UpdateOutPut(ResourceType.Cement, secondCount);//更新产出资源
+        facilityPanelManager.UpdateOutPut(ResourceType.Cement, secondCount, false);//更新产出资源
         facilityPanelManager.UpdateInPut(ResourceType.Stone, secondCount * 10);//更新消耗资源,石矿消耗=水泥产出的10倍
 
     }

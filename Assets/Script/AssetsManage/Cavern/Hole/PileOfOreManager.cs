@@ -70,7 +70,7 @@ public class PileOfOreManager : MonoBehaviour
 
         double count = 1;
         count *= ResourceAdditionManager.Instance.GetToolUp();//加上工具的提升
-        
+        count *= ResourceAdditionManager.Instance.GetPowerUp();//加上力量的提升
         ResourceManager.Instance.AddResource(ResourceType.Stone, count); // 增加石矿
 
     }
@@ -87,6 +87,8 @@ public class PileOfOreManager : MonoBehaviour
     {
         double count = 1;
         count *= ResourceAdditionManager.Instance.GetToolUp();//加上工具的提升
+
+        count *= ResourceAdditionManager.Instance.GetPowerUp();//加上力量的提升
         LogManager.Instance.AddLog("你挖到了铜矿!");
         ResourceManager.Instance.AddResource(ResourceType.Copper, count); // 增加铜矿
     }
@@ -101,6 +103,7 @@ public class PileOfOreManager : MonoBehaviour
     {
         double count = 1;
         count *= ResourceAdditionManager.Instance.GetToolUp();//加上工具的提升
+        count *= ResourceAdditionManager.Instance.GetPowerUp();//加上力量的提升
         LogManager.Instance.AddLog("你挖到了铁矿!");
         ResourceManager.Instance.AddResource(ResourceType.Iron, count); // 增加铁矿
     }

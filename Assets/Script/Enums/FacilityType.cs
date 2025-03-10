@@ -91,5 +91,83 @@ public enum FacilityType
     /// 硅矿精炼器
     /// </summary>
     SiliconRefiner,
+
+
+    ///////////////矿山////////////////
+
+    /// <summary>
+    /// 石料加工厂
+    /// </summary>
+    StoneMill,
+
+    /// <summary>
+    /// 铜矿加工厂
+    /// </summary>
+    CopperMill,
+
+    /// <summary>
+    /// 水泥加工厂
+    /// </summary>
+    CementMill,
+
+    /// <summary>
+    /// 酒馆
+    /// </summary>
+    Tavern,
+    /// <summary>
+    /// 铝矿采集器
+    /// </summary>
+    AluminiumHarvester,
+
+    /// <summary>
+    /// 金属精炼厂
+    /// </summary>
+    MetalRefinery,
+
+
+    /// <summary>
+    /// 钛矿采集器
+    /// </summary>
+    TitaniumCollector,
+
+
+
+    /// <summary>
+    /// 合金工厂
+    /// </summary>
+    AlloyFactory,
+    /// <summary>
+    /// 盾构机
+    /// </summary>
+    ShieldTunnelingMachine,
+
+    /// <summary>
+    /// 实验室
+    /// </summary>
+    Laboratory,
+
+    /// <summary>
+    /// 科技探索塔
+    /// </summary>
+    DiscoveryTower,
+
+    /// <summary>
+    /// 佐里旬矿探测器
+    /// </summary>
+    ZoriMineDetector,
+
+    /// <summary>
+    /// 压缩增幅器
+    /// </summary>
+    MaterialCompressor,
+
+    /// <summary>
+    /// 证券交易所
+    /// </summary>
+    StockExchange,
+    /// <summary>
+    /// 深井电梯
+    /// </summary>
+    DeepShaftElevator,
 }
 

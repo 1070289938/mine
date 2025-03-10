@@ -2,6 +2,9 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// 游戏存档对象
+/// </summary>
 [Serializable]
 public class GameData
 {
@@ -19,6 +22,10 @@ public class GameData
     public long dailyBonus;//每日奖励上次点击时间
 
     public long productionAcceleration;//双倍加速奖励上次点击事件
+
+    public long saveTime;//保存时间
+
+
 
 
 }

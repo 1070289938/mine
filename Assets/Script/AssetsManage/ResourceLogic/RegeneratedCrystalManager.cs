@@ -54,6 +54,9 @@ public class RegeneratedCrystalManager : MonoBehaviour
             // 将加成值转换为百分比形式并设置给 text 组件
             float percentage = (addition - 1) * 100;
             text.text = $"提升: {percentage:F2}%产量";
+
+            ResourceUpperLimitManager.Instance.RefreshUpperLimitAllResources();
+
         }
     }
 

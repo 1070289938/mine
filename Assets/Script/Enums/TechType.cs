@@ -85,7 +85,12 @@ public enum TechType
     /// <summary>
     /// 钢镐
     /// </summary>
-    SteelPick,//
+    SteelPick,
+
+    /// <summary>
+    /// 钢制仓库
+    /// </summary>
+    SteelWarehouse,
     /// <summary>
     /// 钢梁
     /// </summary>
@@ -118,6 +123,11 @@ public enum TechType
     /// 银行
     /// </summary>
     Bank,//
+
+    /// <summary>
+    /// 金库
+    /// </summary>
+    Treasury,
     /// <summary>
     /// 五险一金
     /// </summary>
@@ -190,12 +200,282 @@ public enum TechType
     /// 检查奇妙的金属棒
     /// </summary>
     InspectWonderfulRod,//
+
+
     /// <summary>
-    /// 探索矿山
+    /// 发现山脉
+    /// </summary>
+    DiscoveredMine,//
+
+    /// <summary>
+    /// 探索山脉
     /// </summary>
     ExploratoryMine,//
 
+    //==============================================矿山===================================================
+    /// <summary>
+    /// 工厂建设
+    /// </summary>
+    PlantConstruction,
 
+    /// <summary>
+    /// 实验室
+    /// </summary>
+    Laboratory,
+
+    /// <summary>
+    /// 研究金属棒
+    /// </summary>
+    ResearchRod,
+
+    /// <summary>
+    /// 佐里旬矿探测器
+    /// </summary>
+    ZoriMineDetector,
+
+    /// <summary>
+    /// 物质压缩
+    /// </summary>
+    MaterialCompression,
+    /// <summary>
+    /// 压缩增幅器
+    /// </summary>
+    Compressor,
+    /// <summary>
+    /// 科技探索塔
+    /// </summary>
+    DiscoveryTower,
+    /// <summary>
+    /// 科学记录室
+    /// </summary>
+    RecordScience,
+    /// <summary>
+    /// 储备规划
+    /// </summary>
+    ReservePlanning,
+
+    /// <summary>
+    /// 克洛尔法
+    /// </summary>
+    KrolProcess,
+
+
+    /// <summary>
+    /// 电弧炉
+    /// </summary>
+    ElectricFurnace,
+
+    /// <summary>
+    /// 证券交易所
+    /// </summary>
+    StockExchange,
+    /// <summary>
+    /// 灯红酒绿
+    /// </summary>
+    DazzleColour,
+
+    /// <summary>
+    /// 流水线
+    /// </summary>
+    AssemblyLine,
+
+
+
+
+
+    /// <summary>
+    /// 石料加工厂
+    /// </summary>
+    StoneFactory,
+
+    /// <summary>
+    /// 铜矿加工厂
+    /// </summary>
+    CopperWorks,
+
+    /// <summary>
+    /// 水泥加工厂
+    /// </summary>
+    CementFactory,
+
+    /// <summary>
+    /// 酒馆
+    /// </summary>
+    Tavern,
+
+    /// <summary>
+    /// 奢侈品
+    /// </summary>
+    Luxury,
+
+
+    /// <summary>
+    /// 对冲基金
+    /// </summary>
+    HedgeFund,
+
+    /// <summary>
+    /// 物流卡车
+    /// </summary>
+    LogisticsTruck,
+
+    /// <summary>
+    /// 铝矿采集
+    /// </summary>
+    AluminiumMining,
+
+    /// <summary>
+    /// 金属精炼厂
+    /// </summary>
+    MetalRefinery,
+
+    /// <summary>
+    /// 钛矿采集器
+    /// </summary>
+    TitaniumCollector,
+
+    /// <summary>
+    /// 钛制大锤
+    /// </summary>
+    TitaniumHammer,
+
+    /// <summary>
+    /// 钛制钻头
+    /// </summary>
+    TitaniumDrill,
+
+    /// <summary>
+    /// 钛板条
+    /// </summary>
+    TitaniumStrip,
+
+    /// <summary>
+    /// 钛金库
+    /// </summary>
+    TitaniumVault,
+    /// <summary>
+    /// 钛合金
+    /// </summary>
+    TitaniumAlloy,
+    /// <summary>
+    /// 钛制仓库
+    /// </summary>
+    TitaniumWarehouse,
+
+    /// <summary>
+    /// 合金工厂
+    /// </summary>
+    AlloyFactory,
+
+    /// <summary>
+    /// 自动化
+    /// </summary>
+    Automate,
+
+    /// <summary>
+    /// 机械外骨骼
+    /// </summary>
+    MechanicalExoskeleton,
+
+    /// <summary>
+    /// 合金钻头
+    /// </summary>
+    AlloyBit,
+
+    /// <summary>
+    /// 合金锤
+    /// </summary>
+    AlloyHammer,
+    /// <summary>
+    /// 合金仓库,
+    /// </summary>
+    AlloyWarehouse,
+    /// <summary>
+    /// 合金金库
+    /// </summary>
+    AlloyVault,
+
+    /// <summary>
+    /// 合金货架
+    /// </summary>
+    AlloyRack,
+
+    /// <summary>
+    /// 巨型建筑
+    /// </summary>
+    Megastructure,
+
+    /// <summary>
+    /// 盾构机
+    /// </summary>
+    ShieldTunnelingMachine,
+
+    /// <summary>
+    /// 人造矿井
+    /// </summary>
+    ArtificialMine,
+
+    /// <summary>
+    /// 地心计划
+    /// </summary>
+    GeocentricProject,
+
+    /// <summary>
+    /// 深井电梯
+    /// </summary>
+    DeepShaftElevator,
+
+
+    //==============================================系统科技===================================================
+
+    /// <summary>
+    /// 空间储物
+    /// </summary>
+    SpaceStorage,
+    /// <summary>
+    /// 空间优势
+    /// </summary>
+    SpatialAdvantage,
+    /// <summary>
+    /// 空间霸权
+    /// </summary>
+    SpatialHegemony,
+    /// <summary>
+    /// 模糊的记忆
+    /// </summary>
+    DimMemory,
+    /// <summary>
+    /// 前世的回忆
+    /// </summary>
+    MemoriesPastLives,
+    /// <summary>
+    /// 昔日的记忆
+    /// </summary>
+    PastMemory,
+    /// <summary>
+    /// 神圣的回忆
+    /// </summary>
+    SacredMemory,
+    /// <summary>
+    /// 极耀圣念
+    /// </summary>
+    TheThoughts,
+    /// <summary>
+    /// 肌肉强化
+    /// </summary>
+    MuscleStrengthening,
+    /// <summary>
+    /// 技工天赋
+    /// </summary>
+    Artisanship,
+    /// <summary>
+    /// 注重细节
+    /// </summary>
+    AttentionDetail,
+    /// <summary>
+    /// 一丝不苟
+    /// </summary>
+    meticulous,
 
 
 }

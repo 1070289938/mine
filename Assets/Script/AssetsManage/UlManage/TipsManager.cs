@@ -12,6 +12,7 @@ public class TipsManager : MonoBehaviour
 
     public VerifyMsgManager verifyMsgManager;
 
+    public RevenueManager revenueManager;
 
     public static TipsManager Instance { get; private set; }
 
@@ -32,8 +33,23 @@ public class TipsManager : MonoBehaviour
     {
 
     }
+
+    //背景是否可点击
+    private bool backgroudClickable = false;
+
     //背景被点击
     void OnclickBackgroud()
+    {
+        if (backgroudClickable)
+        {
+            foreach (Transform child in transform)
+            {
+                child.gameObject.SetActive(false);
+            }
+        }
+    }
+    //关闭所有
+    public void OnClickAll()
     {
         foreach (Transform child in transform)
         {
@@ -45,6 +61,7 @@ public class TipsManager : MonoBehaviour
     //打开研究项目详情
     public void ShowResearchProject(StudyItemManager studyItem)
     {
+        backgroudClickable = true;
         //显示黑色背景和研究项目
         researchProject.SetActive(true);
         black.SetActive(true);
@@ -55,15 +72,31 @@ public class TipsManager : MonoBehaviour
 
     }
 
-    //强行分解金属棒的确认
-    public void ShowVerify(Action action)
+    //关键操作的确认
+    public void ShowVerify(Action action,string text)
     {
-         //显示黑色背景和研究项目
+     
+        backgroudClickable = true;
+        //显示黑色背景和研究项目
         verifyMsgManager.gameObject.SetActive(true);
         black.SetActive(true);
         //重新排列研究项目的内容
-        verifyMsgManager.Install("你确定要强行分解金属棒吗?(这会导致游戏进入下一周目。你将会获得50重生晶体)",action);
+        verifyMsgManager.Install(text, action);
     }
 
+    /// <summary>
+    /// 显示离线收益
+    /// </summary>
+    public void ShowRevenue(Dictionary<ResourceType, double> resource)
+    {
+        backgroudClickable = false;
+
+        //显示黑色背景和离线收益
+        revenueManager.gameObject.SetActive(true);
+        black.SetActive(true);
+
+        revenueManager.Install(resource);
+
+    }
 
 }

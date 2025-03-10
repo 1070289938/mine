@@ -16,16 +16,14 @@ public class TestManager : MonoBehaviour
 
 
 
-    void onClick(){
-
-        ResourceManager.Instance.AddResource(ResourceType.RegeneratedCrystal,1);
-
-
+    void onClick()
+    {
+        Debug.Log("工人总数:"+ResourceCountManager.Instance.GetMinerCount());
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }

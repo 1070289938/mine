@@ -206,7 +206,15 @@ public class IncidentManager : MonoBehaviour
         }));
 
 
-        
+        // 主线事件 - 探索矿山事件
+        mainIncidents.Add(new Incident(null, 1f, TechType.Train, TechType.DiscoveredMine, () =>
+        {
+            LogManager.Instance.AddLog("你在高处发现远处有一条庞大的山脉,并想去看看");
+            TechManager.Instance.techTypeStudyFlag[TechType.DiscoveredMine] = true;
+        }));
+
+
+
     }
 
     // 执行当前区域事件

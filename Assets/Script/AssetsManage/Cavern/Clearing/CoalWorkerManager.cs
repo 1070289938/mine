@@ -96,7 +96,7 @@ public class CoalWorkerManager : MonoBehaviour
             Debug.Log(count);
             //计算出每秒产出多少资源
             double secondCount = increment.Count / Time.deltaTime;
-            facilityPanelManager.UpdateOutPut(ResourceType.Colliery, secondCount);
+            facilityPanelManager.UpdateOutPut(ResourceType.Colliery, secondCount,true);
         }
 
 

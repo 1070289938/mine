@@ -98,7 +98,7 @@ public class StoneMinerManager : MonoBehaviour
 
             //计算出每秒产出多少资源
             double secondCount = increment.Count / Time.deltaTime;
-            facilityPanelManager.UpdateOutPut(ResourceType.Stone, secondCount);
+            facilityPanelManager.UpdateOutPut(ResourceType.Stone, secondCount,true);
 
         }
 

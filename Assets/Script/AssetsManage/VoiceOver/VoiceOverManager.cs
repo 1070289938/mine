@@ -50,6 +50,13 @@ public class VoiceOverManager : MonoBehaviour
         Show(decomposingRest, 5, action);
     }
 
+    /// <summary>
+    /// 挖爆星球导致重生了
+    /// </summary>
+    public void DiggingPlanetsLeadsRebirthOver(Action action)
+    {
+        Show(decomposingRest, 5, action);
+    }
 
 
 

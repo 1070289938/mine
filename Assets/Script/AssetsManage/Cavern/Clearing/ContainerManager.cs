@@ -18,7 +18,7 @@ public class ContainerManager : MonoBehaviour
     // 模块的资源属性
     [Header("Module Properties")]
     string resourceName = "集装箱";
-    string resourceDescription = "每个集装箱都可以提升仓库的最大储量";
+    string resourceDescription = "每个集装箱都可以提升所有储量的最大储量";
     int resourceQuantity = 0;
 
     string btnText = "建造";

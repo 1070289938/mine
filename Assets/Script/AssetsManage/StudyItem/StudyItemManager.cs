@@ -28,7 +28,7 @@ public class StudyItemManager : MonoBehaviour
         //如果当前科技已研究或者是已显示就不管他
         if (TechManager.Instance.GetTechFlag(techType))
         {
-            Debug.Log(studyName+"-"+techType+"科技不可重复研究");
+            //Debug.Log(studyName+"-"+techType+"科技不可重复研究");
             TechChecker.Instance.RemoveCheckMethod(InspectFrame);
             return;
         }

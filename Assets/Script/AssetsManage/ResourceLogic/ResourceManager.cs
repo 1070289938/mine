@@ -15,13 +15,44 @@ public class ResourceManager : MonoBehaviour
     public Dictionary<ResourceType, ResourceShowManager> resourceManager = new Dictionary<ResourceType, ResourceShowManager>();//各个资源的管理节点
 
     public ResourceContentManager resourceContentManager;//资源内容管理
+    
 
     public Dictionary<ResourceType, bool> special = new()
-    {
+    {//特殊资源：重生晶体
         [ResourceType.RegeneratedCrystal] = true,
 
 
-    };//特殊资源
+    };
+
+    public Dictionary<ResourceType, Dictionary<ResourceType, double>> formula = new()
+    {   //物资制作配方
+
+
+        //水泥
+        [ResourceType.Cement] = new()
+        { //每个水泥消耗=10石矿
+            [ResourceType.Stone] = 10,
+        },
+
+        //钢铁
+        [ResourceType.Steel] = new()
+        { //每个钢铁消耗=5铁矿，2煤矿
+            [ResourceType.Iron] = 5,
+            [ResourceType.Colliery] = 2,
+        },
+
+
+        //合金
+        [ResourceType.Alloy] = new()
+        { //每个合金消耗=10铝矿，5钛矿
+            [ResourceType.Aluminum] = 10,
+            [ResourceType.Titanium] = 5,
+        },
+
+    };
+
+
+
 
     public void Initialize()
     {
@@ -186,7 +217,7 @@ public class ResourceManager : MonoBehaviour
 
         increment.Count = count;
         //如果超过上限就以上限来计算
-      
+
         //如果不是无限的
         if (resourcesMax[type] != -1
         && resourcesSum > resourcesMax[type])

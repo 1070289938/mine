@@ -27,6 +27,10 @@ public class IndustrialReserveStationManager : MonoBehaviour
     {//仓库基础储量
         [ResourceType.Steel] = AssetsUtil.ParseNumber("1k"),//钢
         [ResourceType.Silicon] = AssetsUtil.ParseNumber("500"),//硅
+        [ResourceType.Aluminum] = AssetsUtil.ParseNumber("800"),//铝
+        [ResourceType.Titanium] = AssetsUtil.ParseNumber("600"),//钛
+        [ResourceType.Alloy] = AssetsUtil.ParseNumber("200"),//合金
+        [ResourceType.Zorizun] = AssetsUtil.ParseNumber("100"),//佐里旬矿
     };
 
     readonly FacilityType type = FacilityType.IndustrialReserveStation;
@@ -57,7 +61,15 @@ public class IndustrialReserveStationManager : MonoBehaviour
 
 
     }
-
+    double up = 1;
+    /// <summary>
+    /// 增加工业储备站储存倍率提升
+    /// </summary>
+    public void AddUp(double magnification)
+    {
+        up *= 1 + magnification;
+        ResourceUpperLimitManager.Instance.RefreshUpperLimitAllResources();//刷新所有储存上限
+    }
 
     /// <summary>
     /// 获取工业储备站的最大储量
@@ -71,7 +83,7 @@ public class IndustrialReserveStationManager : MonoBehaviour
             facilityPanelManager = GetComponent<FacilityPanelManager>();
         }
         reserves *= facilityPanelManager.GetCount();//数量相乘
-
+        reserves *= up;//储存倍率相乘
         return reserves;
     }
 
