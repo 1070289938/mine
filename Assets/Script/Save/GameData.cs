@@ -7,7 +7,9 @@ using UnityEngine;
 /// </summary>
 [Serializable]
 public class GameData
-{
+{   
+    public bool secondLife;//是否为重生存档
+
     public Dictionary<ResourceType, double> resources;  //各个资源的数量
     public Dictionary<ResourceType, double> resourcesMax;//各个资源的上限
     public Dictionary<ResourceType, bool> resourceUnlocks;//各个资源是否显示

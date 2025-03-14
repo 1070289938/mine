@@ -57,7 +57,7 @@ public class SaveLoadManager : MonoBehaviour
         ResetResources();
         ClearLogs();
 
-        SaveGame();
+        SaveGame(true);
     }
 
     // 封装清除设施面板内容的方法
@@ -95,7 +95,7 @@ public class SaveLoadManager : MonoBehaviour
     }
 
     // 保存游戏数据
-    public async void SaveGame()
+    public async void SaveGame(bool SecondLife)
     {
         try
         {
@@ -104,7 +104,7 @@ public class SaveLoadManager : MonoBehaviour
 
             long time = LoadUtil.GetTimestampInMilliseconds(DateTime.Now);
 
-            GameData gameData = CreateGameData();
+            GameData gameData = CreateGameData(SecondLife);
 
             Debug.Log("创建对象" + (LoadUtil.GetTimestampInMilliseconds(DateTime.Now) - time));
             time = LoadUtil.GetTimestampInMilliseconds(DateTime.Now);
@@ -134,13 +134,14 @@ public class SaveLoadManager : MonoBehaviour
         }
     }
     // 创建游戏数据对象
-    private GameData CreateGameData()
+    private GameData CreateGameData(bool secondLife)
     {
         var studyFlag = GetStudyFlagDictionary();
         var facility = GetFacilityPanelCountDictionary();
 
         return new GameData
         {
+            secondLife = secondLife,
             resources = resourceManager.resources,
             resourcesMax = resourceManager.resourcesMax,
             resourceUnlocks = resourceManager.resourceUnlocks,
@@ -207,7 +208,12 @@ public class SaveLoadManager : MonoBehaviour
             if (gameData != null)
             {
                 ApplyGameData(gameData);
-                CalculateOfflineProduction(gameData);
+                //如果不是重生存档就计算离线资源，否则不计算
+                if (!gameData.secondLife)
+                {
+                    CalculateOfflineProduction(gameData);
+                }
+
             }
 
             Debug.Log("加载存档");
@@ -324,7 +330,7 @@ public class SaveLoadManager : MonoBehaviour
         {
             //1分钟自动保存一次
             yield return new WaitForSeconds(60 * 1); // 60 * 1
-            SaveGame();
+            SaveGame(false);
         }
     }
 

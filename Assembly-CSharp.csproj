@@ -72,6 +72,7 @@
     <Compile Include="Assets\Script\AssetsManage\StudyItem\System\PastMemoryStudy.cs" />
     <Compile Include="Assets\Script\AssetsManage\StudyItem\Cavern\MineField\SteelBeamStudy.cs" />
     <Compile Include="Assets\Script\AssetsManage\UlManage\ProjectManager.cs" />
+    <Compile Include="Assets\Script\Util\SHA1Getter.cs" />
     <Compile Include="Assets\Script\AssetsManage\StudyItem\Cavern\MineField\ElectricDrillStudy.cs" />
     <Compile Include="Assets\Script\AssetsManage\StudyItem\Cavern\MineHill\TitaniumStripStudy.cs" />
     <Compile Include="Assets\Script\AssetsManage\StudyItem\Cavern\MineHill\TitaniumWarehouseStudy.cs" />
@@ -175,6 +176,7 @@
     <Compile Include="Assets\Script\AssetsManage\StudyItem\Cavern\MineHill\AlloyFactoryStudy.cs" />
     <Compile Include="Assets\Script\AssetsManage\StudyItem\Cavern\MineHill\ZoriMineDetectorStudy.cs" />
     <Compile Include="Assets\Script\AssetsManage\Cavern\Hole\StoneMinerManager.cs" />
+    <Compile Include="Assets\Script\AssetsManage\StartManger\StartGameManger.cs" />
     <Compile Include="Assets\Script\AssetsManage\StudyItem\System\AttentionDetailStudy.cs" />
     <Compile Include="Assets\Script\AssetsManage\StudyItem\Cavern\MineField\PortlandCementStudy.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_DigitValidator.cs" />
@@ -215,9 +217,9 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark02.cs" />
     <Compile Include="Assets\Script\AssetsManage\Cavern\Clearing\MineralScreeningMachineManager.cs" />
     <Compile Include="Assets\Script\AssetsManage\StudyItem\Cavern\Excavate\CopperMinerStudy.cs" />
+    <Compile Include="Assets\Script\AssetsManage\Cavern\Mountain\DeepShaftElevatorManager.cs" />
     <Compile Include="Assets\Script\AssetsManage\StudyItem\Cavern\MineField\ExcavatorStudy.cs" />
     <Compile Include="Assets\Script\Tap\TapUtils.cs" />
-    <Compile Include="Assets\Script\AssetsManage\Cavern\Mountain\DeepShaftElevatorManager.cs" />
     <Compile Include="Assets\Script\AssetsManage\UlManage\Tips\VerifyMsgManager.cs" />
     <Compile Include="Assets\Script\AssetsManage\Cavern\Mountain\AluminiumHarvesterManager.cs" />
     <Compile Include="Assets\Script\AssetsManage\Cavern\Mountain\AlloyFactoryManager.cs" />

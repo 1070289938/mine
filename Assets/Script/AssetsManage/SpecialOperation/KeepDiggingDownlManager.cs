@@ -50,7 +50,7 @@ public class KeepDiggingDownlManager : MonoBehaviour
     {
 
         gameObject.SetActive(false);
-        //显示旁白说明矿洞塌陷
+        //显示旁白说明星球被挖爆了
         VoiceOverManager.Instance.DiggingPlanetsLeadsRebirthOver(() =>
         {
             // 获取当前活动场景的名称

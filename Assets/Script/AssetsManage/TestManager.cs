@@ -19,6 +19,13 @@ public class TestManager : MonoBehaviour
     void onClick()
     {
         Debug.Log("工人总数:"+ResourceCountManager.Instance.GetMinerCount());
+
+        //显示旁白说明星球被挖爆了
+        VoiceOverManager.Instance.DiggingPlanetsLeadsRebirthOver(() =>
+        {
+          
+        });
+
     }
 
     // Update is called once per frame
