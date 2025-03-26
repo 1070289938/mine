@@ -22,7 +22,7 @@ public class SilicaMiningMachineManager : MonoBehaviour
     string resourceDescription = "坚硬的硅石需要专业的硅石挖掘机器(由2个人进行操作)";
     int resourceQuantity = 0;
 
-    string btnText = "招募";
+    string btnText = "建造";
 
     readonly FacilityType type = FacilityType.SilicaMiningMachine;
     double baseYield = 0.05;//硅石基础产量

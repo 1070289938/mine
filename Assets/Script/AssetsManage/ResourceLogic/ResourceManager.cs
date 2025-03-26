@@ -15,7 +15,7 @@ public class ResourceManager : MonoBehaviour
     public Dictionary<ResourceType, ResourceShowManager> resourceManager = new Dictionary<ResourceType, ResourceShowManager>();//各个资源的管理节点
 
     public ResourceContentManager resourceContentManager;//资源内容管理
-    
+
 
     public Dictionary<ResourceType, bool> special = new()
     {//特殊资源：重生晶体
@@ -49,6 +49,14 @@ public class ResourceManager : MonoBehaviour
             [ResourceType.Titanium] = 5,
         },
 
+        //纳米材料
+        [ResourceType.Nanomaterials] = new()
+        { //每个纳米材料消耗=50煤矿，10镍,5钨
+            [ResourceType.Colliery] = 50,
+            [ResourceType.Nickel] = 10,
+            [ResourceType.Tungsten] = 5,
+        },
+
     };
 
 
@@ -79,11 +87,7 @@ public class ResourceManager : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
+
         Instance = this;
         DontDestroyOnLoad(gameObject);
 
@@ -209,6 +213,10 @@ public class ResourceManager : MonoBehaviour
         if (!special.ContainsKey(type))
         {
             count *= RegeneratedCrystalManager.Instance.addition;
+
+
+            count *= ResourceAdditionManager.Instance.GetAllAssetsUp();
+
         }
 
 

@@ -16,6 +16,23 @@ public class TechManager : MonoBehaviour
     public Dictionary<SpecialOptionType, SpecialPanelManager> specialPanelManagerMap = new();//特殊科技的管理层
 
 
+    public Dictionary<TechType, bool> specialTech = new()
+    {   //系统科技
+
+        [TechType.SpaceStorage] = true,//空间储物
+        [TechType.SpatialAdvantage] = true,//空间优势
+        [TechType.SpatialHegemony] = true,//空间霸权
+        [TechType.DimMemory] = true,//模糊的记忆
+        [TechType.MemoriesPastLives] = true,//前世的回忆
+        [TechType.PastMemory] = true,//昔日的记忆
+        [TechType.SacredMemory] = true,//神圣的回忆
+        [TechType.TheThoughts] = true,//极耀圣念
+        [TechType.MuscleStrengthening] = true,//肌肉强化
+        [TechType.Artisanship] = true,//技工天赋
+        [TechType.AttentionDetail] = true,//注重细节
+        [TechType.meticulous] = true,//一丝不苟
+    };
+
     public Dictionary<TechType, bool> techTypeStudyFlag;//科技是否研究
 
 

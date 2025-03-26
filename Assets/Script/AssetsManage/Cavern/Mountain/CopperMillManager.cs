@@ -61,6 +61,8 @@ public class CopperMillManager : MonoBehaviour
         double basics = 0;//基础值
         basics += up * facilityPanelManager.GetCount();
         basics *= ResourceAdditionManager.Instance.GetCopperWorksUp();//铜矿工厂的加成
+
+        basics *= ResourceAdditionManager.Instance.GetFactoryUp();//加上工厂的提升
         return basics;
 
     }

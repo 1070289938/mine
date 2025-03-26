@@ -62,6 +62,7 @@ public class StoneMillManager : MonoBehaviour
         basics += up * facilityPanelManager.GetCount();
 
         basics *=ResourceAdditionManager.Instance.GetStoneFactoryUp();//石料工厂的加成
+        basics *= ResourceAdditionManager.Instance.GetFactoryUp();//加上工厂的提升
         return basics;
 
     }

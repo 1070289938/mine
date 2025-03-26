@@ -94,6 +94,39 @@ public enum ResourceType
   [DisplayName("佐里旬矿")]
   Zorizun,//佐里旬矿
 
+  /// <summary>
+  /// 银矿
+  /// </summary>
+  [DisplayName("银矿")]
+  silver,
+
+
+  /// <summary>
+  /// 钨
+  /// </summary>
+  [DisplayName("钨")]
+  Tungsten,
+
+  /// <summary>
+  /// 镍
+  /// </summary>
+  [DisplayName("镍")]
+  Nickel,
+
+  /// <summary>
+  /// 纳米材料
+  /// </summary>
+  [DisplayName("纳米材料")]
+  Nanomaterials,
+
+  /// <summary>
+  /// 地心岩
+  /// </summary>
+  [DisplayName("地心岩")]
+  GeocentricRock,
+
+
+
 
 }
 

@@ -1,0 +1,39 @@
+<dependencies>
+  <packages>
+    <package>com.android.support:appcompat-v7:28.0.0</package>
+    <package>com.android.support:recyclerview-v7:28.0.0</package>
+    <package>com.android.support:support-annotations:28.0.0</package>
+    <package>com.android.support:support-v4:28.0.0</package>
+    <package>com.github.bumptech.glide:glide:4.9.0</package>
+    <package>com.pangle.cn:mediation-baidu-adapter:9.37.0</package>
+    <package>com.pangle.cn:mediation-gdt-adapter:4.591.1461.2</package>
+    <package>com.pangle.cn:mediation-klevin-adapter:2.11.0.3.23</package>
+    <package>com.pangle.cn:mediation-ks-adapter:3.3.67.1.0</package>
+    <package>com.pangle.cn:mediation-mintegral-adapter:16.6.57.5</package>
+    <package>com.pangle.cn:mediation-sigmob-adapter:4.19.4.0</package>
+    <package>com.pangle.cn:mediation-unity-adapter:4.3.0.29</package>
+    <package>com.squareup.okhttp3:okhttp:3.12.1</package>
+    <package>com.taptap.sdk:tap-core-unity:4.5.4</package>
+    <package>com.taptap.sdk:tap-login-unity:4.5.4</package>
+    <package>io.reactivex.rxjava2:rxandroid:2.0.1</package>
+    <package>io.reactivex.rxjava2:rxjava:2.0.1</package>
+  </packages>
+  <files />
+  <settings>
+    <setting name="androidAbis" value="arm64-v8a,armeabi-v7a" />
+    <setting name="bundleId" value="com.nangua.excavate" />
+    <setting name="explodeAars" value="True" />
+    <setting name="gradleBuildEnabled" value="True" />
+    <setting name="gradlePropertiesTemplateEnabled" value="True" />
+    <setting name="gradleTemplateEnabled" value="True" />
+    <setting name="installAndroidPackages" value="True" />
+    <setting name="localMavenRepoDir" value="Assets/GeneratedLocalRepo" />
+    <setting name="packageDir" value="Assets/Plugins/Android" />
+    <setting name="patchAndroidManifest" value="True" />
+    <setting name="patchMainTemplateGradle" value="True" />
+    <setting name="projectExportEnabled" value="False" />
+    <setting name="useFullCustomMavenRepoPathWhenExport" value="True" />
+    <setting name="useFullCustomMavenRepoPathWhenNotExport" value="False" />
+    <setting name="useJetifier" value="True" />
+  </settings>
+</dependencies>

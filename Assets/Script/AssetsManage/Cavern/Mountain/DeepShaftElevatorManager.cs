@@ -55,6 +55,7 @@ public class DeepShaftElevatorManager : MonoBehaviour
         if (facilityPanelManager.GetCount() >= 200)
         {
             gameObject.SetActive(false);//隐藏深井电梯
+            TechManager.Instance.techTypeStudyFlag[TechType.ReachCore] = true;
         }
     }
 

@@ -19,8 +19,13 @@ public class ResourceAdditionManager : MonoBehaviour
     double stoneFactory = 1;//石料工厂加成
     double copperWorks = 1;//铜矿工厂加成
     double cementFactory = 1;//水泥工厂加成
-
     double alloyFactory = 1;//合金工厂加成
+
+
+    double collectorMarkup = 1;//采集器加成
+    double science = 1;//科技点加成
+
+    double factory = 1;//工厂加成
 
     ////////////////////////////////////////////////////专项加成////////////////////////////////////////////////////////////////////////////
     double minerStone = 1;//石矿专项加成
@@ -48,8 +53,14 @@ public class ResourceAdditionManager : MonoBehaviour
 
     double RegenerateCrystalSpaceBonus = 1;//重生晶体对储量上限效果提升
 
+    double allAssets = 1;//所有资源的产量
+
+    double altar = 1;//祭坛的效率提升
 
     double power = 1;//玩家力量加成
+
+    double combatPower = 1;//战斗力加成
+
 
     public OreCarManager oreCarManager;//矿车管理
     public MineralScreeningMachineManager mineralScreeningMachineManager;//矿物筛选器
@@ -70,6 +81,15 @@ public class ResourceAdditionManager : MonoBehaviour
     public MaterialCompressorManager materialCompressorManager;//物质压缩器
 
     public StockExchangeManager stockExchangeManager;//证券交易所
+
+    public ArtificialMineManager artificialMineManager;//人造矿井
+
+    public GeocentricResearchInstituteManager geocentricResearchInstituteManager;//地心研究所
+    public AltarManager altarManager;//祭坛
+
+    public GiantMonumentManager giantMonumentManager;//纪念碑
+
+
     public static ResourceAdditionManager Instance { get; private set; }
 
     private void Awake()
@@ -730,6 +750,129 @@ public class ResourceAdditionManager : MonoBehaviour
     }
 
 
+    /// <summary>
+    /// 提升采集器的提升
+    /// </summary>
+    /// <param name="count"></param>
+    public void AddCollectorMark(double count)
+    {
+        collectorMarkup *= 1 + count;
+    }
+    /// <summary>
+    /// 获取采集器的加成
+    /// </summary>
+    /// <returns></returns>
+    public double GetCollectorMarkUp()
+    {
+        double basics = 0; //基础加成是0
+        basics += collectorMarkup;
+        basics += artificialMineManager.GetUp();//人造矿井的提升
+        return basics;
+    }
+
+    /// <summary>
+    /// 提升科技点的提升
+    /// </summary>
+    /// <param name="count"></param>
+    public void AddScience(double count)
+    {
+        science *= 1 + count;
+    }
+    /// <summary>
+    /// 获取科技点的加成
+    /// </summary>
+    /// <returns></returns>
+    public double GetScienceUp()
+    {
+        double basics = 0; //基础加成是0
+        basics += science;
+        basics += geocentricResearchInstituteManager.GetUp();//地心研究所的提升
+        return basics;
+    }
 
 
+
+    /// <summary>
+    /// 提升所有资源产量
+    /// </summary>
+    /// <param name="count"></param>
+    public void AddAllAssets(double count)
+    {
+        allAssets *= 1 + count;
+    }
+    /// <summary>
+    /// 获取所有资源产量加成
+    /// </summary>
+    /// <returns></returns>
+    public double GetAllAssetsUp()
+    {
+        double basics = 0; //基础加成是0
+        basics += allAssets;
+        basics += altarManager.GetUp();//祭坛的提升
+        return basics;
+    }
+
+
+    /// <summary>
+    /// 提升祭坛的效率
+    /// </summary>
+    /// <param name="count"></param>
+    public void AddAltar(double count)
+    {
+        altar *= 1 + count;
+    }
+    /// <summary>
+    /// 获取祭坛的效率加成
+    /// </summary>
+    /// <returns></returns>
+    public double GetAltarUp()
+    {
+        double basics = 0; //基础加成是0
+        basics += altar;
+        basics += giantMonumentManager.GetUp();//纪念碑的提升
+        return basics;
+    }
+
+
+    /// <summary>
+    /// 提升工厂的效率
+    /// </summary>
+    /// <param name="count"></param>
+    public void AddFactory(double count)
+    {
+        factory *= 1 + count;
+    }
+    /// <summary>
+    /// 获取工厂的效率加成
+    /// </summary>
+    /// <returns></returns>
+    public double GetFactoryUp()
+    {
+        double basics = 0; //基础加成是0
+        basics += factory;
+
+        return basics;
+    }
+
+
+
+   /// <summary>
+    /// 提升战斗力加成
+    /// </summary>
+    /// <param name="count"></param>
+    public void AddCombatPower(double count)
+    {
+        combatPower *= 1 + count;
+    }
+    /// <summary>
+    /// 获取战斗力加成
+    /// </summary>
+    /// <returns></returns>
+    public double GetCombatPowerUp()
+    {
+        double basics = 0; //基础加成是0
+        basics += combatPower;
+
+        return basics;
+    }
 }

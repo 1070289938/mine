@@ -12,7 +12,7 @@ public class SpotMinerStudy : MonoBehaviour
 
     string details = "定点采矿机可以在工人挖矿的时候再附近辅助工人挖矿,可以大幅度的提升工人的效率\n\n采矿工人的效率提升65%";
 
-    string Successful = "大型机器研究成功!";
+    string Successful = "定点采矿机研究成功!";
 
     TechType techType = TechType.SpotMiner;
 

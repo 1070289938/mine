@@ -101,6 +101,8 @@ public class AluminiumHarvesterManager : MonoBehaviour
             count *= ResourceAdditionManager.Instance.GetToolUp();//采矿工具加成
 
             count *= ResourceAdditionManager.Instance.GetMiningWorkerUp();//采矿工人加成
+
+            count *= ResourceAdditionManager.Instance.GetCollectorMarkUp();//加上采集器的提升
             //每帧增加软妹币
             IncrementReturn increment = ResourceManager.Instance.AddResource(ResourceType.Aluminum, count * Time.deltaTime);
 

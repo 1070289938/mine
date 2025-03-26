@@ -12,7 +12,7 @@ public class IronPickaxeStudy : MonoBehaviour
 
     string details = "我们发现铁比之前任何的矿物都坚硬，我认为用它作为镐子的材料可以使镐子更加的耐用\n\n提升30%采矿效率";
 
-    string Successful = "仓库研究成功!";
+    string Successful = "铁镐研究成功!";
 
     TechType techType = TechType.ironPickaxe;
     Dictionary<ResourceType, double> resources = new Dictionary<ResourceType, double>(); //研究需要的资源

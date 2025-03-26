@@ -169,5 +169,74 @@ public enum FacilityType
     /// 深井电梯
     /// </summary>
     DeepShaftElevator,
+
+
+
+
+
+    ///////////////地核////////////////
+    /// <summary>
+    /// 银矿工人
+    /// </summary>
+    SilverMiner,
+
+
+    /// <summary>
+    /// 镍矿采集器
+    /// </summary>
+    NickelHarvester,
+
+    /// <summary>
+    /// 钨矿采集器
+    /// </summary>
+    TungstenHarvester,
+
+    /// <summary>
+    /// 人造矿井
+    /// </summary>
+    ArtificialMine,
+
+    /// <summary>
+    /// 纳米工厂
+    /// </summary>
+    Nanofactory,
+
+    /// <summary>
+    /// 地心研究所
+    /// </summary>
+    GeocentricStudy,
+
+    /// <summary>
+    /// 祭坛
+    /// </summary>
+    Altar,
+    /// <summary>
+    /// 巨型纪念碑
+    /// </summary>
+    Monument,
+    /// <summary>
+    /// 兵营
+    /// </summary>
+    Barracks,
+
+ 
+    /// <summary>
+    /// 探测队
+    /// </summary>
+    ExplorationTeam,
+
+    /// <summary>
+    /// 自动炮塔
+    /// </summary>
+    AutomaticTurret,
+
+    /// <summary>
+    /// 激光炮塔
+    /// </summary>
+    LaserTurret,
+
+
+
+
 }
 

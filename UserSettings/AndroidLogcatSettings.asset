@@ -1,13 +1,86 @@
 {
-    "m_SelectedDeviceId": "",
+    "m_SelectedDeviceId": "fbee128d",
     "m_SelectedProcess": {
-        "deviceId": "",
-        "name": "",
-        "processId": 0,
+        "deviceId": "fbee128d",
+        "name": "com.nangua.excavate",
+        "processId": 22653,
         "exited": false
     },
-    "m_SelectedPriority": 0,
-    "m_KnownProcessesForSerialization": [],
+    "m_SelectedPriority": 2,
+    "m_KnownProcessesForSerialization": [
+        {
+            "deviceId": "fbee128d",
+            "name": "com.miui.home",
+            "processId": 4542,
+            "exited": false
+        },
+        {
+            "deviceId": "fbee128d",
+            "name": "com.nangua.excavate",
+            "processId": 19504,
+            "exited": true
+        },
+        {
+            "deviceId": "fbee128d",
+            "name": "com.nangua.excavate",
+            "processId": 26870,
+            "exited": true
+        },
+        {
+            "deviceId": "fbee128d",
+            "name": "com.nangua.excavate",
+            "processId": 28622,
+            "exited": true
+        },
+        {
+            "deviceId": "fbee128d",
+            "name": "com.nangua.excavate",
+            "processId": 6726,
+            "exited": true
+        },
+        {
+            "deviceId": "fbee128d",
+            "name": "com.nangua.excavate",
+            "processId": 11330,
+            "exited": false
+        },
+        {
+            "deviceId": "fbee128d",
+            "name": "com.nangua.excavate",
+            "processId": 13646,
+            "exited": false
+        },
+        {
+            "deviceId": "fbee128d",
+            "name": "com.nangua.excavate",
+            "processId": 19927,
+            "exited": false
+        },
+        {
+            "deviceId": "fbee128d",
+            "name": "com.nangua.excavate",
+            "processId": 21054,
+            "exited": false
+        },
+        {
+            "deviceId": "fbee128d",
+            "name": "com.nangua.excavate",
+            "processId": 15540,
+            "exited": false
+        },
+        {
+            "deviceId": "fbee128d",
+            "name": "com.nangua.excavate",
+            "processId": 16768,
+            "exited": false
+        },
+        {
+            "deviceId": "fbee128d",
+            "name": "com.nangua.excavate",
+            "processId": 22653,
+            "exited": false
+        }
+    ],
     "m_Tags": {
         "m_Entries": [
             {
@@ -16,7 +89,7 @@
             },
             {
                 "m_Name": "No Filter",
-                "m_Selected": true
+                "m_Selected": false
             },
             {
                 "m_Name": "",
@@ -32,7 +105,7 @@
             },
             {
                 "m_Name": "Unity",
-                "m_Selected": false
+                "m_Selected": true
             },
             {
                 "m_Name": "CRASH",
@@ -45,8 +118,19 @@
         "Height": 0.0
     },
     "m_MemoryViewerState": {
-        "MemoryWindowWidth": 0.0,
-        "MemoryTypeEnabled": [],
+        "MemoryWindowWidth": 170.0,
+        "MemoryTypeEnabled": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+        ],
         "MemoryGroup": 2,
         "AutoCapture": true
     },

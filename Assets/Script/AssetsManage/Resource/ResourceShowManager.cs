@@ -2,7 +2,9 @@ using UnityEngine;
 using TMPro; // 引入 TextMeshPro 命名空间
 using UnityEngine.UI;
 using System;
-
+/// <summary>
+/// 梁恩 v1.0
+/// </summary>
 // 资源显示管理
 public class ResourceShowManager : MonoBehaviour
 {

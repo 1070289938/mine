@@ -6,6 +6,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using UnityEngine;
+using UnityEngine.UI;
 
 // 优化后的保存加载管理器类
 public class SaveLoadManager : MonoBehaviour
@@ -29,10 +30,20 @@ public class SaveLoadManager : MonoBehaviour
 
     public TipsManager tipsManager;
 
+    /// <summary>
+    /// 战斗面板
+    /// </summary>
+    public BattlePanelManager battlePanelManager;
+
     public static SaveLoadManager Instance { get; private set; }
 
 
     FacilityPanelManager[] facilities;
+
+    /// <summary>
+    /// 保存按钮
+    /// </summary>
+    public Button saveBtn;
 
     private void Awake()
     {
@@ -44,6 +55,7 @@ public class SaveLoadManager : MonoBehaviour
         backupFilePath = Path.Combine(Application.persistentDataPath, backupFileName);
         TryLoadGame();
         StartCoroutine(AutoSave());
+        saveBtn.onClick.AddListener(Save);
     }
 
     /// <summary>
@@ -60,6 +72,11 @@ public class SaveLoadManager : MonoBehaviour
         SaveGame(true);
     }
 
+    public void Save()
+    {
+
+        SaveGame(false);
+    }
     // 封装清除设施面板内容的方法
     private void ClearFacilities()
     {
@@ -73,7 +90,24 @@ public class SaveLoadManager : MonoBehaviour
     // 封装重置科技研究状态的方法
     private void ResetTech()
     {
-        techManager.techTypeStudyFlag = new Dictionary<TechType, bool>();
+
+        // 存储需要修改的键
+        List<TechType> keysToUpdate = new List<TechType>();
+
+        // 遍历 techTypeStudyFlag 并找出需要修改的键
+        foreach (var item in techManager.techTypeStudyFlag)
+        {
+            if (!techManager.specialTech.ContainsKey(item.Key))
+            {
+                keysToUpdate.Add(item.Key);
+            }
+        }
+
+        // 修改需要修改的键对应的值
+        foreach (var key in keysToUpdate)
+        {
+            techManager.techTypeStudyFlag[key] = false;
+        }
     }
 
     // 封装重置资源加成的方法
@@ -114,7 +148,7 @@ public class SaveLoadManager : MonoBehaviour
             DeleteBackupFile();
 
             Debug.Log("保存成功");
-            LogManager.Instance.AddLog("自动保存成功");
+            LogManager.Instance.AddLog("保存成功");
         }
         catch (Exception ex)
         {
@@ -151,7 +185,9 @@ public class SaveLoadManager : MonoBehaviour
             speedTime = timeManager.RemainingTime,
             dailyBonus = LoadUtil.GetTimestampInMilliseconds(dailyBonusManager.lastClickDate),
             productionAcceleration = LoadUtil.GetTimestampInMilliseconds(productionAccelerationManager.lastClickTime),
-            saveTime = LoadUtil.GetTimestampInMilliseconds(DateTime.Now)
+            saveTime = LoadUtil.GetTimestampInMilliseconds(DateTime.Now),
+            militaryStrength = battlePanelManager.GetSoldierCount(),
+            attackStrength = battlePanelManager.GetattackCount(),
         };
     }
 
@@ -267,6 +303,9 @@ public class SaveLoadManager : MonoBehaviour
         LoadFacilityPanelCounts(gameData.facility);
 
         timeManager.AddTime((int)gameData.speedTime);
+
+        battlePanelManager.Install(gameData.militaryStrength, gameData.attackStrength);
+
     }
 
     // 获取科技类型研究标志字典
@@ -316,7 +355,18 @@ public class SaveLoadManager : MonoBehaviour
         StudyItemManager[] studyItems = techManager.content.GetComponentsInChildren<StudyItemManager>(true);
         foreach (StudyItemManager itemManager in studyItems)
         {
-            if (techManager.techTypeStudyFlag.ContainsKey(itemManager.techType) && techManager.techTypeStudyFlag[itemManager.techType])
+            if (techManager.techTypeStudyFlag.ContainsKey(itemManager.techType) &&
+            techManager.techTypeStudyFlag[itemManager.techType])
+            {
+                itemManager.Study.Invoke();
+            }
+        }
+
+        StudyItemManager[] systemStudyItems = techManager.SystemContent.GetComponentsInChildren<StudyItemManager>(true);
+        foreach (StudyItemManager itemManager in systemStudyItems)
+        {
+            if (techManager.techTypeStudyFlag.ContainsKey(itemManager.techType) &&
+            techManager.techTypeStudyFlag[itemManager.techType])
             {
                 itemManager.Study.Invoke();
             }

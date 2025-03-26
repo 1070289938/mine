@@ -18,14 +18,7 @@ public class TestManager : MonoBehaviour
 
     void onClick()
     {
-        Debug.Log("工人总数:"+ResourceCountManager.Instance.GetMinerCount());
-
-        //显示旁白说明星球被挖爆了
-        VoiceOverManager.Instance.DiggingPlanetsLeadsRebirthOver(() =>
-        {
-          
-        });
-
+        ResourceManager.Instance.AddResource(ResourceType.RegeneratedCrystal,10);
     }
 
     // Update is called once per frame

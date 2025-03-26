@@ -23,13 +23,15 @@ public class StashManager : MonoBehaviour
 
     string btnText = "建造";
 
-    Dictionary<ResourceType, double> baseReserves = new (){
+    Dictionary<ResourceType, double> baseReserves = new()
+    {
         [ResourceType.Stone] = 800,//石矿基础储量
         [ResourceType.Copper] = 680,//铜矿基础储量
         [ResourceType.Iron] = 500,//铁矿基础储量
         [ResourceType.Cement] = 200,//水泥基础储量
         [ResourceType.Colliery] = 500,//煤矿基础储量
-
+        [ResourceType.silver] = 300,//银矿基础储量
+        [ResourceType.GeocentricRock] = 500,//地心岩基础储量
 
     }; //仓库基础储量
 
@@ -78,13 +80,14 @@ public class StashManager : MonoBehaviour
     public double GetReserves(ResourceType type)
     {
         double reserves = baseReserves[type];
-        if(facilityPanelManager==null){
+        if (facilityPanelManager == null)
+        {
             facilityPanelManager = GetComponent<FacilityPanelManager>();
         }
 
         reserves *= facilityPanelManager.GetCount();//数量相乘
         reserves *= up;//储存倍率相乘
-       
+
         return reserves;
     }
 

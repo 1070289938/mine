@@ -55,10 +55,10 @@ public class ResearchRodStudy : MonoBehaviour
     {
         //触发研究事件
 
-        //去除特殊内强制分解金属棒的选项
-        SpecialPanelManager specialPanelManager = TechManager.Instance.GetSpecialTech(SpecialOptionType.ForcedDecomposition);
-        //隐藏选项
-        specialPanelManager.gameObject.SetActive(false);
+        // //去除特殊内强制分解金属棒的选项
+        // SpecialPanelManager specialPanelManager = TechManager.Instance.GetSpecialTech(SpecialOptionType.ForcedDecomposition);
+        // //隐藏选项
+        // specialPanelManager.gameObject.SetActive(false);
 
     }
 

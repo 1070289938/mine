@@ -425,6 +425,235 @@ public enum TechType
     /// </summary>
     DeepShaftElevator,
 
+    /// <summary>
+    /// 到达地心
+    /// </summary>
+    ReachCore,
+    //==============================================地核===================================================
+
+    /// <summary>
+    /// 探测地核深处
+    /// </summary>
+    SoundingDepth,
+    /// <summary>
+    /// 防护服
+    /// </summary>
+    ProtectiveSuit,
+    /// <summary>
+    /// 熔岩防护服
+    /// </summary>
+    LavaProtectiveSuit,
+    /// <summary>
+    /// 银矿工人
+    /// </summary>
+    SilverMiner,
+    /// <summary>
+    /// 银制房梁
+    /// </summary>
+    SilverBeams,
+    /// <summary>
+    /// 银制仓库
+    /// </summary>
+    SilverWarehouse,
+
+    /// <summary>
+    /// 钨矿采集器
+    /// </summary>
+    TungstenHarvester,
+    /// <summary>
+    /// 实施人造矿井
+    /// </summary>
+    RealizeArtificialMine,
+    /// <summary>
+    /// 钨制集装箱
+    /// </summary>
+    TungstenContainer,
+    /// <summary>
+    /// 钨钻
+    /// </summary>
+    TungstenDrill,
+    /// <summary>
+    /// 钨制仓库
+    /// </summary>
+    TungstenWarehouse,
+    /// <summary>
+    /// 镍矿采集器
+    /// </summary>
+    NickelHarvester,
+    /// <summary>
+    /// 镍合金
+    /// </summary>
+    NickelAlloy,
+    /// <summary>
+    /// 高精密仪器
+    /// </summary>
+    HighPrecisionInstrument,
+    /// <summary>
+    /// 纳米材料
+    /// </summary>
+    Nanomaterials,
+    /// <summary>
+    /// 纳米工厂
+    /// </summary>
+    Nanofactory,
+    /// <summary>
+    /// 高精度机床
+    /// </summary>
+    HighPrecisionMachine,
+    /// <summary>
+    /// 高性能计算机
+    /// </summary>
+    HighPerformanceComputer,
+    /// <summary>
+    /// 地心研究所
+    /// </summary>
+    GeocentricResearch,
+    /// <summary>
+    /// 结构研究
+    /// </summary>
+    StructuralStudy,
+    /// <summary>
+    /// 白金银行卡
+    /// </summary>
+    PlatinumBankCard,
+    /// <summary>
+    /// 额外资金
+    /// </summary>
+    AdditionalFunds,
+    /// <summary>
+    /// 投注
+    /// </summary>
+    betting,
+    /// <summary>
+    /// 资源管理
+    /// </summary>
+    ResourceManagement,
+    /// <summary>
+    /// 古遗迹研究
+    /// </summary>
+    Ichnography,
+    /// <summary>
+    /// 古代战术
+    /// </summary>
+    AncientTactics,
+    /// <summary>
+    ///祭坛
+    /// </summary>
+    altar,
+    /// <summary>
+    /// 巨型纪念碑
+    /// </summary>
+    GiantMonument,
+    /// <summary>
+    /// 祭拜仪式
+    /// </summary>
+    WorshipCeremony,
+    /// <summary>
+    /// 发现痕迹
+    /// </summary>
+    FindTrace,
+    /// <summary>
+    /// 探索痕迹
+    /// </summary>
+    trace,
+    /// <summary>
+    /// 解析语言
+    /// </summary>
+    AnalyticLanguage,
+    /// <summary>
+    /// 找到大门
+    /// </summary>
+    DiscoverGate,
+    /// <summary>
+    /// 研究大门
+    /// </summary>
+    OpenGate,
+    /// <summary>
+    /// 军事化
+    /// </summary>
+    Militarize,
+    /// <summary>
+    /// 兵营
+    /// </summary>
+    Barracks,
+    /// <summary>
+    /// 白银甲胄
+    /// </summary>
+    SilverArmour,
+    /// <summary>
+    /// 钨制战甲
+    /// </summary>
+    TungstenArmor,
+    /// <summary>
+    /// 纳米修复器
+    /// </summary>
+    Nanoprosthesis,
+    /// <summary>
+    /// 冷兵器
+    /// </summary>
+    ColdWeapon,
+    /// <summary>
+    /// 热武器
+    /// </summary>
+    ThermalWeapon,
+    /// <summary>
+    /// 穿甲弹
+    /// </summary>
+    ArmourPiercingProjectile,
+    /// <summary>
+    /// 双层床
+    /// </summary>
+    BunkBed,
+    /// <summary>
+    /// 军营宿舍
+    /// </summary>
+    BarracksQuarters,
+    /// <summary>
+    /// 素质训练
+    /// </summary>
+    QualityTraining,
+    /// <summary>
+    /// 探测队
+    /// </summary>
+    ExplorationTeam,
+       /// <summary>
+    /// 搜寻到地心岩
+    /// </summary>
+    Geocentric,
+    /// <summary>
+    /// 防御阵地
+    /// </summary>
+    DefensivePosition,
+    /// <summary>
+    /// 自动炮塔
+    /// </summary>
+    AutomaticTurret,
+
+    /// <summary>
+    /// 激光炮塔
+    /// </summary>
+    LaserTurret,
+    /// <summary>
+    /// 战斗力大于100
+    /// </summary>
+    CombatPower100,
+    /// <summary>
+    /// 继续深入
+    /// </summary>
+    GoDeeper,
+    /// <summary>
+    /// 派遣侦察队
+    /// </summary>
+    DispatchReconnaissanceParty,
+    /// <summary>
+    /// 纳米仓库
+    /// </summary>
+    Nanowarehouse,
+
+    /// <summary>
+    /// 链式机枪
+    /// </summary>
+    ChainMachineGun,
 
     //==============================================系统科技===================================================
 

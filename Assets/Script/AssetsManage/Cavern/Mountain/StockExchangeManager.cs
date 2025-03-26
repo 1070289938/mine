@@ -49,7 +49,7 @@ public class StockExchangeManager : MonoBehaviour
         facilityPanelManager.press = OnMineButtonClicked;
 
 
-        facilityPanelManager.InstallSchedule();
+        facilityPanelManager.InstallSchedule();//初始化进度条
     }
 
 

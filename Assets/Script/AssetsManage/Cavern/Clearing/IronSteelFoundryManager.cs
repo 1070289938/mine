@@ -63,7 +63,8 @@ public class IronSteelFoundryManager : MonoBehaviour
 
     void Start()
     {
-
+        //初始化每个钢铁消耗的资源
+        depleted = ResourceManager.Instance.formula[ResourceType.Steel];
     }
 
 
@@ -84,14 +85,16 @@ public class IronSteelFoundryManager : MonoBehaviour
     /// </summary>
     void InstallInput()
     {
-        //初始化每个钢铁消耗的资源
-        depleted = ResourceManager.Instance.formula[ResourceType.Steel];
+
+
         Dictionary<ResourceType, double> inPutResources = new Dictionary<ResourceType, double>
         {
             [ResourceType.Iron] = 0,
             [ResourceType.Colliery] = 0
         }; //初始化消耗资源
         facilityPanelManager.InputInstall(inPutResources);
+
+
     }
 
 

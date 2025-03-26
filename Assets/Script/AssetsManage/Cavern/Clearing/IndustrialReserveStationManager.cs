@@ -31,6 +31,13 @@ public class IndustrialReserveStationManager : MonoBehaviour
         [ResourceType.Titanium] = AssetsUtil.ParseNumber("600"),//钛
         [ResourceType.Alloy] = AssetsUtil.ParseNumber("200"),//合金
         [ResourceType.Zorizun] = AssetsUtil.ParseNumber("100"),//佐里旬矿
+
+        [ResourceType.Tungsten] = AssetsUtil.ParseNumber("900"),//钨
+        [ResourceType.Nickel] = AssetsUtil.ParseNumber("950"),//镍
+        [ResourceType.Nanomaterials] = AssetsUtil.ParseNumber("500"),//纳米材料
+
+
+
     };
 
     readonly FacilityType type = FacilityType.IndustrialReserveStation;

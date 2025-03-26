@@ -66,8 +66,8 @@ public class ProductionAccelerationManager : MonoBehaviour, IRewardVideoInteract
         {
             // 冷却时间已过，播放广告
             WatchAdvertisement();
-             lastClickTime = DateTime.Now;
-            TimeManager.Instance.AddTime(1800);
+            
+           
 
         }
         else
@@ -106,11 +106,7 @@ public class ProductionAccelerationManager : MonoBehaviour, IRewardVideoInteract
         // 目前代码中没有具体实现逻辑
         LogManager.Instance.AddLog("成功领取双倍时间流速30分钟");
         TimeManager.Instance.AddTime(1800);
-        if (OnclickFlag)
-        {
-            LogManager.Instance.AddLog("成功领取额外的双倍时间流速15分钟");
-            TimeManager.Instance.AddTime(900);
-        }
+       
     }
 
     /// <summary>

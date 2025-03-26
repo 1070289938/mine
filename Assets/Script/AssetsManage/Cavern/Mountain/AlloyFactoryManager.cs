@@ -111,6 +111,8 @@ public class AlloyFactoryManager : MonoBehaviour
 
         rmb *= ResourceAdditionManager.Instance.GetFabricatorUp();//加上制造工人的提升
 
+        rmb *= ResourceAdditionManager.Instance.GetFactoryUp();//加上工厂的提升
+
         double thisYield = rmb * Time.deltaTime;//计算出当前帧产出的合金
 
 

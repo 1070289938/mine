@@ -42,7 +42,7 @@ public class IncidentManager : MonoBehaviour
     // 区域事件触发总概率
     public float regionProbability = 0.01f;
     // 主线事件触发总概率
-    public float mainProbability = 1f;
+    public float mainProbability = 0.005f;
 
     public MapManager mapManager;
 
@@ -146,7 +146,7 @@ public class IncidentManager : MonoBehaviour
             new Incident("飞船的导航系统出现了短暂故障", 1f),
             new Incident("飞船的生命维持系统发出轻微警报", 1f),
             new Incident("你看到一颗绚丽的星云从飞船旁飘过", 1f),
-            new Incident("飞船与地球的通讯信号出现干扰", 1f),
+            new Incident("飞船与星球的通讯信号出现干扰", 1f),
             new Incident("飞船的太阳能板被一颗微小的流星击中", 1f),
             new Incident("你检测到附近有一股未知的辐射源", 1f),
             new Incident("飞船的引擎发出异常的噪音", 1f),
@@ -214,7 +214,29 @@ public class IncidentManager : MonoBehaviour
         }));
 
 
+        // 主线事件 - 发现生活痕迹事件
+        mainIncidents.Add(new Incident(null, 1f, TechType.SilverMiner, TechType.FindTrace, () =>
+        {
+            LogManager.Instance.AddLog("银矿工人们在挖掘银矿的时候发现这附近貌似有人类生活的痕迹");
+            TechManager.Instance.techTypeStudyFlag[TechType.FindTrace] = true;
+        }));
 
+
+        // 主线事件 - 发现立碑中所说的大门事件
+        mainIncidents.Add(new Incident(null, 1f, TechType.AnalyticLanguage, TechType.DiscoverGate, () =>
+        {
+            LogManager.Instance.AddLog("有人汇报说是发现了立碑中所说的大门");
+            TechManager.Instance.techTypeStudyFlag[TechType.DiscoverGate] = true;
+
+        }));
+
+        // 主线事件 - 发现地心岩事件
+        mainIncidents.Add(new Incident(null, 1f, TechType.ExplorationTeam, TechType.Geocentric, () =>
+        {
+            LogManager.Instance.AddLog("探测队在探测的时候发现了一种只有地心存在的特殊岩石,他可以完全隔离地心的高温,并且形状泛红,科学家们给他命名叫做地心岩");
+            TechManager.Instance.techTypeStudyFlag[TechType.Geocentric] = true;
+        }));
+        
     }
 
     // 执行当前区域事件
@@ -238,7 +260,7 @@ public class IncidentManager : MonoBehaviour
     {
         while (true)
         {
-            Debug.Log("执行主线事件协程");
+
             float randomValue = UnityEngine.Random.value;
             if (randomValue < mainProbability)
             {
@@ -257,7 +279,7 @@ public class IncidentManager : MonoBehaviour
     // 执行随机事件
     private void Carry(List<Incident> incidents)
     {
-        Debug.Log("执行随机事件");
+
         // 计算总概率权重
         float totalWeight = 0f;
         foreach (var incident in incidents)

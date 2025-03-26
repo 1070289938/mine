@@ -3,7 +3,9 @@ using TMPro; // 引入 TextMeshPro 命名空间
 using UnityEngine.UI;
 using System;
 using System.Collections.Generic;
-
+/// <summary>
+/// 梁恩 v1.0
+/// </summary>
 public class FacilityPanelManager : MonoBehaviour
 {
     // UI 元素引用
@@ -77,6 +79,7 @@ public class FacilityPanelManager : MonoBehaviour
     public void Awake()
     {
         gameObject.SetActive(show);
+       
         miningButton.onClick.AddListener(OnButtonClick);
     }
 

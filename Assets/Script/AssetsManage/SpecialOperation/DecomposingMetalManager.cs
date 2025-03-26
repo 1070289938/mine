@@ -37,7 +37,7 @@ public class DecomposingMetalManager : MonoBehaviour
         gameObject.SetActive(false);
         btn.onClick.AddListener(() =>
         {
-            TipsManager.Instance.ShowVerify(RestartGame, "你确定要强行分解金属棒吗?(这会导致游戏进入下一周目。你将会获得50重生晶体)");
+            TipsManager.Instance.ShowVerify(RestartGame, "你确定要强行分解金属棒吗?(这会导致游戏进入下一周目。你将会获得20重生晶体)");
         });
 
     }
@@ -59,7 +59,7 @@ public class DecomposingMetalManager : MonoBehaviour
 
         //在显示旁白的期间重启
         //固定增加50重生晶体
-        ResourceManager.Instance.AddResource(ResourceType.RegeneratedCrystal, 50);
+        ResourceManager.Instance.AddResource(ResourceType.RegeneratedCrystal, 20);
 
         //先清空所有的科技
         SaveLoadManager.Instance.SecondLife();
@@ -83,12 +83,13 @@ public class DecomposingMetalManager : MonoBehaviour
         if (TechManager.Instance.GetTechFlag(TechType.InspectWonderfulRod))
         {
             //在没有研究，研究金属棒科技的时候才会显示
-            if (!TechManager.Instance.GetTechFlag(TechType.ResearchRod))
-            {
-                gameObject.SetActive(true);
-                TechChecker.Instance.RemoveCheckMethod(Inspect);
-            }
+            // if (!TechManager.Instance.GetTechFlag(TechType.ResearchRod))
+            // {
 
+            // }
+            //一直显示
+            gameObject.SetActive(true);
+            TechChecker.Instance.RemoveCheckMethod(Inspect);
         }
     }
 

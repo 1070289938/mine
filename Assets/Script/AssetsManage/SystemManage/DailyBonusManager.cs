@@ -105,11 +105,7 @@ public class DailyBonusManager : MonoBehaviour, IRewardVideoInteractionListener
         // 目前代码中没有具体实现逻辑
         LogManager.Instance.AddLog("成功领取每日奖励获取5重生水晶");
         ResourceManager.Instance.AddResource(ResourceType.RegeneratedCrystal, 5);
-        if (OnclickFlag)
-        {
-            LogManager.Instance.AddLog("成功领取额外每日奖励获取10重生水晶");
-            ResourceManager.Instance.AddResource(ResourceType.RegeneratedCrystal, 10);
-        }
+       
     }
 
     /// <summary>

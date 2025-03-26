@@ -24,6 +24,7 @@ public class RevenueManager : MonoBehaviour, IRewardVideoInteractionListener
     //双倍领取按钮
     public Button doubleClaim;
 
+    public Example example;
     Dictionary<ResourceType, double> resource;
     // 广告位 id
     int id = 1042441;
@@ -80,6 +81,9 @@ public class RevenueManager : MonoBehaviour, IRewardVideoInteractionListener
     // 看广告获取双倍
     void WatchAdvertisement()
     {
+
+
+        //example.ShowRewardAd();
         TapAdUtils.Instance.PlayRewardVideo(id, this);
     }
     //////////////////////////////////////////////////////接口方法//////////////////////////////////////////////////////

@@ -27,7 +27,9 @@ public class GameData
 
     public long saveTime;//保存时间
 
+    public int militaryStrength;//当前兵力
 
+    public int attackStrength;//出击兵力
 
 
 }

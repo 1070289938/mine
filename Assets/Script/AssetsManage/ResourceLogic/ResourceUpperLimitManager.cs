@@ -54,6 +54,13 @@ public class ResourceUpperLimitManager : MonoBehaviour
         UpperLimitAlloy();//计算合金
         UpperZorizun();//计算佐里旬矿上限
         UpperScience();//计算科技上限
+
+
+        UpperSilver();//计算银矿上限
+        UpperTungsten();//计算钨矿上限
+        UpperNickel();//计算镍矿上限
+        UpperNanomaterials();//计算纳米材料上限
+        UpperGeocentricRock();//计算地心岩上限
     }
     /// <summary>
     /// 计算软妹币上限
@@ -260,4 +267,77 @@ public class ResourceUpperLimitManager : MonoBehaviour
         ResourceShowManager resourceShow = ResourceManager.Instance.resourceManager[ResourceType.Science];
         resourceShow.SetMaxStorage(reserves);//科技设置上限
     }
+
+
+
+
+    /// <summary>
+    /// 计算银矿上限
+    /// 银矿上限 =  仓库储量
+    /// </summary>
+    void UpperSilver()
+    {
+        double reserves = 100; //基本储量0
+        reserves += stashManager.GetReserves(ResourceType.silver);//获取科技探索塔储量
+        reserves *= ResourceAdditionManager.Instance.GetAllReservesUp();//获取所有的储量加成
+        ResourceShowManager resourceShow = ResourceManager.Instance.resourceManager[ResourceType.silver];
+        resourceShow.SetMaxStorage(reserves);//银矿设置上限
+    }
+
+
+
+
+    /// <summary>
+    /// 计算钨矿上限
+    /// 钨矿上限 =  工业储备站储量
+    /// </summary>
+    void UpperTungsten()
+    {
+        double reserves = 0; //基本储量0
+        reserves += industrialReserveStationManager.GetReserves(ResourceType.Tungsten);//获取工业储备站储量
+        reserves *= ResourceAdditionManager.Instance.GetAllReservesUp();//获取所有的储量加成
+        ResourceShowManager resourceShow = ResourceManager.Instance.resourceManager[ResourceType.Tungsten];
+        resourceShow.SetMaxStorage(reserves);//钨设置上限
+    }
+
+    /// <summary>
+    /// 计算镍矿上限
+    /// 镍矿上限 =  工业储备站储量
+    /// </summary>
+    void UpperNickel()
+    {
+        double reserves = 0; //基本储量0
+        reserves += industrialReserveStationManager.GetReserves(ResourceType.Nickel);//获取工业储备站储量
+        reserves *= ResourceAdditionManager.Instance.GetAllReservesUp();//获取所有的储量加成
+        ResourceShowManager resourceShow = ResourceManager.Instance.resourceManager[ResourceType.Nickel];
+        resourceShow.SetMaxStorage(reserves);//镍设置上限
+    }
+
+    /// <summary>
+    /// 计算纳米材料上限
+    /// 纳米材料上限 =  工业储备站储量
+    /// </summary>
+    void UpperNanomaterials()
+    {
+        double reserves = 0; //基本储量0
+        reserves += industrialReserveStationManager.GetReserves(ResourceType.Nanomaterials);//获取工业储备站储量
+        reserves *= ResourceAdditionManager.Instance.GetAllReservesUp();//获取所有的储量加成
+        ResourceShowManager resourceShow = ResourceManager.Instance.resourceManager[ResourceType.Nanomaterials];
+        resourceShow.SetMaxStorage(reserves);//纳米材料设置上限
+    }
+
+    /// <summary>
+    /// 计算地心岩上限
+    /// 地心岩上限 =  仓库储量
+    /// </summary>
+    void UpperGeocentricRock()
+    {
+        double reserves = 100; //基本储量0
+        reserves += stashManager.GetReserves(ResourceType.GeocentricRock);//获取仓库储量
+        reserves *= ResourceAdditionManager.Instance.GetAllReservesUp();//获取所有的储量加成
+        ResourceShowManager resourceShow = ResourceManager.Instance.resourceManager[ResourceType.GeocentricRock];
+        resourceShow.SetMaxStorage(reserves);//地心岩设置上限
+    }
+
+
 }
