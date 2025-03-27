@@ -188,6 +188,8 @@ public class SaveLoadManager : MonoBehaviour
             saveTime = LoadUtil.GetTimestampInMilliseconds(DateTime.Now),
             militaryStrength = battlePanelManager.GetSoldierCount(),
             attackStrength = battlePanelManager.GetattackCount(),
+            dangerValue = battlePanelManager.GetdangerCount(),
+            autofill = battlePanelManager.GetAutofillCount(),
         };
     }
 
@@ -304,7 +306,7 @@ public class SaveLoadManager : MonoBehaviour
 
         timeManager.AddTime((int)gameData.speedTime);
 
-        battlePanelManager.Install(gameData.militaryStrength, gameData.attackStrength);
+        battlePanelManager.Install(gameData.militaryStrength, gameData.attackStrength, gameData.dangerValue, gameData.autofill);
 
     }
 

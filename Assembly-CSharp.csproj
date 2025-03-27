@@ -156,6 +156,7 @@
     <Compile Include="Assets\Script\AssetsManage\StudyItem\Cavern\MineHill\DiscoveryTowerStudy.cs" />
     <Compile Include="Assets\CSJ\Scripts\Implementation\Android\SDK.cs" />
     <Compile Include="Assets\CSJ\Scripts\Api\Dummy\Ad\ExpressAd.cs" />
+    <Compile Include="Assets\Script\AssetsManage\StudyItem\Cavern\EarthCore\WideEnrollmentStudy.cs" />
     <Compile Include="Assets\Script\AssetsManage\Cavern\Mountain\CementMillManager.cs" />
     <Compile Include="Assets\Script\AssetsManage\Cavern\Hole\CopperMinerManager.cs" />
     <Compile Include="Assets\CSJ\Scripts\Implementation\iOS\Mediation\MediationRewardManager.cs" />
@@ -239,6 +240,7 @@
     <Compile Include="Assets\Script\AssetsManage\StudyItem\Cavern\EarthCore\LavaSuitStudy.cs" />
     <Compile Include="Assets\Script\AssetsManage\StudyItem\Cavern\EarthCore\NickelHarvesterStudy.cs" />
     <Compile Include="Assets\Script\AssetsManage\StudyItem\Cavern\EarthCore\NanowarehouseStudy.cs" />
+    <Compile Include="Assets\Script\AssetsManage\StudyItem\Cavern\EarthCore\RushTrainingStudy.cs" />
     <Compile Include="Assets\Script\AssetsManage\StudyItem\Cavern\MineField\LargeMachineStudy.cs" />
     <Compile Include="Assets\Script\AssetsManage\StudyItem\Cavern\MineHill\StoneFactoryStudy.cs" />
     <Compile Include="Assets\Script\AssetsManage\StudyItem\Cavern\EarthCore\TungstenWarehouseStudy.cs" />
@@ -275,6 +277,7 @@
     <Compile Include="Assets\Script\AssetsManage\TestManager.cs" />
     <Compile Include="Assets\CSJ\Scripts\Api\Listener\IRewardAdInteractionListener.cs" />
     <Compile Include="Assets\CSJ\Scripts\Implementation\iOS\SDK.cs" />
+    <Compile Include="Assets\Script\AssetsManage\Cavern\EarthCore\BootCampManager.cs" />
     <Compile Include="Assets\Script\AssetsManage\ResourceLogic\ResourceCountManager.cs" />
     <Compile Include="Assets\CSJ\Scripts\Implementation\iOS\AdDislike.cs" />
     <Compile Include="Assets\Script\AssetsManage\StudyItem\Cavern\MineField\TitaniumVaultStudy.cs" />
@@ -295,6 +298,7 @@
     <Compile Include="Assets\Script\AssetsManage\StudyItem\Cavern\EarthCore\NickelAlloyStudy.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventCheck.cs" />
     <Compile Include="Assets\Script\AssetsManage\StudyItem\System\DimMemoryStudy.cs" />
+    <Compile Include="Assets\Script\AssetsManage\StudyItem\Cavern\EarthCore\BootCampStudy.cs" />
     <Compile Include="Assets\Script\AssetsManage\StudyItem\Cavern\MineField\HouseSafeStudy.cs" />
     <Compile Include="Assets\Script\AssetsManage\Resource\ResourceContentManager.cs" />
     <Compile Include="Assets\Script\AssetsManage\StudyItem\Cavern\Excavate\CollectRentsStudy.cs" />
@@ -354,6 +358,7 @@
     <Compile Include="Assets\Script\AssetsManage\StudyItem\Cavern\EarthCore\TungstenHarvesterStudy.cs" />
     <Compile Include="Assets\Script\AssetsManage\StudyItem\Cavern\EarthCore\ExplorationTeamStudy.cs" />
     <Compile Include="Assets\Script\AssetsManage\StudyItem\Cavern\EarthCore\AncientTacticsStudy.cs" />
+    <Compile Include="Assets\Script\AssetsManage\StudyItem\Cavern\EarthCore\UnethicalAgreementStudy.cs" />
     <Compile Include="Assets\CSJ\Scripts\Api\Dummy\Mediation\MediationRewardManager.cs" />
     <Compile Include="Assets\Script\AssetsManage\StudyItem\Cavern\MineField\TelevisionStudy.cs" />
     <Compile Include="Assets\Script\AssetsManage\StudyItem\Cavern\MineField\MineralFilterStudy.cs" />
@@ -393,6 +398,7 @@
     <Compile Include="Assets\Script\AssetsManage\Cavern\Hole\PileOfOreManager.cs" />
     <Compile Include="Assets\Script\AssetsManage\StudyItem\Cavern\MineHill\AluminiumMiningStudy.cs" />
     <Compile Include="Assets\Script\AssetsManage\StudyItem\Cavern\Excavate\IronWarehouseStudy.cs" />
+    <Compile Include="Assets\Script\AssetsManage\StudyItem\Cavern\EarthCore\SevenDaysCrashCourseStudy.cs" />
     <Compile Include="Assets\Script\AssetsManage\StudyItem\Cavern\EarthCore\BarracksStudy.cs" />
     <Compile Include="Assets\Script\AssetsManage\UlManage\Map\MapListManager.cs" />
     <Compile Include="Assets\Script\AssetsManage\StudyItem\Cavern\Excavate\HouseStudy.cs" />

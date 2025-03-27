@@ -219,7 +219,7 @@ public enum FacilityType
     /// </summary>
     Barracks,
 
- 
+
     /// <summary>
     /// 探测队
     /// </summary>
@@ -234,8 +234,10 @@ public enum FacilityType
     /// 激光炮塔
     /// </summary>
     LaserTurret,
-
-
+    /// <summary>
+    /// 新兵训练营
+    /// </summary>
+    BootCamp,
 
 
 }

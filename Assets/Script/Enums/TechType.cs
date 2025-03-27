@@ -616,7 +616,7 @@ public enum TechType
     /// 探测队
     /// </summary>
     ExplorationTeam,
-       /// <summary>
+    /// <summary>
     /// 搜寻到地心岩
     /// </summary>
     Geocentric,
@@ -654,7 +654,26 @@ public enum TechType
     /// 链式机枪
     /// </summary>
     ChainMachineGun,
-
+    /// <summary>
+    /// 新兵训练营
+    /// </summary>
+    BootCamp,
+    /// <summary>
+    /// 加急训练
+    /// </summary>
+    RushTraining,
+    /// <summary>
+    /// 七天速成班
+    /// </summary>
+    SevenDaysCrashCourse,
+    /// <summary>
+    /// 广泛招生
+    /// </summary>
+    WideEnrollment,
+    /// <summary>
+    /// 不道德协议
+    /// </summary>
+    UnethicalAgreement,
     //==============================================系统科技===================================================
 
     /// <summary>

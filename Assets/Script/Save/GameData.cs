@@ -7,7 +7,7 @@ using UnityEngine;
 /// </summary>
 [Serializable]
 public class GameData
-{   
+{
     public bool secondLife;//是否为重生存档
 
     public Dictionary<ResourceType, double> resources;  //各个资源的数量
@@ -31,5 +31,6 @@ public class GameData
 
     public int attackStrength;//出击兵力
 
-
+    public int dangerValue;//当前危险值
+    public bool autofill;//自动填充
 }

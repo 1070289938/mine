@@ -61,6 +61,7 @@ public class ResourceAdditionManager : MonoBehaviour
 
     double combatPower = 1;//战斗力加成
 
+    double trainingCampEfficiency = 1;//训练营效率
 
     public OreCarManager oreCarManager;//矿车管理
     public MineralScreeningMachineManager mineralScreeningMachineManager;//矿物筛选器
@@ -821,6 +822,8 @@ public class ResourceAdditionManager : MonoBehaviour
     {
         altar *= 1 + count;
     }
+
+
     /// <summary>
     /// 获取祭坛的效率加成
     /// </summary>
@@ -856,7 +859,7 @@ public class ResourceAdditionManager : MonoBehaviour
 
 
 
-   /// <summary>
+    /// <summary>
     /// 提升战斗力加成
     /// </summary>
     /// <param name="count"></param>
@@ -875,4 +878,31 @@ public class ResourceAdditionManager : MonoBehaviour
 
         return basics;
     }
+
+
+
+
+
+    /// <summary>
+    /// 提升训练营效率
+    /// </summary>
+    /// <param name="count"></param>
+    public void AddTrainingCampEfficiency(double count)
+    {
+        trainingCampEfficiency *= 1 + count;
+    }
+    /// <summary>
+    /// 获取训练营加成
+    /// </summary>
+    /// <returns></returns>
+    public double GetTrainingCampEfficiencyUp()
+    {
+        double basics = 0; //基础加成是0
+        basics += trainingCampEfficiency;
+
+        return basics;
+    }
+
+
+
 }

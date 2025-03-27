@@ -236,7 +236,7 @@ public class IncidentManager : MonoBehaviour
             LogManager.Instance.AddLog("探测队在探测的时候发现了一种只有地心存在的特殊岩石,他可以完全隔离地心的高温,并且形状泛红,科学家们给他命名叫做地心岩");
             TechManager.Instance.techTypeStudyFlag[TechType.Geocentric] = true;
         }));
-        
+      
     }
 
     // 执行当前区域事件

@@ -3,22 +3,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-//研究大门
-public class OpenGateStudy : MonoBehaviour
+//新兵训练营
+public class BootCampStudy : MonoBehaviour
 {
 
 
-    string studyName = "研究大门";
+    string studyName = "新兵训练营";
 
-    string details = "大门看起来十分的封闭,十分的庞大,像是某个时代的奇迹巨构,你出于好奇,让科学家们研究如何开启这座大门";
+    string details = "新兵训练可以更快的训练士兵来快速的回复战斗力\n\n解锁新兵训练营";
 
-    string Successful = "经过科学家们一顿花哨的操作后,大门自动的缓慢开启,里面渗出极其浓厚的血腥味让人发呕,同时冒出一阵阵的寒风,在地心如此炎热的地方居然会有寒风的存在";
+    string Successful = "新兵训练营研究成功";
 
-    TechType techType = TechType.OpenGate;
+    TechType techType = TechType.BootCamp;
     Dictionary<ResourceType, double> resources = new Dictionary<ResourceType, double>()
     {   //价格 软妹币 15M 科技点8k
-        [ResourceType.Currency] = AssetsUtil.ParseNumber("35M"),
-        [ResourceType.Science] = AssetsUtil.ParseNumber("50k"),
+        [ResourceType.Currency] = AssetsUtil.ParseNumber("21M"),
+        [ResourceType.Science] = 20000,
+        [ResourceType.GeocentricRock] = AssetsUtil.ParseNumber("2M"),
 
     }; //研究需要的资源
     // Start is called before the first frame update
@@ -43,8 +44,8 @@ public class OpenGateStudy : MonoBehaviour
 
     void Inspect()
     {
-        //找到大门
-        if (TechManager.Instance.GetTechFlag(TechType.DiscoverGate))
+        //兵营
+        if (TechManager.Instance.GetTechFlag(TechType.Barracks))
         {
             gameObject.SetActive(true);
             TechChecker.Instance.RemoveCheckMethod(Inspect);
@@ -54,9 +55,9 @@ public class OpenGateStudy : MonoBehaviour
     //研究按钮事件
     void Study()
     {
-        //激活战斗
-        BattlePanelManager.Instance.Activate();
-
+        //触发研究事件
+        FacilityPanelManager facility = FacilityManager.Instance.GetFacilityPanel(FacilityType.BootCamp);
+        facility.gameObject.SetActive(true);
     }
 
 
