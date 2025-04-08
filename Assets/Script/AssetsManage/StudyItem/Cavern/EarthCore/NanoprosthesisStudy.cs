@@ -17,8 +17,8 @@ public class NanoprosthesisStudy : MonoBehaviour
     TechType techType = TechType.Nanoprosthesis;
     Dictionary<ResourceType, double> resources = new Dictionary<ResourceType, double>()
     {   //价格 软妹币 15M 科技点8k
-        [ResourceType.Currency] = AssetsUtil.ParseNumber("35M"),
-        [ResourceType.Science] = AssetsUtil.ParseNumber("30k"),
+        [ResourceType.Currency] = AssetsUtil.ParseNumber("65M"),
+        [ResourceType.Science] = AssetsUtil.ParseNumber("50k"),
         [ResourceType.Nanomaterials] = AssetsUtil.ParseNumber("1000"),
 
     }; //研究需要的资源

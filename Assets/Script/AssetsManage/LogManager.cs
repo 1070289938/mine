@@ -101,6 +101,13 @@ public class LogManager : MonoBehaviour
         needScrollToBottom = true;
     }
 
+    // 添加警告日志，显示为红色
+    public void AddWarnLog(string message)
+    {
+        string coloredMessage = "<color=red>" + message + "</color>";
+        AddLog(coloredMessage);
+    }
+
     /// <summary>
     /// 重新加载日志
     /// </summary>
@@ -195,4 +202,4 @@ public class LogManager : MonoBehaviour
         logText.text = logBuilder.ToString();
         needScrollToBottom = true;
     }
-}
+}    

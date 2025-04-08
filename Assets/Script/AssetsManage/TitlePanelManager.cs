@@ -11,6 +11,7 @@ public class TitlePanelManager : MonoBehaviour
 
     public GameObject SystemPanel;  // 系统界面
 
+    public GameObject StatisticsPanel;  //统计界面
 
     public static bool ResearchRedHint;//红色提示是否显示
 
@@ -26,6 +27,7 @@ public class TitlePanelManager : MonoBehaviour
         researchPanel.transform.SetSiblingIndex(hide);
         SpecialPanel.transform.SetSiblingIndex(hide);
         SystemPanel.transform.SetSiblingIndex(hide);
+        StatisticsPanel.transform.SetSiblingIndex(hide);
     }
 
     // 显示研究界面
@@ -35,6 +37,7 @@ public class TitlePanelManager : MonoBehaviour
         SystemPanel.transform.SetSiblingIndex(hide);
         miningPanel.transform.SetSiblingIndex(hide);
         researchPanel.transform.SetSiblingIndex(show);
+        StatisticsPanel.transform.SetSiblingIndex(hide);
     }
 
     //显示特殊界面
@@ -45,6 +48,7 @@ public class TitlePanelManager : MonoBehaviour
         SystemPanel.transform.SetSiblingIndex(hide);
         miningPanel.transform.SetSiblingIndex(hide);
         researchPanel.transform.SetSiblingIndex(hide);
+        StatisticsPanel.transform.SetSiblingIndex(hide);
     }
 
 
@@ -54,6 +58,18 @@ public class TitlePanelManager : MonoBehaviour
     {
         SpecialPanel.transform.SetSiblingIndex(hide);
         SystemPanel.transform.SetSiblingIndex(show);
+        miningPanel.transform.SetSiblingIndex(hide);
+        researchPanel.transform.SetSiblingIndex(hide);
+        StatisticsPanel.transform.SetSiblingIndex(hide);
+    }
+
+    //显示统计界面
+
+    public void ShowStatisticsPanel()
+    {
+        StatisticsPanel.transform.SetSiblingIndex(show);
+        SpecialPanel.transform.SetSiblingIndex(hide);
+        SystemPanel.transform.SetSiblingIndex(hide);
         miningPanel.transform.SetSiblingIndex(hide);
         researchPanel.transform.SetSiblingIndex(hide);
     }

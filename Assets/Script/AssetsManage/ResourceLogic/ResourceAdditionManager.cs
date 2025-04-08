@@ -63,6 +63,9 @@ public class ResourceAdditionManager : MonoBehaviour
 
     double trainingCampEfficiency = 1;//训练营效率
 
+    double temple = 1;//寺庙效率
+
+
     public OreCarManager oreCarManager;//矿车管理
     public MineralScreeningMachineManager mineralScreeningMachineManager;//矿物筛选器
     public BlastFurnaceManager blastFurnaceManager;//高炉
@@ -87,6 +90,7 @@ public class ResourceAdditionManager : MonoBehaviour
 
     public GeocentricResearchInstituteManager geocentricResearchInstituteManager;//地心研究所
     public AltarManager altarManager;//祭坛
+    public TempleManager templeManager;//寺庙
 
     public GiantMonumentManager giantMonumentManager;//纪念碑
 
@@ -560,24 +564,33 @@ public class ResourceAdditionManager : MonoBehaviour
     {
         double basics = 0; //基础加成是0
         basics += allReserves;   //所有储量加成
-        //获取重生晶体对所有储量的加成 (如果解锁了科技：空间储物就计算)
+        basics += GetSecondLifeReservesUp();
+        basics *= 1 + containerManager.GetUp();//计算集装箱的储量加成
+
+        return basics;
+    }
+
+
+
+    /// <summary>
+    /// 获取重生水晶储量加成
+    /// </summary>
+    /// <returns></returns>
+    public double GetSecondLifeReservesUp()
+    {
+        double basics = 0; //基础加成是0
         if (TechManager.Instance.GetTechFlag(TechType.SpaceStorage))
         {
             //每个重生晶体提升0.0004
             double count = ResourceManager.Instance.GetResource(ResourceType.RegeneratedCrystal);
             count *= 0.0004;
-
             count *= GetRegenerateCrystalSpaceBonusUp();//获取重生晶体对储量上限效果提升加成
-
             basics += count;//计算重生晶体的储量加成
-
-
         }
-
-        basics *= 1 + containerManager.GetUp();//计算集装箱的储量加成
-
         return basics;
     }
+
+
 
 
 
@@ -810,6 +823,7 @@ public class ResourceAdditionManager : MonoBehaviour
         double basics = 0; //基础加成是0
         basics += allAssets;
         basics += altarManager.GetUp();//祭坛的提升
+        basics += templeManager.GetUp();//寺庙的提升
         return basics;
     }
 
@@ -903,6 +917,26 @@ public class ResourceAdditionManager : MonoBehaviour
         return basics;
     }
 
+
+    /// <summary>
+    /// 提升寺庙效率
+    /// </summary>
+    /// <param name="count"></param>
+    public void AddTemple(double count)
+    {
+        temple *= 1 + count;
+    }
+    /// <summary>
+    /// 获取寺庙加成
+    /// </summary>
+    /// <returns></returns>
+    public double GetTempleUp()
+    {
+        double basics = 0; //基础加成是0
+        basics += temple;
+
+        return basics;
+    }
 
 
 }

@@ -88,6 +88,13 @@ public class StashManager : MonoBehaviour
         reserves *= facilityPanelManager.GetCount();//数量相乘
         reserves *= up;//储存倍率相乘
 
+        //如果研究了多维仓库就根据四维宝石提升储量（每个提升1%）
+        if (TechManager.Instance.GetTechFlag(TechType.MultidimensionalWarehouse))
+        {
+            double magnification = (ResourceManager.Instance.GetResource(ResourceType.DimensionalStone) * 0.01) + 1;
+            reserves *= magnification;//储存倍率相乘
+        }
+
         return reserves;
     }
 

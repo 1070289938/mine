@@ -13,11 +13,26 @@ public class RegeneratedCrystalManager : MonoBehaviour
     private float timer = 0f;
 
     public float addition = 1;
+
+
+    int secondLifeCount = 0;
+
+
     public static RegeneratedCrystalManager Instance;
 
     void Awake()
     {
         Instance = this;
+    }
+
+    public int GetSecondLifeCount()
+    {
+        return secondLifeCount;
+    }
+
+    public void SetSecondLifeCount(int count)
+    {
+        secondLifeCount = count;
     }
 
     public TextMeshProUGUI text;
@@ -67,9 +82,12 @@ public class RegeneratedCrystalManager : MonoBehaviour
     /// <returns></returns>
     static double CalculateResult(int value)
     {
-        if (value > 250)
+        int max = 250;
+        max += (int)ResourceManager.Instance.GetResource(ResourceType.DimensionalStone);
+
+        if (value > max)
         {
-            value = 250;
+            value = max;
         }
         // 计算 (ln(value + 50) - 3.91202) / 2.888
         return (Math.Log(value + 50) - 3.91202) / 2.888;

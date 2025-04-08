@@ -17,9 +17,9 @@ public class ChainMachineGunStudy : MonoBehaviour
     TechType techType = TechType.ChainMachineGun;
     Dictionary<ResourceType, double> resources = new Dictionary<ResourceType, double>()
     {   //价格 软妹币 15M 科技点8k
-        [ResourceType.Currency] = AssetsUtil.ParseNumber("35M"),
-        [ResourceType.Science] = AssetsUtil.ParseNumber("30k"),
-        [ResourceType.Nanomaterials] = AssetsUtil.ParseNumber("800"),
+        [ResourceType.Currency] = AssetsUtil.ParseNumber("85M"),
+        [ResourceType.Science] = AssetsUtil.ParseNumber("60k"),
+        [ResourceType.Nanomaterials] = AssetsUtil.ParseNumber("1800"),
 
     }; //研究需要的资源
     // Start is called before the first frame update

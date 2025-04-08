@@ -17,8 +17,8 @@ public class BunkBedStudy : MonoBehaviour
     TechType techType = TechType.BunkBed;
     Dictionary<ResourceType, double> resources = new Dictionary<ResourceType, double>()
     {   //价格 软妹币 15M 科技点8k
-        [ResourceType.Currency] = AssetsUtil.ParseNumber("35M"),
-        [ResourceType.Science] = AssetsUtil.ParseNumber("15K"),
+        [ResourceType.Currency] = AssetsUtil.ParseNumber("65M"),
+        [ResourceType.Science] = AssetsUtil.ParseNumber("45K"),
         [ResourceType.silver] = AssetsUtil.ParseNumber("8M"),
 
     }; //研究需要的资源

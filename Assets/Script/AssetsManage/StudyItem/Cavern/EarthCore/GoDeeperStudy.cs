@@ -17,8 +17,8 @@ public class GoDeeperStudy : MonoBehaviour
     TechType techType = TechType.GoDeeper;
     Dictionary<ResourceType, double> resources = new Dictionary<ResourceType, double>()
     {   //价格 软妹币 15M 科技点8k
-        [ResourceType.Currency] = AssetsUtil.ParseNumber("30M"),
-        [ResourceType.Science] = AssetsUtil.ParseNumber("25k"),
+        [ResourceType.Currency] = AssetsUtil.ParseNumber("120M"),
+        [ResourceType.Science] = AssetsUtil.ParseNumber("85k"),
 
     }; //研究需要的资源
     // Start is called before the first frame update
@@ -40,11 +40,16 @@ public class GoDeeperStudy : MonoBehaviour
         //研究方法
         studyItemManager.Study = Study;
     }
-
+    BattlePanelManager battlePanelManager;
     void Inspect()
     {
-        //战斗力大于100
-        if (TechManager.Instance.GetTechFlag(TechType.CombatPower100))
+        if (battlePanelManager == null)
+        {
+            battlePanelManager = BattlePanelManager.Instance;
+        }
+
+        //战斗力大于50k
+        if (battlePanelManager.GetPower() >= 50000)
         {
             gameObject.SetActive(true);
             TechChecker.Instance.RemoveCheckMethod(Inspect);
@@ -54,7 +59,7 @@ public class GoDeeperStudy : MonoBehaviour
     //研究按钮事件
     void Study()
     {
-       
+
     }
 
 

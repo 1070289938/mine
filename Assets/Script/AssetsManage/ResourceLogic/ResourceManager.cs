@@ -20,7 +20,8 @@ public class ResourceManager : MonoBehaviour
     public Dictionary<ResourceType, bool> special = new()
     {//特殊资源：重生晶体
         [ResourceType.RegeneratedCrystal] = true,
-
+        //四维宝石
+        [ResourceType.DimensionalStone] = true,
 
     };
 
@@ -177,7 +178,11 @@ public class ResourceManager : MonoBehaviour
         }
     }
 
-    // 检查资源是否解锁
+    /// <summary>
+    /// 检查资源是否解锁
+    /// </summary>
+    /// <param name="resourceType"></param>
+    /// <returns></returns>
     public bool IsResourceUnlocked(ResourceType resourceType)
     {
         if (resourceUnlocks.ContainsKey(resourceType))

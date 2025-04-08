@@ -239,6 +239,88 @@ public enum FacilityType
     /// </summary>
     BootCamp,
 
+    /// <summary>
+    /// 寺庙
+    /// </summary>
+    Temple,
+
+
+
+    ///////////////太空////////////////
+
+
+    /// <summary>
+    /// 太空矿船
+    /// </summary>
+    SpaceMiningShip,
+
+
+    /// <summary>
+    /// 人造卫星
+    /// </summary>
+    ArtificialSatellite,
+
+
+    /// <summary>
+    /// 铱矿采集器
+    /// </summary>
+    IridiumCollector,
+
+
+    /// <summary>
+    /// 月球物资站
+    /// </summary>
+    LunarMaterialStation,
+
+    /// <summary>
+    /// 秘银锻造厂
+    /// </summary>
+    MithrilForge,
+
+    /// <summary>
+    /// 月球资料站
+    /// </summary>
+    LunarDataStation,
+
+    /// <summary>
+    /// 火星殖民地
+    /// </summary>
+    MarsColony,
+
+    /// <summary>
+    /// 火星旅游站
+    /// </summary>
+    MarsTouristStation,
+
+    /// <summary>
+    /// 火星空间站
+    /// </summary>
+    MarsSpaceStation,
+
+
+    /// <summary>
+    /// 火星研究站
+    /// </summary>
+    MarsResearchStation,
+
+
+    /// <summary>
+    /// 中子采集器
+    /// </summary>
+    NeutronCollector,
+
+
+    /// <summary>
+    /// 太空船坞
+    /// </summary>
+    SpaceDock,
+
+    /// <summary>
+    /// 实验型探索者
+    /// </summary>
+    ExperimentalExplorer,
+
+
 
 }
 

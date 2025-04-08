@@ -20,7 +20,7 @@ public class ProductionAccelerationManager : MonoBehaviour, IRewardVideoInteract
     // 记录按钮上次点击的时间
     public DateTime lastClickTime;
     // 冷却时间，单位：小时
-    const int cooldownHours = 12;
+    const int cooldownHours = 3;
 
     // Start is called before the first frame update
     void Start()

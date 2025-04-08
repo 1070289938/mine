@@ -31,6 +31,15 @@ public class TechManager : MonoBehaviour
         [TechType.Artisanship] = true,//技工天赋
         [TechType.AttentionDetail] = true,//注重细节
         [TechType.meticulous] = true,//一丝不苟
+        [TechType.dimensionalProduct] = true,//四维制品
+        [TechType.BusinessAcumen] = true,//商业头脑
+        [TechType.Entrepreneur] = true,//企业家
+        [TechType.DimensionalWarehouse] = true,//四维仓库
+        [TechType.MultidimensionalWarehouse] = true,//多维仓库
+        [TechType.Faith] = true,//信仰
+        [TechType.Worship] = true,//敬拜
+
+
     };
 
     public Dictionary<TechType, bool> techTypeStudyFlag;//科技是否研究

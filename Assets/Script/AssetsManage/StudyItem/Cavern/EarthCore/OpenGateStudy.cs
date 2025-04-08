@@ -54,9 +54,7 @@ public class OpenGateStudy : MonoBehaviour
     //研究按钮事件
     void Study()
     {
-        //激活战斗
-        BattlePanelManager.Instance.Activate();
-
+      
     }
 
 

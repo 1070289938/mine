@@ -27,6 +27,7 @@ public enum TechType
     MoneyBox,//储钱罐
     IronMiner,//铁矿工人
     CementManufacture,//水泥生产
+    Temple,//寺庙
     rail,//铁轨
     tramcar,//矿车
     ironPickaxe,//铁镐
@@ -508,6 +509,11 @@ public enum TechType
     /// 地心研究所
     /// </summary>
     GeocentricResearch,
+
+    /// <summary>
+    /// 地心资料库
+    /// </summary>
+    DataBank,
     /// <summary>
     /// 结构研究
     /// </summary>
@@ -540,6 +546,10 @@ public enum TechType
     ///祭坛
     /// </summary>
     altar,
+    /// <summary>
+    ///狂热信徒
+    /// </summary>
+    fanatic,
     /// <summary>
     /// 巨型纪念碑
     /// </summary>
@@ -576,6 +586,10 @@ public enum TechType
     /// 兵营
     /// </summary>
     Barracks,
+    /// <summary>
+    /// 发现地心犬
+    /// </summary>
+    GeocentricDog,
     /// <summary>
     /// 白银甲胄
     /// </summary>
@@ -633,10 +647,7 @@ public enum TechType
     /// 激光炮塔
     /// </summary>
     LaserTurret,
-    /// <summary>
-    /// 战斗力大于100
-    /// </summary>
-    CombatPower100,
+
     /// <summary>
     /// 继续深入
     /// </summary>
@@ -674,6 +685,349 @@ public enum TechType
     /// 不道德协议
     /// </summary>
     UnethicalAgreement,
+    //==============================================太空科技===================================================
+
+    /// <summary>
+    /// 近太空探索
+    /// </summary>
+    NearSpaceExploration,
+
+
+    /// <summary>
+    /// 太空铁矿船
+    /// </summary>
+    SpaceIronShip,
+
+
+    /// <summary>
+    /// 太空铁
+    /// </summary>
+    SpaceTrain,
+    /// <summary>
+    /// 小行星捕获器
+    /// </summary>
+    AsteroidCatcher,
+    /// <summary>
+    /// 真空仓库
+    /// </summary>
+    VacuumWarehouse,
+
+    /// <summary>
+    /// 人造卫星
+    /// </summary>
+    ArtificialSatellite,
+    /// <summary>
+    /// 大气研究
+    /// </summary>
+    AtmosphericResearch,
+
+    /// <summary>
+    /// 真空实验
+    /// </summary>
+    VacuumLaboratory,
+
+    /// <summary>
+    /// 太空酒馆
+    /// </summary>
+    SpaceTavern,
+
+    /// <summary>
+    /// 零重力实验室
+    /// </summary>
+    ZeroGravityLaboratory,
+
+
+    /// <summary>
+    /// 零重力制造业
+    /// </summary>
+    ZeroGravityManufacturing,
+
+
+    /// <summary>
+    /// 太空生态系统
+    /// </summary>
+    ecosystem,
+
+    /// <summary>
+    /// 月球探索计划
+    /// </summary>
+    LunarExploration,
+
+    /// <summary>
+    /// 铱矿采集器
+    /// </summary>
+    DependentCollector,
+    /// <summary>
+    /// 月球物资站
+    /// </summary>
+    LunarMaterialStation,
+
+    /// <summary>
+    /// 月心储物
+    /// </summary>
+    MoonHeartStorage,
+
+
+    /// <summary>
+    /// 铱钻
+    /// </summary>
+    IridiumDiamond,
+    /// <summary>
+    /// 铱金库
+    /// </summary>
+    IridiumVault,
+
+    /// <summary>
+    /// 铱仓库
+    /// </summary>
+    IridiumDepot,
+
+
+    /// <summary>
+    /// 铱制武装
+    /// </summary>
+    IridiumArmor,
+
+    /// <summary>
+    /// 秘银锻造
+    /// </summary>
+    MithrilForging,
+
+    /// <summary>
+    /// 秘银钻
+    /// </summary>
+    MithrilDiamond,
+
+    /// <summary>
+    /// 秘银金库
+    /// </summary>
+    MithrilVault,
+
+
+    /// <summary>
+    /// 秘银集装箱
+    /// </summary>
+    MithrilContainer,
+
+
+    /// <summary>
+    /// 秘银武装
+    /// </summary>
+    MithrilArmament,
+
+
+    /// <summary>
+    /// 月球资料站
+    /// </summary>
+    LunarDataStation,
+
+    /// <summary>
+    /// 星际合金
+    /// </summary>
+    InterstellarAlloy,
+
+    /// <summary>
+    /// 月球研究
+    /// </summary>
+    LunarResearch,
+
+    /// <summary>
+    /// 月球酒馆
+    /// </summary>
+    MoonTavern,
+
+    /// <summary>
+    /// 月球房屋
+    /// </summary>
+    MoonHouse,
+
+
+    /// <summary>
+    /// 月球加工厂
+    /// </summary>
+    LunarProcessingPlant,
+
+    /// <summary>
+    /// 月球物流
+    /// </summary>
+    LunarLogistics,
+
+    /// <summary>
+    /// 远航技术
+    /// </summary>
+    OceangoingTechnology,
+
+    /// <summary>
+    /// 火星探索
+    /// </summary>
+    MarsExploration,
+
+    /// <summary>
+    /// 火星殖民船
+    /// </summary>
+    MarsColonyShip,
+
+    /// <summary>
+    /// 火星殖民地
+    /// </summary>
+    MarsColony,
+
+    /// <summary>
+    /// 星际旅游
+    /// </summary>
+    InterstellarTourism,
+
+    /// <summary>
+    /// 火星旅游站
+    /// </summary>
+    MarsTouristStation,
+
+    /// <summary>
+    /// 旅游一条路服务
+    /// </summary>
+    TravelService,
+
+    /// <summary>
+    /// 火星工业
+    /// </summary>
+    MarsIndustry,
+
+    /// <summary>
+    /// 火星空间站
+    /// </summary>
+    MarsSpaceStation,
+
+    /// <summary>
+    /// 行星航道
+    /// </summary>
+    PlanetaryChannel,
+
+    /// <summary>
+    /// 引力弹弓
+    /// </summary>
+    GravitySlingshot,
+
+    /// <summary>
+    /// 空间站仓储
+    /// </summary>
+    SpaceStationStorage,
+
+    /// <summary>
+    /// 火星研究站
+    /// </summary>
+    MarsResearchStation,
+
+    /// <summary>
+    /// AI
+    /// </summary>
+    AI,
+
+    /// <summary>
+    /// 技能机床
+    /// </summary>
+    IntelligentMachineTool,
+
+    /// <summary>
+    /// 精化秘银
+    /// </summary>
+    RefinedMithril,
+
+    /// <summary>
+    /// AI导游
+    /// </summary>
+    AITourGuide,
+
+    /// <summary>
+    /// 智能仓储
+    /// </summary>
+    IntelligentStorage,
+
+    /// <summary>
+    /// 火星储物站
+    /// </summary>
+    MarsStorageStation,
+
+    /// <summary>
+    /// 火星地理研究
+    /// </summary>
+    MarsGeographicalResearch,
+
+    /// <summary>
+    /// 高危物质研究
+    /// </summary>
+    HighRiskSubstanceResearch,
+
+    /// <summary>
+    /// 中子采集
+    /// </summary>
+    NeutronAcquisition,
+
+    /// <summary>
+    /// 中子采集器
+    /// </summary>
+    NeutronCollector,
+
+    /// <summary>
+    /// 中子屋
+    /// </summary>
+    NeutronHouse,
+
+    /// <summary>
+    /// 中子金库
+    /// </summary>
+    ChineseTreasury,
+
+    /// <summary>
+    /// 中子研究室
+    /// </summary>
+    NeutronLaboratory,
+
+    /// <summary>
+    /// 中子储物
+    /// </summary>
+    NeutronStorage,
+
+    /// <summary>
+    /// 粒子波采集
+    /// </summary>
+    ParticleWaveAcquisition,
+
+    /// <summary>
+    /// 曲率技术
+    /// </summary>
+    CurvatureTechnique,
+
+    /// <summary>
+    /// 跃迁引擎
+    /// </summary>
+    TransitionEngine,
+
+    /// <summary>
+    /// 太空制造业
+    /// </summary>
+    SpaceManufacturingIndustry,
+
+    /// <summary>
+    /// 太空工厂
+    /// </summary>
+    SpaceFactory,
+
+    /// <summary>
+    /// 太空船坞
+    /// </summary>
+    SpaceDock,
+
+    /// <summary>
+    /// 实验性探索者
+    /// </summary>
+    ExperimentalExplorer,
+
+
+
+
+
+
+
     //==============================================系统科技===================================================
 
     /// <summary>
@@ -724,6 +1078,35 @@ public enum TechType
     /// 一丝不苟
     /// </summary>
     meticulous,
+
+    /// <summary>
+    /// 四维制品
+    /// </summary>
+    dimensionalProduct,
+    /// <summary>
+    /// 商业头脑
+    /// </summary>
+    BusinessAcumen,
+    /// <summary>
+    /// 企业家
+    /// </summary>
+    Entrepreneur,
+    /// <summary>
+    /// 四维仓库
+    /// </summary>
+    DimensionalWarehouse,
+    /// <summary>
+    /// 多维仓库
+    /// </summary>
+    MultidimensionalWarehouse,
+    /// <summary>
+    /// 信仰
+    /// </summary>
+    Faith,
+    /// <summary>
+    /// 敬拜
+    /// </summary>
+    Worship,
 
 
 }

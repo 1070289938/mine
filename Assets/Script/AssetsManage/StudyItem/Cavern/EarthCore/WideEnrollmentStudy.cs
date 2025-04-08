@@ -17,8 +17,8 @@ public class WideEnrollmentStudy : MonoBehaviour
     TechType techType = TechType.WideEnrollment;
     Dictionary<ResourceType, double> resources = new Dictionary<ResourceType, double>()
     {   //价格 软妹币 15M 科技点8k
-        [ResourceType.Currency] = AssetsUtil.ParseNumber("15M"),
-        [ResourceType.Science] = AssetsUtil.ParseNumber("8K"),
+        [ResourceType.Currency] = AssetsUtil.ParseNumber("48M"),
+        [ResourceType.Science] = AssetsUtil.ParseNumber("40K"),
 
     }; //研究需要的资源
     // Start is called before the first frame update

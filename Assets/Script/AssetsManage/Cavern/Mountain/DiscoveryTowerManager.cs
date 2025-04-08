@@ -74,6 +74,8 @@ public class DiscoveryTowerManager : MonoBehaviour
         ResourceUpperLimitManager.Instance.RefreshUpperLimitAllResources();//刷新所有储存上限
     }
 
+    FacilityPanelManager geocentricStudy;
+
     /// <summary>
     /// 获取储量
     /// </summary>
@@ -88,6 +90,17 @@ public class DiscoveryTowerManager : MonoBehaviour
 
         reserves *= facilityPanelManager.GetCount();//数量相乘
         reserves *= up;//储存倍率相乘
+
+        //地心资料库
+        if (TechManager.Instance.GetTechFlag(TechType.DataBank))
+        {
+            if (!geocentricStudy)
+            {
+                geocentricStudy = FacilityManager.Instance.GetFacilityPanel(FacilityType.GeocentricStudy);
+            }
+
+            reserves *= (geocentricStudy.GetCount() * 0.08) + 1;
+        }
 
         return reserves;
     }

@@ -5,6 +5,7 @@
 // Proprietary and confidential.
 //------------------------------------------------------------------------------
 
+using System;
 using System.Collections.Generic;
 using System.Threading;
 using ByteDance.Union;
@@ -18,13 +19,11 @@ using UnityEngine.UI;
 ///
 public sealed class Example : MonoBehaviour
 {
-    [SerializeField]
-    public Text information;
 
     public RewardVideoAd rewardAd;               // 激励视频，支持csj和融合
 
-   
-    
+
+
     // Unity 主线程ID:
     public static int MainThreadId;
     public static int MNowPlayAgainCount = 0;
@@ -34,16 +33,16 @@ public sealed class Example : MonoBehaviour
 
     private void Awake()
     {
-        
+
         MainThreadId = Thread.CurrentThread.ManagedThreadId;
     }
 
     private void SdkInitCallback(bool success, string message)
     {
         // 注意：在初始化回调成功后再请求广告
-        Debug.Log("CSJM_Unity "+"sdk初始化结束：success: " + success + ", message: " + message);
+        Debug.Log("CSJM_Unity " + "sdk初始化结束：success: " + success + ", message: " + message);
         // 也可以调用sdk的函数，判断sdk是否初始化完成
-        Debug.Log("CSJM_Unity "+"sdk是否初始化成功, IsSdkReady: " + Pangle.IsSdkReady());
+        Debug.Log("CSJM_Unity " + "sdk是否初始化成功, IsSdkReady: " + Pangle.IsSdkReady());
     }
 
     void Start()
@@ -124,9 +123,9 @@ public sealed class Example : MonoBehaviour
 
     /* 💛💛💛💛💛💛💛💛💛💛💛💛💛💛 ↓↓↓↓↓↓↓↓↓↓ 激励视频相关样例 ↓↓↓↓↓↓↓↓↓↓ 💛💛💛💛💛💛💛💛💛💛💛💛💛💛 */
     // Show the reward Ad.  最终调用该方法，播放广告
-    public void ShowRewardAd()
+    public void ShowRewardAd(Action action)
     {
-        ExampleRewardAd.LoadReward(this);
+        ExampleRewardAd.LoadReward(this, action);
     }
     /* 💛💛💛💛💛💛💛💛💛💛💛💛💛💛 ↑↑↑↑↑↑↑↑↑↑ 激励视频相关样例 ↑↑↑↑↑↑↑↑↑↑ 💛💛💛💛💛💛💛💛💛💛💛💛💛💛 */
 

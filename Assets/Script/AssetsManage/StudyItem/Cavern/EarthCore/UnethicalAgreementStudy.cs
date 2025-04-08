@@ -17,8 +17,8 @@ public class UnethicalAgreementStudy : MonoBehaviour
     TechType techType = TechType.UnethicalAgreement;
     Dictionary<ResourceType, double> resources = new Dictionary<ResourceType, double>()
     {   //价格 软妹币 15M 科技点8k
-        [ResourceType.Currency] = AssetsUtil.ParseNumber("85M"),
-        [ResourceType.Science] = AssetsUtil.ParseNumber("50K"),
+        [ResourceType.Currency] = AssetsUtil.ParseNumber("125M"),
+        [ResourceType.Science] = AssetsUtil.ParseNumber("89K"),
 
     }; //研究需要的资源
     // Start is called before the first frame update

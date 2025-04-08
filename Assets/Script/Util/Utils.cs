@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
 
 public class Utils
@@ -13,4 +14,56 @@ public class Utils
         byte b = byte.Parse(hex.Substring(4, 2), System.Globalization.NumberStyles.HexNumber);
         return new Color32(r, g, b, 255);
     }
+
+
+    public static void SetUserId(string userId)
+    {
+        PlayerPrefs.SetString("userId", userId);
+        // 保存更改
+        PlayerPrefs.Save();
+    }
+    public static string GetUserId()
+    {
+        return PlayerPrefs.GetString("userId");
+    }
+    /// <summary>
+    /// 将object转为对象
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="data"></param>
+    /// <returns></returns>
+    public static T ConvertToType<T>(object data) where T : class
+    {
+        string jsonData;
+        if (data is Dictionary<string, object> dict)
+        {
+            // 如果是字典类型，手动构建 JSON 字符串
+            jsonData = Newtonsoft.Json.JsonConvert.SerializeObject(dict);
+        }
+        else
+        {
+            // 尝试使用反射获取可序列化的属性并转换
+            var serializedData = new Dictionary<string, object>();
+            var type = data.GetType();
+            foreach (var property in type.GetProperties(BindingFlags.Public | BindingFlags.Instance))
+            {
+                if (property.CanRead)
+                {
+
+                    object value = property.GetValue(data);
+                    if (value != null)
+                    {
+                        serializedData[property.Name] = value;
+                    }
+
+                }
+            }
+            jsonData = Newtonsoft.Json.JsonConvert.SerializeObject(serializedData);
+        }
+
+        return Newtonsoft.Json.JsonConvert.DeserializeObject<T>(jsonData);
+    }
 }
+
+
+

@@ -17,8 +17,8 @@ public class BarracksQuartersStudy : MonoBehaviour
     TechType techType = TechType.BarracksQuarters;
     Dictionary<ResourceType, double> resources = new Dictionary<ResourceType, double>()
     {   //价格 软妹币 15M 科技点8k
-        [ResourceType.Currency] = AssetsUtil.ParseNumber("35M"),
-        [ResourceType.Science] = AssetsUtil.ParseNumber("15K"),
+        [ResourceType.Currency] = AssetsUtil.ParseNumber("85M"),
+        [ResourceType.Science] = AssetsUtil.ParseNumber("65K"),
         [ResourceType.Tungsten] = AssetsUtil.ParseNumber("5000"),
 
     }; //研究需要的资源

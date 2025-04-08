@@ -17,8 +17,8 @@ public class SevenDaysCrashCourseStudy : MonoBehaviour
     TechType techType = TechType.SevenDaysCrashCourse;
     Dictionary<ResourceType, double> resources = new Dictionary<ResourceType, double>()
     {   //价格 软妹币 15M 科技点8k
-        [ResourceType.Currency] = AssetsUtil.ParseNumber("55M"),
-        [ResourceType.Science] = AssetsUtil.ParseNumber("38K"),
+        [ResourceType.Currency] = AssetsUtil.ParseNumber("108M"),
+        [ResourceType.Science] = AssetsUtil.ParseNumber("80K"),
 
     }; //研究需要的资源
     // Start is called before the first frame update

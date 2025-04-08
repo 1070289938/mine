@@ -15,6 +15,8 @@ public class AltarManager : MonoBehaviour
 
     FacilityPanelManager facilityPanelManager;
 
+
+
     // 模块的资源属性
     [Header("Module Properties")]
     string resourceName = "祭坛";
@@ -50,7 +52,7 @@ public class AltarManager : MonoBehaviour
         facilityPanelManager.press = OnMineButtonClicked;
 
     }
-
+    FacilityPanelManager temple;//寺庙
     /// <summary>
     /// 获得提升
     /// </summary>
@@ -63,6 +65,15 @@ public class AltarManager : MonoBehaviour
         double basics = 0;//基础值
         basics += up * facilityPanelManager.GetCount();
         basics *= ResourceAdditionManager.Instance.GetAltarUp();
+        if (TechManager.Instance.GetTechFlag(TechType.fanatic))
+        {
+            if (!temple)
+            {
+                temple = FacilityManager.Instance.GetFacilityPanel(FacilityType.Temple);
+            }
+
+            basics *= (temple.GetCount() * 0.05) + 1;
+        }
         return basics;
 
     }

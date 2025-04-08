@@ -5,6 +5,8 @@ using TapSDK.Core;
 using TapSDK.Login;
 using System;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using System.Threading.Tasks;
 
 public class TapInstall : MonoBehaviour
 {
@@ -13,8 +15,10 @@ public class TapInstall : MonoBehaviour
     //token
     private string clientToken = "kbucKgtQr3HWcoCC6rVVyr8tx6u8FHci8e9Of5tw";
 
+    public Button loginButton;
+
     // Start is called before the first frame update
-    void Awake()
+    void Start()
     {
         // 核心配置
         TapTapSdkOptions coreOptions = new TapTapSdkOptions
@@ -42,13 +46,9 @@ public class TapInstall : MonoBehaviour
         TapTapSDK.Init(coreOptions, otherOptions);
 
         JudgmentLanding();
-
+        loginButton.onClick.AddListener(Login);
         DontDestroyOnLoad(gameObject);
     }
-
-    
-
-
     /// <summary>
     /// 判断是否登陆
     /// </summary>
@@ -66,9 +66,18 @@ public class TapInstall : MonoBehaviour
             }
             else
             {
+                Debug.Log(account.ToJson());
                 // 用户已登录
-                Debug.Log("用户已登录..直接进入游戏");
-                SceneManager.LoadScene("GameScene");
+                Debug.Log("用户已登录..");
+                // 存储数据
+                LoginBean loginBean = new()
+                {
+                    name = account.name,
+                    tapId = account.unionId,
+                    tapGameId = account.openId
+                };
+
+                PostManager.Instance.ToPost("user/tapLogin", JsonUtility.ToJson(loginBean), ReturnContent);
             }
         }
         catch (Exception e)
@@ -79,9 +88,71 @@ public class TapInstall : MonoBehaviour
 
     }
 
-    // Update is called once per frame
-    void Update()
+    /// <summary>
+    /// 登陆事件
+    /// </summary>
+    async void Login()
     {
+        try
+        {
+            // 定义授权范围
+            List<string> scopes = new List<string>
+            {
+                TapTapLogin.TAP_LOGIN_SCOPE_PUBLIC_PROFILE
+            };
+            // 发起 Tap 登录
+            var userInfo = await TapTapLogin.Instance.LoginWithScopes(scopes.ToArray());
+            Debug.Log($"登录成功，当前用户 ID：{userInfo.unionId}...进入游戏");
+            // 存储数据
+            LoginBean loginBean = new()
+            {
+                name = userInfo.name,
+                tapId = userInfo.unionId,
+                tapGameId = userInfo.openId
+            };
+
+            PostManager.Instance.ToPost("user/tapLogin", JsonUtility.ToJson(loginBean), ReturnContent);
+
+        }
+        catch (TaskCanceledException)
+        {
+            Debug.Log("用户取消登录");
+        }
+        catch (Exception exception)
+        {
+            Debug.Log($"登录失败，出现异常：{exception}");
+        }
+    }
+
+    void ReturnContent(string body)
+    {
+        // Debug.Log(body);
+        // ReturnBean returnBean = JsonUtility.FromJson<ReturnBean>(body);
+        // if (returnBean.code == 200)
+        // {
+        //     UserInfoBean infoBean = Utils.ConvertToType<UserInfoBean>(returnBean.data);
+        //     Utils.SetUserId(infoBean.userId);
+        //     MessagePopup.Instance.ShowMessage("登陆成功!");
+        //     StartCoroutine(GoGame());
+        // }
+        // else
+        // {
+        //     MessagePopup.Instance.ShowMessage("网络异常!");
+        // }
+
+        // IEnumerator GoGame()
+        // {
+        //     // 等待一秒
+        //     yield return new WaitForSeconds(0.5f);
+        //     // 等待结束后执行的代码
+        //     SceneManager.LoadScene("GameScene");
+        // }
+
+
 
     }
+
+
+
+
 }

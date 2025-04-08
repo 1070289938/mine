@@ -17,8 +17,8 @@ public class BootCampStudy : MonoBehaviour
     TechType techType = TechType.BootCamp;
     Dictionary<ResourceType, double> resources = new Dictionary<ResourceType, double>()
     {   //价格 软妹币 15M 科技点8k
-        [ResourceType.Currency] = AssetsUtil.ParseNumber("21M"),
-        [ResourceType.Science] = 20000,
+        [ResourceType.Currency] = AssetsUtil.ParseNumber("61M"),
+        [ResourceType.Science] = AssetsUtil.ParseNumber("48k"),
         [ResourceType.GeocentricRock] = AssetsUtil.ParseNumber("2M"),
 
     }; //研究需要的资源

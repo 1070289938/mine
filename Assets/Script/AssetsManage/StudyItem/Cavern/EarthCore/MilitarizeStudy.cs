@@ -18,7 +18,7 @@ public class MilitarizeStudy : MonoBehaviour
     Dictionary<ResourceType, double> resources = new Dictionary<ResourceType, double>()
     {   //价格 软妹币 15M 科技点8k
         [ResourceType.Currency] = AssetsUtil.ParseNumber("35M"),
-        [ResourceType.Science] = AssetsUtil.ParseNumber("35K"),
+        [ResourceType.Science] = AssetsUtil.ParseNumber("38K"),
 
     }; //研究需要的资源
     // Start is called before the first frame update
@@ -54,7 +54,9 @@ public class MilitarizeStudy : MonoBehaviour
     //研究按钮事件
     void Study()
     {
-       
+        //激活战斗
+        BattlePanelManager.Instance.Activate();
+
     }
 
 

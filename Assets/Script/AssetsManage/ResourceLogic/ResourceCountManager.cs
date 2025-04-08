@@ -25,6 +25,10 @@ public class ResourceCountManager : MonoBehaviour
     FacilityPanelManager titaniumCollector;//钛矿采集器
 
 
+    FacilityPanelManager silverMiner;//银矿工人
+    FacilityPanelManager mickelHarvester;//镍矿采集器
+    FacilityPanelManager tungstenHarvester;//钨矿采集器
+
     FacilityPanelManager tenementManager;//房屋
     void Start()
     {
@@ -41,6 +45,10 @@ public class ResourceCountManager : MonoBehaviour
 
         aluminiumHarvester = FacilityManager.Instance.GetFacilityPanel(FacilityType.AluminiumHarvester);
         titaniumCollector = FacilityManager.Instance.GetFacilityPanel(FacilityType.TitaniumCollector);
+
+        silverMiner = FacilityManager.Instance.GetFacilityPanel(FacilityType.SilverMiner);
+        mickelHarvester = FacilityManager.Instance.GetFacilityPanel(FacilityType.NickelHarvester);
+        tungstenHarvester = FacilityManager.Instance.GetFacilityPanel(FacilityType.TungstenHarvester);
 
 
         tenementManager = FacilityManager.Instance.GetFacilityPanel(FacilityType.Tenement);
@@ -105,8 +113,9 @@ public class ResourceCountManager : MonoBehaviour
         count += aluminiumHarvester.GetMaxCount() * 2;
         count += titaniumCollector.GetMaxCount() * 2;
 
-
-        
+        count += silverMiner.GetMaxCount();
+        count += mickelHarvester.GetMaxCount();
+        count += tungstenHarvester.GetMaxCount();
         return count;
     }
 

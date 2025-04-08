@@ -3,7 +3,7 @@
     "m_SelectedProcess": {
         "deviceId": "fbee128d",
         "name": "com.nangua.excavate",
-        "processId": 22653,
+        "processId": 9669,
         "exited": false
     },
     "m_SelectedPriority": 2,
@@ -78,6 +78,36 @@
             "deviceId": "fbee128d",
             "name": "com.nangua.excavate",
             "processId": 22653,
+            "exited": false
+        },
+        {
+            "deviceId": "fbee128d",
+            "name": "com.nangua.excavate",
+            "processId": 29840,
+            "exited": false
+        },
+        {
+            "deviceId": "fbee128d",
+            "name": "com.nangua.excavate",
+            "processId": 31007,
+            "exited": false
+        },
+        {
+            "deviceId": "fbee128d",
+            "name": "com.nangua.excavate",
+            "processId": 31930,
+            "exited": false
+        },
+        {
+            "deviceId": "fbee128d",
+            "name": "com.nangua.excavate",
+            "processId": 1177,
+            "exited": false
+        },
+        {
+            "deviceId": "fbee128d",
+            "name": "com.nangua.excavate",
+            "processId": 9669,
             "exited": false
         }
     ],

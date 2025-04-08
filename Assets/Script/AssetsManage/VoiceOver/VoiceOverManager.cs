@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class VoiceOverManager : MonoBehaviour
@@ -12,6 +10,13 @@ public class VoiceOverManager : MonoBehaviour
     string decomposingRest = "那巨型金属棒被强行分解的瞬间\n仿佛触发了命运的诅咒\n矿洞毫无征兆地坍塌\n黑暗如潮水般将我和所有的一切吞噬\n我在绝望中坠入无尽的黑暗深渊\n然而，当我再次睁开双眼\n熟悉的疼痛却被陌生又熟悉的环境取代\n..............我重生了";
 
     string keepDiggingDown = "随着挖掘工作的持续推进，深入星球核心的钻头已经触碰到了星球的极限\n在那深邃的地底，复杂的能量场开始紊乱，一场前所未有的危机正在悄然降临\n瞬间，整个星球的引力场失衡，星球表面的山脉、海洋开始剧烈动荡\n巨大的海啸掀起了数百米高的巨浪，将一切都淹没在汹涌的波涛之中\n高耸的山脉在剧烈的震动中崩塌，化作了漫天的尘埃\n紧接着，星球内部的核聚变反应失控，巨大的能量爆发将星球炸得粉碎\n无数的碎片在太空中高速飞行，如同一颗颗致命的子弹\n在这毁灭性的灾难面前，你被强大的冲击力所吞噬，意识陷入了无尽的黑暗\n然而，当我再次睁开双眼\n熟悉的疼痛却被陌生又熟悉的环境取代\n..............我重生了";
+
+    // 破坏四维传送门胜利重生
+    string destroyPortalWin = "你拼尽全力，终于成功破坏了四维传送门\n刹那间，传送门破碎，爆发出一股强大到无法想象的能量，如汹涌的潮水般席卷整个星球\n这股能量所到之处，一切都在发生着不可思议的变化\n我们那仅剩的军队，还有被这股能量波及到的所有生物，都在痛苦与挣扎中，神奇地完成了转化\n它们的身体逐渐变形，毛发变得坚硬而粗糙，牙齿变得尖锐无比，最终都变成了一头头凶猛的地心犬\n然而，这股强大的能量也超出了你的承受极限，你感觉自己的身体在逐渐瓦解，意识也开始模糊\n在生命的最后一刻，你看着那些新生的地心犬，心中五味杂陈\n随着最后一丝意识的消散，你坠入了无尽的黑暗\n当你再次睁开双眼，熟悉的疼痛却被陌生又熟悉的环境取代\n..............我重生了。";
+
+    // 破坏四维传送门失败重生
+    string destroyPortalLoss = "我们的大部队过于轻敌，严重低估了对方的实力\n在与地心犬的激烈战斗中，我方士兵节节败退，最终全军覆没\n杀红了眼的狂暴地心犬们，如同决堤的洪水一般，全部都冲出了大门\n它们所到之处，生灵涂炭，整个星球陷入了一片血海之中\n城市被摧毁，森林被焚烧，无数的生命在这场灾难中消逝\n你在这场浩劫中，也未能幸免，被地心犬的攻击所吞噬，意识渐渐模糊\n在绝望中，你看着这满目疮痍的星球，心中充满了悔恨\n最终，黑暗完全将你笼罩，你的意识陷入了无尽的深渊\n当你再次睁开双眼，熟悉的疼痛却被陌生又熟悉的环境取代\n..............我重生了。";
+
     public static VoiceOverManager Instance;
 
     void Awake()
@@ -32,9 +37,6 @@ public class VoiceOverManager : MonoBehaviour
         Show(gameStart, 0, null);
     }
 
-
-
-
     /// <summary>
     /// 显示加载中
     /// </summary>
@@ -42,6 +44,7 @@ public class VoiceOverManager : MonoBehaviour
     {
         Show("加载中.............", 2, null);
     }
+
     /// <summary>
     /// 矿洞坍塌导致重生了
     /// </summary>
@@ -58,7 +61,21 @@ public class VoiceOverManager : MonoBehaviour
         Show(keepDiggingDown, 5, action);
     }
 
+    /// <summary>
+    /// 破坏四维传送门胜利重生旁白
+    /// </summary>
+    public void DestroyPortalWinVoiceOver(Action action)
+    {
+        Show(destroyPortalWin, 8, action);
+    }
 
+    /// <summary>
+    /// 破坏四维传送门失败重生旁白
+    /// </summary>
+    public void DestroyPortalLossVoiceOver(Action action)
+    {
+        Show(destroyPortalLoss, 8, action);
+    }
 
     /// <summary>
     /// 显示
@@ -75,6 +92,4 @@ public class VoiceOverManager : MonoBehaviour
         gameObject.SetActive(true);
         TextRevealMultiLine.Instance.StartReveal(str, gameObject, time, action);
     }
-
-
 }

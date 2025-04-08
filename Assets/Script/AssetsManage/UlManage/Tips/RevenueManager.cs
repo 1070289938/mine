@@ -81,12 +81,26 @@ public class RevenueManager : MonoBehaviour, IRewardVideoInteractionListener
     // 看广告获取双倍
     void WatchAdvertisement()
     {
-
-
-        //example.ShowRewardAd();
+        // example.ShowRewardAd(WatchOver);
         TapAdUtils.Instance.PlayRewardVideo(id, this);
     }
     //////////////////////////////////////////////////////接口方法//////////////////////////////////////////////////////
+
+
+    void WatchOver()
+    {
+        // 这里可以添加根据奖励验证结果执行的逻辑，例如如果验证通过则给予用户相应奖励，否则提示用户失败原因等
+        // 目前代码中没有具体实现逻辑
+        LogManager.Instance.AddLog("成功获得双倍离线收益:");
+        foreach (var res in resource)
+        {
+            double val = res.Value * 2;
+            LogManager.Instance.AddLog(res.Key.GetName() + "+" + AssetsUtil.FormatNumber(val));
+            ResourceManager.Instance.AddResource(res.Key, val);
+        }
+        TipsManager.Instance.OnClickAll();
+    }
+
 
     /// <summary>
     /// 点击事件
@@ -104,17 +118,7 @@ public class RevenueManager : MonoBehaviour, IRewardVideoInteractionListener
     /// <param name="msg">奖励验证结果的消息说明</param>
     public void OnRewardVerify(TapRewardVideoAd ad, bool rewardVerify, int rewardAmount, string rewardName, int code, string msg)
     {
-
-        // 这里可以添加根据奖励验证结果执行的逻辑，例如如果验证通过则给予用户相应奖励，否则提示用户失败原因等
-        // 目前代码中没有具体实现逻辑
-        LogManager.Instance.AddLog("成功获得双倍离线收益:");
-        foreach (var res in resource)
-        {
-            double val = res.Value * 2;
-            LogManager.Instance.AddLog(res.Key.GetName() + "+" + AssetsUtil.FormatNumber(val));
-            ResourceManager.Instance.AddResource(res.Key, val);
-        }
-        TipsManager.Instance.OnClickAll();
+        WatchOver();
     }
 
     /// <summary>

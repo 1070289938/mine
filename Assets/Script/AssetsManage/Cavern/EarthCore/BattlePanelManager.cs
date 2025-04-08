@@ -73,6 +73,12 @@ public class BattlePanelManager : MonoBehaviour
     {
         gameObject.SetActive(true);
         verticalLayoutGroup.padding.top = 250;
+        if (!TechManager.Instance.GetTechFlag(TechType.GeocentricDog))
+        {
+            LogManager.Instance.AddWarnLog("有人在大门内发现了浑身长满尖刺外壳,双眼是血红色的犬类未知生物,被命名为地心犬,他会撕裂所有看到的生物十分危险!");
+            TechManager.Instance.techTypeStudyFlag[TechType.GeocentricDog] = true;
+        }
+
     }
 
     void Awake()
@@ -142,17 +148,91 @@ public class BattlePanelManager : MonoBehaviour
     /// </summary>
     void StationAttacked()
     {
+        Log("驻地遭遇了地心犬的袭击!");
         // 计算胜率：驻地战斗力 / (驻地战斗力 + 危险值)
         float chance = (float)combatPower / Mathf.Max(combatPower + danger, 1);
         bool isWin = Random.value < chance;
 
         if (isWin)
         {
+            // 驻地胜利的逻辑
+            Log("驻地成功抵御了袭击！");
+
+            // 随机死亡0 - 驻地兵力数量，0和驻地兵力数量/2以下的死亡数量的权重较大，0为最大
+            int[] weights = new int[10];
+            weights[0] = 0;
+            for (int i = 1; i < 5; i++)
+            {
+                weights[i] = Random.Range(0, soldierCount / 2);
+            }
+            for (int i = 5; i < 10; i++)
+            {
+                weights[i] = Random.Range(0, soldierCount);
+            }
+            int randomDeath = GetWeightedRandomNumber(weights);
+            LossSoldier(randomDeath);
+
+            if (randomDeath > 0)
+            {
+                Log($"驻地在战斗中损失了 {randomDeath} 名士兵！");
+            }
         }
         else
         {
-        }
+            // 驻地失败的逻辑
+            Log("驻地遭到袭击，防守失败！");
 
+            // 随机扣除1 - 资源上限种类资源，随机扣除1% - 10%资源
+            ResourceManager resourceManager = ResourceManager.Instance;
+            //可用资源类型
+            List<ResourceType> resourceTypes = new List<ResourceType>();
+            foreach (var type in resourceManager.resourceUnlocks)
+            {
+                resourceTypes.Add(type.Key);
+            }
+
+            int randomResourceCount = Random.Range(1, resourceTypes.Count + 1);
+            for (int i = 0; i < randomResourceCount; i++)
+            {
+                ResourceType randomResourceType = resourceTypes[Random.Range(0, resourceTypes.Count)];
+                resourceTypes.Remove(randomResourceType);
+                if (ResourceManager.Instance.special.ContainsKey(randomResourceType))
+                {
+                    continue;
+                }
+                double resourceAmount = ResourceManager.Instance.GetResource(randomResourceType);
+                double lossPercentage = Random.Range(0.01f, 0.2f);
+                double lossAmount = resourceAmount * lossPercentage;
+                if (lossAmount != 0)
+                {
+                    ResourceManager.Instance.SpendResource(randomResourceType, lossAmount);
+                    Log($"驻地损失了 {AssetsUtil.FormatNumber(lossAmount)} {randomResourceType.GetName()} ！");
+                }
+
+            }
+
+            // 驻地的兵力随机死亡驻地兵力/2 - 驻地兵力数量
+            int minLoss = (int)(soldierCount * 0.5);
+            int lossCount = Random.Range(minLoss, soldierCount + 1);
+            LossSoldier(lossCount);
+            Log($"驻地损失了 {lossCount} 名士兵！");
+
+        }
+    }
+
+    /// <summary>
+    /// 损失士兵数量
+    /// </summary>
+    /// <param name="count"></param>
+    void LossSoldier(int count)
+    {
+        soldierCount -= count;
+        if (soldierCount < 0)
+        {
+            soldierCount = 0;
+        }
+        soldierCountText.text = soldierCount + "/" + soldierCap;
+        UpdateSoldierMax();
     }
 
 
@@ -177,7 +257,28 @@ public class BattlePanelManager : MonoBehaviour
                 Sweep();
             }
         }
+
+
     }
+
+    /// <summary>
+    /// 驻地袭击事件是否触发
+    /// </summary>
+    void EncampmentTrigger()
+    {
+        // 计算触发概率，最低 0.01%，最高 5%
+        float minProbability = 0.0001f;
+        float maxProbability = 0.05f;
+        float probability = minProbability + (maxProbability - minProbability) * ((float)danger / maxDanger);
+
+        if (Random.value < probability)
+        {
+            StationAttacked();
+        }
+
+
+    }
+
 
     /// <summary>
     /// 巡逻队胜利
@@ -259,10 +360,16 @@ public class BattlePanelManager : MonoBehaviour
     //降低危险值
     void RiskReduction(double count)
     {
-        LogManager.Instance.AddLog("降低" + (int)count + "危险程度");
+
         if (danger - count >= 500)
         {
+            Log("降低" + (int)count + "危险程度");
             danger -= (int)count;
+        }
+        else
+        {
+            danger = 500;
+            Log("危险程度已经降至最低");
         }
     }
 
@@ -332,6 +439,7 @@ public class BattlePanelManager : MonoBehaviour
         {
             eventTimer -= 1;
             CheckEventTrigger();
+            EncampmentTrigger();
         }
     }
 
@@ -490,7 +598,15 @@ public class BattlePanelManager : MonoBehaviour
     /// <param name="message"></param>
     void Log(string message)
     {
-        LogManager.Instance.AddLog(message);
+        LogManager.Instance.AddWarnLog(message);
+    }
+    /// <summary>
+    /// 获取总战斗力
+    /// </summary>
+    /// <returns></returns>
+    public int GetPower()
+    {
+        return combatPower + attackPower;
     }
 
     /// <summary>

@@ -33,4 +33,6 @@ public class GameData
 
     public int dangerValue;//当前危险值
     public bool autofill;//自动填充
+    public int secondLifeCount;//重生次数
+
 }

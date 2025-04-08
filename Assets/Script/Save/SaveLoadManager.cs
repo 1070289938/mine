@@ -28,7 +28,13 @@ public class SaveLoadManager : MonoBehaviour
     public DailyBonusManager dailyBonusManager;
     public ProductionAccelerationManager productionAccelerationManager;
 
+
+    public RegeneratedCrystalManager regeneratedCrystalManager;
+
+
     public TipsManager tipsManager;
+
+    public GameObject voiceOver;//旁白面板
 
     /// <summary>
     /// 战斗面板
@@ -63,6 +69,9 @@ public class SaveLoadManager : MonoBehaviour
     /// </summary>
     public void SecondLife()
     {
+        int count = regeneratedCrystalManager.GetSecondLifeCount();
+        regeneratedCrystalManager.SetSecondLifeCount(count + 1);
+
         ClearFacilities();
         ResetTech();
         ResetAdditions();
@@ -190,6 +199,7 @@ public class SaveLoadManager : MonoBehaviour
             attackStrength = battlePanelManager.GetattackCount(),
             dangerValue = battlePanelManager.GetdangerCount(),
             autofill = battlePanelManager.GetAutofillCount(),
+            secondLifeCount = regeneratedCrystalManager.GetSecondLifeCount(),
         };
     }
 
@@ -308,6 +318,7 @@ public class SaveLoadManager : MonoBehaviour
 
         battlePanelManager.Install(gameData.militaryStrength, gameData.attackStrength, gameData.dangerValue, gameData.autofill);
 
+        regeneratedCrystalManager.SetSecondLifeCount(gameData.secondLifeCount);
     }
 
     // 获取科技类型研究标志字典
@@ -380,9 +391,13 @@ public class SaveLoadManager : MonoBehaviour
     {
         while (true)
         {
-            //1分钟自动保存一次
-            yield return new WaitForSeconds(60 * 1); // 60 * 1
-            SaveGame(false);
+            //10分钟自动保存一次
+            yield return new WaitForSeconds(60 * 10); // 60 * 1
+            if (!voiceOver.activeSelf)
+            {
+                SaveGame(false);
+            }
+
         }
     }
 

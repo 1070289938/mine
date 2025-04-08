@@ -7,7 +7,7 @@ using UnityEngine;
 /// </summary>
 public enum SpecialOptionType
 {
-  
+
     /// <summary>
     /// 没有选项
     /// </summary>
@@ -22,5 +22,10 @@ public enum SpecialOptionType
     /// 继续向下挖掘
     /// </summary>
     KeepDiggingDownl,
+
+    /// <summary>
+    /// 毁灭传送门
+    /// </summary>
+    DoomPortal,
 
 }

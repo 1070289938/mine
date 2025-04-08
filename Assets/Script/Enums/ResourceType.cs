@@ -126,7 +126,11 @@ public enum ResourceType
   GeocentricRock,
 
 
-
+  /// <summary>
+  /// 四维宝石
+  /// </summary>
+  [DisplayName("四维宝石")]
+  DimensionalStone,//四维宝石
 
 }
 

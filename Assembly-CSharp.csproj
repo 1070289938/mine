@@ -59,7 +59,7 @@
     <UnityVersion>2022.3.55f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Analyzer Include="C:\Users\Administrator\.vscode\extensions\visualstudiotoolsforunity.vstuc-1.1.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
+    <Analyzer Include="C:\Users\Administrator\.vscode\extensions\visualstudiotoolsforunity.vstuc-1.1.1\Analyzers\Microsoft.Unity.Analyzers.dll" />
     <Analyzer Include="E:\UnityEditor\2022.3.55f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.SourceGenerators.dll" />
     <Analyzer Include="E:\UnityEditor\2022.3.55f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
@@ -71,6 +71,7 @@
     <Compile Include="Assets\CSJ\Scripts\Api\Dummy\PangleTools.cs" />
     <Compile Include="Assets\Script\AssetsManage\StudyItem\Cavern\EarthCore\HighPrecisionInstrumentStudy.cs" />
     <Compile Include="Assets\CSJ\Scripts\Api\Mediation\MediationConfig.cs" />
+    <Compile Include="Assets\Script\API\APIConfig.cs" />
     <Compile Include="Assets\Script\AssetsManage\VoiceOver\TextRevealMultiLine.cs" />
     <Compile Include="Assets\Script\AssetsManage\StudyItem\Cavern\MineField\SteelWarehouseStudy.cs" />
     <Compile Include="Assets\CSJ\Scripts\Api\Listener\IFullScreenVideoAdListener.cs" />
@@ -108,6 +109,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeA.cs" />
     <Compile Include="Assets\CSJ\Scripts\Implementation\iOS\PangleTools.cs" />
     <Compile Include="Assets\Script\AssetsManage\Cavern\EarthCore\BarracksManager.cs" />
+    <Compile Include="Assets\Script\AssetsManage\Cavern\Hole\TempleManager.cs" />
     <Compile Include="Assets\CSJ\Scripts\Api\Dummy\Ad\RewardVideoAd.cs" />
     <Compile Include="Assets\Script\AssetsManage\StudyItem\Cavern\MineField\InvestStudy.cs" />
     <Compile Include="Assets\CSJ\Scripts\Implementation\Android\AdOrientationAndroid.cs" />
@@ -126,6 +128,7 @@
     <Compile Include="Assets\CSJ\Scripts\Api\Listener\IVideoAdListener.cs" />
     <Compile Include="Assets\Script\AssetsManage\StudyItem\System\SpatialAdvantageStudy.cs" />
     <Compile Include="Assets\Script\Util\Utils.cs" />
+    <Compile Include="Assets\Script\AssetsManage\StudyItem\Cavern\EarthCore\FanaticStudy.cs" />
     <Compile Include="Assets\Script\Util\NetworkTimeApiHelper.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\DropdownSample.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexColorCycler.cs" />
@@ -148,8 +151,10 @@
     <Compile Include="Assets\Script\AssetsManage\StudyItem\Cavern\MineField\BlastFurnaceStudy.cs" />
     <Compile Include="Assets\Script\AssetsManage\Cavern\EarthCore\SilverMinerManager.cs" />
     <Compile Include="Assets\Script\AssetsManage\StudyItem\Cavern\EarthCore\AdditionalFundsStudy.cs" />
-    <Compile Include="Assets\Script\AssetsManage\StudyItem\Cavern\MineField\InternetStudy.cs" />
+    <Compile Include="Assets\Script\API\Pojo\LoginBean.cs" />
     <Compile Include="Assets\Script\AssetsManage\StudyItem\Cavern\MineField\SiliconMiningStudy.cs" />
+    <Compile Include="Assets\Script\AssetsManage\StudyItem\Cavern\MineField\InternetStudy.cs" />
+    <Compile Include="Assets\Script\API\PostManager.cs" />
     <Compile Include="Assets\Script\AssetsManage\StudyItem\Cavern\MineHill\ShieldTunnelingMachineStudy.cs" />
     <Compile Include="Assets\Script\AssetsManage\StudyItem\Cavern\MineHill\MechanicalExoskeletonStudy.cs" />
     <Compile Include="Assets\CSJ\Scripts\Implementation\Android\AdNative.cs" />
@@ -160,10 +165,12 @@
     <Compile Include="Assets\Script\AssetsManage\Cavern\Mountain\CementMillManager.cs" />
     <Compile Include="Assets\Script\AssetsManage\Cavern\Hole\CopperMinerManager.cs" />
     <Compile Include="Assets\CSJ\Scripts\Implementation\iOS\Mediation\MediationRewardManager.cs" />
+    <Compile Include="Assets\Script\AssetsManage\StudyItem\System\BusinessAcumenStudy.cs" />
     <Compile Include="Assets\Script\AssetsManage\Cavern\EarthCore\AutomaticTurretManager.cs" />
     <Compile Include="Assets\CSJ\Scripts\Api\Dummy\AdSlot.cs" />
     <Compile Include="Assets\CSJ\Scripts\Api\Listener\IRewardVideoAdListener.cs" />
     <Compile Include="Assets\CSJ\Scripts\Api\Dummy\SDK.cs" />
+    <Compile Include="Assets\Script\API\Pojo\ReturnBean.cs" />
     <Compile Include="Assets\Script\AssetsManage\StudyItem\Cavern\EarthCore\TungstenDrillStudy.cs" />
     <Compile Include="Assets\Script\AssetsManage\StudyItem\Cavern\MineHill\LuxuryStudy.cs" />
     <Compile Include="Assets\CSJ\Scripts\Implementation\iOS\Ad\FeedAd.cs" />
@@ -235,7 +242,6 @@
     <Compile Include="Assets\Script\AssetsManage\StudyItem\Cavern\MineHill\CementFactoryStudy.cs" />
     <Compile Include="Assets\CSJ\Scripts\Api\Dummy\Ad\FullScreenVideoAd.cs" />
     <Compile Include="Assets\Script\AssetsManage\StudyItem\Cavern\MineField\ContainerStudy.cs" />
-    <Compile Include="Assets\Script\Tap\TapLogin.cs" />
     <Compile Include="Assets\Script\AssetsManage\StudyItem\Cavern\MineField\ScrewConveyorStudy.cs" />
     <Compile Include="Assets\Script\AssetsManage\StudyItem\Cavern\EarthCore\LavaSuitStudy.cs" />
     <Compile Include="Assets\Script\AssetsManage\StudyItem\Cavern\EarthCore\NickelHarvesterStudy.cs" />
@@ -268,10 +274,12 @@
     <Compile Include="Assets\Script\AssetsManage\Cavern\Hole\StoneMinerManager.cs" />
     <Compile Include="Assets\CSJ\Scripts\Implementation\iOS\Mediation\MediationNativeManager.cs" />
     <Compile Include="Assets\Script\AssetsManage\StartManger\StartGameManger.cs" />
+    <Compile Include="Assets\Script\AssetsManage\SpecialOperation\DoomPortalManager.cs" />
     <Compile Include="Assets\Script\AssetsManage\StudyItem\Cavern\EarthCore\RealizeArtificialMineStudy.cs" />
     <Compile Include="Assets\Script\AssetsManage\StudyItem\System\AttentionDetailStudy.cs" />
     <Compile Include="Assets\Script\AssetsManage\StudyItem\Cavern\MineField\PortlandCementStudy.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_DigitValidator.cs" />
+    <Compile Include="Assets\Script\API\Pojo\UserInfoBean.cs" />
     <Compile Include="Assets\Script\AssetsManage\StudyItem\Cavern\MineHill\AssemblyLineStudy.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_FrameRateCounter.cs" />
     <Compile Include="Assets\Script\AssetsManage\TestManager.cs" />
@@ -283,6 +291,7 @@
     <Compile Include="Assets\Script\AssetsManage\StudyItem\Cavern\MineField\TitaniumVaultStudy.cs" />
     <Compile Include="Assets\Script\AssetsManage\StudyItem\Cavern\Excavate\SaveMoneyStudy.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextConsoleSimulator.cs" />
+    <Compile Include="Assets\Script\AssetsManage\StudyItem\System\DimensionalWarehouseStudy.cs" />
     <Compile Include="Assets\Script\Util\AssetsUtil.cs" />
     <Compile Include="Assets\Script\AssetsManage\StudyItem\Cavern\MineHill\LogisticsTruckStudy.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TeleType.cs" />
@@ -309,6 +318,7 @@
     <Compile Include="Assets\CSJ\Scripts\Api\AdSlotType.cs" />
     <Compile Include="Assets\CSJ\Scripts\Api\Listener\IExpressAdInteractionListener.cs" />
     <Compile Include="Assets\Script\AssetsManage\StudyItem\Cavern\EarthCore\ThermalWeaponStudy.cs" />
+    <Compile Include="Assets\Script\AssetsManage\StudyItem\System\FaithStudy.cs" />
     <Compile Include="Assets\CSJ\Scripts\Implementation\iOS\Pangle.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshSpawner.cs" />
@@ -341,6 +351,7 @@
     <Compile Include="Assets\Script\AssetsManage\UlManage\Tips\VerifyMsgManager.cs" />
     <Compile Include="Assets\Script\AssetsManage\Cavern\Mountain\AluminiumHarvesterManager.cs" />
     <Compile Include="Assets\Script\AssetsManage\Cavern\Mountain\AlloyFactoryManager.cs" />
+    <Compile Include="Assets\Script\AssetsManage\UlManage\MessagePopup.cs" />
     <Compile Include="Assets\CSJ\Scripts\Implementation\iOS\AdNative.cs" />
     <Compile Include="Assets\CSJ\Scripts\Api\Dummy\Mediation\MediationBannerManager.cs" />
     <Compile Include="Assets\CSJ\Scripts\Api\Listener\IDrawFeedAdListener.cs" />
@@ -357,8 +368,8 @@
     <Compile Include="Assets\Script\AssetsManage\StudyItem\Cavern\MineHill\ArtificialMineStudy.cs" />
     <Compile Include="Assets\Script\AssetsManage\StudyItem\Cavern\EarthCore\TungstenHarvesterStudy.cs" />
     <Compile Include="Assets\Script\AssetsManage\StudyItem\Cavern\EarthCore\ExplorationTeamStudy.cs" />
-    <Compile Include="Assets\Script\AssetsManage\StudyItem\Cavern\EarthCore\AncientTacticsStudy.cs" />
     <Compile Include="Assets\Script\AssetsManage\StudyItem\Cavern\EarthCore\UnethicalAgreementStudy.cs" />
+    <Compile Include="Assets\Script\AssetsManage\StudyItem\Cavern\EarthCore\AncientTacticsStudy.cs" />
     <Compile Include="Assets\CSJ\Scripts\Api\Dummy\Mediation\MediationRewardManager.cs" />
     <Compile Include="Assets\Script\AssetsManage\StudyItem\Cavern\MineField\TelevisionStudy.cs" />
     <Compile Include="Assets\Script\AssetsManage\StudyItem\Cavern\MineField\MineralFilterStudy.cs" />
@@ -376,10 +387,13 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SkewTextExample.cs" />
     <Compile Include="Assets\CSJ\Scripts\Api\Listener\IExpressBannerInteractionListener.cs" />
     <Compile Include="Assets\Script\AssetsManage\StudyItem\Cavern\MineField\BankStudy.cs" />
+    <Compile Include="Assets\Script\AssetsManage\StudyItem\Cavern\EarthCore\DataBankStudy.cs" />
+    <Compile Include="Assets\Script\AssetsManage\StudyItem\Cavern\Excavate\TempleStudy.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\WarpTextExample.cs" />
     <Compile Include="Assets\CSJ\Scripts\Implementation\Android\AppDownloadListener.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshProFloatingText.cs" />
     <Compile Include="Assets\Script\AssetsManage\UlManage\TipsManager.cs" />
+    <Compile Include="Assets\Script\AssetsManage\StudyItem\System\DimensionalProductStudy.cs" />
     <Compile Include="Assets\CSJ\Scripts\Implementation\iOS\PangleConfiguration.cs" />
     <Compile Include="Assets\CSJ\Scripts\Api\PlayAgainCallbackBean.cs" />
     <Compile Include="Assets\Script\AssetsManage\Cavern\Clearing\ContainerManager.cs" />
@@ -387,6 +401,7 @@
     <Compile Include="Assets\Script\AssetsManage\StudyItem\Cavern\Excavate\PaintedStudy.cs" />
     <Compile Include="Assets\CSJ\Scripts\Api\Listener\ISplashAdListener.cs" />
     <Compile Include="Assets\Script\AssetsManage\Cavern\EarthCore\TungstenHarvesterManager.cs" />
+    <Compile Include="Assets\Script\AssetsManage\StudyItem\System\EntrepreneurStudy.cs" />
     <Compile Include="Assets\Script\AssetsManage\StudyItem\Cavern\MineField\ReinforcedConcreteStudy.cs" />
     <Compile Include="Assets\Script\AssetsManage\StudyItem\Cavern\MineField\RefinedIronSteelStudy.cs" />
     <Compile Include="Assets\Script\AssetsManage\Cavern\Mountain\LaboratoryManager.cs" />
@@ -396,6 +411,7 @@
     <Compile Include="Assets\Script\AssetsManage\StudyItem\Cavern\MineHill\CopperWorksStudy.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ShaderPropAnimator.cs" />
     <Compile Include="Assets\Script\AssetsManage\Cavern\Hole\PileOfOreManager.cs" />
+    <Compile Include="Assets\Script\AssetsManage\StudyItem\System\WorshipStudy.cs" />
     <Compile Include="Assets\Script\AssetsManage\StudyItem\Cavern\MineHill\AluminiumMiningStudy.cs" />
     <Compile Include="Assets\Script\AssetsManage\StudyItem\Cavern\Excavate\IronWarehouseStudy.cs" />
     <Compile Include="Assets\Script\AssetsManage\StudyItem\Cavern\EarthCore\SevenDaysCrashCourseStudy.cs" />
@@ -423,6 +439,7 @@
     <Compile Include="Assets\CSJ\Scripts\Implementation\UnityDispatcher.cs" />
     <Compile Include="Assets\Script\AssetsManage\StudyItem\Cavern\Excavate\PickaxeStudy.cs" />
     <Compile Include="Assets\CSJ\Scripts\Api\Dummy\Mediation\MediationFullScreenManager.cs" />
+    <Compile Include="Assets\Script\AssetsManage\UlManage\DynamicGridLayout.cs" />
     <Compile Include="Assets\CSJ\Scripts\Implementation\iOS\Ad\NativeAd.cs" />
     <Compile Include="Assets\Script\AssetsManage\StudyItem\Cavern\MineField\SpotMinerStudy.cs" />
     <Compile Include="Assets\Script\AssetsManage\StudyItem\Cavern\MineHill\TitaniumCollectorStudy.cs" />
@@ -443,6 +460,7 @@
     <Compile Include="Assets\CSJ\Scripts\Implementation\Android\Pangle.cs" />
     <Compile Include="Assets\Script\AssetsManage\StudyItem\Cavern\MineField\SocialInsuranceStudy.cs" />
     <Compile Include="Assets\Script\AssetsManage\MainManager.cs" />
+    <Compile Include="Assets\Script\AssetsManage\StudyItem\System\MultidimensionalWarehouseStudy.cs" />
     <Compile Include="Assets\Script\AssetsManage\StudyItem\Cavern\MineField\DrillBitStudy.cs" />
     <Compile Include="Assets\Script\AssetsManage\StudyItem\Cavern\MineHill\AlloyHammerStudy.cs" />
     <Compile Include="Assets\CSJ\Scripts\Implementation\Android\Ad\DrawFeedAd.cs" />
@@ -466,6 +484,7 @@
     <Compile Include="Assets\CSJ\Scripts\Api\SDKConfiguration.cs" />
     <Compile Include="Assets\CSJ\Scripts\Implementation\Android\Mediation\MediationBannerManager.cs" />
     <Compile Include="Assets\CSJ\Scripts\Implementation\iOS\Ad\DrawFeedAd.cs" />
+    <Compile Include="Assets\Script\AssetsManage\StatisticsPanel\StatisticsManger.cs" />
     <Compile Include="Assets\Script\AssetsManage\Cavern\Mountain\DiscoveryTowerManager.cs" />
     <Compile Include="Assets\Script\AssetsManage\Cavern\Clearing\ExcavatorManager.cs" />
     <Compile Include="Assets\Script\Save\SaveLoadManager.cs" />

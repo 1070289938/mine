@@ -17,8 +17,8 @@ public class TungstenArmorStudy : MonoBehaviour
     TechType techType = TechType.TungstenArmor;
     Dictionary<ResourceType, double> resources = new Dictionary<ResourceType, double>()
     {   //价格 软妹币 15M 科技点8k
-        [ResourceType.Currency] = AssetsUtil.ParseNumber("35M"),
-        [ResourceType.Science] = AssetsUtil.ParseNumber("30k"),
+        [ResourceType.Currency] = AssetsUtil.ParseNumber("45M"),
+        [ResourceType.Science] = AssetsUtil.ParseNumber("39k"),
         [ResourceType.Tungsten] = AssetsUtil.ParseNumber("5k"),
 
     }; //研究需要的资源

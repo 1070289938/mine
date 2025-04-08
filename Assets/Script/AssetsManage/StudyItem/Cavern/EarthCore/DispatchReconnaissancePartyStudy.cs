@@ -14,11 +14,11 @@ public class DispatchReconnaissancePartyStudy : MonoBehaviour
 
     string Successful = "据侦察队的汇报,表示发现中心有一个形状十分扭曲的四维传送门,猜测这里的所有地心犬都是从这里钻出来的,而侦察队再也没有回来......";
 
-    TechType techType = TechType.GoDeeper;
+    TechType techType = TechType.DispatchReconnaissanceParty;
     Dictionary<ResourceType, double> resources = new Dictionary<ResourceType, double>()
     {   //价格 软妹币 15M 科技点8k
-        [ResourceType.Currency] = AssetsUtil.ParseNumber("50M"),
-        [ResourceType.Science] = AssetsUtil.ParseNumber("50k"),
+        [ResourceType.Currency] = AssetsUtil.ParseNumber("150M"),
+        [ResourceType.Science] = AssetsUtil.ParseNumber("80k"),
 
     }; //研究需要的资源
     // Start is called before the first frame update
