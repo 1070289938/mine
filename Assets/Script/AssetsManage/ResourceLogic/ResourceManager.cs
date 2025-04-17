@@ -58,6 +58,17 @@ public class ResourceManager : MonoBehaviour
             [ResourceType.Tungsten] = 5,
         },
 
+
+        //秘银
+        [ResourceType.Mithril] = new()
+        { //每个秘银消耗=500银，10铱
+            [ResourceType.silver] = 500,
+            [ResourceType.Iridium] = 10,
+        },
+
+
+
+
     };
 
 

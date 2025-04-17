@@ -320,7 +320,10 @@ public enum FacilityType
     /// </summary>
     ExperimentalExplorer,
 
-
+  /// <summary>
+    /// 太空电梯
+    /// </summary>
+    SpaceElevator,
 
 }
 

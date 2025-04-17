@@ -36,8 +36,9 @@ public class IndustrialReserveStationManager : MonoBehaviour
         [ResourceType.Nickel] = AssetsUtil.ParseNumber("950"),//镍
         [ResourceType.Nanomaterials] = AssetsUtil.ParseNumber("500"),//纳米材料
 
-
-
+        [ResourceType.Iridium] = AssetsUtil.ParseNumber("800"),//铱矿
+        [ResourceType.Mithril] = AssetsUtil.ParseNumber("300"),//秘银
+        [ResourceType.Neutron] = AssetsUtil.ParseNumber("150"),//中子
     };
 
     readonly FacilityType type = FacilityType.IndustrialReserveStation;
@@ -91,6 +92,7 @@ public class IndustrialReserveStationManager : MonoBehaviour
         }
         reserves *= facilityPanelManager.GetCount();//数量相乘
         reserves *= up;//储存倍率相乘
+        reserves *= ResourceAdditionManager.Instance.GetReserveUp();
         return reserves;
     }
 

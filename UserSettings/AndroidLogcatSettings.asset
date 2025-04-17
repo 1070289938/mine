@@ -3,7 +3,7 @@
     "m_SelectedProcess": {
         "deviceId": "fbee128d",
         "name": "com.nangua.excavate",
-        "processId": 9669,
+        "processId": 13372,
         "exited": false
     },
     "m_SelectedPriority": 2,
@@ -108,6 +108,18 @@
             "deviceId": "fbee128d",
             "name": "com.nangua.excavate",
             "processId": 9669,
+            "exited": false
+        },
+        {
+            "deviceId": "fbee128d",
+            "name": "com.nangua.excavate",
+            "processId": 10171,
+            "exited": false
+        },
+        {
+            "deviceId": "fbee128d",
+            "name": "com.nangua.excavate",
+            "processId": 13372,
             "exited": false
         }
     ],

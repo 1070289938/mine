@@ -6,6 +6,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using UnityEngine;
+using UnityEngine.Android;
 using UnityEngine.UI;
 
 // 优化后的保存加载管理器类
@@ -63,6 +64,17 @@ public class SaveLoadManager : MonoBehaviour
         StartCoroutine(AutoSave());
         saveBtn.onClick.AddListener(Save);
     }
+
+  
+
+    void Start()
+    {
+        ExecuteStudiedTechs();
+        ResourceUpperLimitManager.Instance.RefreshUpperLimitAllResources();
+       
+    }
+
+
 
     /// <summary>
     /// 重生,清除掉除了系统资源之外的所有的资源
@@ -161,6 +173,7 @@ public class SaveLoadManager : MonoBehaviour
         }
         catch (Exception ex)
         {
+            LogManager.Instance.AddLog($"保存游戏数据时出错: {ex.Message}");
             Debug.LogError($"保存游戏数据时出错: {ex.Message}");
 
             // 出现错误时恢复备份文件
@@ -171,7 +184,7 @@ public class SaveLoadManager : MonoBehaviour
     private async Task SaveGameDataToFileAsync(GameData gameData)
     {
         BinaryFormatter formatter = new BinaryFormatter();
-        using (FileStream stream = new FileStream(saveFilePath, FileMode.Create))
+        using (FileStream stream = new FileStream(GetSaveFilePath(), FileMode.Create))
         {
             await Task.Run(() => formatter.Serialize(stream, gameData));
         }
@@ -355,12 +368,6 @@ public class SaveLoadManager : MonoBehaviour
         CalculatedProduction(gameData.facility, elapsedTime);
     }
 
-    void Start()
-    {
-        ExecuteStudiedTechs();
-        ResourceUpperLimitManager.Instance.RefreshUpperLimitAllResources();
-
-    }
 
     // 执行已研究完成的科技方法
     private void ExecuteStudiedTechs()
@@ -399,6 +406,41 @@ public class SaveLoadManager : MonoBehaviour
             }
 
         }
+    }
+
+    // 封装根据平台获取存档路径的方法
+    private string GetSaveFilePath()
+    {
+
+        string filePath;
+
+        switch (Application.platform)
+        {
+            case RuntimePlatform.Android:
+                // 获取安卓外部存储公共目录
+                AndroidJavaClass environment = new AndroidJavaClass("android.os.Environment");
+                AndroidJavaObject externalStorageDirectory = environment.CallStatic<AndroidJavaObject>("getExternalStorageDirectory");
+                string externalPath = externalStorageDirectory.Call<string>("getPath");
+                filePath = Path.Combine(externalPath, saveFileName);
+                break;
+            case RuntimePlatform.IPhonePlayer:
+                // 获取 iOS 公共目录，这里以 Application.dataPath 为例
+                filePath = Path.Combine(Application.dataPath, saveFileName);
+                break;
+            case RuntimePlatform.WindowsPlayer:
+                // 获取 Windows 公共文档目录
+                string publicDocumentsPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.CommonDocuments);
+                filePath = Path.Combine(publicDocumentsPath, saveFileName);
+                break;
+            default:
+                // 默认使用持久化数据路径
+                filePath = Path.Combine(Application.persistentDataPath, saveFileName);
+                break;
+        }
+        Debug.Log("保存设备:" + Application.platform);
+        Debug.Log("保存路径:" + filePath);
+        LogManager.Instance.AddLog("保存路径:" + filePath);
+        return filePath;
     }
 
     // 离线资源的倍数

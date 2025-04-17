@@ -61,6 +61,12 @@ public class ResourceUpperLimitManager : MonoBehaviour
         UpperNickel();//计算镍矿上限
         UpperNanomaterials();//计算纳米材料上限
         UpperGeocentricRock();//计算地心岩上限
+
+        UpperIridium();//铱
+        UpperMithril();//秘银
+        UpperNeutron();//中子
+
+
     }
     /// <summary>
     /// 计算软妹币上限
@@ -337,6 +343,45 @@ public class ResourceUpperLimitManager : MonoBehaviour
         reserves *= ResourceAdditionManager.Instance.GetAllReservesUp();//获取所有的储量加成
         ResourceShowManager resourceShow = ResourceManager.Instance.resourceManager[ResourceType.GeocentricRock];
         resourceShow.SetMaxStorage(reserves);//地心岩设置上限
+    }
+
+    /// <summary>
+    /// 计算铱矿上限
+    /// 铱矿上限 =  仓库储量
+    /// </summary>
+    void UpperIridium()
+    {
+        double reserves = 100; //基本储量0
+        reserves += industrialReserveStationManager.GetReserves(ResourceType.Iridium);//获取工业储备站储量
+        reserves *= ResourceAdditionManager.Instance.GetAllReservesUp();//获取所有的储量加成
+        ResourceShowManager resourceShow = ResourceManager.Instance.resourceManager[ResourceType.Iridium];
+        resourceShow.SetMaxStorage(reserves);//铱矿上限
+    }
+
+    /// <summary>
+    /// 计算秘银上限
+    /// 秘银上限 =  仓库储量
+    /// </summary>
+    void UpperMithril()
+    {
+        double reserves = 100; //基本储量0
+        reserves += industrialReserveStationManager.GetReserves(ResourceType.Mithril);//获取工业储备站储量
+        reserves *= ResourceAdditionManager.Instance.GetAllReservesUp();//获取所有的储量加成
+        ResourceShowManager resourceShow = ResourceManager.Instance.resourceManager[ResourceType.Mithril];
+        resourceShow.SetMaxStorage(reserves);//秘银设置上限
+    }
+
+    /// <summary>
+    /// 计算中子上限
+    /// 秘银上限 =  仓库储量
+    /// </summary>
+    void UpperNeutron()
+    {
+        double reserves = 100; //基本储量0
+        reserves += industrialReserveStationManager.GetReserves(ResourceType.Neutron);//获取工业储备站储量
+        reserves *= ResourceAdditionManager.Instance.GetAllReservesUp();//获取所有的储量加成
+        ResourceShowManager resourceShow = ResourceManager.Instance.resourceManager[ResourceType.Neutron];
+        resourceShow.SetMaxStorage(reserves);//中子设置上限
     }
 
 

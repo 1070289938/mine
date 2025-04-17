@@ -28,4 +28,9 @@ public enum SpecialOptionType
     /// </summary>
     DoomPortal,
 
+      /// <summary>
+    /// 测试实验型探索者
+    /// </summary>
+    TestExperimentalExplorer,
+
 }

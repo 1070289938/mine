@@ -101,6 +101,8 @@ public class DiscoveryTowerManager : MonoBehaviour
 
             reserves *= (geocentricStudy.GetCount() * 0.08) + 1;
         }
+        reserves *= ResourceAdditionManager.Instance.GetTechnologicalUp();//科技上限加成
+
 
         return reserves;
     }

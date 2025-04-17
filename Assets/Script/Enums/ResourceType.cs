@@ -132,6 +132,27 @@ public enum ResourceType
   [DisplayName("四维宝石")]
   DimensionalStone,//四维宝石
 
+
+  /// <summary>
+  /// 铱
+  /// </summary>
+  [DisplayName("铱")]
+  Iridium,//铱
+
+  /// <summary>
+  /// 秘银
+  /// </summary>
+  [DisplayName("秘银")]
+  Mithril,//秘银
+
+
+  /// <summary>
+  /// 中子
+  /// </summary>
+  [DisplayName("中子")]
+  Neutron,//中子
+
+
 }
 
 

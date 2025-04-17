@@ -90,6 +90,8 @@ public class RegeneratedCrystalManager : MonoBehaviour
             value = max;
         }
         // 计算 (ln(value + 50) - 3.91202) / 2.888
-        return (Math.Log(value + 50) - 3.91202) / 2.888;
+        // return (Math.Log(value + 50) - 3.91202) / 2.888;
+
+        return 10000;
     }
 }

@@ -25,6 +25,8 @@ public class ResourceAdditionManager : MonoBehaviour
     double collectorMarkup = 1;//采集器加成
     double science = 1;//科技点加成
 
+    double technological = 1;//科技点上限
+
     double factory = 1;//工厂加成
 
     ////////////////////////////////////////////////////专项加成////////////////////////////////////////////////////////////////////////////
@@ -36,6 +38,13 @@ public class ResourceAdditionManager : MonoBehaviour
     double aluminum = 1;//铝的专项加成
 
     double titanium = 1;//钛的专项加成
+
+
+    double mithril = 1;//秘银的专项加成
+
+    double neutron = 1;//中子专项加成
+
+
     ////////////////////////////////////////////////////房屋类////////////////////////////////////////////////////////////////////////////
     double tenementComfort = 1;//房屋坚固程度加成
     double tenementBasics = 1;//房屋基础加成
@@ -65,6 +74,16 @@ public class ResourceAdditionManager : MonoBehaviour
 
     double temple = 1;//寺庙效率
 
+    double reserve = 1;//储备站加成
+    double stash = 1;//仓库加成
+
+    double marsResearch = 1;//火星研究站的效率
+
+    double lunarMaterialStation = 1;//月球物资站加成
+
+    double travel = 1;//旅游加成
+
+    int colonization = 0;//额外殖民加成
 
     public OreCarManager oreCarManager;//矿车管理
     public MineralScreeningMachineManager mineralScreeningMachineManager;//矿物筛选器
@@ -94,6 +113,12 @@ public class ResourceAdditionManager : MonoBehaviour
 
     public GiantMonumentManager giantMonumentManager;//纪念碑
 
+    public ArtificialSatelliteManager artificialSatelliteManager;//人造卫星
+
+
+    public LunarMaterialStationManager lunarMaterialStationManager;//月球物资站
+
+    public LunarDataStationManager lunarDataStationManager;//月球资料站
 
     public static ResourceAdditionManager Instance { get; private set; }
 
@@ -317,17 +342,6 @@ public class ResourceAdditionManager : MonoBehaviour
     //↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓仓储加成↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
 
 
-    /// <summary>
-    /// 获取仓库储量加成
-    /// </summary>
-    /// <returns></returns>
-    public double GetStashUp()
-    {
-        double basics = 1; //基础加成是0
-
-
-        return basics;
-    }
 
 
 
@@ -801,6 +815,8 @@ public class ResourceAdditionManager : MonoBehaviour
         double basics = 0; //基础加成是0
         basics += science;
         basics += geocentricResearchInstituteManager.GetUp();//地心研究所的提升
+        basics += artificialSatelliteManager.GetUp();//人造卫星的提升
+
         return basics;
     }
 
@@ -937,6 +953,202 @@ public class ResourceAdditionManager : MonoBehaviour
 
         return basics;
     }
+
+
+
+
+    /// <summary>
+    /// 提升储备站加成
+    /// </summary>
+    /// <param name="count"></param>
+    public void AddReserve(double count)
+    {
+        reserve *= 1 + count;
+    }
+    /// <summary>
+    /// 获取储备站加成
+    /// </summary>
+    /// <returns></returns>
+    public double GetReserveUp()
+    {
+        double basics = 0; //基础加成是0
+        basics += reserve;
+        basics += lunarMaterialStationManager.GetUp();
+        return basics;
+    }
+
+
+
+    /// <summary>
+    /// 提升仓库加成
+    /// </summary>
+    /// <param name="count"></param>
+    public void AddStash(double count)
+    {
+        stash *= 1 + count;
+    }
+    /// <summary>
+    /// 获取仓库加成
+    /// </summary>
+    /// <returns></returns>
+    public double GetStashUp()
+    {
+        double basics = 0; //基础加成是0
+        basics += stash;
+        return basics;
+    }
+
+
+
+    /// <summary>
+    /// 提升科技上限加成
+    /// </summary>
+    /// <param name="count"></param>
+    public void AddTechnological(double count)
+    {
+        technological *= 1 + count;
+    }
+    /// <summary>
+    /// 获取科技上限加成
+    /// </summary>
+    /// <returns></returns>
+    public double GetTechnologicalUp()
+    {
+        double basics = 0; //基础加成是0
+        basics += technological;
+        basics += lunarDataStationManager.GetUp();
+        return basics;
+    }
+
+
+    /// <summary>
+    /// 提升月球物资站加成
+    /// </summary>
+    /// <param name="count"></param>
+    public void AddLunarMaterialStation(double count)
+    {
+        lunarMaterialStation *= 1 + count;
+    }
+    /// <summary>
+    /// 获取月球物资站加成
+    /// </summary>
+    /// <returns></returns>
+    public double GetLunarMaterialStationUp()
+    {
+        double basics = 0; //基础加成是0
+        basics += lunarMaterialStation;
+
+        return basics;
+    }
+
+
+
+    /// <summary>
+    /// 提升旅游加成
+    /// </summary>
+    /// <param name="count"></param>
+    public void AddTravel(double count)
+    {
+        travel *= 1 + count;
+    }
+    /// <summary>
+    /// 获取旅游加成
+    /// </summary>
+    /// <returns></returns>
+    public double GetTravelUp()
+    {
+        double basics = 0; //基础加成是0
+        basics += travel;
+
+        return basics;
+    }
+
+    // <summary>
+    /// 提升额外殖民点数
+    /// </summary>
+    /// <param name="count"></param>
+    public void AddColonization(int count)
+    {
+        colonization += count;
+    }
+    /// <summary>
+    /// 获取额外殖民点数
+    /// </summary>
+    /// <returns></returns>
+    public int GetColonizationUp()
+    {
+        int basics = 0; //基础加成是0
+        basics += colonization;
+
+        return basics;
+    }
+
+
+
+    /// <summary>
+    /// 提升秘銀加成
+    /// </summary>
+    /// <param name="count"></param>
+    public void AddMithril(double count)
+    {
+        travel *= 1 + mithril;
+    }
+    /// <summary>
+    /// 获取秘銀加成
+    /// </summary>
+    /// <returns></returns>
+    public double GetMithrilUp()
+    {
+        double basics = 0; //基础加成是0
+        basics += mithril;
+
+        return basics;
+    }
+
+
+    /// <summary>
+    /// 提升火星研究站加成
+    /// </summary>
+    /// <param name="count"></param>
+    public void AddMarsResearch(double count)
+    {
+        travel *= 1 + marsResearch;
+    }
+    /// <summary>
+    /// 获取火星研究站加成
+    /// </summary>
+    /// <returns></returns>
+    public double GetMarsResearchUp()
+    {
+        double basics = 0; //基础加成是0
+        basics += marsResearch;
+
+        return basics;
+    }
+
+
+
+
+  /// <summary>
+    /// 提升中子加成
+    /// </summary>
+    /// <param name="count"></param>
+    public void AddNeutron(double count)
+    {
+        travel *= 1 + neutron;
+    }
+    /// <summary>
+    /// 获取中子加成
+    /// </summary>
+    /// <returns></returns>
+    public double GetNeutronUp()
+    {
+        double basics = 0; //基础加成是0
+        basics += neutron;
+
+        return basics;
+    }
+
 
 
 }

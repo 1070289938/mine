@@ -685,6 +685,21 @@ public enum TechType
     /// 不道德协议
     /// </summary>
     UnethicalAgreement,
+
+    /// <summary>
+    /// 登天计划
+    /// </summary>
+    LandingPlan,
+    /// <summary>
+    /// 太空电梯
+    /// </summary>
+    SpaceElevator,
+    /// <summary>
+    /// 太空电梯搭建完成
+    /// </summary>
+    CompletionConstruction,
+
+
     //==============================================太空科技===================================================
 
     /// <summary>
@@ -1016,14 +1031,19 @@ public enum TechType
     /// 太空船坞
     /// </summary>
     SpaceDock,
-
+    /// <summary>
+    /// 完成船坞
+    /// </summary>
+    CompleteSpaceDock,
     /// <summary>
     /// 实验性探索者
     /// </summary>
     ExperimentalExplorer,
 
-
-
+    /// <summary>
+    /// 完成探索者的搭建
+    /// </summary>
+    CompleteExperimentalExplorer,
 
 
 
