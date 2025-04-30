@@ -51,6 +51,19 @@ public class NeutronCollectorManager : MonoBehaviour
         facilityPanelManager.press = OnMineButtonClicked;
 
         InstallOutPut();
+        facilityPanelManager.InstallDemandPoints(1, GetRemainingDemand, AddThisCount);
+
+    }
+
+    int GetRemainingDemand()
+    {
+        return MarsPanelManager.Instance.GetRemainingDemand();
+
+    }
+
+    void AddThisCount(int count)
+    {
+        MarsPanelManager.Instance.AddThisCount(count);
     }
 
 
@@ -95,7 +108,7 @@ public class NeutronCollectorManager : MonoBehaviour
             count *= ResourceAdditionManager.Instance.GetNeutronUp();//加上专属加成
 
             //每帧增加软妹币
-            IncrementReturn increment = ResourceManager.Instance.AddResource(ResourceType.Neutron, count * Time.deltaTime);
+            IncrementReturn increment = ResourceManager.Instance.AddResource(ResourceType.Neutron, count * Time.deltaTime,true);
 
             //计算出每秒产出多少资源
             double secondCount = increment.Count / Time.deltaTime;

@@ -47,7 +47,21 @@ public class MarsResearchStationManager : MonoBehaviour
         facilityPanelManager.SetOnClickedResource(resources);  //设置基础消耗
         facilityPanelManager.press = OnMineButtonClicked;
 
+        facilityPanelManager.InstallDemandPoints(1, GetRemainingDemand, AddThisCount);
+
     }
+
+    int GetRemainingDemand()
+    {
+        return MarsPanelManager.Instance.GetRemainingDemand();
+
+    }
+
+    void AddThisCount(int count)
+    {
+        MarsPanelManager.Instance.AddThisCount(count);
+    }
+
 
     /// <summary>
     /// 获得提升
@@ -60,7 +74,7 @@ public class MarsResearchStationManager : MonoBehaviour
         }
         double basics = 0;//基础值
         basics += up * facilityPanelManager.GetCount();
-        basics*= ResourceAdditionManager.Instance.GetMarsResearchUp();
+        basics *= ResourceAdditionManager.Instance.GetMarsResearchUp();
         return basics;
 
     }

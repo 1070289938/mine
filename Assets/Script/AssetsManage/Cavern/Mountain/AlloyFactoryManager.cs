@@ -129,7 +129,7 @@ public class AlloyFactoryManager : MonoBehaviour
         }
 
         //每帧增加钢铁
-        IncrementReturn increment = ResourceManager.Instance.AddResource(ResourceType.Alloy, thisYield);
+        IncrementReturn increment = ResourceManager.Instance.AddResource(ResourceType.Alloy, thisYield,true);
 
 
 

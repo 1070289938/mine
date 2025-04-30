@@ -135,7 +135,7 @@ public class IronSteelFoundryManager : MonoBehaviour
         }
 
         //每帧增加钢铁
-        IncrementReturn increment = ResourceManager.Instance.AddResource(ResourceType.Steel, thisYield);
+        IncrementReturn increment = ResourceManager.Instance.AddResource(ResourceType.Steel, thisYield,true);
 
 
 

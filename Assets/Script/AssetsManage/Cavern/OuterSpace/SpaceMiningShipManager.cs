@@ -94,7 +94,7 @@ public class SpaceMiningShipManager : MonoBehaviour
             count *= ResourceAdditionManager.Instance.GetIronMineUp();//加上铁矿专项加成
 
             //每帧增加软妹币
-            IncrementReturn increment = ResourceManager.Instance.AddResource(ResourceType.Iron, count * Time.deltaTime);
+            IncrementReturn increment = ResourceManager.Instance.AddResource(ResourceType.Iron, count * Time.deltaTime,true);
 
 
 

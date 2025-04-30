@@ -59,7 +59,7 @@ public class DecomposingMetalManager : MonoBehaviour
 
         //在显示旁白的期间重启
         //固定增加50重生晶体
-        ResourceManager.Instance.AddResource(ResourceType.RegeneratedCrystal, 20);
+        ResourceManager.Instance.AddResource(ResourceType.RegeneratedCrystal, 20,false);
 
         //先清空所有的科技
         SaveLoadManager.Instance.SecondLife();

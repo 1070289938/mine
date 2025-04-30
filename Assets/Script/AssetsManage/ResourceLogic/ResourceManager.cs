@@ -206,7 +206,7 @@ public class ResourceManager : MonoBehaviour
     /// <summary>
     /// 增加资源
     /// </summary>
-    public IncrementReturn AddResource(ResourceType type, double amount)
+    public IncrementReturn AddResource(ResourceType type, double amount, bool calculation)
     {
 
 
@@ -224,16 +224,19 @@ public class ResourceManager : MonoBehaviour
         UnlockResource(type);
 
         double count = amount;
-
-        //计算重生晶体的产量
-        if (!special.ContainsKey(type))
+        if (calculation)
         {
-            count *= RegeneratedCrystalManager.Instance.addition;
+            //计算重生晶体的产量
+            if (!special.ContainsKey(type))
+            {
+                count *= RegeneratedCrystalManager.Instance.addition;
 
 
-            count *= ResourceAdditionManager.Instance.GetAllAssetsUp();
+                count *= ResourceAdditionManager.Instance.GetAllAssetsUp();
 
+            }
         }
+
 
 
 

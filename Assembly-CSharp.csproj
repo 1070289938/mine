@@ -101,6 +101,7 @@
     <Compile Include="Assets\Example\Example.cs" />
     <Compile Include="Assets\Script\AssetsManage\Cavern\Clearing\IndustrialReserveStationManager.cs" />
     <Compile Include="Assets\CSJ\Scripts\Implementation\Android\Ad\RewardVideoAd.cs" />
+    <Compile Include="Assets\Script\AssetsManage\UlManage\Tips\ExchangeManager.cs" />
     <Compile Include="Assets\Script\AssetsManage\StudyItem\Cavern\MineField\AdvancedSteelmakingStudy.cs" />
     <Compile Include="Assets\Script\AssetsManage\Cavern\Mountain\StoneMillManager.cs" />
     <Compile Include="Assets\CSJ\Scripts\Api\Listener\IFeedAdListener.cs" />
@@ -134,6 +135,7 @@
     <Compile Include="Assets\CSJ\Scripts\Implementation\Android\RewardBundleModel.cs" />
     <Compile Include="Assets\Script\AssetsManage\Cavern\OuterSpace\MarsTouristStationManager.cs" />
     <Compile Include="Assets\CSJ\Scripts\Api\AdConst.cs" />
+    <Compile Include="Assets\Script\Save\SaveManager.cs" />
     <Compile Include="Assets\Script\AssetsManage\StudyItem\Cavern\OuterSpace\SpaceFactoryStudy.cs" />
     <Compile Include="Assets\Script\AssetsManage\Cavern\Mountain\MetalRefineryManager.cs" />
     <Compile Include="Assets\Script\AssetsManage\StudyItem\Cavern\OuterSpace\MithrilVaultStudy.cs" />
@@ -147,6 +149,7 @@
     <Compile Include="Assets\Script\AssetsManage\StudyItem\Cavern\EarthCore\FanaticStudy.cs" />
     <Compile Include="Assets\Script\Util\NetworkTimeApiHelper.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\DropdownSample.cs" />
+    <Compile Include="Assets\Script\API\DeviceIdGetter.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexColorCycler.cs" />
     <Compile Include="Assets\Script\AssetsManage\StudyItem\Cavern\OuterSpace\ZeroGravityLaboratoryStudy.cs" />
     <Compile Include="Assets\Script\AssetsManage\StudyItem\Cavern\EarthCore\NanoprosthesisStudy.cs" />
@@ -205,6 +208,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_A.cs" />
     <Compile Include="Assets\CSJ\Scripts\Implementation\Android\Mediation\MediationSplashManager.cs" />
     <Compile Include="Assets\Script\AssetsManage\Cavern\OuterSpace\MithrilForgeManager.cs" />
+    <Compile Include="Assets\Script\AssetsManage\RedeemCodeManager.cs" />
     <Compile Include="Assets\CSJ\Scripts\Api\Dummy\Mediation\MediationNativeManager.cs" />
     <Compile Include="Assets\Script\AssetsManage\StudyItem\Cavern\EarthCore\ProtectiveSuitStudy.cs" />
     <Compile Include="Assets\Script\AssetsManage\Cavern\OuterSpace\SpaceMiningShipManager.cs" />
@@ -270,6 +274,7 @@
     <Compile Include="Assets\Script\AssetsManage\StudyItem\Cavern\MineHill\ReservePlanningStudy.cs" />
     <Compile Include="Assets\Script\AssetsManage\StudyItem\Cavern\MineField\TrainStudy.cs" />
     <Compile Include="Assets\CSJ\Scripts\Api\Dummy\Ad\NativeAd.cs" />
+    <Compile Include="Assets\Script\AssetsManage\Cavern\OuterSpace\MarsPanelManager.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_PhoneNumberValidator.cs" />
     <Compile Include="Assets\Script\AssetsManage\StudyItem\Cavern\MineHill\CementFactoryStudy.cs" />
     <Compile Include="Assets\Script\AssetsManage\StudyItem\Cavern\OuterSpace\NearSpaceExplorationStudy.cs" />
@@ -277,6 +282,7 @@
     <Compile Include="Assets\Script\AssetsManage\StudyItem\Cavern\MineField\ContainerStudy.cs" />
     <Compile Include="Assets\Script\AssetsManage\StudyItem\Cavern\OuterSpace\MarsExplorationStudy.cs" />
     <Compile Include="Assets\Script\AssetsManage\StudyItem\Cavern\MineField\ScrewConveyorStudy.cs" />
+    <Compile Include="Assets\Script\AssetsManage\UlManage\Tips\LoadManager.cs" />
     <Compile Include="Assets\Script\AssetsManage\StudyItem\Cavern\EarthCore\LavaSuitStudy.cs" />
     <Compile Include="Assets\Script\AssetsManage\StudyItem\Cavern\EarthCore\NickelHarvesterStudy.cs" />
     <Compile Include="Assets\Script\AssetsManage\StudyItem\Cavern\EarthCore\NanowarehouseStudy.cs" />
@@ -387,6 +393,7 @@
     <Compile Include="Assets\Script\AssetsManage\StudyItem\Cavern\Excavate\ChiselStudy.cs" />
     <Compile Include="Assets\Script\Enums\TechType.cs" />
     <Compile Include="Assets\Script\Text\FloatingText.cs" />
+    <Compile Include="Assets\Script\AssetsManage\PermissionRequestManager.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexZoom.cs" />
     <Compile Include="Assets\Script\AssetsManage\StudyItem\Cavern\OuterSpace\DependentCollectorStudy.cs" />
     <Compile Include="Assets\Script\AssetsManage\StudyItem\Cavern\OuterSpace\MoonTavernStudy.cs" />
@@ -397,6 +404,7 @@
     <Compile Include="Assets\Example\LogUtils.cs" />
     <Compile Include="Assets\Script\AssetsManage\StudyItem\Cavern\EarthCore\AnalyticLanguageStudy.cs" />
     <Compile Include="Assets\Script\AssetsManage\StudyItem\Cavern\OuterSpace\MarsIndustryStudy.cs" />
+    <Compile Include="Assets\Script\AssetsManage\UlManage\RotationAnimation.cs" />
     <Compile Include="Assets\Script\AssetsManage\UlManage\Tips\RevenueManager.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark02.cs" />
     <Compile Include="Assets\Example\CSJMDAdPositionId.cs" />
@@ -459,6 +467,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshProFloatingText.cs" />
     <Compile Include="Assets\Script\AssetsManage\UlManage\TipsManager.cs" />
     <Compile Include="Assets\Script\AssetsManage\StudyItem\System\DimensionalProductStudy.cs" />
+    <Compile Include="Assets\Script\AssetsManage\SystemManage\AccelerateImmediatelyManager.cs" />
     <Compile Include="Assets\CSJ\Scripts\Implementation\iOS\PangleConfiguration.cs" />
     <Compile Include="Assets\CSJ\Scripts\Api\PlayAgainCallbackBean.cs" />
     <Compile Include="Assets\Script\AssetsManage\Cavern\Clearing\ContainerManager.cs" />

@@ -29,8 +29,8 @@ public class MarsSpaceStationManager : MonoBehaviour
     Dictionary<ResourceType, double> resources = new Dictionary<ResourceType, double>()
     {
         //基础消耗=12k科技点,600秘银
-        [ResourceType.Science] = AssetsUtil.ParseNumber("12k"),
-        [ResourceType.Mithril] = 600,
+        [ResourceType.Science] = AssetsUtil.ParseNumber("120k"),
+        [ResourceType.Mithril] = 2000,
     };
 
     // Start is called before the first frame update

@@ -97,7 +97,7 @@ public class LaboratoryManager : MonoBehaviour
             count *= ResourceAdditionManager.Instance.GetScienceUp();//加上科技点的提升
 
             //每帧增加科技点
-            IncrementReturn increment = ResourceManager.Instance.AddResource(ResourceType.Science, count * Time.deltaTime);
+            IncrementReturn increment = ResourceManager.Instance.AddResource(ResourceType.Science, count * Time.deltaTime,true);
 
             //计算出每秒产出多少资源
             double secondCount = increment.Count / Time.deltaTime;

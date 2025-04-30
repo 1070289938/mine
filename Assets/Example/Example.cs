@@ -22,7 +22,7 @@ public sealed class Example : MonoBehaviour
 
     public RewardVideoAd rewardAd;               // 激励视频，支持csj和融合
 
-
+    public static Example example;
 
     // Unity 主线程ID:
     public static int MainThreadId;
@@ -33,7 +33,7 @@ public sealed class Example : MonoBehaviour
 
     private void Awake()
     {
-
+        example = this;
         MainThreadId = Thread.CurrentThread.ManagedThreadId;
     }
 
@@ -123,9 +123,10 @@ public sealed class Example : MonoBehaviour
 
     /* 💛💛💛💛💛💛💛💛💛💛💛💛💛💛 ↓↓↓↓↓↓↓↓↓↓ 激励视频相关样例 ↓↓↓↓↓↓↓↓↓↓ 💛💛💛💛💛💛💛💛💛💛💛💛💛💛 */
     // Show the reward Ad.  最终调用该方法，播放广告
-    public void ShowRewardAd(Action action)
-    {
-        ExampleRewardAd.LoadReward(this, action);
+    public void ShowRewardAd(Action action,Action onClickAction)
+    {   
+        TipsManager.Instance.ShowBackLoad();
+        ExampleRewardAd.LoadReward(this, action,onClickAction);
     }
     /* 💛💛💛💛💛💛💛💛💛💛💛💛💛💛 ↑↑↑↑↑↑↑↑↑↑ 激励视频相关样例 ↑↑↑↑↑↑↑↑↑↑ 💛💛💛💛💛💛💛💛💛💛💛💛💛💛 */
 

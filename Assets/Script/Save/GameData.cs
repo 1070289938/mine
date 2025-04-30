@@ -24,7 +24,7 @@ public class GameData
     public long dailyBonus;//每日奖励上次点击时间
 
     public long productionAcceleration;//双倍加速奖励上次点击事件
-
+    public long AccelerateImmediately;//立即加速上次点击时间
     public long saveTime;//保存时间
 
     public int militaryStrength;//当前兵力
@@ -34,5 +34,9 @@ public class GameData
     public int dangerValue;//当前危险值
     public bool autofill;//自动填充
     public int secondLifeCount;//重生次数
+
+
+    public int marsPoints;//火星制造点数
+
 
 }

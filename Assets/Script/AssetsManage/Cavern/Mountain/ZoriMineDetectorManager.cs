@@ -99,7 +99,7 @@ public class ZoriMineDetectorManager : MonoBehaviour
 
 
             //每帧增加佐里旬
-            IncrementReturn increment = ResourceManager.Instance.AddResource(ResourceType.Zorizun, count * Time.deltaTime);
+            IncrementReturn increment = ResourceManager.Instance.AddResource(ResourceType.Zorizun, count * Time.deltaTime,true);
 
             //计算出每秒产出多少资源
             double secondCount = increment.Count / Time.deltaTime;

@@ -92,7 +92,7 @@ public class CoalWorkerManager : MonoBehaviour
 
 
             //每帧增加煤矿
-            IncrementReturn increment = ResourceManager.Instance.AddResource(ResourceType.Colliery, count * Time.deltaTime);
+            IncrementReturn increment = ResourceManager.Instance.AddResource(ResourceType.Colliery, count * Time.deltaTime,true);
             Debug.Log(count);
             //计算出每秒产出多少资源
             double secondCount = increment.Count / Time.deltaTime;

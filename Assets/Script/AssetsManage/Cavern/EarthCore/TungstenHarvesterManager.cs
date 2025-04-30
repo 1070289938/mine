@@ -88,7 +88,7 @@ public class TungstenHarvesterManager : MonoBehaviour
             output *= ResourceAdditionManager.Instance.GetCollectorMarkUp();//加上采集器的提升
 
             //每帧增加镍矿
-            IncrementReturn increment = ResourceManager.Instance.AddResource(ResourceType.Tungsten, output * Time.deltaTime);
+            IncrementReturn increment = ResourceManager.Instance.AddResource(ResourceType.Tungsten, output * Time.deltaTime,true);
 
             //计算出每秒产出多少资源
             double secondCount = increment.Count / Time.deltaTime;

@@ -116,7 +116,7 @@ public class TavernManager : MonoBehaviour
             count *= ResourceAdditionManager.Instance.GetRMBboostUp();//软妹币产量加成   
 
             //每帧增加软妹币
-            IncrementReturn increment = ResourceManager.Instance.AddResource(ResourceType.Currency, count * Time.deltaTime);
+            IncrementReturn increment = ResourceManager.Instance.AddResource(ResourceType.Currency, count * Time.deltaTime,true);
 
             //计算出每秒产出多少资源
             double secondCount = increment.Count / Time.deltaTime;

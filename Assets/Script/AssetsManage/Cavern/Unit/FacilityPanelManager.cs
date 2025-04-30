@@ -48,6 +48,8 @@ public class FacilityPanelManager : MonoBehaviour
 
     bool quantityFlag = false;//可以修改运行数量(默认没有)
 
+    bool demandPoints = false;//需要建筑点数(默认没有)
+
     string btnText;
 
     int scheduleCount = 0;
@@ -79,7 +81,7 @@ public class FacilityPanelManager : MonoBehaviour
     public void Awake()
     {
         gameObject.SetActive(show);
-       
+
         miningButton.onClick.AddListener(OnButtonClick);
     }
 
@@ -125,7 +127,22 @@ public class FacilityPanelManager : MonoBehaviour
         JudgmentResult result = ResourceManager.Instance.OnlyJudgmentResource(expendResources);
         ColorBlock colors = miningButton.colors;
         Color color;
-        if (result.flag)
+
+        bool points = true;
+        //判断建造的点数是否足够
+        if (demandPoints)
+        {
+            int remainingDemand = this.remainingDemand();
+            if (remainingDemand < demandCount)
+            {
+                //点数不足就是灰的
+                points = false;
+            }
+        }
+
+
+
+        if (result.flag && points)
         {
             color = Utils.HexToColor("86E37F");
         }
@@ -392,7 +409,26 @@ public class FacilityPanelManager : MonoBehaviour
     private void OnMineButtonClicked()
     {
         Dictionary<ResourceType, double> expendResources = UpdateRequirements();//更新一下价格
+
         //更新所需资源
+
+
+        //判断需求的点数是否足够
+        if (demandPoints)
+        {
+            int remainingDemand = this.remainingDemand();
+            if (remainingDemand < demandCount)
+            {
+
+                //点数不足不进行操作
+                return;
+            }
+
+
+        }
+
+
+
 
         //判断资源是否足够
         JudgmentResult result = ResourceManager.Instance.JudgmentResource(expendResources);
@@ -407,6 +443,12 @@ public class FacilityPanelManager : MonoBehaviour
             }
             return;
         }
+        //增加点数
+        if (demandPoints)
+        {
+            addThisCount.Invoke(demandCount);
+        }
+
         //执行按钮方法
         press.Invoke();
         UpdateRequirements();//更新价格
@@ -553,5 +595,23 @@ public class FacilityPanelManager : MonoBehaviour
     {
         return thisOutput;
     }
+
+    int demandCount;//需求数量
+
+
+    Func<int> remainingDemand;//剩余点数
+
+
+    Action<int> addThisCount;//增加点数
+    //初始化需求点数
+    public void InstallDemandPoints(int demandCount, Func<int> remainingDemand, Action<int> addThisCount)
+    {
+        demandPoints = true;
+        this.demandCount = demandCount;
+        this.remainingDemand = remainingDemand;
+        this.addThisCount = addThisCount;
+    }
+
+
 
 }

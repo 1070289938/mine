@@ -76,8 +76,8 @@ public class TapInstall : MonoBehaviour
                     tapId = account.unionId,
                     tapGameId = account.openId
                 };
-
-                PostManager.Instance.ToPost("user/tapLogin", JsonUtility.ToJson(loginBean), ReturnContent);
+                Utils.SetUserId(account.unionId);
+                SceneManager.LoadScene("GameScene");
             }
         }
         catch (Exception e)
@@ -110,8 +110,9 @@ public class TapInstall : MonoBehaviour
                 tapId = userInfo.unionId,
                 tapGameId = userInfo.openId
             };
+            Utils.SetUserId(userInfo.unionId);
+            SceneManager.LoadScene("GameScene");
 
-            PostManager.Instance.ToPost("user/tapLogin", JsonUtility.ToJson(loginBean), ReturnContent);
 
         }
         catch (TaskCanceledException)
@@ -122,34 +123,6 @@ public class TapInstall : MonoBehaviour
         {
             Debug.Log($"登录失败，出现异常：{exception}");
         }
-    }
-
-    void ReturnContent(string body)
-    {
-        // Debug.Log(body);
-        // ReturnBean returnBean = JsonUtility.FromJson<ReturnBean>(body);
-        // if (returnBean.code == 200)
-        // {
-        //     UserInfoBean infoBean = Utils.ConvertToType<UserInfoBean>(returnBean.data);
-        //     Utils.SetUserId(infoBean.userId);
-        //     MessagePopup.Instance.ShowMessage("登陆成功!");
-        //     StartCoroutine(GoGame());
-        // }
-        // else
-        // {
-        //     MessagePopup.Instance.ShowMessage("网络异常!");
-        // }
-
-        // IEnumerator GoGame()
-        // {
-        //     // 等待一秒
-        //     yield return new WaitForSeconds(0.5f);
-        //     // 等待结束后执行的代码
-        //     SceneManager.LoadScene("GameScene");
-        // }
-
-
-
     }
 
 

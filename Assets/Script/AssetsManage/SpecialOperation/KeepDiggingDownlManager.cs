@@ -62,7 +62,7 @@ public class KeepDiggingDownlManager : MonoBehaviour
         //在显示旁白的期间重启
 
 
-        ResourceManager.Instance.AddResource(ResourceType.RegeneratedCrystal, GetRegeneratedCrystalCount());
+        ResourceManager.Instance.AddResource(ResourceType.RegeneratedCrystal, GetRegeneratedCrystalCount(),false);
 
         //重生时间
         SaveLoadManager.Instance.SecondLife();

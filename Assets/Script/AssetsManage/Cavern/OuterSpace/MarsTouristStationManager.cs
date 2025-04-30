@@ -50,6 +50,19 @@ public class MarsTouristStationManager : MonoBehaviour
         facilityPanelManager.press = OnMineButtonClicked;
 
         InstallOutPut();
+        facilityPanelManager.InstallDemandPoints(1, GetRemainingDemand, AddThisCount);
+
+    }
+
+    int GetRemainingDemand()
+    {
+        return MarsPanelManager.Instance.GetRemainingDemand();
+
+    }
+
+    void AddThisCount(int count)
+    {
+        MarsPanelManager.Instance.AddThisCount(count);
     }
 
 
@@ -86,12 +99,12 @@ public class MarsTouristStationManager : MonoBehaviour
             double count = baseYield * facilityPanelManager.GetCount();//每秒产出软妹币
 
             count *= ResourceAdditionManager.Instance.GetRMBboostUp();//软妹币产量加成   
-            
+
             count *= ResourceAdditionManager.Instance.GetTravelUp();//旅游站加成   
 
-            
+
             //每帧增加软妹币
-            IncrementReturn increment = ResourceManager.Instance.AddResource(ResourceType.Currency, count * Time.deltaTime);
+            IncrementReturn increment = ResourceManager.Instance.AddResource(ResourceType.Currency, count * Time.deltaTime,true);
 
             //计算出每秒产出多少资源
             double secondCount = increment.Count / Time.deltaTime;

@@ -130,7 +130,7 @@ public class NanofactoryManager : MonoBehaviour
         }
 
         //每帧增加资源
-        IncrementReturn increment = ResourceManager.Instance.AddResource(ResourceType.Nanomaterials, thisYield);
+        IncrementReturn increment = ResourceManager.Instance.AddResource(ResourceType.Nanomaterials, thisYield,true);
 
 
 

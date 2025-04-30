@@ -27,7 +27,7 @@ public class SpaceElevatorManager : MonoBehaviour
     Dictionary<ResourceType, double> resources = new Dictionary<ResourceType, double>()
     {
         //需要软妹币1M 合金100 佐里旬 20
-        [ResourceType.Currency] = AssetsUtil.ParseNumber("100M"),
+        [ResourceType.Currency] = AssetsUtil.ParseNumber("50M"),
         [ResourceType.Nanomaterials] = AssetsUtil.ParseNumber("4000"),
         [ResourceType.silver] = AssetsUtil.ParseNumber("3M"),
     }; //建造需要的资源

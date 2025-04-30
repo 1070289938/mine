@@ -88,7 +88,7 @@ public class CopperMinerManager : MonoBehaviour
 
 
             //每帧增加软妹币
-            IncrementReturn increment = ResourceManager.Instance.AddResource(ResourceType.Copper, count * Time.deltaTime);
+            IncrementReturn increment = ResourceManager.Instance.AddResource(ResourceType.Copper, count * Time.deltaTime,true);
 
 
             //计算出每秒产出多少资源

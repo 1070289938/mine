@@ -29,6 +29,12 @@ public class ResourceCountManager : MonoBehaviour
     FacilityPanelManager mickelHarvester;//镍矿采集器
     FacilityPanelManager tungstenHarvester;//钨矿采集器
 
+    FacilityPanelManager spaceMiningShip;//太空铁矿船
+
+    FacilityPanelManager iridiumCollector;//铱矿采集器
+
+    FacilityPanelManager neutronCollector;//中子采集器
+
     FacilityPanelManager tenementManager;//房屋
     void Start()
     {
@@ -53,7 +59,9 @@ public class ResourceCountManager : MonoBehaviour
 
         tenementManager = FacilityManager.Instance.GetFacilityPanel(FacilityType.Tenement);
 
-
+        spaceMiningShip = FacilityManager.Instance.GetFacilityPanel(FacilityType.SpaceMiningShip);
+        iridiumCollector = FacilityManager.Instance.GetFacilityPanel(FacilityType.IridiumCollector);
+        neutronCollector = FacilityManager.Instance.GetFacilityPanel(FacilityType.NeutronCollector);
 
 
 
@@ -116,6 +124,12 @@ public class ResourceCountManager : MonoBehaviour
         count += silverMiner.GetMaxCount();
         count += mickelHarvester.GetMaxCount();
         count += tungstenHarvester.GetMaxCount();
+
+        count += spaceMiningShip.GetMaxCount();
+        count += iridiumCollector.GetMaxCount() * 2;
+        count += neutronCollector.GetMaxCount() * 2;
+
+
         return count;
     }
 

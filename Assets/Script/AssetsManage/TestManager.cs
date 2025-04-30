@@ -18,7 +18,7 @@ public class TestManager : MonoBehaviour
 
     void onClick()
     {
-        ResourceManager.Instance.AddResource(ResourceType.RegeneratedCrystal,10);
+        ResourceManager.Instance.AddResource(ResourceType.RegeneratedCrystal,10,false);
     }
 
     // Update is called once per frame

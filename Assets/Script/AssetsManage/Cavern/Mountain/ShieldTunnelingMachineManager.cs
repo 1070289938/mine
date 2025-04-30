@@ -125,7 +125,7 @@ public class ShieldTunnelingMachineManager : MonoBehaviour
 
 
                 //每帧增加资源
-                IncrementReturn increment = ResourceManager.Instance.AddResource(type, yield * Time.deltaTime);
+                IncrementReturn increment = ResourceManager.Instance.AddResource(type, yield * Time.deltaTime,true);
 
                 //计算出每秒产出多少资源
                 double secondCount = increment.Count / Time.deltaTime;

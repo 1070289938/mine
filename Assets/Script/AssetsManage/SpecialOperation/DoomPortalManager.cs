@@ -77,8 +77,8 @@ public class DoomPortalManager : MonoBehaviour
                 SceneManager.LoadScene(currentSceneName);
             });
             //在显示旁白的期间重启
-            ResourceManager.Instance.AddResource(ResourceType.RegeneratedCrystal, GetRegeneratedCrystalCount());
-            ResourceManager.Instance.AddResource(ResourceType.DimensionalStone, 50);
+            ResourceManager.Instance.AddResource(ResourceType.RegeneratedCrystal, GetRegeneratedCrystalCount(),false);
+            ResourceManager.Instance.AddResource(ResourceType.DimensionalStone, 50,false);
         }
         else
         {   //失败
@@ -92,7 +92,7 @@ public class DoomPortalManager : MonoBehaviour
             });
 
             //在显示旁白的期间重启
-            ResourceManager.Instance.AddResource(ResourceType.RegeneratedCrystal, GetRegeneratedCrystalCount());
+            ResourceManager.Instance.AddResource(ResourceType.RegeneratedCrystal, GetRegeneratedCrystalCount(),false);
 
 
         }

@@ -120,6 +120,9 @@ public class ResourceAdditionManager : MonoBehaviour
 
     public LunarDataStationManager lunarDataStationManager;//月球资料站
 
+    public MarsSpaceStationManager marsSpaceStationManager;//火星空间站
+
+    public MarsResearchStationManager marsResearchStationManager;//火星研究台
     public static ResourceAdditionManager Instance { get; private set; }
 
     private void Awake()
@@ -816,7 +819,7 @@ public class ResourceAdditionManager : MonoBehaviour
         basics += science;
         basics += geocentricResearchInstituteManager.GetUp();//地心研究所的提升
         basics += artificialSatelliteManager.GetUp();//人造卫星的提升
-
+        basics += marsResearchStationManager.GetUp();//火星研究台的提升
         return basics;
     }
 
@@ -1079,7 +1082,7 @@ public class ResourceAdditionManager : MonoBehaviour
     {
         int basics = 0; //基础加成是0
         basics += colonization;
-
+        basics += marsSpaceStationManager.GetUp();
         return basics;
     }
 
@@ -1129,7 +1132,7 @@ public class ResourceAdditionManager : MonoBehaviour
 
 
 
-  /// <summary>
+    /// <summary>
     /// 提升中子加成
     /// </summary>
     /// <param name="count"></param>

@@ -178,3 +178,26 @@ public static class ResourceTypeExtensions
   }
 
 }
+
+
+
+
+public static class ResourceTypeHelper
+{
+  // 将字符串转换为 TechType 枚举值
+  public static ResourceType StringToResourceType(string value)
+  {
+    if (Enum.TryParse(value, out ResourceType techType))
+    {
+      return techType;
+    }
+    // 如果解析失败，返回默认值 empty
+    return ResourceType.none;
+  }
+
+  // 将 TechType 枚举值转换为字符串
+  public static string ResourceTypeToString(ResourceType techType)
+  {
+    return techType.ToString();
+  }
+}

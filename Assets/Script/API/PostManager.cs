@@ -18,15 +18,15 @@ public class PostManager : MonoBehaviour
     }
 
 
-    public void ToPost(string url, string json, Action<string> action)
+    public void ToPost(string url, string json, Action<int,string> action)
     {
         StartCoroutine(Post(url, json, action));
     }
 
-    IEnumerator Post(string url, string json, Action<string> action)
+    IEnumerator Post(string url, string json, Action<int,string> action)
     {
         // 要发送POST请求的API的URL
-        string apiUrl = APIConfig.url + url;
+        string apiUrl = url;
 
         // 要发送的数据（这里使用JSON格式）
         byte[] bodyRaw = Encoding.UTF8.GetBytes(json);
@@ -48,14 +48,15 @@ public class PostManager : MonoBehaviour
             {
                 // 获取响应文本
                 string responseText = webRequest.downloadHandler.text;
-                action?.Invoke(responseText);
+                action?.Invoke(0,responseText);
                 Debug.Log("Response: " + responseText);
             }
             else
             {
                 // 输出错误信息
-                Debug.LogError("Error: " + webRequest.error);
-                action?.Invoke(webRequest.error);
+                // Debug.LogError("Error: " + webRequest.error);
+                LogManager.Instance.AddLog("兑换码无效!");
+                action?.Invoke(1,webRequest.error);
             }
         }
     }

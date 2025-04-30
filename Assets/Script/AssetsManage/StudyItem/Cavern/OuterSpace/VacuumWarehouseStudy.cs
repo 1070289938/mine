@@ -54,9 +54,10 @@ public class VacuumWarehouseStudy : MonoBehaviour
     //研究按钮事件
     void Study()
     {
-      
-        ResourceAdditionManager.Instance.AddStash(1);
-
+        //触发研究事件
+        FacilityPanelManager facilityPanel = FacilityManager.Instance.GetFacilityPanel(FacilityType.Stash);
+        StashManager stashManager = facilityPanel.GetComponent<StashManager>();
+        stashManager.AddUp(1);
     }
 
 

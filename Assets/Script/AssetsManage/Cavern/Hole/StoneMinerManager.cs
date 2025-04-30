@@ -94,7 +94,7 @@ public class StoneMinerManager : MonoBehaviour
             output *= ResourceAdditionManager.Instance.GetWorkerUp();//加上矿洞员工加成的提升
 
             //每帧增加石矿
-            IncrementReturn increment = ResourceManager.Instance.AddResource(ResourceType.Stone, output * Time.deltaTime);
+            IncrementReturn increment = ResourceManager.Instance.AddResource(ResourceType.Stone, output * Time.deltaTime,true);
 
             //计算出每秒产出多少资源
             double secondCount = increment.Count / Time.deltaTime;

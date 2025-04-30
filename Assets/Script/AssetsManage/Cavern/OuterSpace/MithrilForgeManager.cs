@@ -129,7 +129,7 @@ public class MithrilForgeManager : MonoBehaviour
         }
 
         //每帧增加资源
-        IncrementReturn increment = ResourceManager.Instance.AddResource(ResourceType.Mithril, thisYield);
+        IncrementReturn increment = ResourceManager.Instance.AddResource(ResourceType.Mithril, thisYield,true);
 
 
 

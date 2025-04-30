@@ -7,12 +7,18 @@ using UnityEngine.UI;
 public class TipsManager : MonoBehaviour
 {
     public GameObject black;
-
+    public GameObject highBlack;
     public GameObject researchProject;
 
     public VerifyMsgManager verifyMsgManager;
 
     public RevenueManager revenueManager;
+
+    public LoadManager loadManager;
+
+    public ExchangeManager exchangeManager;
+
+    public GameObject loadObject;
 
     public static TipsManager Instance { get; private set; }
 
@@ -73,9 +79,9 @@ public class TipsManager : MonoBehaviour
     }
 
     //关键操作的确认
-    public void ShowVerify(Action action,string text)
+    public void ShowVerify(Action action, string text)
     {
-     
+
         backgroudClickable = true;
         //显示黑色背景和研究项目
         verifyMsgManager.gameObject.SetActive(true);
@@ -98,5 +104,40 @@ public class TipsManager : MonoBehaviour
         revenueManager.Install(resource);
 
     }
+
+    /// <summary>
+    /// 显示导入存档
+    /// </summary>
+    public void ShowLoad()
+    {
+        backgroudClickable = false;
+        loadManager.gameObject.SetActive(true);
+        black.SetActive(true);
+    }
+
+    /// <summary>
+    /// 显示兑换码
+    /// </summary>
+    public void ShowExchange()
+    {
+        backgroudClickable = false;
+        exchangeManager.gameObject.SetActive(true);
+        black.SetActive(true);
+    }
+
+    public void ShowBackLoad()
+    {
+        loadObject.SetActive(true);
+        highBlack.SetActive(true);
+    }
+
+    public void HideBackLoad()
+    {
+
+        loadObject.SetActive(false);
+        highBlack.SetActive(false);
+    }
+
+
 
 }

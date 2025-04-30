@@ -12,8 +12,9 @@ using UnityEngine;
 public class ExampleRewardAd
 {
 
+
     // 加载广告
-    public static void LoadReward(Example example, Action action)
+    public static void LoadReward(Example example, Action action, Action onClickAction)
     {
         // 释放上一次广告
         if (example.rewardAd != null)
@@ -27,15 +28,15 @@ public class ExampleRewardAd
         // 创造广告参数对象
         var adSlot = new AdSlot.Builder()
             .SetCodeId(codeId) // 必传
-            .SetUserID("testUser") // 用户id,必传参数
+            .SetUserID(Utils.GetUserId()) // 用户id,必传参数
             .SetOrientation(AdOrientation.Vertical) // // 必填参数，期望视频的播放方向  Vertical:竖屏   Horizontal: 横屏
             .Build();
         // 加载广告
-        SDK.CreateAdNative().LoadRewardVideoAd(adSlot, new RewardVideoAdListener(example, action));
+        SDK.CreateAdNative().LoadRewardVideoAd(adSlot, new RewardVideoAdListener(example, action, onClickAction));
     }
 
     // 展示广告
-    public static void ShowReward(Example example, Action action)
+    public static void ShowReward(Example example, Action action, Action onClickAction)
     {
         if (example.rewardAd == null)
         {
@@ -45,7 +46,7 @@ public class ExampleRewardAd
         else
         {
             // 设置展示阶段的监听器
-            example.rewardAd.SetRewardAdInteractionListener(new RewardAdInteractionListener(example, action));
+            example.rewardAd.SetRewardAdInteractionListener(new RewardAdInteractionListener(example, action, onClickAction));
             example.rewardAd.SetAgainRewardAdInteractionListener(new RewardAgainAdInteractionListener(example));
             example.rewardAd.SetDownloadListener(new AppDownloadListener(example));
             example.rewardAd.SetAdInteractionListener(new TTAdInteractionListener());
@@ -56,6 +57,7 @@ public class ExampleRewardAd
         }
     }
 
+
     /**
      * 广告加载监听器
      */
@@ -64,10 +66,12 @@ public class ExampleRewardAd
         private Example example;
 
         private Action action;
-        public RewardVideoAdListener(Example example, Action action)
+        private Action onClickAction;
+        public RewardVideoAdListener(Example example, Action action, Action onClickAction)
         {
             this.example = example;
             this.action = action;
+            this.onClickAction = onClickAction;
         }
 
         public void OnError(int code, string message)
@@ -101,7 +105,7 @@ public class ExampleRewardAd
         public void OnRewardVideoCached(RewardVideoAd ad)
         {
 
-            ShowReward(this.example, action);
+            ShowReward(this.example, action, onClickAction);
             Debug.Log("CSJM_Unity " + $"OnRewardVideoCached RewardVideoAd ad on main thread: {Thread.CurrentThread.ManagedThreadId == Example.MainThreadId}");
         }
     }
@@ -109,31 +113,54 @@ public class ExampleRewardAd
     // 广告展示监听器
     public sealed class RewardAdInteractionListener : IRewardAdInteractionListener
     {
+
+        // 存储上一次调用的时间
+        private static float lastInvokeTime = 0f;
+        // 冷却时间，单位为秒
+        private static float CooldownDuration = 0.5f;
+
+
         private Example example;
 
         private Action action;
-
-        public RewardAdInteractionListener(Example example, Action action)
+        Action onClickAction;
+        public RewardAdInteractionListener(Example example, Action action, Action onClickAction)
         {
             this.example = example;
             this.action = action;
+            this.onClickAction = onClickAction;
         }
 
         public void OnAdShow()
         {
-            action?.Invoke();
-          
+            TipsManager.Instance.HideBackLoad();
 
+            // 检查是否已经过了冷却时间
+            if (Time.time - lastInvokeTime >= CooldownDuration)
+            {
+                // 执行你想要防止多次调用的代码
+                action?.Invoke();
+                // 更新上次调用的时间
+                lastInvokeTime = Time.time;
+            }
+            else
+            {
+                Debug.Log($"还在冷却中，剩余时间: {CooldownDuration - (Time.time - lastInvokeTime):F1} 秒");
+            }
+            flag = true;
             LogMediationInfo(example);
         }
 
+        bool flag = false;
+
         public void OnAdVideoBarClick()
         {
-            Debug.Log("CSJM_Unity " + $"rewardVideoAd bar click on main thread: {Thread.CurrentThread.ManagedThreadId == Example.MainThreadId}");
-            // if (Thread.CurrentThread.ManagedThreadId == Example.MainThreadId)
-            // {
-            //     this.example.information.text = "rewardVideoAd bar click";
-            // }
+            if (flag)
+            {
+                flag = false;
+                onClickAction?.Invoke();
+            }
+
         }
 
         public void OnAdClose()

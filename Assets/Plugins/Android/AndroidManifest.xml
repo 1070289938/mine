@@ -30,7 +30,9 @@
   <application android:theme="@style/Theme.AppCompat.Light.NoActionBar"
     tools:remove="android:requestLegacyExternalStorage">
 
-    <activity android:name="com.unity3d.player.PrivacyActivity" android:exported="true">
+    <activity android:name="com.unity3d.player.PrivacyActivity" 
+      android:exported="true"
+      android:requestLegacyExternalStorage="true">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
         <category android:name="android.intent.category.LAUNCHER" />

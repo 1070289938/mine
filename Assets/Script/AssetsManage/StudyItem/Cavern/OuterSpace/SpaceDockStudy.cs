@@ -12,7 +12,7 @@ public class SpaceDockStudy : MonoBehaviour
 
     string details = "这大小堪比一颗星球的太空船坞可以进行制造能搭建跃迁引擎的巨型飞船";
 
-    string Successful = "太空工厂研究成功";
+    string Successful = "太空船坞研究成功";
 
     TechType techType = TechType.SpaceDock;
     Dictionary<ResourceType, double> resources = new Dictionary<ResourceType, double>()

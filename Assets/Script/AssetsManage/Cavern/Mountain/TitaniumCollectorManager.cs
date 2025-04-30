@@ -102,7 +102,7 @@ public class TitaniumCollectorManager : MonoBehaviour
             count *= ResourceAdditionManager.Instance.GetTitaniumUp();//钛矿专属加成
             count *= ResourceAdditionManager.Instance.GetCollectorMarkUp();//加上采集器的提升
             //每帧增加钛矿
-            IncrementReturn increment = ResourceManager.Instance.AddResource(ResourceType.Titanium, count * Time.deltaTime);
+            IncrementReturn increment = ResourceManager.Instance.AddResource(ResourceType.Titanium, count * Time.deltaTime,true);
 
             //计算出每秒产出多少资源
             double secondCount = increment.Count / Time.deltaTime;

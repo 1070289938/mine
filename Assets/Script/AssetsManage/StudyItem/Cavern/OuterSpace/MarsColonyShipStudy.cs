@@ -14,7 +14,7 @@ public class MarsColonyShipStudy : MonoBehaviour
 
     string Successful = "火星殖民船研究成功";
 
-    TechType techType = TechType.MarsColony;
+    TechType techType = TechType.MarsColonyShip;
     Dictionary<ResourceType, double> resources = new Dictionary<ResourceType, double>()
     {   //价格 软妹币 655 科技点190K
         [ResourceType.Currency] = AssetsUtil.ParseNumber("1.5G"),

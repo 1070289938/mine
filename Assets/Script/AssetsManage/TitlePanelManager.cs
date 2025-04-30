@@ -13,6 +13,8 @@ public class TitlePanelManager : MonoBehaviour
 
     public GameObject StatisticsPanel;  //统计界面
 
+    public GameObject SavePanel;  //存档界面
+
     public static bool ResearchRedHint;//红色提示是否显示
 
     public GameObject researchHit;//研究提示
@@ -28,6 +30,7 @@ public class TitlePanelManager : MonoBehaviour
         SpecialPanel.transform.SetSiblingIndex(hide);
         SystemPanel.transform.SetSiblingIndex(hide);
         StatisticsPanel.transform.SetSiblingIndex(hide);
+        SavePanel.transform.SetSiblingIndex(hide);
     }
 
     // 显示研究界面
@@ -38,6 +41,7 @@ public class TitlePanelManager : MonoBehaviour
         miningPanel.transform.SetSiblingIndex(hide);
         researchPanel.transform.SetSiblingIndex(show);
         StatisticsPanel.transform.SetSiblingIndex(hide);
+        SavePanel.transform.SetSiblingIndex(hide);
     }
 
     //显示特殊界面
@@ -49,6 +53,7 @@ public class TitlePanelManager : MonoBehaviour
         miningPanel.transform.SetSiblingIndex(hide);
         researchPanel.transform.SetSiblingIndex(hide);
         StatisticsPanel.transform.SetSiblingIndex(hide);
+        SavePanel.transform.SetSiblingIndex(hide);
     }
 
 
@@ -61,6 +66,7 @@ public class TitlePanelManager : MonoBehaviour
         miningPanel.transform.SetSiblingIndex(hide);
         researchPanel.transform.SetSiblingIndex(hide);
         StatisticsPanel.transform.SetSiblingIndex(hide);
+        SavePanel.transform.SetSiblingIndex(hide);
     }
 
     //显示统计界面
@@ -72,7 +78,22 @@ public class TitlePanelManager : MonoBehaviour
         SystemPanel.transform.SetSiblingIndex(hide);
         miningPanel.transform.SetSiblingIndex(hide);
         researchPanel.transform.SetSiblingIndex(hide);
+        SavePanel.transform.SetSiblingIndex(hide);
     }
+
+
+
+    public void ShowSavePanel()
+    {
+        SavePanel.transform.SetSiblingIndex(show);
+        StatisticsPanel.transform.SetSiblingIndex(hide);
+        SpecialPanel.transform.SetSiblingIndex(hide);
+        SystemPanel.transform.SetSiblingIndex(hide);
+        miningPanel.transform.SetSiblingIndex(hide);
+        researchPanel.transform.SetSiblingIndex(hide);
+
+    }
+
 
     void Update()
     {

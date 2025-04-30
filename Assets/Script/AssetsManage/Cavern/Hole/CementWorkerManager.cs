@@ -123,7 +123,7 @@ public class CementWorkerManager : MonoBehaviour
         }
 
         //每帧增加水泥
-        IncrementReturn increment = ResourceManager.Instance.AddResource(ResourceType.Cement, thisYield);
+        IncrementReturn increment = ResourceManager.Instance.AddResource(ResourceType.Cement, thisYield,true);
         double actualDeductionStone = increment.ActualCount * depletedOre;//计算实际上需要扣除的石头
 
         //进行石矿的消耗

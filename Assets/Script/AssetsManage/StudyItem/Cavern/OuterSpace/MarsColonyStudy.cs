@@ -57,6 +57,8 @@ public class MarsColonyStudy : MonoBehaviour
         //触发研究事件
         FacilityPanelManager facility = FacilityManager.Instance.GetFacilityPanel(FacilityType.MarsColony);
         facility.gameObject.SetActive(true);
+
+        MarsPanelManager.Instance.Activate();
     }
 
 
