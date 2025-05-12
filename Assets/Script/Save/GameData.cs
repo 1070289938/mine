@@ -38,5 +38,6 @@ public class GameData
 
     public int marsPoints;//火星制造点数
 
+    public int deepSpacePoints;//深空制造点数
 
 }

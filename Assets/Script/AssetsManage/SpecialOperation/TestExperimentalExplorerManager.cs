@@ -41,8 +41,8 @@ public class TestExperimentalExplorerManager : MonoBehaviour
             int power = BattlePanelManager.Instance.GetPower();
             int count = GetRegeneratedCrystalCount();
 
-             TipsManager.Instance.ShowVerify(RestartGame, "你确定要启动实验型探索者吗?(这会导致游戏进入下一周目。你将会获得" + count + "重生晶体与30四维宝石)");
-          
+            TipsManager.Instance.ShowVerify(RestartGame, "你确定要启动实验型探索者吗?(这会导致游戏进入下一周目。你将会获得" + count + "重生晶体与30四维宝石)");
+
 
 
         });
@@ -58,17 +58,17 @@ public class TestExperimentalExplorerManager : MonoBehaviour
         gameObject.SetActive(false);
 
         //胜利
-            //显示旁白说明
-            VoiceOverManager.Instance.SpatialCollapse(() =>
-            {
-                // 获取当前活动场景的名称
-                string currentSceneName = SceneManager.GetActiveScene().name;
-                // 加载当前场景
-                SceneManager.LoadScene(currentSceneName);
-            });
-            //在显示旁白的期间重启
-            ResourceManager.Instance.AddResource(ResourceType.RegeneratedCrystal, GetRegeneratedCrystalCount(),false);
-            ResourceManager.Instance.AddResource(ResourceType.DimensionalStone, 30,false);
+        //显示旁白说明
+        VoiceOverManager.Instance.SpatialCollapse(() =>
+        {
+            // 获取当前活动场景的名称
+            string currentSceneName = SceneManager.GetActiveScene().name;
+            // 加载当前场景
+            SceneManager.LoadScene(currentSceneName);
+        });
+        //在显示旁白的期间重启
+        ResourceManager.Instance.AddResource(ResourceType.RegeneratedCrystal, GetRegeneratedCrystalCount(), false);
+        ResourceManager.Instance.AddResource(ResourceType.DimensionalStone, 30, false);
 
         //重生
         SaveLoadManager.Instance.SecondLife();
@@ -85,7 +85,8 @@ public class TestExperimentalExplorerManager : MonoBehaviour
         //增加200+(工人总数 / 20)+（战斗力/ 1000） +(火星建筑点数)重生晶体
         int count = 200;
         count += ResourceCountManager.Instance.GetMinerCount() / 20;
-        count += BattlePanelManager.Instance.GetPower() / 1000;
+        int power = BattlePanelManager.Instance.GetPower() / 1000;
+        count += power > 250 ? 250 : power;
         count += MarsPanelManager.Instance.GetMaxCount();
         return count;
     }

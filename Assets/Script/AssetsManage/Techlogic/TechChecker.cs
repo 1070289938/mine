@@ -69,4 +69,18 @@ public class TechChecker : MonoBehaviour
             checkMethods.Remove(checkMethod);
         }
     }
+
+
+
+    // 移除检查科技
+    public void RemoveCheckTech(TechType type)
+    {
+        StudyItemManager studyItem = TechManager.Instance.GetTech(type);
+        if (studyItem != null)
+        {
+            RemoveCheckMethod(studyItem.InspectFrame);
+        }
+
+    }
+
 }

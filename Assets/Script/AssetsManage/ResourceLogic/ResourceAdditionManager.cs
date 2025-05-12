@@ -8,7 +8,13 @@ using System.Reflection;
 /// </summary>
 public class ResourceAdditionManager : MonoBehaviour
 {
+
     ////////////////////////////////////////////////////资源类////////////////////////////////////////////////////////////////////////////
+
+    private void Awake()
+    {
+        Instance = this;
+    }
     double tool = 1;//挖矿工具加成
     double miningWorker = 1;//采矿工人加成
     double worker = 1;//员工加成
@@ -85,6 +91,9 @@ public class ResourceAdditionManager : MonoBehaviour
 
     int colonization = 0;//额外殖民加成
 
+    double pureGold = 1;//精金的加成
+
+
     public OreCarManager oreCarManager;//矿车管理
     public MineralScreeningMachineManager mineralScreeningMachineManager;//矿物筛选器
     public BlastFurnaceManager blastFurnaceManager;//高炉
@@ -123,12 +132,18 @@ public class ResourceAdditionManager : MonoBehaviour
     public MarsSpaceStationManager marsSpaceStationManager;//火星空间站
 
     public MarsResearchStationManager marsResearchStationManager;//火星研究台
+
+    public DistributedWarehousingNetworkManager distributedWarehousingNetworkManager;//分布式仓储网络
+
+    public InterstellarTradeHubManager interstellarTradeHubManager;//星际交易枢纽
+
+
+    public InterstellarResearchInstituteManager interstellarResearchInstituteManager;//星际研究所
+
+    public RingWorldManager ringWorldManager;//环世界
+
     public static ResourceAdditionManager Instance { get; private set; }
 
-    private void Awake()
-    {
-        Instance = this;
-    }
 
     /// <summary>
     /// 初始化所有加成数据
@@ -495,6 +510,8 @@ public class ResourceAdditionManager : MonoBehaviour
         basics += bankManager.GetUp();
 
         basics += stockExchangeManager.GetYieldUp();
+        basics += interstellarTradeHubManager.GetYieldUp();
+
         return basics;
     }
 
@@ -820,6 +837,8 @@ public class ResourceAdditionManager : MonoBehaviour
         basics += geocentricResearchInstituteManager.GetUp();//地心研究所的提升
         basics += artificialSatelliteManager.GetUp();//人造卫星的提升
         basics += marsResearchStationManager.GetUp();//火星研究台的提升
+        basics += interstellarResearchInstituteManager.GetUp();//星际研究所的提升
+
         return basics;
     }
 
@@ -843,6 +862,9 @@ public class ResourceAdditionManager : MonoBehaviour
         basics += allAssets;
         basics += altarManager.GetUp();//祭坛的提升
         basics += templeManager.GetUp();//寺庙的提升
+        basics += ringWorldManager.GetUp();//环世界的提升
+
+
         return basics;
     }
 
@@ -976,7 +998,8 @@ public class ResourceAdditionManager : MonoBehaviour
     {
         double basics = 0; //基础加成是0
         basics += reserve;
-        basics += lunarMaterialStationManager.GetUp();
+        basics *= lunarMaterialStationManager.GetUp();
+        basics *= distributedWarehousingNetworkManager.GetReservesUp();
         return basics;
     }
 
@@ -998,6 +1021,7 @@ public class ResourceAdditionManager : MonoBehaviour
     {
         double basics = 0; //基础加成是0
         basics += stash;
+        basics *= distributedWarehousingNetworkManager.GetReservesUp();
         return basics;
     }
 
@@ -1148,6 +1172,28 @@ public class ResourceAdditionManager : MonoBehaviour
     {
         double basics = 0; //基础加成是0
         basics += neutron;
+
+        return basics;
+    }
+
+
+
+    /// <summary>
+    /// 提升精金加成
+    /// </summary>
+    /// <param name="count"></param>
+    public void AddPureGold(double count)
+    {
+        pureGold *= 1 + neutron;
+    }
+    /// <summary>
+    /// 获取精金加成
+    /// </summary>
+    /// <returns></returns>
+    public double GetPureGoldUP()
+    {
+        double basics = 0; //基础加成是0
+        basics += pureGold;
 
         return basics;
     }

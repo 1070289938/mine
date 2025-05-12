@@ -153,6 +153,25 @@ public enum ResourceType
   Neutron,//中子
 
 
+
+  /// <summary>
+  /// 金属氢
+  /// </summary>
+  [DisplayName("金属氢")]
+  MetallicHydrogen,//金属氢
+
+
+  /// <summary>
+  /// 耀斑矿
+  /// </summary>
+  [DisplayName("耀斑矿")]
+  Flare,//耀斑矿
+
+  /// <summary>
+  /// 精金
+  /// </summary>
+  [DisplayName("精金")]
+  Adamant,//精金
 }
 
 

@@ -18,7 +18,19 @@ public class TestManager : MonoBehaviour
 
     void onClick()
     {
-        ResourceManager.Instance.AddResource(ResourceType.RegeneratedCrystal,10,false);
+
+        ResourceManager.Instance.AddResource(ResourceType.RegeneratedCrystal, 1000, false);
+        ResourceManager.Instance.AddResource(ResourceType.DimensionalStone, 100, false);
+        //    foreach(TechnologyBean bean in  DataProcessing.technologies){
+
+        //     if(!TechManager.Instance.GetTechFlag(bean.techType)){
+        //         Debug.Log(bean.techType+"未研究");
+        //     }
+
+        //    }
+
+
+
     }
 
     // Update is called once per frame

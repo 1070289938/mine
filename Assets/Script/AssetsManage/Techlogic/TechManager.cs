@@ -27,6 +27,7 @@ public class TechManager : MonoBehaviour
         [TechType.PastMemory] = true,//昔日的记忆
         [TechType.SacredMemory] = true,//神圣的回忆
         [TechType.TheThoughts] = true,//极耀圣念
+        [TechType.SpatioMemory] = true,//时空记忆
         [TechType.MuscleStrengthening] = true,//肌肉强化
         [TechType.Artisanship] = true,//技工天赋
         [TechType.AttentionDetail] = true,//注重细节
@@ -38,7 +39,9 @@ public class TechManager : MonoBehaviour
         [TechType.MultidimensionalWarehouse] = true,//多维仓库
         [TechType.Faith] = true,//信仰
         [TechType.Worship] = true,//敬拜
-
+        [TechType.IntelligentMind] = true,//聪明头脑
+        [TechType.ScientificTalent] = true,//科学天赋
+        [TechType.BornScientist] = true,//天生科学家
 
     };
 
@@ -56,7 +59,7 @@ public class TechManager : MonoBehaviour
         }
     }
 
-    private void Start()
+    public void Install()
     {
         ///普通科技
         StudyItemManager[] studyItems = content.GetComponentsInChildren<StudyItemManager>(true);
@@ -67,8 +70,8 @@ public class TechManager : MonoBehaviour
         foreach (StudyItemManager itemManager in studyItems)
         {
             techTypeDictionary[itemManager.techType] = itemManager;
-            TechChecker.Instance.AddCheckMethod(itemManager.InspectFrame);//直接监听所有科技
         }
+
 
         ///系统科技
         StudyItemManager[] systemStudyItems = SystemContent.GetComponentsInChildren<StudyItemManager>(true);
@@ -77,6 +80,40 @@ public class TechManager : MonoBehaviour
             techTypeDictionary[itemManager.techType] = itemManager;
             TechChecker.Instance.AddCheckMethod(itemManager.InspectFrame);//直接监听所有科技
         }
+        ListenSpecific();
+        Debug.Log("--------科技缓存赋值完成--------");
+    }
+
+    List<TechType> specific = new()
+    {
+        TechType.InspectWonderfulRod,
+        TechType.ExploratoryMine,
+        TechType.SoundingDepth,
+        TechType.trace,
+        TechType.OpenGate,
+         TechType.NearSpaceExploration,
+         TechType.ExperimentalExplorer,
+          TechType.CalculatingJupiterOrbit,
+    };
+
+    /// <summary>
+    /// 自动监听特定科技
+    /// </summary>
+    void ListenSpecific()
+    {
+        foreach (TechType type in specific)
+        {
+            TechChecker.Instance.AddCheckTech(type);//直接监听所有指定
+        }
+
+    }
+
+
+
+
+    private void Start()
+    {
+
 
 
 
@@ -98,9 +135,17 @@ public class TechManager : MonoBehaviour
 
 
 
-    // 获取科技是否研究
+    /// <summary>
+    /// 获取科技是否研究
+    /// </summary>
+    /// <param name="techType"></param>
+    /// <returns></returns>
     public bool GetTechFlag(TechType techType)
     {
+        if (techTypeStudyFlag == null)
+        {
+            return false;
+        }
         if (techTypeStudyFlag.ContainsKey(techType))
         {
             return techTypeStudyFlag[techType];

@@ -36,6 +36,8 @@ public class SaveLoadManager : MonoBehaviour
     public BattlePanelManager battlePanelManager;
     public MarsPanelManager marsPanelManager;
 
+    public DeepSpacePanelManager deepSpacePanelManager;
+
     public static SaveLoadManager Instance { get; private set; }
     private FacilityPanelManager[] facilities;
 
@@ -47,13 +49,12 @@ public class SaveLoadManager : MonoBehaviour
         backupFilePath = GetSaveFilePath(backupFileName);
         EnsureDirectoryExists(saveFilePath);
         EnsureDirectoryExists(backupFilePath);
-        TryLoadGame();
         StartCoroutine(AutoSave());
     }
 
     void Start()
     {
-        ExecuteStudiedTechs();
+
         ResourceUpperLimitManager.Instance.RefreshUpperLimitAllResources();
     }
 
@@ -74,6 +75,7 @@ public class SaveLoadManager : MonoBehaviour
         ResetResources();
         ClearLogs();
         marsPanelManager.LoadSave(0);//清空殖民点数
+        battlePanelManager.ClearSoldier();
     }
 
     private void ClearFacilities()
@@ -150,7 +152,8 @@ public class SaveLoadManager : MonoBehaviour
             dangerValue = battlePanelManager.GetdangerCount(),
             autofill = battlePanelManager.GetAutofillCount(),
             secondLifeCount = regeneratedCrystalManager.GetSecondLifeCount(),
-            marsPoints = marsPanelManager.GetThisCount()
+            marsPoints = marsPanelManager.GetThisCount(),
+            deepSpacePoints = deepSpacePanelManager.GetThisCount(),
         };
     }
 
@@ -177,8 +180,10 @@ public class SaveLoadManager : MonoBehaviour
         }
         return facility;
     }
-
-    private void TryLoadGame()
+    /// <summary>
+    /// 开始加载存档
+    /// </summary>
+    public void TryLoadGame()
     {
         if (File.Exists(saveFilePath))
         {
@@ -199,6 +204,7 @@ public class SaveLoadManager : MonoBehaviour
             techManager.techTypeStudyFlag = new Dictionary<TechType, bool>();
             Debug.Log("No save data found.");
         }
+        ExecuteStudiedTechs();
     }
 
     public void Reload()
@@ -242,6 +248,8 @@ public class SaveLoadManager : MonoBehaviour
         battlePanelManager.Install(gameData.militaryStrength, gameData.attackStrength, gameData.dangerValue, gameData.autofill);
         regeneratedCrystalManager.SetSecondLifeCount(gameData.secondLifeCount);
         marsPanelManager.LoadSave(gameData.marsPoints);
+        deepSpacePanelManager.LoadSave(gameData.deepSpacePoints);
+
     }
 
     private Dictionary<TechType, bool> GetTechTypeStudyFlagDictionary(Dictionary<string, bool> studyFlag)

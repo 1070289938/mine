@@ -1047,7 +1047,327 @@ public enum TechType
 
 
 
+    /// <summary>
+    /// 气态采集
+    /// </summary>
+    GaseousCollection,
 
+    /// <summary>
+    /// 奥德修斯号
+    /// </summary>
+    Odysseus,
+    /// <summary>
+    /// 完成奥德修斯号的搭建
+    /// </summary>
+    CompleteOdysseus,
+    /// <summary>
+    /// 计算木星轨道
+    /// </summary>
+    CalculatingJupiterOrbit,
+
+    /// <summary>
+    /// 探索木星
+    /// </summary>
+    ExploringJupiter,
+
+    /// <summary>
+    /// 轨道采集器
+    /// </summary>
+    OrbitCollector,
+
+    /// <summary>
+    /// 金属氢采集器
+    /// </summary>
+    MetallicHydrogenCollector,
+
+    /// <summary>
+    /// 超导体
+    /// </summary>
+    Superconductor,
+
+    /// <summary>
+    /// 改良跃迁引擎
+    /// </summary>
+    ImprovedJumpEngine,
+
+    /// <summary>
+    /// 启动改良型探索者
+    /// </summary>
+    StartImprovedExplorer,
+
+    //==============================================外星域科技===================================================
+
+
+    /// <summary>
+    /// 探索半人马座
+    /// </summary>
+    ExploringCentaurus,
+
+    /// <summary>
+    /// 深空信标
+    /// </summary>
+    DeepSpaceBeacon,
+
+    /// <summary>
+    /// 耀斑矿研究
+    /// </summary>
+    FlareMineralResearch,
+
+    /// <summary>
+    /// 耀斑矿采集器
+    /// </summary>
+    FlareMineralCollector,
+
+    /// <summary>
+    /// 高能激光
+    /// </summary>
+    HighEnergyLaser,
+
+    /// <summary>
+    /// 超脉冲激光器
+    /// </summary>
+    UltraPulseLaser,
+
+    /// <summary>
+    /// 激光机床
+    /// </summary>
+    LaserMachineTool,
+
+    /// <summary>
+    /// 激光步枪
+    /// </summary>
+    LaserRifle,
+
+    /// <summary>
+    /// 激光采矿
+    /// </summary>
+    LaserMining,
+    /// <summary>
+    /// 激光防卫陷阱
+    /// </summary>
+    LaserTrap,
+    /// <summary>
+    /// 精金采集
+    /// </summary>
+    AdamantiteCollection,
+
+    /// <summary>
+    /// 精金采集器
+    /// </summary>
+    AdamantiteCollector,
+
+    /// <summary>
+    /// 精金集装箱
+    /// </summary>
+    AdamantiteContainer,
+
+    /// <summary>
+    /// 精金钻
+    /// </summary>
+    AdamantiteDrill,
+
+    /// <summary>
+    /// 精金仓库
+    /// </summary>
+    AdamantiteWarehouse,
+    /// <summary>
+    /// 精金护具
+    /// </summary>
+    AdamantiteArmor,
+    /// <summary>
+    /// 精金定位罗盘
+    /// </summary>
+    AdamantitePositioningCompass,
+
+    /// <summary>
+    /// 精金量子分析仪
+    /// </summary>
+    AdamantiteQuantumAnalyzer,
+
+    /// <summary>
+    /// 外星材料实验室
+    /// </summary>
+    ExtraterrestrialMaterialLaboratory,
+
+    /// <summary>
+    /// 采矿无人机
+    /// </summary>
+    MiningDrone,
+
+    /// <summary>
+    /// AI星际物流
+    /// </summary>
+    AIInterstellarLogistics,
+
+    /// <summary>
+    /// 量子技术
+    /// </summary>
+    QuantumTechnology,
+
+    /// <summary>
+    /// 量子探矿仪
+    /// </summary>
+    QuantumProspector,
+
+    /// <summary>
+    /// 量子计算机
+    /// </summary>
+    QuantumComputer,
+
+    /// <summary>
+    /// 量子储存
+    /// </summary>
+    QuantumStorage,
+
+    /// <summary>
+    /// 子空间星标
+    /// </summary>
+    SubspaceStarMarker,
+
+    /// <summary>
+    /// 星际万维网
+    /// </summary>
+    InterstellarWorldWideWeb,
+
+    /// <summary>
+    /// 仓储机械臂
+    /// </summary>
+    WarehousingRoboticArm,
+
+    /// <summary>
+    /// 超导轨道
+    /// </summary>
+    SuperconductingOrbit,
+
+    /// <summary>
+    /// 信用芯片
+    /// </summary>
+    CreditChip,
+
+    /// <summary>
+    /// 量子加密网
+    /// </summary>
+    QuantumEncryptionNetwork,
+
+    /// <summary>
+    /// 智能调度中枢
+    /// </summary>
+    IntelligentSchedulingHub,
+
+    /// <summary>
+    /// 等离子熔炉
+    /// </summary>
+    PlasmaFurnace,
+
+    /// <summary>
+    /// 全系储仓图
+    /// </summary>
+    HolographicWarehouseMap,
+
+    /// <summary>
+    /// 金融预测器
+    /// </summary>
+    FinancialPredictor,
+
+    /// <summary>
+    /// 分布式仓储网络
+    /// </summary>
+    DistributedWarehousingNetwork,
+
+    /// <summary>
+    /// 探测虫洞
+    /// </summary>
+    DetectingWormhole,
+
+    /// <summary>
+    /// 重力压缩仓
+    /// </summary>
+    GravityCompressionChamber,
+
+    /// <summary>
+    /// 虫洞跃迁计划
+    /// </summary>
+    WormholeJumpPlan,
+
+    /// <summary>
+    /// 搭建星渊号
+    /// </summary>
+    ConstructingXingyuanShip,
+
+    /// <summary>
+    /// 深空信号探测
+    /// </summary>
+    DeepSpaceSignalDetection,
+
+    /// <summary>
+    /// 试图联系未知信号
+    /// </summary>
+    AttemptingtoContactUnknownSignal,
+
+    /// <summary>
+    /// 翻译语言
+    /// </summary>
+    TranslatingLanguage,
+
+    /// <summary>
+    /// 试图交好
+    /// </summary>
+    AttemptingtoMakeFriendly,
+
+    /// <summary>
+    /// 建立大使馆
+    /// </summary>
+    EstablishEmbassy,
+
+    /// <summary>
+    /// 外星商业
+    /// </summary>
+    ExtraterrestrialBusiness,
+
+    /// <summary>
+    /// 星际贸易枢纽
+    /// </summary>
+    InterstellarTradeHub,
+
+    /// <summary>
+    /// 通用物流
+    /// </summary>
+    GeneralLogistics,
+
+    /// <summary>
+    /// 星际商人
+    /// </summary>
+    InterstellarMerchant,
+
+    /// <summary>
+    /// 外星技术分享
+    /// </summary>
+    ExtraterrestrialTechnologySharing,
+
+    /// <summary>
+    /// 星际研究所
+    /// </summary>
+    InterstellarResearchInstitute,
+
+    /// <summary>
+    /// 反重力仓储
+    /// </summary>
+    AntiGravityWarehousing,
+
+    /// <summary>
+    /// 环世界
+    /// </summary>
+    RingWorld,
+
+    /// <summary>
+    /// 星际之门
+    /// </summary>
+    Stargate,
+
+    /// <summary>
+    /// 完成深渊号的搭建
+    /// </summary>
+    CompleteAbyss,
     //==============================================系统科技===================================================
 
     /// <summary>
@@ -1082,6 +1402,10 @@ public enum TechType
     /// 极耀圣念
     /// </summary>
     TheThoughts,
+    /// <summary>
+    /// 时空记忆
+    /// </summary>
+    SpatioMemory,
     /// <summary>
     /// 肌肉强化
     /// </summary>
@@ -1127,6 +1451,19 @@ public enum TechType
     /// 敬拜
     /// </summary>
     Worship,
+    /// <summary>
+    /// 聪明头脑
+    /// </summary>
+    IntelligentMind,
+    /// <summary>
+    /// 科学天赋
+    /// </summary>
+    ScientificTalent,
+    /// <summary>
+    /// 天生科学家
+    /// </summary>
+    BornScientist,
+
 
 
 }

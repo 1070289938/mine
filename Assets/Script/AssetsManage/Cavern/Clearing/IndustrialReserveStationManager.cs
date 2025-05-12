@@ -39,6 +39,9 @@ public class IndustrialReserveStationManager : MonoBehaviour
         [ResourceType.Iridium] = AssetsUtil.ParseNumber("800"),//铱矿
         [ResourceType.Mithril] = AssetsUtil.ParseNumber("300"),//秘银
         [ResourceType.Neutron] = AssetsUtil.ParseNumber("150"),//中子
+
+        [ResourceType.Flare] = AssetsUtil.ParseNumber("520"),//耀斑矿
+        [ResourceType.Adamant] = AssetsUtil.ParseNumber("130"),//精金
     };
 
     readonly FacilityType type = FacilityType.IndustrialReserveStation;

@@ -8,29 +8,34 @@ using UnityEngine;
 public enum SpecialOptionType
 {
 
-    /// <summary>
-    /// 没有选项
-    /// </summary>
-    Empty,
+  /// <summary>
+  /// 没有选项
+  /// </summary>
+  Empty,
 
-    /// <summary>
-    /// 强行分解金属棒
-    /// </summary>
-    ForcedDecomposition,
+  /// <summary>
+  /// 强行分解金属棒
+  /// </summary>
+  ForcedDecomposition,
 
-    /// <summary>
-    /// 继续向下挖掘
-    /// </summary>
-    KeepDiggingDownl,
+  /// <summary>
+  /// 继续向下挖掘
+  /// </summary>
+  KeepDiggingDownl,
 
-    /// <summary>
-    /// 毁灭传送门
-    /// </summary>
-    DoomPortal,
+  /// <summary>
+  /// 毁灭传送门
+  /// </summary>
+  DoomPortal,
 
-      /// <summary>
-    /// 测试实验型探索者
-    /// </summary>
-    TestExperimentalExplorer,
+  /// <summary>
+  /// 测试实验型探索者
+  /// </summary>
+  TestExperimentalExplorer,
+
+  /// <summary>
+  /// 启动原型深渊号
+  /// </summary>
+  StartPrototype,
 
 }

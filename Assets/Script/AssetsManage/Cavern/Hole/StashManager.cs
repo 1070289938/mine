@@ -33,6 +33,8 @@ public class StashManager : MonoBehaviour
         [ResourceType.silver] = 300,//银矿基础储量
         [ResourceType.GeocentricRock] = 500,//地心岩基础储量
 
+        [ResourceType.MetallicHydrogen] = 900,//金属氢基础储量
+
     }; //仓库基础储量
 
     readonly FacilityType type = FacilityType.Stash;
@@ -87,7 +89,7 @@ public class StashManager : MonoBehaviour
 
         reserves *= facilityPanelManager.GetCount();//数量相乘
         reserves *= up;//储存倍率相乘
-        reserves *= ResourceAdditionManager.Instance.GetReserveUp();
+        reserves *= ResourceAdditionManager.Instance.GetStashUp();
         //如果研究了多维仓库就根据四维宝石提升储量（每个提升1%）
         if (TechManager.Instance.GetTechFlag(TechType.MultidimensionalWarehouse))
         {

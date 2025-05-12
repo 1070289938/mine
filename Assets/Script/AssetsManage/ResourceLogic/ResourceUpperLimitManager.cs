@@ -13,6 +13,8 @@ public class ResourceUpperLimitManager : MonoBehaviour
 
     public IndustrialReserveStationManager industrialReserveStationManager;//工业储备站
     public DiscoveryTowerManager discoveryTowerManager;//科技探索塔
+
+    public ExtraterrestrialMaterialLaboratoryManager extraterrestrialMaterialLaboratoryManager;//外星材料实验室
     public TenementManager tenementManager;//房屋
 
     public BankManager bankManager;//房屋
@@ -65,6 +67,11 @@ public class ResourceUpperLimitManager : MonoBehaviour
         UpperIridium();//铱
         UpperMithril();//秘银
         UpperNeutron();//中子
+
+        UpperAdamant();//金属氢
+        UpperFlare();//耀斑矿
+        UpperMetallicHydrogen();//精金
+
 
 
     }
@@ -266,7 +273,7 @@ public class ResourceUpperLimitManager : MonoBehaviour
     {
         double reserves = 100; //基本储量0
         reserves += discoveryTowerManager.GetReserves(ResourceType.Science);//获取科技探索塔储量
-
+        reserves += extraterrestrialMaterialLaboratoryManager.GetReserves(ResourceType.Science);//获取科技探索塔储量
         //科技不受储量加成
         //reserves *= ResourceAdditionManager.Instance.GetAllReservesUp();//获取所有的储量加成
 
@@ -383,6 +390,46 @@ public class ResourceUpperLimitManager : MonoBehaviour
         ResourceShowManager resourceShow = ResourceManager.Instance.resourceManager[ResourceType.Neutron];
         resourceShow.SetMaxStorage(reserves);//中子设置上限
     }
+    /// <summary>
+    /// 计算金属氢上限
+    /// 秘银上限 =  仓库储量
+    /// </summary>
+    void UpperMetallicHydrogen()
+    {
+        double reserves = 0; //基本储量0
+        reserves += stashManager.GetReserves(ResourceType.MetallicHydrogen);//获取仓库储量
+        reserves *= ResourceAdditionManager.Instance.GetAllReservesUp();//获取所有的储量加成
+        ResourceShowManager resourceShow = ResourceManager.Instance.resourceManager[ResourceType.MetallicHydrogen];
+        resourceShow.SetMaxStorage(reserves);//金属氢设置上限
+    }
+
+    /// <summary>
+    /// 计算耀斑矿上限
+    /// 秘银上限 =  仓库储量
+    /// </summary>
+    void UpperFlare()
+    {
+        double reserves = 0; //基本储量0
+        reserves += industrialReserveStationManager.GetReserves(ResourceType.Flare);//获取工业储备站储量
+        reserves *= ResourceAdditionManager.Instance.GetAllReservesUp();//获取所有的储量加成
+        ResourceShowManager resourceShow = ResourceManager.Instance.resourceManager[ResourceType.Flare];
+        resourceShow.SetMaxStorage(reserves);//耀斑矿设置上限
+    }
+
+
+    /// <summary>
+    /// 计算精金上限
+    /// 秘银上限 =  仓库储量
+    /// </summary>
+    void UpperAdamant()
+    {
+        double reserves = 0; //基本储量0
+        reserves += industrialReserveStationManager.GetReserves(ResourceType.Adamant);//获取工业储备站储量
+        reserves *= ResourceAdditionManager.Instance.GetAllReservesUp();//获取所有的储量加成
+        ResourceShowManager resourceShow = ResourceManager.Instance.resourceManager[ResourceType.Adamant];
+        resourceShow.SetMaxStorage(reserves);//精金设置上限
+    }
+
 
 
 }

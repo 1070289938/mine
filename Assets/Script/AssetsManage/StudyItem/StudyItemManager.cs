@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,7 +9,6 @@ using UnityEngine.UI;
 //研究项目
 public class StudyItemManager : MonoBehaviour
 {
-
     public string studyName { get; set; } //研究名字
 
     public string details { get; set; } //研究详情
@@ -21,6 +21,8 @@ public class StudyItemManager : MonoBehaviour
 
     public Action Study; //研究事件
     public Button btn;//按钮组件
+
+    public TextMeshProUGUI titleName;//按钮组件
 
     public string Successful { get; set; }
     public void InspectFrame()
@@ -84,6 +86,16 @@ public class StudyItemManager : MonoBehaviour
     //初始化按钮
     public void Install(string studyName, string details, Dictionary<ResourceType, double> resources, TechType techType)
     {
+        titleName.text = studyName;
+        this.studyName = studyName;
+        this.details = details;
+        this.resources = resources;
+        this.techType = techType;
+    }
+ //初始化按钮
+    public void Install(string titleName,string studyName, string details, Dictionary<ResourceType, double> resources, TechType techType)
+    {
+        this.titleName.text = titleName;
         this.studyName = studyName;
         this.details = details;
         this.resources = resources;

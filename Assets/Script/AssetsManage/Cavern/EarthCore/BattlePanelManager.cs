@@ -40,7 +40,16 @@ public class BattlePanelManager : MonoBehaviour
     int soldierCount = 0; // 士兵数量
     int attackPower = 0; // 出击战斗力
     int attackCount = 0; // 出击数量
+    /// <summary>
+    /// 清空士兵数量
+    /// </summary>
 
+    public void ClearSoldier()
+    {
+        soldierCount = 0;
+        attackCount = 0;
+        UpdateSoldierMax();
+    }
     double outputSpeed = 30;
     //自动填充
     bool autofill = false;

@@ -77,8 +77,8 @@ public class DoomPortalManager : MonoBehaviour
                 SceneManager.LoadScene(currentSceneName);
             });
             //在显示旁白的期间重启
-            ResourceManager.Instance.AddResource(ResourceType.RegeneratedCrystal, GetRegeneratedCrystalCount(),false);
-            ResourceManager.Instance.AddResource(ResourceType.DimensionalStone, 50,false);
+            ResourceManager.Instance.AddResource(ResourceType.RegeneratedCrystal, GetRegeneratedCrystalCount(), false);
+            ResourceManager.Instance.AddResource(ResourceType.DimensionalStone, 50, false);
         }
         else
         {   //失败
@@ -92,7 +92,7 @@ public class DoomPortalManager : MonoBehaviour
             });
 
             //在显示旁白的期间重启
-            ResourceManager.Instance.AddResource(ResourceType.RegeneratedCrystal, GetRegeneratedCrystalCount(),false);
+            ResourceManager.Instance.AddResource(ResourceType.RegeneratedCrystal, GetRegeneratedCrystalCount(), false);
 
 
         }
@@ -112,7 +112,8 @@ public class DoomPortalManager : MonoBehaviour
         //增加100+(工人总数 / 20)+（战斗力/ 1000）重生晶体
         int count = 100;
         count += ResourceCountManager.Instance.GetMinerCount() / 20;
-        count += BattlePanelManager.Instance.GetPower() / 1000;
+        int power = BattlePanelManager.Instance.GetPower() / 1000;
+        count += power > 250 ? 250 : power;
         return count;
     }
 

@@ -14,17 +14,21 @@ public class LogManager : MonoBehaviour
     public int maxLogCount = 100; // 最大日志数量
     private StringBuilder logBuilder;
     private bool needScrollToBottom;
+    private readonly object _logLock = new object(); // 用于线程同步
 
     public void Initialize()
     {
-        if (logs == null)
+        lock (_logLock)
         {
-            logs = new LinkedList<string>();
+            if (logs == null)
+            {
+                logs = new LinkedList<string>();
+            }
+            logs.Clear();
+            logBuilder = new StringBuilder();
+            logText.text = "";
+            ScrollToBottom();
         }
-        logs.Clear();
-        logBuilder = new StringBuilder();
-        logText.text = "";
-        ScrollToBottom();
     }
 
     private void Awake()
@@ -64,41 +68,51 @@ public class LogManager : MonoBehaviour
     // 添加日志
     public void AddLog(string message)
     {
+        if (string.IsNullOrEmpty(message))
+            return;
+
         if (!IsUIComponentsAssigned())
         {
             return;
         }
 
-        if (logs == null)
+        lock (_logLock)
         {
-            logs = new LinkedList<string>();
-            logBuilder = new StringBuilder();
+            if (logs == null)
+            {
+                logs = new LinkedList<string>();
+            }
+            
+            if (logBuilder == null)
+            {
+                logBuilder = new StringBuilder();
+            }
+
+            // 安全地移除最早的日志
+            while (logs.Count >= maxLogCount && logs.First != null)
+            {
+                logBuilder.Remove(0, logs.First.Value.Length + 1); // 移除最早的日志文本
+                logs.RemoveFirst(); // 移除最早的日志
+            }
+
+            // 添加日志到列表
+            logs.AddLast(message);
+
+            // 追加新的日志内容
+            if (logBuilder.Length > 0)
+            {
+                logBuilder.AppendLine(message);
+            }
+            else
+            {
+                logBuilder.Append(message);
+            }
+
+            logText.text = logBuilder.ToString();
+
+            // 标记需要滚动到底部
+            needScrollToBottom = true;
         }
-
-        // 检查日志数量是否超过最大限制
-        while (logs.Count >= maxLogCount)
-        {
-            logBuilder.Remove(0, logs.First.Value.Length + 1); // 移除最早的日志文本
-            logs.RemoveFirst(); // 移除最早的日志
-        }
-
-        // 添加日志到列表
-        logs.AddLast(message);
-
-        // 追加新的日志内容
-        if (logBuilder.Length > 0)
-        {
-            logBuilder.AppendLine(message);
-        }
-        else
-        {
-            logBuilder.Append(message);
-        }
-
-        logText.text = logBuilder.ToString();
-
-        // 标记需要滚动到底部
-        needScrollToBottom = true;
     }
 
     // 添加警告日志，显示为红色
@@ -113,30 +127,37 @@ public class LogManager : MonoBehaviour
     /// </summary>
     public void Reset()
     {
-        if (logs == null)
+        lock (_logLock)
         {
-            logs = new LinkedList<string>();
-            logBuilder = new StringBuilder();
-        }
+            if (logs == null)
+            {
+                logs = new LinkedList<string>();
+                logBuilder = new StringBuilder();
+            }
 
-        logBuilder.Clear();
-        foreach (var log in logs)
-        {
-            if (logBuilder.Length > 0)
+            logBuilder.Clear();
+            foreach (var log in logs)
             {
-                logBuilder.AppendLine(log);
+                if (logBuilder.Length > 0)
+                {
+                    logBuilder.AppendLine(log);
+                }
+                else
+                {
+                    logBuilder.Append(log);
+                }
             }
-            else
+            
+            if (logText != null) // 防止UI组件已被销毁
             {
-                logBuilder.Append(log);
+                logText.text = logBuilder.ToString();
             }
         }
-        logText.text = logBuilder.ToString();
     }
 
     private void Update()
     {
-        if (needScrollToBottom)
+        if (needScrollToBottom && scrollRect != null) // 防止UI组件已被销毁
         {
             ScrollToBottom();
             needScrollToBottom = false;
@@ -145,6 +166,9 @@ public class LogManager : MonoBehaviour
 
     private void ScrollToBottom()
     {
+        if (scrollRect == null || scrollRect.content == null) // 防御性检查
+            return;
+            
         Canvas.ForceUpdateCanvases();
         scrollRect.verticalNormalizedPosition = 0f;
     }
@@ -155,7 +179,10 @@ public class LogManager : MonoBehaviour
     /// <returns>包含所有日志的列表</returns>
     public List<string> GetAllLogs()
     {
-        return new List<string>(logs);
+        lock (_logLock)
+        {
+            return new List<string>(logs ?? new LinkedList<string>());
+        }
     }
 
     /// <summary>
@@ -169,37 +196,46 @@ public class LogManager : MonoBehaviour
             return;
         }
 
-        if (logs == null)
+        lock (_logLock)
         {
-            logs = new LinkedList<string>();
+            if (logs == null)
+            {
+                logs = new LinkedList<string>();
+            }
+            logs.Clear();
+            logBuilder = new StringBuilder();
+
+            if (logList == null)
+                return;
+
+            foreach (string log in logList)
+            {
+                if (string.IsNullOrEmpty(log))
+                    continue;
+
+                // 安全地移除最早的日志
+                while (logs.Count >= maxLogCount && logs.First != null)
+                {
+                    logBuilder.Remove(0, logs.First.Value.Length + 1);
+                    logs.RemoveFirst();
+                }
+
+                // 添加日志到列表
+                logs.AddLast(log);
+
+                // 追加新的日志内容
+                if (logBuilder.Length > 0)
+                {
+                    logBuilder.AppendLine(log);
+                }
+                else
+                {
+                    logBuilder.Append(log);
+                }
+            }
+
+            logText.text = logBuilder.ToString();
+            needScrollToBottom = true;
         }
-        logs.Clear();
-        logBuilder = new StringBuilder();
-
-        foreach (string log in logList)
-        {
-            // 检查日志数量是否超过最大限制
-            while (logs.Count >= maxLogCount)
-            {
-                logBuilder.Remove(0, logs.First.Value.Length + 1); // 移除最早的日志文本
-                logs.RemoveFirst(); // 移除最早的日志
-            }
-
-            // 添加日志到列表
-            logs.AddLast(log);
-
-            // 追加新的日志内容
-            if (logBuilder.Length > 0)
-            {
-                logBuilder.AppendLine(log);
-            }
-            else
-            {
-                logBuilder.Append(log);
-            }
-        }
-
-        logText.text = logBuilder.ToString();
-        needScrollToBottom = true;
     }
-}    
+}
