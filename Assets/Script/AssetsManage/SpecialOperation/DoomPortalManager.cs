@@ -67,6 +67,8 @@ public class DoomPortalManager : MonoBehaviour
 
         if (power >= 250000)
         {
+            AchievementUtils.Unlock(Achievement.AnotherDoomsday);
+
             //胜利
             //显示旁白说明
             VoiceOverManager.Instance.DestroyPortalWinVoiceOver(() =>
@@ -82,6 +84,7 @@ public class DoomPortalManager : MonoBehaviour
         }
         else
         {   //失败
+            AchievementUtils.Unlock(Achievement.doomsday);
             //显示旁白说明
             VoiceOverManager.Instance.DestroyPortalLossVoiceOver(() =>
             {

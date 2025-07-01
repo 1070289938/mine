@@ -18,7 +18,7 @@ public class PileOfOreManager : MonoBehaviour
     // 模块的资源属性
     [Header("Module Properties")]
     string resourceName = "一堆矿石";
-    string resourceDescription = "这是一堆矿石，挖挖看应该总会有点有用的东西";
+    string resourceDescription = "这是一堆矿石，挖挖看应该总会有点有用的东西（长按可以持续挖掘/建造）";
     int resourceQuantity = 1;
 
     string btnText = "挖";

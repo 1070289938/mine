@@ -18,7 +18,7 @@ public class GeocentricResearchInstituteManager : MonoBehaviour
     // 模块的资源属性
     [Header("Module Properties")]
     string resourceName = "地心研究所";
-    string resourceDescription = "专门用于研究地心科技的研究所,每个研究所都会提升科技点的产量";
+    string resourceDescription = "专门用于研究地心科技的研究所,每个研究所都会提升科技点的产量,并且在研究地心资料库后会提升科技点储量";
     int resourceQuantity = 0;
 
     string btnText = "建造";

@@ -69,7 +69,7 @@ public class StockExchangeManager : MonoBehaviour
             facilityPanelManager = GetComponent<FacilityPanelManager>();
         }
         double basics = 1;//基础值
-        basics += 0.2 * facilityPanelManager.GetCount();
+        basics += 0.4 * facilityPanelManager.GetCount();
         return basics;
     }
 

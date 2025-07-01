@@ -847,6 +847,14 @@ public enum TechType
     LunarResearch,
 
     /// <summary>
+    /// 涡旋钛熔工艺
+    /// </summary>
+    TitaniumProcess,
+    /// <summary>
+    /// 银矿探测技术
+    /// </summary>
+    SilverTechnology,
+    /// <summary>
     /// 月球酒馆
     /// </summary>
     MoonTavern,
@@ -1228,7 +1236,10 @@ public enum TechType
     /// 星际万维网
     /// </summary>
     InterstellarWorldWideWeb,
-
+    /// <summary>
+    /// 精金保险库
+    /// </summary>
+    VaultPureGold,
     /// <summary>
     /// 仓储机械臂
     /// </summary>
@@ -1239,6 +1250,10 @@ public enum TechType
     /// </summary>
     SuperconductingOrbit,
 
+    /// <summary>
+    /// 量子云经济
+    /// </summary>
+    QuantumCloudEconomy,
     /// <summary>
     /// 信用芯片
     /// </summary>
@@ -1368,6 +1383,436 @@ public enum TechType
     /// 完成深渊号的搭建
     /// </summary>
     CompleteAbyss,
+
+
+
+    /// <summary>
+    /// 引力波增幅器
+    /// </summary>
+    Gravitational,
+    /// <summary>
+    /// 量子纠缠导航仪
+    /// </summary>
+    EntanglementNavigator,
+    /// <summary>
+    /// 光子护盾生成器
+    /// </summary>
+    PhotonShield,
+    /// <summary>
+    /// 反物质湮灭引擎
+    /// </summary>
+    AnnihilationEngine,
+    /// <summary>
+    /// 进入虫洞
+    /// </summary>
+    WormholeEnter,
+
+
+
+    //==============================================暮晶科技===================================================
+
+
+
+
+
+
+    /// <summary>
+    /// 探索暮晶星系
+    /// </summary>
+    ExploreTwilightGalaxy,
+
+    /// <summary>
+    /// 分析太空空间
+    /// </summary>
+    AnalyzeSpace,
+
+    /// <summary>
+    /// 查找信号干扰源
+    /// </summary>
+    FindSignalInterferenceSource,
+
+    /// <summary>
+    /// 启用飞船自检仪器
+    /// </summary>
+    ActivateShipSelfCheck,
+
+    /// <summary>
+    /// 尝试重新激活
+    /// </summary>
+    TryReactivate,
+
+    /// <summary>
+    /// 检查维生系统
+    /// </summary>
+    CheckLifeSupportSystem,
+
+    /// <summary>
+    /// 修复维生系统
+    /// </summary>
+    RepairLifeSupportSystem,
+
+    /// <summary>
+    /// 试图查找损坏原因
+    /// </summary>
+    AttemptToFindDamageCause,
+
+    /// <summary>
+    /// 清理暮晶
+    /// </summary>
+    CleanTwilightCrystals,
+
+    /// <summary>
+    /// 激活维生装置
+    /// </summary>
+    ActivateLifeSupportDevice,
+
+    /// <summary>
+    /// 研究暮晶
+    /// </summary>
+    StudyTwilightCrystals,
+
+    /// <summary>
+    /// 挖掘暮晶
+    /// </summary>
+    MineTwilightCrystals,
+
+    /// <summary>
+    /// 激活防护服
+    /// </summary>
+    ActivateProtectiveSuit,
+
+    /// <summary>
+    /// 激活动力装置
+    /// </summary>
+    ActivatePowerDevice,
+
+    /// <summary>
+    /// 激活工具车
+    /// </summary>
+    ActivateToolVehicle,
+
+    /// <summary>
+    /// 自动捕捉装置
+    /// </summary>
+    AutomaticCaptureDevice,
+
+    /// <summary>
+    /// 升级机械臂
+    /// </summary>
+    UpgradeMechanicalArm,
+
+    /// <summary>
+    /// 升级捕捉装置
+    /// </summary>
+    UpgradeCaptureDevice,
+
+    /// <summary>
+    /// 残存探测器
+    /// </summary>
+    ResidualDetector,
+
+    /// <summary>
+    /// 监听未知广播
+    /// </summary>
+    MonitorUnknownBroadcast,
+
+    /// <summary>
+    /// 解析广播语言
+    /// </summary>
+    ParseBroadcastLanguage,
+
+    /// <summary>
+    /// 探索异常点
+    /// </summary>
+    ExploreAnomalyPoint,
+
+    /// <summary>
+    /// 检查实验仓状态
+    /// </summary>
+    CheckLabChamberStatus,
+
+    /// <summary>
+    /// 光脉干扰控制台
+    /// </summary>
+    LightPulseJammingConsole,
+
+    /// <summary>
+    /// 完成光脉干扰控制台
+    /// </summary>
+    CompleteInterference,
+
+    /// <summary>
+    /// 研究基础科技
+    /// </summary>
+    StudyBasicTechnology,
+
+    /// <summary>
+    /// 研究冷冻科技
+    /// </summary>
+    StudyCryogenicTechnology,
+
+    /// <summary>
+    /// 研究光谱知识
+    /// </summary>
+    StudySpectralKnowledge,
+
+    /// <summary>
+    /// 研究时间知识
+    /// </summary>
+    StudyTemporalKnowledge,
+
+    /// <summary>
+    /// 修复1号实验仓
+    /// </summary>
+    RepairLabChamber1,
+
+    /// <summary>
+    /// 研究暮晶收集舱
+    /// </summary>
+    StudyTwilightCrystalHarvestBay,
+
+    /// <summary>
+    /// 激活1号晶体提取仪
+    /// </summary>
+    ActivateCrystalExtractor1,
+
+    /// <summary>
+    /// 激活2号晶体提取仪
+    /// </summary>
+    ActivateCrystalExtractor2,
+
+    /// <summary>
+    /// 实验仓库
+    /// </summary>
+    LaboratoryWarehouse,
+
+    /// <summary>
+    /// 培养室
+    /// </summary>
+    CultivationChamber,
+
+    /// <summary>
+    /// 时间结构简史
+    /// </summary>
+    BriefHistoryOfTemporalStructure,
+
+    /// <summary>
+    /// 光速结构器
+    /// </summary>
+    LightSpeedStructurer,
+
+    /// <summary>
+    /// 控制室
+    /// </summary>
+    ControlRoom,
+
+    /// <summary>
+    /// 探索矿层入口
+    /// </summary>
+    ExploreMineLayerEntrance,
+
+    /// <summary>
+    /// 检查冻晶共鸣
+    /// </summary>
+    CheckFrozenCrystalResonance,
+
+    /// <summary>
+    /// 查看矿内遗迹封印
+    /// </summary>
+    ViewMineRelicSeal,
+
+    /// <summary>
+    /// 记忆回溯
+    /// </summary>
+    MemoryBacktracking,
+
+    /// <summary>
+    /// 折叠记忆碎片
+    /// </summary>
+    FoldMemoryFragments,
+
+    /// <summary>
+    /// 记忆提炼炉建造
+    /// </summary>
+    ConstructMemoryRefiner,
+
+    /// <summary>
+    /// 启动科研交互台
+    /// </summary>
+    ActivateScientificInteractionDesk,
+
+    /// <summary>
+    /// 中枢模型拟合
+    /// </summary>
+    CentralModelFitting,
+
+    /// <summary>
+    /// 采集矩阵运行
+    /// </summary>
+    CollectionMatrixOperation,
+
+    /// <summary>
+    /// 启动晶锚维护工程
+    /// </summary>
+    InitiateCrystalAnchorMaintenance,
+
+    /// <summary>
+    /// 时锚构建指令启动
+    /// </summary>
+    TimeAnchorConstructionCommandStart,
+
+    /// <summary>
+    /// 第一锚核心
+    /// </summary>
+    AnchorCoreOne,
+
+    /// <summary>
+    /// 锚区内部采样
+    /// </summary>
+    InternalAnchorZoneSampling,
+
+    /// <summary>
+    /// 启动锚体复制程序
+    /// </summary>
+    StartAnchorReplicationProgram,
+
+    /// <summary>
+    /// 第二锚核心
+    /// </summary>
+    AnchorCoreTwo,
+
+    /// <summary>
+    /// 锚间互扰
+    /// </summary>
+    InterAnchorInterference,
+
+    /// <summary>
+    /// 锚频突变
+    /// </summary>
+    AnchorFrequencyMutation,
+
+    /// <summary>
+    /// 晶析装置初次启动
+    /// </summary>
+    FirstActivationOfCrystalAnalyzer,
+
+    /// <summary>
+    /// 记忆存储装置
+    /// </summary>
+    MemoryStorageDevice,
+
+    /// <summary>
+    /// 记忆副本结构出现
+    /// </summary>
+    MemoryCopyStructureEmergence,
+
+    /// <summary>
+    /// 记忆副本干扰模块
+    /// </summary>
+    MemoryCopyInterferenceModule,
+
+    /// <summary>
+    /// 译码程序
+    /// </summary>
+    DecodingProgram,
+
+    /// <summary>
+    /// 锚区虚像
+    /// </summary>
+    AnchorZoneVirtualImage,
+
+    /// <summary>
+    /// 构建记忆终端
+    /// </summary>
+    ConstructMemoryTerminal,
+
+    /// <summary>
+    /// 晶析装置
+    /// </summary>
+    CrystalAnalyzer,
+
+    /// <summary>
+    /// 激活记忆终端
+    /// </summary>
+    ActivateMemoryTerminal,
+
+    /// <summary>
+    /// 共鸣试炼
+    /// </summary>
+    ResonanceTrial,
+
+    /// <summary>
+    /// 时间祭坛
+    /// </summary>
+    TimeAltar,
+
+    /// <summary>
+    /// 祭坛试炼层一
+    /// </summary>
+    AltarTrialLevelOne,
+
+    /// <summary>
+    /// 完成祭坛试炼层一
+    /// </summary>
+    CompleteAltarTrialLevelOne,
+    /// <summary>
+    /// 时相投影装置
+    /// </summary>
+    TimePhaseProjector,
+
+    /// <summary>
+    /// 祭坛试炼层二
+    /// </summary>
+    AltarTrialLevelTwo,
+    /// <summary>
+    /// 完成祭坛试炼层二
+    /// </summary>
+    CompleteAltarTrialLevelTwo,
+
+    /// <summary>
+    /// 逻辑困阵
+    /// </summary>
+    LogicPuzzleArray,
+
+    /// <summary>
+    /// 祭坛试炼层三
+    /// </summary>
+    AltarTrialLevelThree,
+    /// <summary>
+    /// 完成祭坛试炼层三
+    /// </summary>
+    CompleteAltarTrialLevelThree,
+
+    /// <summary>
+    /// 幻象重叠区
+    /// </summary>
+    PhantasmOverlapZone,
+
+
+    /// <summary>
+    /// 前往坐标位置
+    /// </summary>
+    GoToCoordinatePosition,
+
+    /// <summary>
+    /// 研究巨型装置
+    /// </summary>
+    StudyGiantDevice,
+
+    /// <summary>
+    /// 嵌入四维宝石
+    /// </summary>
+    EmbedFourDimensionalGem,
+
+
+    /// <summary>
+    /// 拆解巨构
+    /// </summary>
+    Disassemble,
+
+
+
+
     //==============================================系统科技===================================================
 
     /// <summary>
@@ -1463,6 +1908,62 @@ public enum TechType
     /// 天生科学家
     /// </summary>
     BornScientist,
+
+    /// <summary>
+    /// 多维集装箱
+    /// </summary>
+    DimensionalContainer,
+    /// <summary>
+    /// 亚空间集装箱
+    /// </summary>
+    SubspaceContainer,
+
+    /// <summary>
+    /// 天才
+    /// </summary>
+    Genius,
+
+    /// <summary>
+    /// 智囊
+    /// </summary>
+    ThinkTank,
+
+    /// <summary>
+    /// 黑心企业
+    /// </summary>
+    UnscrupulousEnterprise,
+
+    /// <summary>
+    /// 世界级野心
+    /// </summary>
+    WorldAmbition,
+
+
+    /// <summary>
+    /// 玄学
+    /// </summary>
+    Metaphysics,
+
+    /// <summary>
+    /// 采集器精通
+    /// </summary>
+    ProficientCollectors,
+
+    /// <summary>
+    /// 四维采集器
+    /// </summary>
+    DimensionalCollector,
+
+    /// <summary>
+    /// 飞升经验
+    /// </summary>
+    AscensionExperience,
+
+
+
+
+
+
 
 
 

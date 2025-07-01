@@ -3,6 +3,7 @@ using TMPro; // 引入 TextMeshPro 命名空间
 using UnityEngine.UI;
 using System;
 using System.Collections.Generic;
+using UnityEngine.EventSystems;
 /// <summary>
 /// 梁恩 v1.0
 /// </summary>
@@ -83,6 +84,23 @@ public class FacilityPanelManager : MonoBehaviour
         gameObject.SetActive(show);
 
         miningButton.onClick.AddListener(OnButtonClick);
+
+
+        // 获取按钮的EventTrigger组件（如果没有则添加）
+        EventTrigger eventTrigger = miningButton.GetComponent<EventTrigger>();
+        if (eventTrigger == null)
+            eventTrigger = miningButton.gameObject.AddComponent<EventTrigger>();
+
+        // 添加PointerDown事件
+        AddEventTriggerEntry(eventTrigger, EventTriggerType.PointerDown, OnPointerDown);
+
+        // 添加PointerUp事件
+        AddEventTriggerEntry(eventTrigger, EventTriggerType.PointerUp, OnPointerUp);
+
+        // 添加PointerExit事件
+        AddEventTriggerEntry(eventTrigger, EventTriggerType.PointerExit, OnPointerExit);
+
+
     }
 
     private void OnButtonClick()
@@ -107,7 +125,9 @@ public class FacilityPanelManager : MonoBehaviour
 
     void Update()
     {
+        LongPress();
         ComputePrice();
+
     }
     /// <summary>
     /// 计算当前资源是否足够购买当前面板的东西
@@ -470,9 +490,12 @@ public class FacilityPanelManager : MonoBehaviour
         Dictionary<ResourceType, double> expendResources = new Dictionary<ResourceType, double>();
         //实际最新价格=基础数值X增值百分比的.1+当前数量次方
         //每个资源都计算一下
+        //倍数乘以 1-倍数 = 最终倍数（例如0.1
+        double Metamorphosis = upMultiple * 1 - ResourceAdditionManager.Instance.GetMetamorphosis();
+        Debug.Log("资源递增倍数:" + Metamorphosis);
         foreach (var reso in resources)
         {
-            double count = reso.Value * Math.Pow(1 + resourcesUp * upMultiple, resourceQuantity);
+            double count = reso.Value * Math.Pow(1 + resourcesUp * Metamorphosis, resourceQuantity);
             expendResources[reso.Key] = Math.Truncate(count);
         }
         // 删除当前节点下的所有子节点
@@ -612,6 +635,62 @@ public class FacilityPanelManager : MonoBehaviour
         this.addThisCount = addThisCount;
     }
 
+
+
+    private void AddEventTriggerEntry(EventTrigger trigger, EventTriggerType eventType, System.Action<BaseEventData> callback)
+    {
+        // 创建新的事件条目
+        EventTrigger.Entry entry = new EventTrigger.Entry();
+        entry.eventID = eventType;
+        // 添加回调
+        entry.callback.AddListener(data => callback(data));
+        // 将条目添加到EventTrigger
+        trigger.triggers.Add(entry);
+    }
+
+
+    //按下时间
+    void OnPointerDown(BaseEventData data)
+    {
+        if (miningButton.interactable)
+        {
+            isPressing = true;
+            pressTime = 0f;
+        }
+
+    }
+    //抬起事件
+    void OnPointerUp(BaseEventData data)
+    {
+        isPressing = false;
+        pressTime = 0f;
+    }
+
+    //离开事件
+    void OnPointerExit(BaseEventData data)
+    {
+        isPressing = false;
+        pressTime = 0f;
+
+    }
+
+    float pressLongTime = 0.15f;
+    private float pressTime = 0.0f;
+    private bool isPressing = false;
+
+    void LongPress()
+    {
+        if (isPressing)
+        {
+            pressTime += Time.deltaTime;
+            Debug.Log(pressLongTime);
+            if (pressTime > pressLongTime)
+            {
+                pressTime = 0f;
+                OnMineButtonClicked();
+            }
+        }
+    }
 
 
 }

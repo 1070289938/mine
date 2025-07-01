@@ -7,6 +7,7 @@ using System;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System.Threading.Tasks;
+using TapSDK.Achievement;
 
 public class TapInstall : MonoBehaviour
 {
@@ -34,13 +35,19 @@ public class TapInstall : MonoBehaviour
             // 是否开启日志，Release 版本请设置为 false
             enableLog = true
         };
-        // TapSDK 初始化
-        TapTapSDK.Init(coreOptions);
 
+
+        // 成就配置
+        TapTapAchievementOptions achievementOptions = new TapTapAchievementOptions
+        {
+            // 成就达成时 SDK 是否需要展示一个气泡弹窗提示
+            enableToast = true
+        };
 
         // 当需要添加其他模块的初始化配置项，例如合规认证、成就等， 请使用如下 API
         TapTapSdkBaseOptions[] otherOptions = new TapTapSdkBaseOptions[]
         {
+            achievementOptions
             // 其他模块配置项
         };
         TapTapSDK.Init(coreOptions, otherOptions);
@@ -54,6 +61,12 @@ public class TapInstall : MonoBehaviour
     /// </summary>
     async void JudgmentLanding()
     {
+
+        // if (1 == 1)
+        // {
+        //     Utils.SetUserId("1111");
+        //     SceneManager.LoadScene("GameScene");
+        // }
 
 
         try

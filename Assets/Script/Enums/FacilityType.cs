@@ -391,6 +391,73 @@ public enum FacilityType
   ConstructingXingyuanShip,
 
 
+
+
+
+  /// <summary>
+  /// 手动捕捉暮晶
+  /// </summary>
+  CatchPanel,
+
+
+  /// <summary>
+  /// 晶体捕捉装置
+  /// </summary>
+  CrystalCapture,
+
+  /// <summary>
+  /// 光脉干扰控制台
+  /// </summary>
+  Interference,
+
+  /// <summary>
+  /// 晶体收集仓
+  /// </summary>
+  CollectionBin,
+
+
+  /// <summary>
+  /// 记忆提炼炉
+  /// </summary>
+  MemoryFurnace,
+
+
+  /// <summary>
+  /// 记忆储存装置
+  /// </summary>
+  MemoryStorage,
+
+
+  /// <summary>
+  /// 一层祭坛试炼
+  /// </summary>
+  AltarTrial1,
+
+  /// <summary>
+  /// 二层祭坛试炼
+  /// </summary>
+  AltarTrial2,
+
+
+  /// <summary>
+  /// 三层祭坛试炼
+  /// </summary>
+  AltarTrial3,
+
+  /// <summary>
+  /// 时空同步装置
+  /// </summary>
+  TimeSpaceSynchronization,
+
+
+
+
+
+
+
+
+
+
 }
 
 

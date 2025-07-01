@@ -21,6 +21,8 @@ public class ResourceUpperLimitManager : MonoBehaviour
 
     public StockExchangeManager stockExchangeManager;//证券交易所
 
+    public MemoryStorageManager memoryStorageManager;//记忆储存装置
+
     private void Awake()
     {
         Instance = this;
@@ -73,7 +75,8 @@ public class ResourceUpperLimitManager : MonoBehaviour
         UpperMetallicHydrogen();//精金
 
 
-
+        UpperMudCrystal();//暮晶
+        UpperMemoryAlloy();//记忆合金
     }
     /// <summary>
     /// 计算软妹币上限
@@ -429,6 +432,33 @@ public class ResourceUpperLimitManager : MonoBehaviour
         ResourceShowManager resourceShow = ResourceManager.Instance.resourceManager[ResourceType.Adamant];
         resourceShow.SetMaxStorage(reserves);//精金设置上限
     }
+
+    /// <summary>
+    /// 计算暮晶上限
+    /// 秘银上限 =  仓库储量
+    /// </summary>
+    void UpperMudCrystal()
+    {
+        double reserves = 0; //基本储量0
+        reserves += industrialReserveStationManager.GetReserves(ResourceType.MudCrystal);//获取工业储备站储量
+        reserves *= ResourceAdditionManager.Instance.GetAllReservesUp();//获取所有的储量加成
+        ResourceShowManager resourceShow = ResourceManager.Instance.resourceManager[ResourceType.MudCrystal];
+        resourceShow.SetMaxStorage(reserves);//暮晶设置上限
+    }
+
+    /// <summary>
+    /// 计算记忆合金上限
+    /// 秘银上限 =  仓库储量
+    /// </summary>
+    void UpperMemoryAlloy()
+    {
+        double reserves = 500; //基本储量0
+        reserves += memoryStorageManager.GetReserves(ResourceType.memoryAlloy);//获取记忆储存装置储量
+        reserves *= ResourceAdditionManager.Instance.GetAllReservesUp();//获取所有的储量加成
+        ResourceShowManager resourceShow = ResourceManager.Instance.resourceManager[ResourceType.memoryAlloy];
+        resourceShow.SetMaxStorage(reserves);//暮晶设置上限
+    }
+
 
 
 

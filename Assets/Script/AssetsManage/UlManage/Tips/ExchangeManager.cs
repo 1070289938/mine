@@ -101,7 +101,7 @@ public class ExchangeManager : MonoBehaviour
         {
             return;
         }
-        Debug.Log(data);
+        Debug.Log("兑换回调:" + data);
         JsonRoot root = JsonUtility.FromJson<JsonRoot>(data);
 
         if (root != null)
@@ -109,15 +109,29 @@ public class ExchangeManager : MonoBehaviour
             LogManager.Instance.AddLog("兑换成功!");
             foreach (Item item in root.content_obj)
             {
+                if (item.name.Equals("Advertisement"))
+                {
+                    //1天86400秒
+                    VIPManager.Instance.AddTime(item.number * 86400);
+                    LogManager.Instance.AddLog("获得免广告:" + item.number + "天");
+                    continue;
+                }
+
+
                 ResourceType resource = ResourceTypeHelper.StringToResourceType(item.name);
                 Debug.Log($"物品名称: {item.name}, 数量: {item.number}");
-                ResourceManager.Instance.AddResource(resource, item.number,false);
+                ResourceManager.Instance.AddResource(resource, item.number, false);
                 LogManager.Instance.AddLog("获得:" + resource.GetName() + AssetsUtil.FormatNumber(item.number) + "个");
+
+
+
+
             }
             SaveLoadManager.Instance.Save();
         }
         else
         {
+
             LogManager.Instance.AddLog("兑换失败!");
         }
     }

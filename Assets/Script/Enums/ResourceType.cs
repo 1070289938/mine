@@ -172,6 +172,26 @@ public enum ResourceType
   /// </summary>
   [DisplayName("精金")]
   Adamant,//精金
+
+
+  /// <summary>
+  /// 暮晶
+  /// </summary>
+  [DisplayName("暮晶")]
+  MudCrystal,//暮晶
+
+  /// <summary>
+  /// 记忆合金
+  /// </summary>
+  [DisplayName("记忆合金")]
+  memoryAlloy,//记忆合金
+
+
+  /// <summary>
+  /// 飞升精华
+  /// </summary>
+  [DisplayName("飞升精华")]
+  AscensionEssence,//飞升精华
 }
 
 

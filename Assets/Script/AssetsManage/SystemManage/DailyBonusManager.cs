@@ -5,100 +5,137 @@ using TapTap.TapAd;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+
 /// <summary>
 /// 每日奖励
 /// </summary>
 public class DailyBonusManager : MonoBehaviour
 {
     Button button;
-
     public TextMeshProUGUI time; // 标题
+    public TextMeshProUGUI count; // 领取次数
     readonly string buttonName = "看广告获取";
-
-    // 广告位 id
-    int id = 1041647;
-    // 记录按钮上次点击的日期
-    public DateTime lastClickDate;
+    readonly string timeFormat = "{0:D2}:{1:D2}:{2:D2} 后刷新";
+    readonly string countFormat = "今日可领:{0}次";
 
 
+    // 记录上次刷新的日期
+    public DateTime lastRefreshDate;
+    int maxClaimsPerDay = 1; // 每天最多可领取次数
+    public int remainingClaims; // 剩余可领取次数
 
 
-    // Start is called before the first frame update
+    public bool start = false;//如果是true代表存档加载完毕
+
     void Start()
     {
         button = GetComponentInChildren<Button>();
         button.onClick.AddListener(TryWatchAdvertisement);
-        // 初始化上次点击日期为一个较早的日期，确保游戏开始时按钮可用
-        if (lastClickDate == null)
-        {
-            lastClickDate = DateTime.MinValue;
-        }
 
+        // 更新UI显示
+        UpdateUI();
     }
 
-    // 每帧更新
     void Update()
     {
-        DateTime now = DateTime.Now;
-        if (now.Date > lastClickDate.Date)
-        {
-            // 冷却时间已过，显示默认名称
-            time.text = buttonName;
-            // 启用按钮
-            button.interactable = true;
-        }
-        else
-        {
-            // 冷却时间未过，计算到明天 0 点的剩余时间
-            DateTime tomorrow = now.Date.AddDays(1);
-            TimeSpan remainingTime = tomorrow - now;
-            time.text = $"{remainingTime.Hours:D2}:{remainingTime.Minutes:D2}:{remainingTime.Seconds:D2} 后刷新";
-            // 禁用按钮
-            button.interactable = false;
-        }
+        // 每帧检查是否需要刷新
+        CheckRefresh();
+
+        // 更新UI显示
+        UpdateUI();
     }
 
-    // 尝试看广告获取双倍
+    // 尝试看广告获取奖励
     void TryWatchAdvertisement()
     {
-        DateTime now = DateTime.Now;
-        if (now.Date > lastClickDate.Date)
+        if (remainingClaims > 0)
         {
-            // 冷却时间已过，播放广告
+            // 还有剩余次数，播放广告
             WatchAdvertisement();
         }
         else
         {
-            // 冷却时间未过，可添加提示逻辑，例如显示剩余冷却时间
-            DateTime tomorrow = now.Date.AddDays(1);
-            TimeSpan remainingTime = tomorrow - now;
-            Debug.Log($"冷却时间未过，剩余时间: {remainingTime.Hours:D2}:{remainingTime.Minutes:D2}:{remainingTime.Seconds:D2}");
+            // 次数已用完，显示剩余时间
+            Debug.Log("今日次数已用完");
+            UpdateUI();
         }
     }
 
-    // 看广告获取双倍
+    // 看广告获取奖励
     void WatchAdvertisement()
     {
+        // WatchOver();
         Example.example.ShowRewardAd(WatchOver, WatchOverOnclick);
-
     }
 
+    // 广告播放完成回调
     void WatchOver()
     {
-        // 更新上次点击日期
-        lastClickDate = DateTime.Now;
-        // 这里可以添加根据奖励验证结果执行的逻辑，例如如果验证通过则给予用户相应奖励，否则提示用户失败原因等
-        // 目前代码中没有具体实现逻辑
+        // 减少可领取次数
+        remainingClaims--;
+
+        // 更新UI
+        UpdateUI();
+
+        // 发放奖励
         LogManager.Instance.AddLog("成功领取每日奖励获取10重生水晶");
-        ResourceManager.Instance.AddResource(ResourceType.RegeneratedCrystal, 10,false);
+        ResourceManager.Instance.AddResource(ResourceType.RegeneratedCrystal, 10, false);
     }
-    //额外奖励
+
+    // 额外奖励回调
     void WatchOverOnclick()
     {
-        // 更新上次点击时间
         LogManager.Instance.AddLog("成功领取额外每日奖励10重生水晶");
-        ResourceManager.Instance.AddResource(ResourceType.RegeneratedCrystal, 10,false);
-
+        ResourceManager.Instance.AddResource(ResourceType.RegeneratedCrystal, 10, false);
     }
+
+    // 检查是否需要刷新可领取次数
+    void CheckRefresh()
+    {
+        Debug.Log("启用状态" + start);
+        if (!start)
+        {
+            return;
+        }
+        DateTime now = DateTime.Now;
+        Debug.Log(now.Date);
+        Debug.Log(lastRefreshDate.Date);
+
+        // 如果是新的一天，重置可领取次数
+        if (now.Date > lastRefreshDate.Date)
+        {
+            Debug.Log("重置每日奖励领取次数");
+            remainingClaims = maxClaimsPerDay;
+            lastRefreshDate = now;
+
+
+        }
+    }
+
+    // 更新UI显示
+    void UpdateUI()
+    {
+        if (remainingClaims > 0)
+        {
+            // 还有剩余次数
+            time.text = buttonName;
+            count.text = string.Format(countFormat, remainingClaims);
+            button.interactable = true;
+        }
+        else
+        {
+            // 次数已用完，显示到次日0点的剩余时间
+            DateTime tomorrow = DateTime.Now.Date.AddDays(1);
+            TimeSpan remainingTime = tomorrow - DateTime.Now;
+            time.text = string.Format(timeFormat,
+                remainingTime.Hours, remainingTime.Minutes, remainingTime.Seconds);
+            count.text = string.Format(countFormat, 0);
+            button.interactable = false;
+        }
+    }
+
+
+
+
 
 }

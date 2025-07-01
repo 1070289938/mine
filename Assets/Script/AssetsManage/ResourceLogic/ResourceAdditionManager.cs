@@ -45,10 +45,14 @@ public class ResourceAdditionManager : MonoBehaviour
 
     double titanium = 1;//钛的专项加成
 
-
+    double silver = 1;//银的专项加成
     double mithril = 1;//秘银的专项加成
 
     double neutron = 1;//中子专项加成
+
+    double mudCrystal = 1;//暮晶专项加成
+
+    double memoryAlloy = 1;//记忆专项加成
 
 
     ////////////////////////////////////////////////////房屋类////////////////////////////////////////////////////////////////////////////
@@ -93,6 +97,7 @@ public class ResourceAdditionManager : MonoBehaviour
 
     double pureGold = 1;//精金的加成
 
+    double memoryCapacity = 1;//记忆储量加成
 
     public OreCarManager oreCarManager;//矿车管理
     public MineralScreeningMachineManager mineralScreeningMachineManager;//矿物筛选器
@@ -141,6 +146,13 @@ public class ResourceAdditionManager : MonoBehaviour
     public InterstellarResearchInstituteManager interstellarResearchInstituteManager;//星际研究所
 
     public RingWorldManager ringWorldManager;//环世界
+
+    public TimeSpaceSynchronizationManager timeSpaceSynchronizationManager;//时空同步装置
+
+    public CollectionBinManager collectionBinManager;//晶体收集仓
+
+
+
 
     public static ResourceAdditionManager Instance { get; private set; }
 
@@ -509,8 +521,8 @@ public class ResourceAdditionManager : MonoBehaviour
 
         basics += bankManager.GetUp();
 
-        basics += stockExchangeManager.GetYieldUp();
-        basics += interstellarTradeHubManager.GetYieldUp();
+        basics *= 1 + stockExchangeManager.GetYieldUp();
+        basics *= 1 + interstellarTradeHubManager.GetYieldUp();
 
         return basics;
     }
@@ -814,7 +826,7 @@ public class ResourceAdditionManager : MonoBehaviour
     {
         double basics = 0; //基础加成是0
         basics += collectorMarkup;
-        basics += artificialMineManager.GetUp();//人造矿井的提升
+        basics *= 1 + artificialMineManager.GetUp();//人造矿井的提升
         return basics;
     }
 
@@ -835,9 +847,15 @@ public class ResourceAdditionManager : MonoBehaviour
         double basics = 0; //基础加成是0
         basics += science;
         basics += geocentricResearchInstituteManager.GetUp();//地心研究所的提升
-        basics += artificialSatelliteManager.GetUp();//人造卫星的提升
-        basics += marsResearchStationManager.GetUp();//火星研究台的提升
-        basics += interstellarResearchInstituteManager.GetUp();//星际研究所的提升
+        double outer = 1;
+        outer += artificialSatelliteManager.GetUp();//人造卫星的提升
+        outer += marsResearchStationManager.GetUp();//火星研究台的提升
+        basics *= outer;
+
+        basics *= 1 + interstellarResearchInstituteManager.GetUp();//星际研究所的提升
+
+
+
 
         return basics;
     }
@@ -858,12 +876,12 @@ public class ResourceAdditionManager : MonoBehaviour
     /// <returns></returns>
     public double GetAllAssetsUp()
     {
-        double basics = 0; //基础加成是0
-        basics += allAssets;
+        double basics = 1; //基础加成是1
+
         basics += altarManager.GetUp();//祭坛的提升
         basics += templeManager.GetUp();//寺庙的提升
-        basics += ringWorldManager.GetUp();//环世界的提升
-
+        basics *= 1 + ringWorldManager.GetUp();//环世界的提升
+        basics *= allAssets;
 
         return basics;
     }
@@ -1043,7 +1061,7 @@ public class ResourceAdditionManager : MonoBehaviour
     {
         double basics = 0; //基础加成是0
         basics += technological;
-        basics += lunarDataStationManager.GetUp();
+        basics *= 1 + lunarDataStationManager.GetUp();
         return basics;
     }
 
@@ -1118,7 +1136,7 @@ public class ResourceAdditionManager : MonoBehaviour
     /// <param name="count"></param>
     public void AddMithril(double count)
     {
-        travel *= 1 + mithril;
+        mithril *= 1 + count;
     }
     /// <summary>
     /// 获取秘銀加成
@@ -1139,7 +1157,7 @@ public class ResourceAdditionManager : MonoBehaviour
     /// <param name="count"></param>
     public void AddMarsResearch(double count)
     {
-        travel *= 1 + marsResearch;
+        marsResearch *= 1 + count;
     }
     /// <summary>
     /// 获取火星研究站加成
@@ -1162,7 +1180,7 @@ public class ResourceAdditionManager : MonoBehaviour
     /// <param name="count"></param>
     public void AddNeutron(double count)
     {
-        travel *= 1 + neutron;
+        neutron *= 1 + count;
     }
     /// <summary>
     /// 获取中子加成
@@ -1184,7 +1202,7 @@ public class ResourceAdditionManager : MonoBehaviour
     /// <param name="count"></param>
     public void AddPureGold(double count)
     {
-        pureGold *= 1 + neutron;
+        pureGold *= 1 + count;
     }
     /// <summary>
     /// 获取精金加成
@@ -1194,6 +1212,108 @@ public class ResourceAdditionManager : MonoBehaviour
     {
         double basics = 0; //基础加成是0
         basics += pureGold;
+
+        return basics;
+    }
+
+    /// <summary>
+    /// 提升银加成
+    /// </summary>
+    /// <param name="count"></param>
+    public void AddSilver(double count)
+    {
+        silver *= 1 + count;
+    }
+    /// <summary>
+    /// 获取银加成
+    /// </summary>
+    /// <returns></returns>
+    public double GetSilverUP()
+    {
+        double basics = 0; //基础加成是0
+        basics += silver;
+
+        return basics;
+    }
+
+
+
+    /// <summary>
+    /// 提升暮晶专项加成
+    /// </summary>
+    /// <param name="count"></param>
+    public void AddMudCrystal(double count)
+    {
+        mudCrystal *= 1 + count;
+    }
+    /// <summary>
+    /// 获取暮晶专项加成
+    /// </summary>
+    /// <returns></returns>
+    public double GetMudCrystalUP()
+    {
+        double basics = 0; //基础加成是0
+        basics += mudCrystal;
+
+        basics *= 1 + collectionBinManager.GetUp();
+        return basics;
+    }
+    /// <summary>
+    /// 提升记忆合金专项加成
+    /// </summary>
+    /// <param name="count"></param>
+    public void AddMemoryAlloy(double count)
+    {
+        memoryAlloy *= 1 + count;
+    }
+    /// <summary>
+    /// 获取记忆合金专项加成
+    /// </summary>
+    /// <returns></returns>
+    public double GetMemoryAlloyUP()
+    {
+        double basics = 0; //基础加成是0
+        basics += memoryAlloy;
+        basics *= timeSpaceSynchronizationManager.GetUp();
+        return basics;
+    }
+
+
+
+    /// <summary>
+    /// 提升记忆合金储量加成
+    /// </summary>
+    /// <param name="count"></param>
+    public void AddMemoryCapacity(double count)
+    {
+        memoryCapacity *= 1 + count;
+    }
+    /// <summary>
+    /// 获取记忆合金储量加成
+    /// </summary>
+    /// <returns></returns>
+    public double GetMemoryCapacityUP()
+    {
+        double basics = 0; //基础加成是0
+        basics += memoryCapacity;
+
+        return basics;
+    }
+
+
+    /// <summary>
+    /// 获取额外降低的资源蜕变
+    /// </summary>
+    /// <returns></returns>
+    public double GetMetamorphosis()
+    {
+
+        double essence = ResourceManager.Instance.GetResource(ResourceType.AscensionEssence);
+        double basics = essence * 0.0002;
+        if (basics >= 0.5)
+        {
+            basics = 0.5;
+        }
 
         return basics;
     }

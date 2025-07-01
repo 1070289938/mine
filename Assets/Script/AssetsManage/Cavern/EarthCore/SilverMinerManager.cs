@@ -88,8 +88,10 @@ public class SilverMinerManager : MonoBehaviour
 
             output *= ResourceAdditionManager.Instance.GetWorkerUp();//加上矿洞员工加成的提升
 
+            output *= ResourceAdditionManager.Instance.GetSilverUP();//加上银矿工人专属提升
+
             //每帧增加银矿
-            IncrementReturn increment = ResourceManager.Instance.AddResource(ResourceType.silver, output * Time.deltaTime,true);
+            IncrementReturn increment = ResourceManager.Instance.AddResource(ResourceType.silver, output * Time.deltaTime, true);
 
             //计算出每秒产出多少资源
             double secondCount = increment.Count / Time.deltaTime;

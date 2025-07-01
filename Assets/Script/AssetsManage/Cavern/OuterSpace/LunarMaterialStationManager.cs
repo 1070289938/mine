@@ -59,7 +59,7 @@ public class LunarMaterialStationManager : MonoBehaviour
         {
             facilityPanelManager = GetComponent<FacilityPanelManager>();
         }
-        double basics = 0;//基础值
+        double basics = 1;//基础值
         basics += up * facilityPanelManager.GetCount();
         basics *= ResourceAdditionManager.Instance.GetLunarMaterialStationUp();
         return basics;

@@ -123,10 +123,18 @@ public sealed class Example : MonoBehaviour
 
     /* 💛💛💛💛💛💛💛💛💛💛💛💛💛💛 ↓↓↓↓↓↓↓↓↓↓ 激励视频相关样例 ↓↓↓↓↓↓↓↓↓↓ 💛💛💛💛💛💛💛💛💛💛💛💛💛💛 */
     // Show the reward Ad.  最终调用该方法，播放广告
-    public void ShowRewardAd(Action action,Action onClickAction)
-    {   
+    public void ShowRewardAd(Action action, Action onClickAction)
+    {
+        if (VIPManager.Instance.vipFlag)
+        {
+            action?.Invoke();
+            onClickAction?.Invoke();
+            return;
+        }
         TipsManager.Instance.ShowBackLoad();
-        ExampleRewardAd.LoadReward(this, action,onClickAction);
+        ExampleRewardAd.LoadReward(this, action, onClickAction);
+
+
     }
     /* 💛💛💛💛💛💛💛💛💛💛💛💛💛💛 ↑↑↑↑↑↑↑↑↑↑ 激励视频相关样例 ↑↑↑↑↑↑↑↑↑↑ 💛💛💛💛💛💛💛💛💛💛💛💛💛💛 */
 

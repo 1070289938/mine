@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using TapSDK.Achievement;
+using TapSDK.Core;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -17,12 +19,16 @@ public class ResourceManager : MonoBehaviour
     public ResourceContentManager resourceContentManager;//资源内容管理
 
 
+    public Dictionary<ResourceType, double> resourcesHistory = new();//各个资源的总计产出
+
+
     public Dictionary<ResourceType, bool> special = new()
     {//特殊资源：重生晶体
         [ResourceType.RegeneratedCrystal] = true,
         //四维宝石
         [ResourceType.DimensionalStone] = true,
-
+        //飞升精华
+        [ResourceType.AscensionEssence] = true,
     };
 
     public Dictionary<ResourceType, Dictionary<ResourceType, double>> formula = new()
@@ -67,6 +73,11 @@ public class ResourceManager : MonoBehaviour
         },
 
 
+        //记忆合金
+        [ResourceType.memoryAlloy] = new()
+        { //每个记忆合金消耗=500合金
+            [ResourceType.Alloy] = 500,
+        },
 
 
     };
@@ -111,19 +122,19 @@ public class ResourceManager : MonoBehaviour
     /// </summary>
     private void InitializeResources()
     {
-        if (SaveLoadManager.Install)//是否需要初始化
-        {
-            resources = new Dictionary<ResourceType, double>();
-            resourcesMax = new Dictionary<ResourceType, double>();
-            resourceUnlocks = new Dictionary<ResourceType, bool>();
-            foreach (ResourceType type in System.Enum.GetValues(typeof(ResourceType)))
-            {
-                resources[type] = 0; // 所有资源初始为0
-                resourcesMax[type] = 0; //所有资源上限初始为0
-                resourceUnlocks[type] = false; // 所有资源初始不显示
-            }
-        }
+        // if (SaveLoadManager.Install)//是否需要初始化
+        // {
 
+        // }
+        resources = new Dictionary<ResourceType, double>();
+        resourcesMax = new Dictionary<ResourceType, double>();
+        resourceUnlocks = new Dictionary<ResourceType, bool>();
+        foreach (ResourceType type in System.Enum.GetValues(typeof(ResourceType)))
+        {
+            resources[type] = 0; // 所有资源初始为0
+            resourcesMax[type] = 0; //所有资源上限初始为0
+            resourceUnlocks[type] = false; // 所有资源初始不显示
+        }
         ResourceShowManager[] resourceShowManagers = resourceContentManager.GetComponentsInChildren<ResourceShowManager>(true);
         foreach (ResourceShowManager resourceShow in resourceShowManagers)
         {
@@ -171,6 +182,8 @@ public class ResourceManager : MonoBehaviour
                 TechChecker.Instance.AddCheckTech(TechType.ironPickaxe);//铁镐
                 TechChecker.Instance.AddCheckTech(TechType.IronWarehouse);//铁仓库
 
+                AchievementUtils.Unlock(Achievement.iron);
+
             }
             if (resourceType == ResourceType.Currency)
             {
@@ -185,6 +198,14 @@ public class ResourceManager : MonoBehaviour
             {
                 Debug.Log("解锁煤矿");
             }
+            if (resourceType == ResourceType.Science)
+            {
+                AchievementUtils.Unlock(Achievement.sciencetechnology);
+            }
+
+
+
+
 
         }
     }
@@ -203,9 +224,26 @@ public class ResourceManager : MonoBehaviour
         return false;
     }
 
+    //计算重生晶体的加成
+    public double RebirthBonus(ResourceType type, double count)
+    {
+        //计算重生晶体的产量
+        if (!special.ContainsKey(type))
+        {
+            count *= RegeneratedCrystalManager.Instance.addition;
+            count *= ResourceAdditionManager.Instance.GetAllAssetsUp();
+        }
+        return count;
+    }
+
+
     /// <summary>
     /// 增加资源
     /// </summary>
+    /// <param name="type">资源类型</param>
+    /// <param name="amount">资源数量</param>
+    /// <param name="calculation">是否额外计算重生加成</param>
+    /// <returns></returns>
     public IncrementReturn AddResource(ResourceType type, double amount, bool calculation)
     {
 
@@ -223,20 +261,19 @@ public class ResourceManager : MonoBehaviour
         if (amount == 0) return increment;
         UnlockResource(type);
 
-        double count = amount;
+        double count = amount;//增量
         if (calculation)
         {
-            //计算重生晶体的产量
-            if (!special.ContainsKey(type))
-            {
-                count *= RegeneratedCrystalManager.Instance.addition;
+            count = RebirthBonus(type, count);
 
-
-                count *= ResourceAdditionManager.Instance.GetAllAssetsUp();
-
-            }
         }
 
+        //资源的总计产出
+        if (!resourcesHistory.ContainsKey(type))
+        {
+            resourcesHistory[type] = 0;
+        }
+        resourcesHistory[type] += count;
 
 
 
@@ -246,7 +283,9 @@ public class ResourceManager : MonoBehaviour
         //如果超过上限就以上限来计算
 
         //如果不是无限的
-        if (resourcesMax[type] != -1
+
+
+        if (GetResoucesMax(type) != -1
         && resourcesSum > resourcesMax[type])
         {
             //上限了计算上限
@@ -261,6 +300,19 @@ public class ResourceManager : MonoBehaviour
         }
         return increment;//返回这次增加了多少资源
     }
+
+
+    double GetResoucesMax(ResourceType type)
+    {
+        if (resourcesMax.ContainsKey(type))
+        {
+            return resourcesMax[type];
+        }
+        double max = resourceManager[type].maxStorage;
+        resourcesMax[type] = max;
+        return max;
+    }
+
 
     /// <summary>
     /// 消耗资源
@@ -299,6 +351,7 @@ public class ResourceManager : MonoBehaviour
     /// <param name="max"></param>
     public void SetResourceMax(ResourceType type, double max)
     {
+
         resourcesMax[type] = max;
     }
 
@@ -339,6 +392,11 @@ public class ResourceManager : MonoBehaviour
     //判断资源是否足够（仅判断，不扣除资源）
     public JudgmentResult OnlyJudgmentResource(Dictionary<ResourceType, double> resources)
     {
+        if (resources == null)
+        {
+            Debug.Log("资源为空");
+            return new JudgmentResult(false);
+        }
         foreach (var res in resources)
         {
             //判断资源是否足够

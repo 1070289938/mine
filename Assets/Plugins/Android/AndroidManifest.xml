@@ -9,7 +9,7 @@
   <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
   <!-- IMEI 、序列号、MEID 、IMSI 、 ICCID 等信息。TargetSdkVersion 4 以及更高需要申请 -->
   <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-  
+
   <uses-permission android:name="android.permission.WRITE_SECURE_SETTINGS" />
   <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
 
@@ -26,11 +26,14 @@
   <uses-permission android:name="android.permission.BLUETOOTH" />
   <!-- 允许应用请求安装软件包 -->
   <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+  <queries>
+    <package android:name="com.taptap" />
+  </queries>
   <!-- TapAd 可选择权限-结束   -->
   <application android:theme="@style/Theme.AppCompat.Light.NoActionBar"
     tools:remove="android:requestLegacyExternalStorage">
 
-    <activity android:name="com.unity3d.player.PrivacyActivity" 
+    <activity android:name="com.unity3d.player.PrivacyActivity"
       android:exported="true"
       android:requestLegacyExternalStorage="true">
       <intent-filter>

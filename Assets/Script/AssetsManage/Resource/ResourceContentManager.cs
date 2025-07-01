@@ -13,7 +13,6 @@ public class ResourceContentManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         // 遍历节点并更新内容
         foreach (Transform child in transform)
         {
@@ -24,22 +23,15 @@ public class ResourceContentManager : MonoBehaviour
 
                 if (ResourceManager.Instance.IsResourceUnlocked(type))
                 {
-
                     child.gameObject.SetActive(true);
-
                 }
-
             }
             else
             {
-
                 if (!ResourceManager.Instance.IsResourceUnlocked(type))
                 {
-
                     child.gameObject.SetActive(false);
-
                 }
-
             }
 
 

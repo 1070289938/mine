@@ -36,23 +36,13 @@ public class PermissionRequestManager : MonoBehaviour
         {
             if (!Permission.HasUserAuthorizedPermission(permission))
             {
-                Permission.RequestUserPermission(permission);
+                
             }
         }
     }
     void Start()
     {
-        if (!Permission.HasUserAuthorizedPermission(Permission.ExternalStorageRead) ||
-            !Permission.HasUserAuthorizedPermission(Permission.ExternalStorageWrite))
-        {
-            Permission.RequestUserPermission(Permission.ExternalStorageRead);
-            Permission.RequestUserPermission(Permission.ExternalStorageWrite);
-         
-        }
-        else
-        {
-           
-        }
+        
     }
     /// <summary>
     /// 手动调用请求权限

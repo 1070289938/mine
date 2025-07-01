@@ -56,6 +56,7 @@ public class SpaceDockManager : MonoBehaviour
         {
             gameObject.SetActive(false);//隐藏
             TechManager.Instance.techTypeStudyFlag[TechType.CompleteSpaceDock] = true;
+            AchievementUtils.Unlock(Achievement.CosmicWonders);
         }
     }
 

@@ -37,5 +37,14 @@ public enum SpecialOptionType
   /// 启动原型深渊号
   /// </summary>
   StartPrototype,
+  /// <summary>
+  /// 飞升
+  /// </summary>
+  Soaring,
+  /// <summary>
+  /// 带回巨构零件
+  /// </summary>
+  RewardingExperience,
+
 
 }

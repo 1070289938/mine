@@ -10,84 +10,126 @@ using UnityEngine.UI;
 /// </summary>
 public class ProductionAccelerationManager : MonoBehaviour
 {
+  
     Button button;
-
     public TextMeshProUGUI time; // 标题
+    public TextMeshProUGUI count; // 领取次数
     readonly string buttonName = "看广告获取";
+    readonly string timeFormat = "{0:D2}:{1:D2}:{2:D2} 后刷新";
+    readonly string countFormat = "今日可领:{0}次";
 
-    // 广告位 id
-    int id = 1041644;
-    // 记录按钮上次点击的时间
-    public DateTime lastClickTime;
-    // 冷却时间，单位：小时
-    const int cooldownHours = 3;
 
-    // Start is called before the first frame update
+    // 记录上次刷新的日期
+    public DateTime lastRefreshDate;
+    int maxClaimsPerDay = 10; // 每天最多可领取次数
+    public int remainingClaims; // 剩余可领取次数
+
+
+    public bool start = false;//如果是true代表存档加载完毕
+
     void Start()
     {
         button = GetComponentInChildren<Button>();
         button.onClick.AddListener(TryWatchAdvertisement);
-        // 初始化上次点击时间为一个较早的时间，确保游戏开始时按钮可用
 
-        if (lastClickTime == null)
-        {
-            lastClickTime = DateTime.MinValue;
-        }
+        // 更新UI显示
+        UpdateUI();
     }
 
-    // 每帧更新
     void Update()
     {
-        // 计算当前时间与上次点击时间的差值
-        TimeSpan elapsedTime = DateTime.Now - lastClickTime;
-        if (elapsedTime.TotalHours < cooldownHours)
-        {
-            // 冷却时间未过，显示剩余冷却时间
-            TimeSpan remainingTime = TimeSpan.FromHours(cooldownHours) - elapsedTime;
-            time.text = $"{remainingTime.Hours:D2}:{remainingTime.Minutes:D2}:{remainingTime.Seconds:D2} 后刷新";
-            // 禁用按钮
-            button.interactable = false;
-        }
-        else
-        {
-            // 冷却时间已过，显示默认名称
-            time.text = buttonName;
-            // 启用按钮
-            button.interactable = true;
-        }
+        // 每帧检查是否需要刷新
+        CheckRefresh();
+
+        // 更新UI显示
+        UpdateUI();
     }
 
-    // 尝试看广告时间加速
+    // 尝试看广告获取奖励
     void TryWatchAdvertisement()
     {
-        // 计算当前时间与上次点击时间的差值
-        TimeSpan elapsedTime = DateTime.Now - lastClickTime;
-        if (elapsedTime.TotalHours >= cooldownHours)
+        if (remainingClaims > 0)
         {
-            // 冷却时间已过，播放广告
+            // 还有剩余次数，播放广告
             WatchAdvertisement();
-
-
-
         }
         else
         {
-            // 冷却时间未过，可添加提示逻辑，例如显示剩余冷却时间
-            Debug.Log($"冷却时间未过，剩余时间: {cooldownHours - elapsedTime.TotalHours:F2} 小时");
+            // 次数已用完，显示剩余时间
+            Debug.Log("今日次数已用完");
+            UpdateUI();
         }
     }
 
-    // 看广告获取双倍
+    // 看广告获取奖励
     void WatchAdvertisement()
     {
+        // WatchOver();
         Example.example.ShowRewardAd(WatchOver, WatchOverOnclick);
-
     }
+
+   
+
+    // 检查是否需要刷新可领取次数
+    void CheckRefresh()
+    {
+        Debug.Log("启用状态" + start);
+        if (!start)
+        {
+            return;
+        }
+        DateTime now = DateTime.Now;
+        Debug.Log(now.Date);
+        Debug.Log(lastRefreshDate.Date);
+
+        // 如果是新的一天，重置可领取次数
+        if (now.Date > lastRefreshDate.Date)
+        {
+            Debug.Log("重置每日奖励领取次数");
+            remainingClaims = maxClaimsPerDay;
+            lastRefreshDate = now;
+
+
+        }
+    }
+
+    // 更新UI显示
+    void UpdateUI()
+    {
+        if (remainingClaims > 0)
+        {
+            // 还有剩余次数
+            time.text = buttonName;
+            count.text = string.Format(countFormat, remainingClaims);
+            button.interactable = true;
+        }
+        else
+        {
+            // 次数已用完，显示到次日0点的剩余时间
+            DateTime tomorrow = DateTime.Now.Date.AddDays(1);
+            TimeSpan remainingTime = tomorrow - DateTime.Now;
+            time.text = string.Format(timeFormat,
+                remainingTime.Hours, remainingTime.Minutes, remainingTime.Seconds);
+            count.text = string.Format(countFormat, 0);
+            button.interactable = false;
+        }
+    }
+
+
+
+
+  
 
     void WatchOver()
     {
+          // 减少可领取次数
+        remainingClaims--;
+
+        // 更新UI
+        UpdateUI();
+
         // 更新上次点击时间
-        lastClickTime = DateTime.Now;
+        lastRefreshDate = DateTime.Now;
 
         // 这里可以添加根据奖励验证结果执行的逻辑，例如如果验证通过则给予用户相应奖励，否则提示用户失败原因等
         // 目前代码中没有具体实现逻辑

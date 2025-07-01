@@ -235,6 +235,11 @@ public class BattlePanelManager : MonoBehaviour
     /// <param name="count"></param>
     void LossSoldier(int count)
     {
+        if (count >= 500)
+        {
+            AchievementUtils.Unlock(Achievement.heavy);
+        }
+
         soldierCount -= count;
         if (soldierCount < 0)
         {
@@ -242,6 +247,7 @@ public class BattlePanelManager : MonoBehaviour
         }
         soldierCountText.text = soldierCount + "/" + soldierCap;
         UpdateSoldierMax();
+        
     }
 
 

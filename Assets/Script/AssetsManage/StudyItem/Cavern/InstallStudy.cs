@@ -7,10 +7,19 @@ using UnityEngine;
 /// </summary>
 public class InstallStudy : MonoBehaviour
 {
+    public static InstallStudy installStudy;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        InstallStudyItem[] studyItems = GetComponentsInChildren<InstallStudyItem>();
+        installStudy = this;
+
+    }
+
+    public void Install()
+    {
+       
+        InstallStudyItem[] studyItems = GetComponentsInChildren<InstallStudyItem>(true);
+        Debug.Log("加载阶段数:" + studyItems.Length);
         foreach (InstallStudyItem item in studyItems)
         {
             item.Install();
@@ -24,6 +33,7 @@ public class InstallStudy : MonoBehaviour
 
 
     }
+
     void MonitoringTechnology()
     {
         //判断如果前置资源拥有就直接后置

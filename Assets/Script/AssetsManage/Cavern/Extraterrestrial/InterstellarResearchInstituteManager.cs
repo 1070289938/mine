@@ -83,7 +83,7 @@ public class InterstellarResearchInstituteManager : MonoBehaviour
         {
             facilityPanelManager = GetComponent<FacilityPanelManager>();
         }
-        return up *= facilityPanelManager.GetCount();//数量相乘    
+        return up * facilityPanelManager.GetCount();//数量相乘    
     }
 
 

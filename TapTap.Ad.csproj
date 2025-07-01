@@ -479,7 +479,7 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="zxing.unity">
-      <HintPath>Library\PackageCache\com.taptap.sdk.login@4.5.4\Plugins\zxing.unity.dll</HintPath>
+      <HintPath>Library\PackageCache\com.taptap.sdk.login@4.6.3\Plugins\zxing.unity.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Google.IOSResolver">

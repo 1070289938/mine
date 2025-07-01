@@ -56,6 +56,7 @@ public class SpaceElevatorManager : MonoBehaviour
         {
             gameObject.SetActive(false);//隐藏太空电梯
             TechManager.Instance.techTypeStudyFlag[TechType.CompletionConstruction] = true;
+            AchievementUtils.Unlock(Achievement.outerSpace);
         }
     }
 

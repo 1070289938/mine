@@ -120,7 +120,10 @@ public class AlloyFactoryManager : MonoBehaviour
         foreach (var expend in depleted)
         {
             double expendable = thisYield * expend.Value;
+            expendable = ResourceManager.Instance.RebirthBonus(expend.Key, expendable);
+
             double thisResource = ResourceManager.Instance.GetResource(expend.Key);
+           
             if (thisResource < expendable)
             {
                 //如果资源不足就不进行生产
@@ -128,8 +131,8 @@ public class AlloyFactoryManager : MonoBehaviour
             }
         }
 
-        //每帧增加钢铁
-        IncrementReturn increment = ResourceManager.Instance.AddResource(ResourceType.Alloy, thisYield,true);
+        //每帧增加合金
+        IncrementReturn increment = ResourceManager.Instance.AddResource(ResourceType.Alloy, thisYield, true);
 
 
 

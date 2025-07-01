@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TapTap.TapAd;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 /// <summary>
@@ -24,6 +25,9 @@ public class RevenueManager : MonoBehaviour
     //双倍领取按钮
     public Button doubleClaim;
 
+
+    //离线时间
+    public TextMeshProUGUI timeText;
     Dictionary<ResourceType, double> resource;
     // 广告位 id
     int id = 1042441;
@@ -70,7 +74,7 @@ public class RevenueManager : MonoBehaviour
         foreach (var res in resource)
         {
             LogManager.Instance.AddLog(res.Key.GetName() + "+" + AssetsUtil.FormatNumber(res.Value));
-            ResourceManager.Instance.AddResource(res.Key, res.Value,false);
+            ResourceManager.Instance.AddResource(res.Key, res.Value, false);
         }
         TipsManager.Instance.OnClickAll();
 
@@ -78,8 +82,13 @@ public class RevenueManager : MonoBehaviour
 
 
 
-    public void Install(Dictionary<ResourceType, double> resource)
+    public void Install(Dictionary<ResourceType, double> resource, int time)
     {
+        //转换时间格式
+
+        timeText.text = Utils.FormatTime(time);
+
+
         this.resource = resource;
         //销毁所有的子节点
         foreach (Transform child in content.transform)
@@ -114,7 +123,7 @@ public class RevenueManager : MonoBehaviour
         {
             double val = res.Value * 2;
             LogManager.Instance.AddLog(res.Key.GetName() + "+" + AssetsUtil.FormatNumber(val));
-            ResourceManager.Instance.AddResource(res.Key, val,false);
+            ResourceManager.Instance.AddResource(res.Key, val, false);
         }
         TipsManager.Instance.OnClickAll();
     }
@@ -129,7 +138,7 @@ public class RevenueManager : MonoBehaviour
         {
             double val = res.Value * 0.5;
             LogManager.Instance.AddLog(res.Key.GetName() + "+" + AssetsUtil.FormatNumber(val));
-            ResourceManager.Instance.AddResource(res.Key, val,false);
+            ResourceManager.Instance.AddResource(res.Key, val, false);
         }
         TipsManager.Instance.OnClickAll();
     }

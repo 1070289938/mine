@@ -30,9 +30,40 @@ public class RegeneratedCrystalManager : MonoBehaviour
         return secondLifeCount;
     }
 
+    /// <summary>
+    /// 设置重生次数
+    /// </summary>
+    /// <param name="count"></param>
     public void SetSecondLifeCount(int count)
     {
         secondLifeCount = count;
+        if (secondLifeCount >= 1)
+        {
+            AchievementUtils.Unlock(Achievement.Reborn);
+        }
+
+        if (secondLifeCount >= 10)
+        {
+            AchievementUtils.Unlock(Achievement.RebirthExpert);
+        }
+        if (secondLifeCount >= 20)
+        {
+            AchievementUtils.Unlock(Achievement.awake);
+        }
+        if (secondLifeCount >= 50)
+        {
+            AchievementUtils.Unlock(Achievement.NotDying);
+        }
+        if (secondLifeCount >= 100)
+        {
+            AchievementUtils.Unlock(Achievement.wantDie);
+        }
+        if (secondLifeCount >= 200)
+        {
+            AchievementUtils.Unlock(Achievement.UnableDie);
+        }
+
+
     }
 
     public TextMeshProUGUI text;
@@ -90,8 +121,8 @@ public class RegeneratedCrystalManager : MonoBehaviour
             value = max;
         }
         // 计算 (ln(value + 50) - 3.91202) / 2.888
-        // return (Math.Log(value + 50) - 3.91202) / 2.888;
+        return (Math.Log(value + 50) - 3.91202) / 2.888;
 
-        return 1000000;
+        // return 1000;
     }
 }

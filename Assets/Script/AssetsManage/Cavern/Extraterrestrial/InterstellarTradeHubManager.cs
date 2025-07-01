@@ -70,7 +70,7 @@ public class InterstellarTradeHubManager : MonoBehaviour
             facilityPanelManager = GetComponent<FacilityPanelManager>();
         }
         double basics = 0;//基础值
-        basics += 0.05 * facilityPanelManager.GetCount();
+        basics += 0.2 * facilityPanelManager.GetCount();
         return basics;
     }
 

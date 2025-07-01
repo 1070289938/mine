@@ -42,6 +42,8 @@ public class IndustrialReserveStationManager : MonoBehaviour
 
         [ResourceType.Flare] = AssetsUtil.ParseNumber("520"),//耀斑矿
         [ResourceType.Adamant] = AssetsUtil.ParseNumber("130"),//精金
+
+         [ResourceType.MudCrystal] = AssetsUtil.ParseNumber("50"),//暮晶
     };
 
     readonly FacilityType type = FacilityType.IndustrialReserveStation;

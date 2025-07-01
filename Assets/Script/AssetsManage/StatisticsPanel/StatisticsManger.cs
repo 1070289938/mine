@@ -17,6 +17,8 @@ public class StatisticsManger : MonoBehaviour
     // 重生晶体提升的储量
     public TextMeshProUGUI secondLifeReserves;
 
+    // 飞升精华降低的资源蜕变
+    public TextMeshProUGUI ascensionEssence;
     // Start is called before the first frame update
     void Start()
     {
@@ -46,10 +48,14 @@ public class StatisticsManger : MonoBehaviour
         int max = 250;
         max += (int)ResourceManager.Instance.GetResource(ResourceType.DimensionalStone);
         secondLifeUpperLimit.text = max.ToString();
-        
+
         // 重生晶体提升的储量
         double count = ResourceAdditionManager.Instance.GetSecondLifeReservesUp();
-        secondLifeReserves.text = (count*100)+"%";
+        secondLifeReserves.text = (count * 100) + "%";
+
+        double metamorphosis = ResourceAdditionManager.Instance.GetMetamorphosis();
+
+        ascensionEssence.text = (metamorphosis * 100) + "%(上限50%)";
 
     }
 

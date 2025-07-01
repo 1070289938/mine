@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 using UnityEngine.Networking;
+using static ExchangeManager;
 
 public class PostManager : MonoBehaviour
 {
@@ -18,12 +19,12 @@ public class PostManager : MonoBehaviour
     }
 
 
-    public void ToPost(string url, string json, Action<int,string> action)
+    public void ToPost(string url, string json, Action<int, string> action)
     {
         StartCoroutine(Post(url, json, action));
     }
 
-    IEnumerator Post(string url, string json, Action<int,string> action)
+    IEnumerator Post(string url, string json, Action<int, string> action)
     {
         // 要发送POST请求的API的URL
         string apiUrl = url;
@@ -48,16 +49,37 @@ public class PostManager : MonoBehaviour
             {
                 // 获取响应文本
                 string responseText = webRequest.downloadHandler.text;
-                action?.Invoke(0,responseText);
+                action?.Invoke(0, responseText);
                 Debug.Log("Response: " + responseText);
             }
             else
             {
+                Debug.Log(webRequest.downloadHandler.text);
+                TapData root = JsonUtility.FromJson<TapData>(webRequest.downloadHandler.text);
+                Debug.Log(root.message);
                 // 输出错误信息
-                // Debug.LogError("Error: " + webRequest.error);
-                LogManager.Instance.AddLog("兑换码无效!");
-                action?.Invoke(1,webRequest.error);
+                Debug.Log("Error: " + webRequest.error);
+                LogManager.Instance.AddLog(root.info.hint);
+                action?.Invoke(1, webRequest.error);
             }
         }
     }
+}
+
+
+// 定义JSON根对象类
+[System.Serializable]
+public class TapData
+{
+    public int error;
+    public string message;
+
+    public InfoData info;
+}
+
+[System.Serializable]
+public class InfoData
+{
+    public string hint;
+
 }

@@ -163,6 +163,29 @@ public class InstallStudyItem : MonoBehaviour
             DeepSpacePanelManager.Instance.Activate();
         }
 
+        if (tech.id == 35)//解锁火车
+        {
+            AchievementUtils.Unlock(Achievement.expedition);
+        }
+        if (tech.id == 33)//解锁钢铁铸造工
+        {
+            AchievementUtils.Unlock(Achievement.industrial);
+        }
+
+        if (tech.id == 205)//解锁火星殖民船
+        {
+            AchievementUtils.Unlock(Achievement.colonizationMars);
+        }
+        if (tech.id == 269)//解锁量子计算机
+        {
+            AchievementUtils.Unlock(Achievement.QuantumTechnology);
+        }
+
+        if (tech.id == 306)//解锁进入虫洞
+        {
+            AchievementUtils.Unlock(Achievement.Wormhole);
+        }
+
 
     }
     void UnlockPanel(Dictionary<string, double> revenue)
@@ -383,6 +406,25 @@ public class InstallStudyItem : MonoBehaviour
                         //精金加成
                         ResourceAdditionManager.Instance.AddPureGold(type.Value);
                         break;
+                    case 47:
+                        //银矿加成
+                        ResourceAdditionManager.Instance.AddSilver(type.Value);
+                        break;
+                    case 48:
+                        //暮晶加成
+                        ResourceAdditionManager.Instance.AddMudCrystal(type.Value);
+                        break;
+                    case 49:
+                        //记忆加成
+                        ResourceAdditionManager.Instance.AddMemoryAlloy(type.Value);
+                        break;
+                    case 50:
+                        //记忆储量加成
+                        ResourceAdditionManager.Instance.AddMemoryCapacity(type.Value);
+                        break;
+
+
+
                 }
 
 
@@ -438,7 +480,7 @@ public class InstallStudyItem : MonoBehaviour
         {
             foreach (TechType type in tech.advanceTechType)
             {
-                Debug.Log(type);
+                // Debug.Log(type);
                 //如果有一个科技没有的话就无视
                 if (!TechManager.Instance.GetTechFlag(type))
                 {
@@ -488,9 +530,6 @@ public class InstallStudyItem : MonoBehaviour
                 return false;
             }
         }
-
-
-
 
 
         return true;

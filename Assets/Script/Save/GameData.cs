@@ -12,6 +12,10 @@ public class GameData
 
     public Dictionary<ResourceType, double> resources;  //各个资源的数量
     public Dictionary<ResourceType, double> resourcesMax;//各个资源的上限
+
+    public Dictionary<ResourceType, double> resourcesHistory;//各个资源的总计产出
+
+
     public Dictionary<ResourceType, bool> resourceUnlocks;//各个资源是否显示
     public Dictionary<string, bool> StudyFlag;//科技是否研究
     public Dictionary<FacilityType, FacilityPanelCount> facility;//面板拥有数量
@@ -23,8 +27,18 @@ public class GameData
 
     public long dailyBonus;//每日奖励上次点击时间
 
+    public int dailyBonusCount;//每日奖励剩余次数
+
     public long productionAcceleration;//双倍加速奖励上次点击事件
+
+
+    public int productionAccelerationCount;//双倍加速奖励剩余次数
+
     public long AccelerateImmediately;//立即加速上次点击时间
+
+    public int AccelerateImmediatelyCount;//立即加速剩余次数
+
+
     public long saveTime;//保存时间
 
     public int militaryStrength;//当前兵力
@@ -39,5 +53,16 @@ public class GameData
     public int marsPoints;//火星制造点数
 
     public int deepSpacePoints;//深空制造点数
+
+
+    public long vipTime;//vip到期时间
+
+
+
+
+
+
+
+
 
 }

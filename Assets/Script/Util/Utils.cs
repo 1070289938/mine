@@ -63,6 +63,33 @@ public class Utils
 
         return Newtonsoft.Json.JsonConvert.DeserializeObject<T>(jsonData);
     }
+
+
+
+    /// <summary>
+    /// 将秒数转换为"时:分:秒"格式（00:00:00）
+    /// </summary>
+    /// <param name="totalSeconds">总秒数</param>
+    /// <returns>格式化后的时间字符串</returns>
+    public static string FormatTime(int totalSeconds)
+    {
+        // 计算小时、分钟、秒
+        int hours = Mathf.FloorToInt(totalSeconds / 3600);
+        int minutes = Mathf.FloorToInt((totalSeconds % 3600) / 60);
+        int seconds = Mathf.FloorToInt(totalSeconds % 60);
+
+        // 使用ToString("00")确保数字为两位，不足则补零
+        if (hours > 0)
+        {
+            // 有小时数时，显示完整的"时:分:秒"
+            return string.Format("{0:00}:{1:00}:{2:00}", hours, minutes, seconds);
+        }
+        else
+        {
+            // 没有小时数时，只显示"分:秒"
+            return string.Format("{0:00}:{1:00}", minutes, seconds);
+        }
+    }
 }
 
 

@@ -66,7 +66,9 @@
   <ItemGroup>
     <Compile Include="Assets\CSJ\Scripts\Api\Dummy\PangleTools.cs" />
     <Compile Include="Assets\CSJ\Scripts\Api\Mediation\MediationConfig.cs" />
+    <Compile Include="Assets\Script\AssetsManage\StudyItem\System\ProficientCollectorsStudy.cs" />
     <Compile Include="Assets\Script\AssetsManage\StudyItem\System\ScientificTalentStudy.cs" />
+    <Compile Include="Assets\Script\AssetsManage\SystemManage\VIPManager.cs" />
     <Compile Include="Assets\Script\API\APIConfig.cs" />
     <Compile Include="Assets\Script\AssetsManage\VoiceOver\TextRevealMultiLine.cs" />
     <Compile Include="Assets\CSJ\Scripts\Api\Listener\IFullScreenVideoAdListener.cs" />
@@ -80,6 +82,7 @@
     <Compile Include="Assets\CSJ\Scripts\Implementation\Android\Utils.cs" />
     <Compile Include="Assets\CSJ\Scripts\Api\Mediation\MediationConfigUserInfoForSegment.cs" />
     <Compile Include="Assets\CSJ\Scripts\Api\Dummy\Pangle.cs" />
+    <Compile Include="Assets\Script\AssetsManage\Cavern\Galaxy\CollectionBinManager.cs" />
     <Compile Include="Assets\Script\AssetsManage\StudyItem\System\IntelligentMindStudy.cs" />
     <Compile Include="Assets\CSJ\Scripts\Implementation\Android\Mediation\MediationRewardManager.cs" />
     <Compile Include="Assets\CSJ\Scripts\Api\Listener\IAppDownloadListener.cs" />
@@ -110,11 +113,13 @@
     <Compile Include="Assets\CSJ\Scripts\Api\Listener\IInteractionAdInteractionListener.cs" />
     <Compile Include="Assets\Script\AssetsManage\Cavern\Clearing\CoalWorkerManager.cs" />
     <Compile Include="Assets\Script\AssetsManage\Cavern\Mountain\ZoriMineDetectorManager.cs" />
+    <Compile Include="Assets\Script\AssetsManage\Cavern\Galaxy\AltarTrial3Manager.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMPro_InstructionOverlay.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_ExampleScript_01.cs" />
     <Compile Include="Assets\CSJ\Scripts\Implementation\Android\RewardBundleModel.cs" />
     <Compile Include="Assets\Script\AssetsManage\Cavern\OuterSpace\MarsTouristStationManager.cs" />
     <Compile Include="Assets\CSJ\Scripts\Api\AdConst.cs" />
+    <Compile Include="Assets\Script\Tap\AchievementUtils.cs" />
     <Compile Include="Assets\Script\Save\SaveManager.cs" />
     <Compile Include="Assets\Script\AssetsManage\Cavern\Mountain\MetalRefineryManager.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeB.cs" />
@@ -124,6 +129,7 @@
     <Compile Include="Assets\Script\Util\NetworkTimeApiHelper.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\DropdownSample.cs" />
     <Compile Include="Assets\Script\API\DeviceIdGetter.cs" />
+    <Compile Include="Assets\Script\AssetsManage\StudyItem\System\ThinkTankStudy.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexColorCycler.cs" />
     <Compile Include="Assets\Script\AssetsManage\Cavern\Extraterrestrial\DeepSpaceBeaconManager.cs" />
     <Compile Include="Assets\Script\AssetsManage\Cavern\OuterSpace\SpaceDockManager.cs" />
@@ -135,13 +141,16 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\EnvMapAnimator.cs" />
     <Compile Include="Assets\Script\AssetsManage\SpecialOperation\StartPrototypeManager.cs" />
     <Compile Include="Assets\CSJ\Scripts\Api\Listener\IDislikeInteractionListener.cs" />
+    <Compile Include="Assets\Script\AssetsManage\Cavern\Galaxy\CrystalCaptureManager.cs" />
     <Compile Include="Assets\Script\AssetsManage\VoiceOver\VoiceOverManager.cs" />
     <Compile Include="Assets\CSJ\Scripts\Api\Mediation\MediationPreloadRequestInfo.cs" />
     <Compile Include="Assets\Script\AssetsManage\StudyItem\System\ArtisanshipStudy.cs" />
+    <Compile Include="Assets\Script\Enums\TapTapAchievementConstants.cs" />
     <Compile Include="Assets\CSJ\Scripts\Implementation\iOS\Mediation\MediationSplashManager.cs" />
     <Compile Include="Assets\Script\AssetsManage\Techlogic\TechChecker.cs" />
     <Compile Include="Assets\Script\AssetsManage\Cavern\EarthCore\SilverMinerManager.cs" />
     <Compile Include="Assets\Script\API\Pojo\LoginBean.cs" />
+    <Compile Include="Assets\Script\AssetsManage\Cavern\Galaxy\MemoryFurnaceManager.cs" />
     <Compile Include="Assets\Script\API\PostManager.cs" />
     <Compile Include="Assets\CSJ\Scripts\Implementation\Android\AdNative.cs" />
     <Compile Include="Assets\CSJ\Scripts\Implementation\Android\SDK.cs" />
@@ -162,11 +171,14 @@
     <Compile Include="Assets\CSJ\Scripts\Implementation\Android\Mediation\MediationSplashManager.cs" />
     <Compile Include="Assets\Script\AssetsManage\Cavern\OuterSpace\MithrilForgeManager.cs" />
     <Compile Include="Assets\Script\AssetsManage\RedeemCodeManager.cs" />
+    <Compile Include="Assets\Script\AssetsManage\Cavern\Galaxy\InterferenceManager.cs" />
     <Compile Include="Assets\CSJ\Scripts\Api\Dummy\Mediation\MediationNativeManager.cs" />
     <Compile Include="Assets\Script\AssetsManage\Cavern\OuterSpace\SpaceMiningShipManager.cs" />
     <Compile Include="Assets\Script\Pojo\IncrementReturn.cs" />
     <Compile Include="Assets\CSJ\Scripts\Api\Listener\ITTAdInteractionListener.cs" />
+    <Compile Include="Assets\Script\AssetsManage\StudyItem\System\SubspaceContainerStudy.cs" />
     <Compile Include="Assets\Script\AssetsManage\SystemManage\TimeManager.cs" />
+    <Compile Include="Assets\Script\AssetsManage\StudyItem\System\DimensionalContainerStudy.cs" />
     <Compile Include="Assets\CSJ\Scripts\Api\Listener\INativeAdListener.cs" />
     <Compile Include="Assets\CSJ\Scripts\Api\Dummy\Ad\ExpressBannerAd.cs" />
     <Compile Include="Assets\Script\AssetsManage\Cavern\Clearing\SiliconRefinerManager.cs" />
@@ -175,6 +187,7 @@
     <Compile Include="Assets\Script\AssetsManage\Cavern\Clearing\SilicaMiningMachineManager.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SimpleScript.cs" />
+    <Compile Include="Assets\Script\AssetsManage\SpecialOperation\SoaringManager.cs" />
     <Compile Include="Assets\CSJ\Scripts\Api\Listener\IFeedAdInteractionListener.cs" />
     <Compile Include="Assets\Script\AssetsManage\Cavern\Mountain\ShieldTunnelingMachineManager.cs" />
     <Compile Include="Assets\CSJ\Scripts\Implementation\Android\TTAdInteractionListener.cs" />
@@ -215,6 +228,7 @@
     <Compile Include="Assets\Script\AssetsManage\Cavern\Hole\TenementManager.cs" />
     <Compile Include="Assets\CSJ\Scripts\Implementation\Android\Mediation\MediationFullScreenManager.cs" />
     <Compile Include="Assets\Script\AssetsManage\StudyItem\StudyItemManager.cs" />
+    <Compile Include="Assets\Script\Enums\Achievement.cs" />
     <Compile Include="Assets\CSJ\Scripts\Implementation\Android\AdDislike.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexJitter.cs" />
     <Compile Include="Assets\Script\Enums\FacilityType.cs" />
@@ -240,6 +254,7 @@
     <Compile Include="Assets\Script\AssetsManage\StudyItem\System\DimensionalWarehouseStudy.cs" />
     <Compile Include="Assets\Script\Util\AssetsUtil.cs" />
     <Compile Include="Assets\Script\AssetsManage\Cavern\Extraterrestrial\FlareMineralCollectorManager.cs" />
+    <Compile Include="Assets\Script\AssetsManage\Cavern\Galaxy\AltarTrial1Manager.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TeleType.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
     <Compile Include="Assets\CSJ\Scripts\Api\IRewardBundleModel.cs" />
@@ -271,11 +286,13 @@
     <Compile Include="Assets\Script\Enums\TechType.cs" />
     <Compile Include="Assets\Script\AssetsManage\PermissionRequestManager.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexZoom.cs" />
+    <Compile Include="Assets\Script\AssetsManage\StudyItem\System\DimensionalCollectorStudy.cs" />
     <Compile Include="Assets\Script\AssetsManage\Cavern\Unit\FacilityManager.cs" />
     <Compile Include="Assets\CSJ\Scripts\Api\Listener\IExpressAdListener.cs" />
     <Compile Include="Assets\Example\LogUtils.cs" />
     <Compile Include="Assets\Script\AssetsManage\UlManage\RotationAnimation.cs" />
     <Compile Include="Assets\Script\AssetsManage\UlManage\Tips\RevenueManager.cs" />
+    <Compile Include="Assets\Script\AssetsManage\Cavern\Galaxy\TimeSpaceSynchronizationManager.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark02.cs" />
     <Compile Include="Assets\Example\CSJMDAdPositionId.cs" />
     <Compile Include="Assets\Script\AssetsManage\Cavern\Extraterrestrial\DeepSpacePanelManager.cs" />
@@ -284,19 +301,22 @@
     <Compile Include="Assets\Script\Tap\TapUtils.cs" />
     <Compile Include="Assets\Script\AssetsManage\UlManage\Tips\VerifyMsgManager.cs" />
     <Compile Include="Assets\Script\AssetsManage\Cavern\Mountain\AluminiumHarvesterManager.cs" />
-    <Compile Include="Assets\Script\AssetsManage\Cavern\Mountain\AlloyFactoryManager.cs" />
     <Compile Include="Assets\Script\AssetsManage\UlManage\MessagePopup.cs" />
     <Compile Include="Assets\CSJ\Scripts\Implementation\iOS\AdNative.cs" />
     <Compile Include="Assets\CSJ\Scripts\Api\Dummy\Mediation\MediationBannerManager.cs" />
+    <Compile Include="Assets\Script\AssetsManage\Cavern\Mountain\AlloyFactoryManager.cs" />
     <Compile Include="Assets\CSJ\Scripts\Api\Listener\IDrawFeedAdListener.cs" />
+    <Compile Include="Assets\Script\AssetsManage\SpecialOperation\RewardingExperienceManager.cs" />
     <Compile Include="Assets\Script\AssetsManage\Cavern\Extraterrestrial\InterstellarResearchInstituteManager.cs" />
     <Compile Include="Assets\CSJ\Scripts\Implementation\Android\Mediation\MediationAdSlot.cs" />
+    <Compile Include="Assets\Script\AssetsManage\Cavern\Galaxy\MemoryStorageManager.cs" />
     <Compile Include="Assets\Script\AssetsManage\DataProcessing.cs" />
     <Compile Include="Assets\CSJ\Scripts\Api\Mediation\MediationShakeViewListener.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_B.cs" />
     <Compile Include="Assets\Script\AssetsManage\Cavern\EarthCore\ExplorationTeamManager.cs" />
     <Compile Include="Assets\CSJ\Scripts\Api\IRewardAdPlayAgainController.cs" />
     <Compile Include="Assets\CSJ\Scripts\Api\Dummy\Mediation\MediationRewardManager.cs" />
+    <Compile Include="Assets\Script\AssetsManage\StudyItem\System\AscensionExperienceStudy.cs" />
     <Compile Include="Assets\Script\AssetsManage\StudyItem\System\SpatialHegemonyStudy.cs" />
     <Compile Include="Assets\Script\AssetsManage\StudyItem\Cavern\InstallStudy.cs" />
     <Compile Include="Assets\CSJ\Scripts\Api\PrivacyConfiguration.cs" />
@@ -325,9 +345,12 @@
     <Compile Include="Assets\Example\MediationLocalConfig.cs" />
     <Compile Include="Assets\Script\AssetsManage\ResourceLogic\ResourceManager.cs" />
     <Compile Include="Assets\CSJ\Scripts\Api\Mediation\MediationSplashRequestInfo.cs" />
+    <Compile Include="Assets\Script\Tap\AchievementCallback.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ShaderPropAnimator.cs" />
     <Compile Include="Assets\Script\AssetsManage\Cavern\Hole\PileOfOreManager.cs" />
     <Compile Include="Assets\Script\AssetsManage\StudyItem\System\WorshipStudy.cs" />
+    <Compile Include="Assets\Script\AssetsManage\StudyItem\System\MetaphysicsStudy.cs" />
+    <Compile Include="Assets\Script\AssetsManage\Cavern\Galaxy\AltarTrial2Manager.cs" />
     <Compile Include="Assets\Script\AssetsManage\UlManage\Map\MapListManager.cs" />
     <Compile Include="Assets\Script\AssetsManage\StudyItem\Cavern\InstallStudyItem.cs" />
     <Compile Include="Assets\Script\AssetsManage\IncidentManager.cs" />
@@ -357,16 +380,20 @@
     <Compile Include="Assets\Script\AssetsManage\Cavern\OuterSpace\MetalHydrogenCollectorManager.cs" />
     <Compile Include="Assets\Script\AssetsManage\Cavern\EarthCore\BattlePanelManager.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark03.cs" />
+    <Compile Include="Assets\Script\AssetsManage\StudyItem\System\GeniusStudy.cs" />
     <Compile Include="Assets\CSJ\Scripts\Implementation\Android\Pangle.cs" />
     <Compile Include="Assets\Script\AssetsManage\MainManager.cs" />
     <Compile Include="Assets\Script\AssetsManage\StudyItem\System\MultidimensionalWarehouseStudy.cs" />
+    <Compile Include="Assets\Script\AssetsManage\Cavern\Galaxy\CatchPanelManager.cs" />
     <Compile Include="Assets\CSJ\Scripts\Implementation\Android\Ad\DrawFeedAd.cs" />
     <Compile Include="Assets\Script\AssetsManage\Cavern\Extraterrestrial\ExtraterrestrialMaterialLaboratoryManager.cs" />
     <Compile Include="Assets\CSJ\Scripts\Api\Listener\IFullScreenVideoAdInteractionListener.cs" />
+    <Compile Include="Assets\Script\AssetsManage\StudyItem\System\WorldAmbitionStudy.cs" />
     <Compile Include="Assets\Script\AssetsManage\Cavern\Extraterrestrial\ConstructingXingyuanShipManager.cs" />
     <Compile Include="Assets\Script\AssetsManage\Cavern\Clearing\IronSteelFoundryManager.cs" />
     <Compile Include="Assets\Script\AssetsManage\UlManage\ExpendManager.cs" />
     <Compile Include="Assets\CSJ\Scripts\Implementation\iOS\Mediation\MediationBannerManager.cs" />
+    <Compile Include="Assets\Script\AssetsManage\StudyItem\System\UnscrupulousEnterpriseStudy.cs" />
     <Compile Include="Assets\CSJ\Scripts\Api\Mediation\MediationAdLoadInfo.cs" />
     <Compile Include="Assets\Script\AssetsManage\ContentManager.cs" />
     <Compile Include="Assets\Script\AssetsManage\TitlePanelManager.cs" />
@@ -765,7 +792,7 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="zxing.unity">
-      <HintPath>Library\PackageCache\com.taptap.sdk.login@4.5.4\Plugins\zxing.unity.dll</HintPath>
+      <HintPath>Library\PackageCache\com.taptap.sdk.login@4.6.3\Plugins\zxing.unity.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="NPOI.OpenXml4Net">
@@ -1300,6 +1327,10 @@
       <HintPath>E:\UnityEditor\2022.3.55f1\Editor\Data\NetStandard\compat\2.1.0\shims\netfx\System.Xml.Serialization.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="TapSDK.Achievement.Standalone.Editor">
+      <HintPath>Library\ScriptAssemblies\TapSDK.Achievement.Standalone.Editor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Unity.Notifications">
       <HintPath>Library\ScriptAssemblies\Unity.Notifications.dll</HintPath>
       <Private>False</Private>
@@ -1548,6 +1579,10 @@
       <HintPath>Library\ScriptAssemblies\Unity.Mathematics.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="TapSDK.Achievement.Runtime">
+      <HintPath>Library\ScriptAssemblies\TapSDK.Achievement.Runtime.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Unity.2D.Common.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.2D.Common.Editor.dll</HintPath>
       <Private>False</Private>
@@ -1568,12 +1603,16 @@
       <HintPath>Library\ScriptAssemblies\Unity.Notifications.Android.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Unity.2D.SpriteShape.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.2D.SpriteShape.Editor.dll</HintPath>
+    <Reference Include="TapSDK.Achievement.Standalone.Runtime">
+      <HintPath>Library\ScriptAssemblies\TapSDK.Achievement.Standalone.Runtime.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.2D.Tilemap.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.2D.Tilemap.Editor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="TapTap.Achievement.Mobile.Editor">
+      <HintPath>Library\ScriptAssemblies\TapTap.Achievement.Mobile.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Unity.2D.Animation.Editor">
@@ -1586,6 +1625,10 @@
     </Reference>
     <Reference Include="Unity.2D.IK.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.2D.IK.Editor.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.2D.SpriteShape.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.2D.SpriteShape.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
   </ItemGroup>

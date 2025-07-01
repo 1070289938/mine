@@ -49,9 +49,7 @@ public class FaithStudy : MonoBehaviour
     //研究按钮事件
     void Study()
     {
-
-    
-
+        AchievementUtils.Unlock(Achievement.temple);
     }
 
 

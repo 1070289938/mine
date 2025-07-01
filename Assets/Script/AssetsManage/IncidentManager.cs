@@ -179,20 +179,20 @@ public class IncidentManager : MonoBehaviour
         // 异世界事件
         regionIncidents[MapType.AnotherWorld] = new List<Incident>
         {
-            new Incident("天空中突然出现了一道神秘的彩虹桥", 1f),
-            new Incident("你听到了悠扬的魔法咒语声", 1f),
-            new Incident("一只小精灵飞到了你的肩膀上", 1f),
-            new Incident("地面突然冒出一朵散发着光芒的花朵", 1f),
-            new Incident("你看到远处有一座漂浮的城堡", 1f),
-            new Incident("一阵微风拂过，带来了一股甜美的香气", 1f),
-            new Incident("一群独角兽在草地上奔跑嬉戏", 1f),
-            new Incident("你遇到了一个会说话的树精灵", 1f),
-            new Incident("一道神秘的魔法光芒照亮了周围的区域", 1f),
-            new Incident("你发现脚下的土地变成了柔软的云朵", 1f),
-            new Incident("一只巨龙在天空中盘旋飞过", 1f),
-            new Incident("周围的石头突然变成了可爱的小动物", 1f),
-            new Incident("你听到了远处传来的美妙音乐声", 1f),
-            new Incident("一个神秘的魔法阵出现在你面前", 1f)
+           new Incident("你的飞船遇到了小型陨石撞击", 1f),
+            new Incident("你发现远处有神秘的能量波动", 1f),
+            new Incident("飞船的导航系统出现了短暂故障", 1f),
+            new Incident("飞船的生命维持系统发出轻微警报", 1f),
+            new Incident("你看到一颗绚丽的星云从飞船旁飘过", 1f),
+            new Incident("飞船与星球的通讯信号出现干扰", 1f),
+            new Incident("飞船的太阳能板被一颗微小的流星击中", 1f),
+            new Incident("你检测到附近有一股未知的辐射源", 1f),
+            new Incident("飞船的引擎发出异常的噪音", 1f),
+            new Incident("你看到一个神秘的黑色物体在太空中漂浮", 1f),
+            new Incident("飞船的仪表盘上出现了一个不明符号", 1f),
+            new Incident("一阵强大的宇宙射线掠过飞船", 1f),
+            new Incident("你发现飞船的氧气储备略有下降", 1f),
+            new Incident("飞船的外壳出现了一处轻微的划痕", 1f)
         };
     }
 
@@ -236,7 +236,7 @@ public class IncidentManager : MonoBehaviour
             LogManager.Instance.AddLog("探测队在探测的时候发现了一种只有地心存在的特殊岩石,他可以完全隔离地心的高温,并且形状泛红,科学家们给他命名叫做地心岩");
             TechManager.Instance.techTypeStudyFlag[TechType.Geocentric] = true;
         }));
-      
+
     }
 
     // 执行当前区域事件

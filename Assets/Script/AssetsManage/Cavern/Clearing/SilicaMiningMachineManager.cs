@@ -94,14 +94,15 @@ public class SilicaMiningMachineManager : MonoBehaviour
             count *= ResourceAdditionManager.Instance.GetToolUp();//采矿工具加成
 
             count *= ResourceAdditionManager.Instance.GetMiningWorkerUp();//采矿工人加成
+            count *= ResourceAdditionManager.Instance.GetCollectorMarkUp();//加上采集器的提升
             //每帧增加硅石
-            IncrementReturn increment = ResourceManager.Instance.AddResource(ResourceType.Silicon, count * Time.deltaTime,true);
+            IncrementReturn increment = ResourceManager.Instance.AddResource(ResourceType.Silicon, count * Time.deltaTime, true);
 
 
 
             //计算出每秒产出多少资源
             double secondCount = increment.Count / Time.deltaTime;
-            facilityPanelManager.UpdateOutPut(ResourceType.Silicon, secondCount,true);
+            facilityPanelManager.UpdateOutPut(ResourceType.Silicon, secondCount, true);
         }
 
 

@@ -35,6 +35,9 @@ public class ResourceCountManager : MonoBehaviour
 
     FacilityPanelManager neutronCollector;//中子采集器
 
+    FacilityPanelManager MetallicHydrogenCollector;//金属氢采集器
+    FacilityPanelManager FlareMineralCollector;//耀斑矿采集器
+    FacilityPanelManager AdamantiteCollector;//精金采集器
     FacilityPanelManager tenementManager;//房屋
     void Start()
     {
@@ -63,8 +66,9 @@ public class ResourceCountManager : MonoBehaviour
         iridiumCollector = FacilityManager.Instance.GetFacilityPanel(FacilityType.IridiumCollector);
         neutronCollector = FacilityManager.Instance.GetFacilityPanel(FacilityType.NeutronCollector);
 
-
-
+        MetallicHydrogenCollector = FacilityManager.Instance.GetFacilityPanel(FacilityType.MetallicHydrogenCollector);
+        FlareMineralCollector = FacilityManager.Instance.GetFacilityPanel(FacilityType.FlareMineralCollector);
+        AdamantiteCollector = FacilityManager.Instance.GetFacilityPanel(FacilityType.AdamantiteCollector);
     }
 
     /// <summary>
@@ -122,12 +126,18 @@ public class ResourceCountManager : MonoBehaviour
         count += titaniumCollector.GetMaxCount() * 2;
 
         count += silverMiner.GetMaxCount();
-        count += mickelHarvester.GetMaxCount();
-        count += tungstenHarvester.GetMaxCount();
+        count += mickelHarvester.GetMaxCount()* 2;
+        count += tungstenHarvester.GetMaxCount()* 2;
 
         count += spaceMiningShip.GetMaxCount();
         count += iridiumCollector.GetMaxCount() * 2;
         count += neutronCollector.GetMaxCount() * 2;
+
+        count += MetallicHydrogenCollector.GetMaxCount();
+        count += FlareMineralCollector.GetMaxCount() * 2;
+        count += AdamantiteCollector.GetMaxCount() * 2;
+
+
 
 
         return count;

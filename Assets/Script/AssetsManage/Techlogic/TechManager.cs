@@ -43,6 +43,20 @@ public class TechManager : MonoBehaviour
         [TechType.ScientificTalent] = true,//科学天赋
         [TechType.BornScientist] = true,//天生科学家
 
+        [TechType.DimensionalContainer] = true,//多维集装箱
+        [TechType.SubspaceContainer] = true,//亚空间集装箱
+        [TechType.Genius] = true,//天才
+        [TechType.ThinkTank] = true,//智囊
+        [TechType.UnscrupulousEnterprise] = true,//黑心企业
+        [TechType.WorldAmbition] = true,//世界级野心
+        [TechType.Metaphysics] = true,//玄学
+        [TechType.ProficientCollectors] = true,//天生科学家
+        [TechType.DimensionalCollector] = true,//四维采集器
+        [TechType.AscensionExperience] = true,//飞升经验
+
+
+
+
     };
 
     public Dictionary<TechType, bool> techTypeStudyFlag;//科技是否研究
@@ -86,14 +100,32 @@ public class TechManager : MonoBehaviour
 
     List<TechType> specific = new()
     {
+
+        TechType.tramcar,
         TechType.InspectWonderfulRod,
         TechType.ExploratoryMine,
         TechType.SoundingDepth,
         TechType.trace,
         TechType.OpenGate,
-         TechType.NearSpaceExploration,
-         TechType.ExperimentalExplorer,
-          TechType.CalculatingJupiterOrbit,
+        TechType.NearSpaceExploration,
+        TechType.ExperimentalExplorer,
+        TechType.CalculatingJupiterOrbit,
+        TechType.TimePhaseProjector,
+        TechType.LogicPuzzleArray,
+        TechType.PhantasmOverlapZone,
+
+        TechType.Gravitational,
+        TechType.EntanglementNavigator,
+        TechType.PhotonShield,
+        TechType.AnnihilationEngine,
+
+        TechType.StudyBasicTechnology,
+        TechType.StudyCryogenicTechnology,
+        TechType.StudySpectralKnowledge,
+        TechType.StudyTemporalKnowledge,
+
+
+
     };
 
     /// <summary>

@@ -28,7 +28,7 @@ dependencyResolutionManagement {
             url "https://maven.aliyun.com/repository/google" // Assets/CSJ/Editor/PangleAdapterScriptsDependencies.xml:14
         }
         maven {
-            url "https://repo.maven.apache.org/maven2" // Packages/com.taptap.sdk.core/Mobile/Editor/NativeDependencies.xml:6, Packages/com.taptap.sdk.login/Mobile/Editor/NativeDependencies.xml:6
+            url "https://repo.maven.apache.org/maven2" // Packages/com.taptap.sdk.achievement/Mobile/Editor/NativeDependencies.xml:6, Packages/com.taptap.sdk.core/Mobile/Editor/NativeDependencies.xml:6, Packages/com.taptap.sdk.login/Mobile/Editor/NativeDependencies.xml:6
         }
         mavenLocal()
 // Android Resolver Repos End

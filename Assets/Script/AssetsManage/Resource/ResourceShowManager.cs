@@ -50,6 +50,8 @@ public class ResourceShowManager : MonoBehaviour
     private void Start()
     {
         SetMaxStorage(maxStorage); // 初始化库存
+       
+
         // 默认隐藏
         gameObject.SetActive(show); // 隐藏节点
 

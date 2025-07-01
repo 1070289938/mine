@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
+using TapSDK.Achievement;
 using TapTap.TapAd;
 using TapTap.TapAd.Internal;
 using TMPro;
@@ -30,13 +31,13 @@ public sealed class TapAdUtils : MonoBehaviour
 
     }
 
-
+ 
 
     //播放激励视频
-    public void PlayRewardVideo(int adId,ICommonInteractionListener listener)
+    public void PlayRewardVideo(int adId, ICommonInteractionListener listener)
     {
         //先加载激励视频
-        LoadRewardVideoAd(adId,listener);
+        LoadRewardVideoAd(adId, listener);
 
     }
 
@@ -76,7 +77,7 @@ public sealed class TapAdUtils : MonoBehaviour
         ShowText("请求权限");
     }
 
-    private async void LoadRewardVideoAd(int adId,ICommonInteractionListener listener)
+    private async void LoadRewardVideoAd(int adId, ICommonInteractionListener listener)
     {
         if (TapAdSdk.IsInited == false)
         {
@@ -102,7 +103,7 @@ public sealed class TapAdUtils : MonoBehaviour
             .UserId("123")
             .Build();
         _tapRewardAd = new TapRewardVideoAd(request);
-        _tapRewardAd.SetLoadListener(new RewardVideoAdLoadListener(this,listener));
+        _tapRewardAd.SetLoadListener(new RewardVideoAdLoadListener(this, listener));
         _tapRewardAd.Load();
     }
 
@@ -204,7 +205,7 @@ public sealed class TapAdUtils : MonoBehaviour
         /// constructor bind with Java interface
         /// </summary>
         /// <param name="context"></param>
-        public RewardVideoAdLoadListener(TapAdUtils context,ICommonInteractionListener listener)
+        public RewardVideoAdLoadListener(TapAdUtils context, ICommonInteractionListener listener)
         {
             example = context;
             this.listener = listener;

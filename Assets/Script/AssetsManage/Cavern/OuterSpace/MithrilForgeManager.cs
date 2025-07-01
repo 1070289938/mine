@@ -120,7 +120,10 @@ public class MithrilForgeManager : MonoBehaviour
         foreach (var expend in depleted)
         {
             double expendable = thisYield * expend.Value;
+            expendable = ResourceManager.Instance.RebirthBonus(expend.Key, expendable);
+
             double thisResource = ResourceManager.Instance.GetResource(expend.Key);
+
             if (thisResource < expendable)
             {
                 //如果资源不足就不进行生产
@@ -129,7 +132,7 @@ public class MithrilForgeManager : MonoBehaviour
         }
 
         //每帧增加资源
-        IncrementReturn increment = ResourceManager.Instance.AddResource(ResourceType.Mithril, thisYield,true);
+        IncrementReturn increment = ResourceManager.Instance.AddResource(ResourceType.Mithril, thisYield, true);
 
 
 

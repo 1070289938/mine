@@ -5,23 +5,44 @@ using NPOI.HSSF.UserModel;
 using NPOI.SS.UserModel;
 using System.IO;
 using NPOI.SS.Formula.Functions;
+using UnityEngine.Networking;
+using NPOI.XSSF.UserModel;
+using System.Threading.Tasks;
 public class DataProcessing : MonoBehaviour
 {
 
     public static List<TechnologyBean> technologies;
 
+    public VoiceOverManager voiceOverManager;
+
     void Awake()
     {
-        technologies = GetTechnologyBeans();
+
     }
+    void Start()
+    {
+
+        GetBean();
+    }
+
+    async void GetBean()
+    {
+        voiceOverManager.GameLoadVoiceOver();
+        await Task.Yield();
+        Debug.Log("开始加载科技");
+        technologies = await GetTechnologyBeans();
+        Debug.Log("科技加载完成,进行初始化科技");
+        InstallStudy.installStudy.Install();
+    }
+
     /// <summary>
     /// 获取所有的科技
     /// </summary>
     /// <returns>包含所有科技信息的 TechnologyBean 列表</returns>
-    public List<TechnologyBean> GetTechnologyBeans()
+    public async Task<List<TechnologyBean>> GetTechnologyBeans()
     {
         // 获取指定路径和工作表索引的工作表
-        ISheet sheet = GetISheet("/Data/Technology.xls", 0);
+        ISheet sheet = await GetISheetAsync("Technology.xls", 0);
         if (sheet == null)
         {
             return null;
@@ -164,21 +185,24 @@ public class DataProcessing : MonoBehaviour
         {
             //获取前置监听
             List<TechType> techTypes = technology.advanceTechType;
-            if(techTypes==null){
+            if (techTypes == null)
+            {
                 continue;
             }
             if (techTypes.Count != 0)
             {
                 foreach (TechnologyBean bean in technologyBeans)
                 {
-                    if (bean.techType ==techTypes[0]){
+                    if (bean.techType == techTypes[0])
+                    {
                         //增加后置监听
-                        if(bean.monitorTechType==null){
+                        if (bean.monitorTechType == null)
+                        {
                             bean.monitorTechType = new List<TechType>();
                         }
                         bean.monitorTechType.Add(technology.techType);
                     }
-            }
+                }
             }
         }
     }
@@ -304,29 +328,85 @@ public class DataProcessing : MonoBehaviour
 
         return list;
     }
-    /// <summary>
-    /// 获取工作表
-    /// </summary>
-    /// <returns></returns>
-    public ISheet GetISheet(string path, int id)
+    public async Task<ISheet> GetISheetAsync(string fileName, int sheetIndex = 0)
     {
-        string filePath = Application.dataPath + path;
-        if (File.Exists(filePath))
+        string filePath = GetStreamingAssetsPath(fileName);
+
+        // Android 平台需要特殊处理
+        if (filePath.Contains("://")) // 检测是否是特殊路径
         {
-            using (FileStream fs = new FileStream(filePath, FileMode.Open, FileAccess.Read))
+            using (UnityWebRequest request = UnityWebRequest.Get(filePath))
             {
-                HSSFWorkbook workbook = new HSSFWorkbook(fs);
-                ISheet sheet = workbook.GetSheetAt(id); // 获取第一个工作表
-                return sheet;
+                // 异步加载
+                var operation = request.SendWebRequest();
+
+                // 使用 TaskCompletionSource 等待请求完成
+                var tcs = new TaskCompletionSource<bool>();
+                operation.completed += _ => tcs.SetResult(true);
+                await tcs.Task;
+
+                if (request.result == UnityWebRequest.Result.Success)
+                {
+                    byte[] fileData = request.downloadHandler.data;
+                    return ParseExcelFromMemory(fileData, fileName, sheetIndex);
+                }
+                else
+                {
+                    Debug.LogError($"文件下载失败: {request.error}");
+                    return null;
+                }
             }
         }
         else
         {
-            Debug.LogError("文件未找到: " + filePath);
-            return null;
+            // 非 Android 平台可以直接用 FileStream
+            try
+            {
+                // 在后台线程读取文件
+                return await Task.Run(() =>
+                {
+                    using (FileStream fs = new FileStream(filePath, FileMode.Open, FileAccess.Read))
+                    {
+                        return ParseExcelFromStream(fs, fileName, sheetIndex);
+                    }
+                });
+            }
+            catch (System.Exception e)
+            {
+                Debug.LogError($"读取表格失败: {e.Message}");
+                return null;
+            }
         }
     }
 
+    // 从内存中解析 Excel
+    private ISheet ParseExcelFromMemory(byte[] fileData, string fileName, int sheetIndex)
+    {
+        using (MemoryStream ms = new MemoryStream(fileData))
+        {
+            return ParseExcelFromStream(ms, fileName, sheetIndex);
+        }
+    }
 
+    // 从流中解析 Excel
+    private ISheet ParseExcelFromStream(Stream stream, string fileName, int sheetIndex)
+    {
+        IWorkbook workbook;
+
+        if (fileName.EndsWith(".xlsx"))
+            workbook = new XSSFWorkbook(stream);
+        else if (fileName.EndsWith(".xls"))
+            workbook = new HSSFWorkbook(stream);
+        else
+            throw new System.Exception("不支持的文件格式");
+
+        return workbook.GetSheetAt(sheetIndex);
+    }
+
+    // 获取平台兼容的 StreamingAssets 路径
+    private string GetStreamingAssetsPath(string fileName)
+    {
+        return Path.Combine(Application.streamingAssetsPath, fileName);
+    }
 
 }

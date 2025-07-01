@@ -25,7 +25,7 @@ public class RingWorldManager : MonoBehaviour
 
     string btnText = "建造";
     readonly FacilityType type = FacilityType.RingWorld;
-    double up = 0.2;//每个祭坛提升的产量
+    double up = 0.25;//每个祭坛提升的产量
 
     //建造需要的资源
     Dictionary<ResourceType, double> resources = new Dictionary<ResourceType, double>()

@@ -34,11 +34,7 @@ public class TipsManager : MonoBehaviour
         Instance = this;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
 
-    }
 
     //背景是否可点击
     private bool backgroudClickable = false;
@@ -93,7 +89,7 @@ public class TipsManager : MonoBehaviour
     /// <summary>
     /// 显示离线收益
     /// </summary>
-    public void ShowRevenue(Dictionary<ResourceType, double> resource)
+    public void ShowRevenue(Dictionary<ResourceType, double> resource, int time)
     {
         backgroudClickable = false;
 
@@ -101,7 +97,7 @@ public class TipsManager : MonoBehaviour
         revenueManager.gameObject.SetActive(true);
         black.SetActive(true);
 
-        revenueManager.Install(resource);
+        revenueManager.Install(resource, time);
 
     }
 
@@ -125,15 +121,41 @@ public class TipsManager : MonoBehaviour
         black.SetActive(true);
     }
 
+
+    public void Update()
+    {
+        if (loadFlag)
+        {
+            //如果是加载中的话，记15秒，如果15秒后还没有加载完成的话就强制关闭
+            loadTime += Time.deltaTime;
+            if (loadTime > 15)
+            {
+                loadTime = 0;
+                HideBackLoad();
+            }
+        }
+
+    }
+
+    /// <summary>
+    /// 加载时间
+    /// </summary>
+    float loadTime = 0;
+
+    bool loadFlag = false;
+
+    //显示黑色加载框
     public void ShowBackLoad()
     {
+        loadFlag = true;
         loadObject.SetActive(true);
         highBlack.SetActive(true);
     }
 
     public void HideBackLoad()
     {
-
+        loadFlag = false;
+        loadTime = 0;
         loadObject.SetActive(false);
         highBlack.SetActive(false);
     }

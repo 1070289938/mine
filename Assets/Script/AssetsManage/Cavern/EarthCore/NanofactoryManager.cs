@@ -118,10 +118,13 @@ public class NanofactoryManager : MonoBehaviour
 
 
         //计算出当前帧需要消耗的资源,并且判断是否足够
-        foreach (var expend in depleted)
+      foreach (var expend in depleted)
         {
             double expendable = thisYield * expend.Value;
+            expendable = ResourceManager.Instance.RebirthBonus(expend.Key, expendable);
+
             double thisResource = ResourceManager.Instance.GetResource(expend.Key);
+           
             if (thisResource < expendable)
             {
                 //如果资源不足就不进行生产

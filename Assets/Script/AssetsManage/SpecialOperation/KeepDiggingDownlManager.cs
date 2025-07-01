@@ -49,6 +49,7 @@ public class KeepDiggingDownlManager : MonoBehaviour
     void RestartGame()
     {
 
+        AchievementUtils.Unlock(Achievement.Destroying);
         gameObject.SetActive(false);
         //显示旁白说明星球被挖爆了
         VoiceOverManager.Instance.DiggingPlanetsLeadsRebirthOver(() =>
@@ -62,7 +63,7 @@ public class KeepDiggingDownlManager : MonoBehaviour
         //在显示旁白的期间重启
 
 
-        ResourceManager.Instance.AddResource(ResourceType.RegeneratedCrystal, GetRegeneratedCrystalCount(),false);
+        ResourceManager.Instance.AddResource(ResourceType.RegeneratedCrystal, GetRegeneratedCrystalCount(), false);
 
         //重生时间
         SaveLoadManager.Instance.SecondLife();
